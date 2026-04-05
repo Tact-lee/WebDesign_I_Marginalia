@@ -6,6 +6,15 @@
 /* ---------- Reset & Base ---------- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* ---------- Grid Canvas ---------- */
+#gridCanvas {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
 :root {
   --bg:       #f2f0eb;
   --ink:      #1a1a18;
@@ -108,63 +117,46 @@ button { background: none; border: none; cursor: pointer; font: inherit; color: 
 /* ---------- HERO ---------- */
 .hero {
   min-height: 100vh;
-  padding: 140px 48px 80px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto 1fr auto;
-  align-items: end;
-  gap: 0;
-  border-bottom: 1px solid var(--ink-15);
   position: relative;
 }
 
-.hero__meta {
-  grid-column: 1 / -1;
+.hero__content {
   display: flex;
-  gap: 32px;
-  margin-bottom: 80px;
-  align-items: center;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 140px 48px 80px;
 }
 
-.hero__meta::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: var(--ink-15);
+.hero__meta {
+  display: flex;
+  gap: 32px;
+  margin-bottom: 52px;
 }
 
 .hero__title {
-  grid-column: 1;
   font-family: var(--f-serif);
-  font-size: clamp(56px, 8vw, 112px);
+  font-size: clamp(72px, 9vw, 128px);
   font-weight: 400;
-  line-height: 0.92;
+  line-height: 0.88;
   letter-spacing: -0.04em;
-  align-self: center;
-}
-
-.hero__title em {
-  font-style: italic;
-  color: var(--ink-40);
+  margin-bottom: 28px;
 }
 
 .hero__sub {
-  grid-column: 2;
   font-family: var(--f-mono);
-  font-size: 13px;
-  line-height: 1.8;
+  font-size: 12px;
+  line-height: 2.0;
   color: var(--ink-40);
-  align-self: end;
-  padding-bottom: 8px;
-  padding-left: 40px;
+  margin-bottom: auto;
 }
 
 .hero__scroll-hint {
-  grid-column: 1 / -1;
   display: flex;
   align-items: center;
   gap: 16px;
-  margin-top: 80px;
+  margin-top: 64px;
   font-family: var(--f-mono);
   font-size: 10px;
   letter-spacing: 0.12em;
@@ -185,10 +177,165 @@ button { background: none; border: none; cursor: pointer; font: inherit; color: 
   to   { transform: scaleX(1); }
 }
 
+/* ---------- HERO GRAPHIC ---------- */
+.hero__graphic {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 48px 80px 40px;
+  perspective: 800px;
+}
+
+.hero__svg-wrap {
+  width: 100%;
+  max-width: 440px;
+  transition: transform 0.08s linear;
+  transform-style: preserve-3d;
+}
+
+.hero__svg {
+  width: 100%;
+  height: auto;
+  display: block;
+  overflow: visible;
+}
+
+/* SVG element styles */
+.svg-axis {
+  stroke: rgba(26,26,24,0.14);
+  stroke-width: 0.5;
+  stroke-dasharray: 400;
+  stroke-dashoffset: 400;
+  animation: svgDraw 0.7s ease-out 0.3s both;
+}
+
+.svg-ring--outer {
+  fill: none;
+  stroke: rgba(26,26,24,0.09);
+  stroke-width: 0.5;
+  opacity: 0;
+  animation: svgAppear 0.8s ease-out 0.5s both;
+}
+
+.svg-ring--main {
+  fill: none;
+  stroke: rgba(26,26,24,0.22);
+  stroke-width: 0.8;
+  stroke-dasharray: 911;
+  stroke-dashoffset: 911;
+  animation: svgDraw 1.4s ease-out 0.9s both;
+}
+
+.svg-ring--inner {
+  fill: none;
+  stroke: rgba(26,26,24,0.16);
+  stroke-width: 0.5;
+  stroke-dasharray: 176;
+  stroke-dashoffset: 176;
+  animation: svgDraw 0.6s ease-out 1.6s both;
+}
+
+.svg-tick {
+  stroke: rgba(26,26,24,0.20);
+  stroke-width: 0.7;
+  stroke-dasharray: 20;
+  stroke-dashoffset: 20;
+  animation: svgDraw 0.3s ease-out 1.7s both;
+}
+
+.svg-tick--major {
+  stroke: rgba(26,26,24,0.30);
+  stroke-width: 1;
+  stroke-dasharray: 20;
+  stroke-dashoffset: 20;
+  animation: svgDraw 0.4s ease-out 1.7s both;
+}
+
+.svg-center {
+  stroke: rgba(26,26,24,0.25);
+  stroke-width: 0.7;
+  stroke-dasharray: 30;
+  stroke-dashoffset: 30;
+  animation: svgDraw 0.3s ease-out 2.0s both;
+}
+
+.svg-dot {
+  fill: rgba(26,26,24,0.4);
+  opacity: 0;
+  animation: svgAppear 0.3s ease-out 2.1s both;
+}
+
+.svg-dot--center {
+  fill: rgba(26,26,24,0.8);
+}
+
+.svg-arc {
+  fill: none;
+  stroke: rgba(26,26,24,0.18);
+  stroke-width: 0.6;
+  stroke-dasharray: 50;
+  stroke-dashoffset: 50;
+  animation: svgDraw 0.5s ease-out 1.9s both;
+}
+
+.svg-dim {
+  stroke: rgba(26,26,24,0.14);
+  stroke-width: 0.5;
+  stroke-dasharray: 300;
+  stroke-dashoffset: 300;
+  animation: svgDraw 0.7s ease-out 2.0s both;
+}
+
+.svg-dim-tick {
+  stroke: rgba(26,26,24,0.14);
+  stroke-width: 0.5;
+  stroke-dasharray: 12;
+  stroke-dashoffset: 12;
+  animation: svgDraw 0.3s ease-out 2.2s both;
+}
+
+.svg-label {
+  font-family: var(--f-mono);
+  fill: rgba(26,26,24,0.35);
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  opacity: 0;
+  animation: svgAppear 0.5s ease-out 2.3s both;
+}
+
+.svg-label--coord {
+  fill: rgba(26,26,24,0.25);
+  font-size: 8px;
+}
+
+.svg-label--card {
+  fill: rgba(26,26,24,0.20);
+  font-size: 8px;
+}
+
+.svg-label--tech {
+  fill: rgba(26,26,24,0.18);
+  font-size: 7.5px;
+}
+
+.svg-label--title {
+  fill: rgba(26,26,24,0.30);
+  font-size: 8.5px;
+  letter-spacing: 0.10em;
+}
+
+@keyframes svgDraw {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes svgAppear {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
 /* ---------- MAP SECTION ---------- */
 .map-section {
   padding: 80px 48px;
-  border-bottom: 1px solid var(--ink-15);
 }
 
 .map-section__header {
@@ -200,11 +347,9 @@ button { background: none; border: none; cursor: pointer; font: inherit; color: 
 .map-wrapper {
   position: relative;
   width: 100%;
-  border: 1px solid var(--ink-15);
   overflow: hidden;
   background: var(--bg);
   cursor: crosshair;
-  /* perspective for CSS tilt fallback — Three.js handles the real 3D */
 }
 
 #mapCanvas {
@@ -323,37 +468,6 @@ button { background: none; border: none; cursor: pointer; font: inherit; color: 
   color: var(--ink-40);
 }
 
-/* ---------- SECTION DIVIDER ---------- */
-.section-divider {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  padding: 24px 48px;
-  border-bottom: 1px solid var(--ink-15);
-}
-
-.divider-label {
-  font-family: var(--f-mono);
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink-40);
-  white-space: nowrap;
-}
-
-.divider-line {
-  flex: 1;
-  height: 1px;
-  background: var(--ink-15);
-}
-
-.divider-count {
-  font-family: var(--f-mono);
-  font-size: 10px;
-  letter-spacing: 0.08em;
-  color: var(--ink-40);
-  white-space: nowrap;
-}
 
 /* ---------- GALLERY SECTION ---------- */
 .gallery-section {
@@ -600,11 +714,11 @@ button { background: none; border: none; cursor: pointer; font: inherit; color: 
 /* ---------- Responsive ---------- */
 @media (max-width: 900px) {
   .nav { padding: 16px 24px; }
-  .hero { padding: 120px 24px 60px; }
-  .hero__title { font-size: clamp(44px, 10vw, 80px); }
-  .hero__sub { padding-left: 0; grid-column: 1 / -1; margin-top: 24px; }
+  .hero { grid-template-columns: 1fr; }
+  .hero__content { padding: 120px 24px 60px; }
+  .hero__graphic { display: none; }
+  .hero__title { font-size: clamp(56px, 12vw, 90px); }
   .map-section, .gallery-section { padding: 60px 24px; }
-  .section-divider { padding: 20px 24px; }
   .masonry-grid { columns: 2; }
   .footer { padding: 40px 24px 32px; }
   .footer__top { flex-direction: column; gap: 24px; }
@@ -614,7 +728,6 @@ button { background: none; border: none; cursor: pointer; font: inherit; color: 
 @media (max-width: 600px) {
   .nav__links { display: none; }
   .masonry-grid { columns: 1; }
-  .hero { grid-template-columns: 1fr; }
   .gallery-section__header { flex-direction: column; align-items: flex-start; gap: 20px; }
   .map-legend { flex-direction: column; }
   .legend-item { flex: none; }
