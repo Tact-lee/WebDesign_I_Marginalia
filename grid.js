@@ -4,8 +4,8 @@
   var dpr    = Math.min(window.devicePixelRatio || 1, 2);
 
   var GRID = 16; // px
-  var T1   = 1.1; // s — vertical sweep duration
-  var T2   = 0.9; // s — horizontal sweep duration
+  var T1   = 2.1; // s — vertical sweep duration
+  var T2   = 1.9; // s — horizontal sweep duration
   var GAP  = 0.18; // s — pause between phases
 
   var W, H, startTime, raf;
