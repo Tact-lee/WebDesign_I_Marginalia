@@ -108,6 +108,7 @@
     ctx.clearRect(0, 0, W, H);
 
     var rSq = RADIUS * RADIUS;
+    var maxElev = 0;
 
     /* ── pass 0: update elevations ──────────────────── */
     for (var i = 0; i < cells.length; i++) {
@@ -122,38 +123,39 @@
         }
       }
       c.elev += (target > c.elev ? LERP_IN : LERP_OUT) * (target - c.elev);
+      if (c.elev > maxElev) maxElev = c.elev;
     }
 
-    /* ── pass 1: symmetric shadow halos (top-down) ── */
-    /* light directly overhead → shadow spreads equally
-       on all 4 sides of the elevated block            */
-    for (var i = 0; i < cells.length; i++) {
-      var c = cells[i];
-      if (c.elev > 0.004) {
-        var e      = c.elev;
-        var spread = e * 9; // px — how far shadow bleeds outward
-        ctx.fillStyle = 'rgba(26,26,24,' + (e * 0.42) + ')';
-        ctx.fillRect(
-          c.x - spread,
-          c.y - spread,
-          GRID + spread * 2,
-          GRID + spread * 2
-        );
-      }
+    /* ── pass 1: single ambient shadow (no per-block halos) ──
+       One radial gradient covers the entire elevated region.
+       This eliminates the overlap / accumulation problem.    */
+    if (maxElev > 0.01) {
+      var grd = ctx.createRadialGradient(
+        mouseX, mouseY, RADIUS * 0.08,
+        mouseX, mouseY, RADIUS * 1.1
+      );
+      grd.addColorStop(0,    'rgba(26,26,24,0.0)');
+      grd.addColorStop(0.55, 'rgba(26,26,24,' + (maxElev * 0.22) + ')');
+      grd.addColorStop(1,    'rgba(26,26,24,0.0)');
+      ctx.fillStyle = grd;
+      ctx.beginPath();
+      ctx.arc(mouseX, mouseY, RADIUS * 1.1, 0, Math.PI * 2);
+      ctx.fill();
     }
 
     /* ── pass 2: elevated top surfaces ─────────────── */
     for (var i = 0; i < cells.length; i++) {
       var c = cells[i];
       if (c.elev > 0.004) {
-        var e = c.elev;
+        var e  = c.elev;
+        var e2 = e * e; // non-linear → more contrast at edges
 
-        /* bright top surface — the block is closer to the overhead light */
-        ctx.fillStyle = 'rgba(255,253,248,' + (e * 0.92) + ')';
+        /* bright top surface — overhead light hits elevated face */
+        ctx.fillStyle = 'rgba(255,253,248,' + (e2 * 0.96) + ')';
         ctx.fillRect(c.x, c.y, GRID, GRID);
 
-        /* crisp dark border defines the block edge */
-        ctx.strokeStyle = 'rgba(26,26,24,' + (e * 0.28) + ')';
+        /* dark border defines each block's edge */
+        ctx.strokeStyle = 'rgba(26,26,24,' + (e2 * 0.38) + ')';
         ctx.lineWidth   = 0.75;
         ctx.strokeRect(c.x + 0.5, c.y + 0.5, GRID - 1, GRID - 1);
       }
