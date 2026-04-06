@@ -10,7 +10,7 @@
   var GAP      = 0.55;   // s — pause between phases
   var TOTAL    = T1 + GAP + T2;
 
-  var RADIUS   = 88;     // px — pin influence radius
+  var RADIUS   = 160;    // px — pin influence radius (10 grid units)
   var LERP_IN  = 0.13;
   var LERP_OUT = 0.08;
 
@@ -103,16 +103,15 @@
     }
   }
 
-  /* ── INTERACTIVE PHASE (always loops once active) ──── */
+  /* ── INTERACTIVE PHASE ──────────────────────────────── */
   function renderInteractive() {
     ctx.clearRect(0, 0, W, H);
 
     var rSq = RADIUS * RADIUS;
 
+    /* ── pass 0: update elevations ──────────────────── */
     for (var i = 0; i < cells.length; i++) {
       var c = cells[i];
-
-      /* target elevation */
       var target = 0;
       if (mouseActive) {
         var dx  = c.cx - mouseX;
@@ -122,36 +121,48 @@
           target = smoothstep(1 - Math.sqrt(dSq) / RADIUS);
         }
       }
+      c.elev += (target > c.elev ? LERP_IN : LERP_OUT) * (target - c.elev);
+    }
 
-      /* lerp */
-      c.elev += ((target > c.elev ? LERP_IN : LERP_OUT)) * (target - c.elev);
-
+    /* ── pass 1: symmetric shadow halos (top-down) ── */
+    /* light directly overhead → shadow spreads equally
+       on all 4 sides of the elevated block            */
+    for (var i = 0; i < cells.length; i++) {
+      var c = cells[i];
       if (c.elev > 0.004) {
-        var e   = c.elev;
-        var off = e * 4.5;
-
-        /* shadow */
-        ctx.fillStyle = 'rgba(26,26,24,' + (e * 0.20) + ')';
-        ctx.fillRect(c.x + off, c.y + off, GRID - 1, GRID - 1);
-
-        /* top surface */
-        ctx.fillStyle = 'rgba(255,252,244,' + (e * 0.55) + ')';
-        ctx.fillRect(c.x, c.y, GRID - 1, GRID - 1);
-
-        /* bottom + right edge (wall illusion) */
-        ctx.strokeStyle = 'rgba(26,26,24,' + (e * 0.12) + ')';
-        ctx.lineWidth   = 0.5;
-        ctx.beginPath();
-        ctx.moveTo(c.x,            c.y + GRID - 1);
-        ctx.lineTo(c.x + GRID - 1, c.y + GRID - 1);
-        ctx.lineTo(c.x + GRID - 1, c.y);
-        ctx.stroke();
+        var e      = c.elev;
+        var spread = e * 9; // px — how far shadow bleeds outward
+        ctx.fillStyle = 'rgba(26,26,24,' + (e * 0.42) + ')';
+        ctx.fillRect(
+          c.x - spread,
+          c.y - spread,
+          GRID + spread * 2,
+          GRID + spread * 2
+        );
       }
     }
 
+    /* ── pass 2: elevated top surfaces ─────────────── */
+    for (var i = 0; i < cells.length; i++) {
+      var c = cells[i];
+      if (c.elev > 0.004) {
+        var e = c.elev;
+
+        /* bright top surface — the block is closer to the overhead light */
+        ctx.fillStyle = 'rgba(255,253,248,' + (e * 0.92) + ')';
+        ctx.fillRect(c.x, c.y, GRID, GRID);
+
+        /* crisp dark border defines the block edge */
+        ctx.strokeStyle = 'rgba(26,26,24,' + (e * 0.28) + ')';
+        ctx.lineWidth   = 0.75;
+        ctx.strokeRect(c.x + 0.5, c.y + 0.5, GRID - 1, GRID - 1);
+      }
+    }
+
+    /* ── pass 3: grid lines on top ──────────────────── */
     strokeGrid();
 
-    raf = requestAnimationFrame(renderInteractive); // keep looping
+    raf = requestAnimationFrame(renderInteractive);
   }
 
   /* ── init ───────────────────────────────────────────── */
