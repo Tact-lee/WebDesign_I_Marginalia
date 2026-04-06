@@ -4,23 +4,23 @@
   var dpr    = Math.min(window.devicePixelRatio || 1, 2);
 
   /* ── constants ─────────────────────────────────────── */
-  var GRID   = 16;
-  var T1     = 2.2;   // s — vertical sweep duration
-  var T2     = 1.8;   // s — horizontal sweep duration
-  var GAP    = 0.55;  // s — pause between phases
-  var TOTAL  = T1 + GAP + T2;
+  var GRID     = 16;
+  var T1       = 2.2;    // s — vertical sweep
+  var T2       = 1.8;    // s — horizontal sweep
+  var GAP      = 0.55;   // s — pause between phases
+  var TOTAL    = T1 + GAP + T2;
 
-  var RADIUS = 88;    // px — pin-screen influence radius
-  var LERP_IN  = 0.13;  // approach speed
-  var LERP_OUT = 0.08;  // retreat speed (slower = lingers)
+  var RADIUS   = 88;     // px — pin influence radius
+  var LERP_IN  = 0.13;
+  var LERP_OUT = 0.08;
 
   /* ── state ─────────────────────────────────────────── */
   var W, H, cells = [];
   var startTime = null, animDone = false, raf = null;
   var mouseX = -9999, mouseY = -9999, mouseActive = false;
-  var loopRunning = false;
+  var hero;
 
-  /* ── math helpers ───────────────────────────────────── */
+  /* ── math ───────────────────────────────────────────── */
   function easeInOut(t) {
     return t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2;
   }
@@ -29,10 +29,13 @@
     return t * t * (3 - 2 * t);
   }
 
-  /* ── setup ──────────────────────────────────────────── */
+  /* ── setup — uses parent clientWidth/Height as fallback ── */
   function setup() {
-    W = canvas.offsetWidth;
-    H = canvas.offsetHeight;
+    /* parentElement.clientWidth/Height works even when
+       the canvas itself has no intrinsic size via CSS  */
+    W = (hero ? hero.clientWidth  : 0) || window.innerWidth;
+    H = (hero ? hero.clientHeight : 0) || window.innerHeight;
+
     canvas.width  = W * dpr;
     canvas.height = H * dpr;
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
@@ -47,20 +50,19 @@
     }
   }
 
-  /* ── grid stroke helper ─────────────────────────────── */
+  /* ── grid stroke ────────────────────────────────────── */
   function strokeGrid() {
     ctx.strokeStyle = 'rgba(26,26,24,0.08)';
     ctx.lineWidth   = 0.5;
-    var x, y;
-    for (x = 0; x <= W; x += GRID) {
+    for (var x = 0; x <= W; x += GRID) {
       ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
     }
-    for (y = 0; y <= H; y += GRID) {
+    for (var y = 0; y <= H; y += GRID) {
       ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
     }
   }
 
-  /* ── PHASE 1 & 2 : draw animation ───────────────────── */
+  /* ── ANIMATION PHASE ────────────────────────────────── */
   function renderAnim(ts) {
     if (!startTime) startTime = ts;
     var t = (ts - startTime) / 1000;
@@ -69,7 +71,7 @@
     ctx.strokeStyle = 'rgba(26,26,24,0.08)';
     ctx.lineWidth   = 0.5;
 
-    /* vertical lines — clip sweeps left → right */
+    /* phase 1 — vertical lines, clip sweeps left → right */
     var v = easeInOut(Math.min(1, t / T1));
     ctx.save();
     ctx.beginPath();
@@ -80,7 +82,7 @@
     }
     ctx.restore();
 
-    /* horizontal lines — clip sweeps top → bottom */
+    /* phase 2 — horizontal lines, clip sweeps top → bottom */
     if (t > T1 + GAP) {
       var h = easeInOut(Math.min(1, (t - T1 - GAP) / T2));
       ctx.save();
@@ -97,17 +99,15 @@
       raf = requestAnimationFrame(renderAnim);
     } else {
       animDone = true;
-      startInteractiveLoop();
+      raf = requestAnimationFrame(renderInteractive); // hand off
     }
   }
 
-  /* ── INTERACTIVE : pin-screen ────────────────────────── */
+  /* ── INTERACTIVE PHASE (always loops once active) ──── */
   function renderInteractive() {
-    loopRunning = true;
     ctx.clearRect(0, 0, W, H);
 
-    var rSq     = RADIUS * RADIUS;
-    var anyAlive = false;
+    var rSq = RADIUS * RADIUS;
 
     for (var i = 0; i < cells.length; i++) {
       var c = cells[i];
@@ -115,82 +115,70 @@
       /* target elevation */
       var target = 0;
       if (mouseActive) {
-        var dx = c.cx - mouseX;
-        var dy = c.cy - mouseY;
+        var dx  = c.cx - mouseX;
+        var dy  = c.cy - mouseY;
         var dSq = dx * dx + dy * dy;
         if (dSq < rSq) {
           target = smoothstep(1 - Math.sqrt(dSq) / RADIUS);
         }
       }
 
-      /* lerp — faster in, slower out */
-      var lr = target > c.elev ? LERP_IN : LERP_OUT;
-      c.elev += (target - c.elev) * lr;
+      /* lerp */
+      c.elev += ((target > c.elev ? LERP_IN : LERP_OUT)) * (target - c.elev);
 
       if (c.elev > 0.004) {
-        anyAlive = true;
         var e   = c.elev;
-        var off = e * 4.5; // shadow offset (px)
+        var off = e * 4.5;
 
-        /* shadow — offset bottom-right */
+        /* shadow */
         ctx.fillStyle = 'rgba(26,26,24,' + (e * 0.20) + ')';
         ctx.fillRect(c.x + off, c.y + off, GRID - 1, GRID - 1);
 
-        /* top surface — very slightly brightened */
+        /* top surface */
         ctx.fillStyle = 'rgba(255,252,244,' + (e * 0.55) + ')';
         ctx.fillRect(c.x, c.y, GRID - 1, GRID - 1);
 
-        /* subtle dark border on bottom + right edges (wall illusion) */
+        /* bottom + right edge (wall illusion) */
         ctx.strokeStyle = 'rgba(26,26,24,' + (e * 0.12) + ')';
         ctx.lineWidth   = 0.5;
         ctx.beginPath();
-        ctx.moveTo(c.x,          c.y + GRID - 1);
+        ctx.moveTo(c.x,            c.y + GRID - 1);
         ctx.lineTo(c.x + GRID - 1, c.y + GRID - 1);
         ctx.lineTo(c.x + GRID - 1, c.y);
         ctx.stroke();
       }
     }
 
-    /* grid lines on top */
     strokeGrid();
 
-    /* keep looping only while cells are animating or mouse is active */
-    if (mouseActive || anyAlive) {
-      raf = requestAnimationFrame(renderInteractive);
-    } else {
-      loopRunning = false;
-    }
-  }
-
-  function startInteractiveLoop() {
-    if (!loopRunning) {
-      loopRunning = true;
-      raf = requestAnimationFrame(renderInteractive);
-    }
+    raf = requestAnimationFrame(renderInteractive); // keep looping
   }
 
   /* ── init ───────────────────────────────────────────── */
   function init() {
-    setup();
+    hero = document.querySelector('.hero');
 
-    var hero = document.querySelector('.hero');
+    /* attach mouse listeners */
     if (hero) {
       hero.addEventListener('mousemove', function (e) {
-        var rect = canvas.getBoundingClientRect();
+        /* use hero's own rect so coordinates stay accurate
+           even if hero is scrolled or has padding        */
+        var rect = hero.getBoundingClientRect();
         mouseX = e.clientX - rect.left;
         mouseY = e.clientY - rect.top;
-        if (!mouseActive) {
-          mouseActive = true;
-          if (animDone) startInteractiveLoop();
-        }
+        mouseActive = true;
       });
       hero.addEventListener('mouseleave', function () {
         mouseActive = false;
-        /* loop will self-terminate after cells return to 0 */
       });
     }
 
-    raf = requestAnimationFrame(renderAnim);
+    /* delay one rAF frame so layout is fully computed
+       before we read clientWidth / clientHeight         */
+    requestAnimationFrame(function () {
+      setup();
+      raf = requestAnimationFrame(renderAnim);
+    });
   }
 
   if (document.readyState === 'loading') {
