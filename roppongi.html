@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Roppongi — Marginalia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="district.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="index.html" class="nav__logo">Marginalia</a>
+    <ul class="nav__links">
+      <li><a href="#">Archive</a></li>
+      <li><a href="#">Districts</a></li>
+      <li><a href="#">Architects</a></li>
+      <li><a href="#">About</a></li>
+    </ul>
+    <span class="nav__index">도쿄 건축</span>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════════════════
+       HERO
+  ════════════════════════════════════════════════════════════ -->
+  <header class="d-hero">
+
+    <!-- Left -->
+    <div class="d-hero__content">
+      <div class="d-hero__breadcrumb">
+        <a href="index.html" class="label">Marginalia</a>
+        <span class="label">→</span>
+        <span class="label">District</span>
+      </div>
+
+      <div class="d-hero__label-row">
+        <span class="label">미나토구</span>
+        <span class="label">— 1개 건축물</span>
+      </div>
+
+      <h1 class="d-hero__title">
+        Roppongi
+        <em class="d-hero__title-jp">롯폰기</em>
+      </h1>
+
+      <p class="d-hero__intro">
+        도쿄의 대표적인 부촌이자 미술관의 도시. 소장품 없이도 세계 랭킹에 오른 국립신미술관이 자리한 곳.
+      </p>
+
+      <div class="d-hero__stats">
+        <div class="d-stat">
+          <span class="d-stat__val">1</span>
+          <span class="d-stat__label">Structure</span>
+        </div>
+        <div class="d-stat">
+          <span class="d-stat__val">14,000㎡</span>
+          <span class="d-stat__label">Exhibition Area</span>
+        </div>
+        <div class="d-stat">
+          <span class="d-stat__val">2007</span>
+          <span class="d-stat__label">Completed</span>
+        </div>
+      </div>
+
+      <div class="d-hero__scroll">
+        <span class="label">Scroll to explore</span>
+        <div class="d-hero__scroll-line"></div>
+      </div>
+    </div>
+
+    <!-- Right: 2D Canvas Heatmap -->
+    <div class="d-hero__map" id="dMapWrapper">
+      <canvas id="dMapCanvas"></canvas>
+      <div class="d-hero__map-label" id="dMapLabel">
+        <span class="d-hero__map-label-name" id="dMapLabelName"></span>
+        <span class="d-hero__map-label-year" id="dMapLabelYear"></span>
+      </div>
+    </div>
+
+  </header>
+
+  <!-- ═══════════════════════════════════════════════════════
+       INTRO
+  ════════════════════════════════════════════════════════════ -->
+  <section class="d-intro">
+    <div class="d-intro__inner">
+      <p class="d-intro__text">도쿄의 대표적인 부촌, 롯폰기. 이 동네를 수식하는 단어는 여러 가지가 있습니다. 그중에는 미술관의 도시라는 수식 또한 볼 수 있죠. 물론 이 동네에 갤러리가 상당히 많고, 산토리 미술관, 모리 미술관 등등 쟁쟁한 재단을 등에 업은 미술관도 여러 개 있긴 한데, 이들이 과연 롯폰기를 대표한다고 할 수 있을까요? 그렇다면 대체 무엇이 롯폰기를 미술관의 도시라고 불리게 한 걸까요?</p>
+      <p class="d-intro__text">여기서 잠깐 다른 얘기지만, 미술관의 정의에 대해 한번 알아볼까요? 일반적으로 미술관이란 미술 작품 및 문화 유산을 수집, 보존, 전시하고 그와 관련된 교육 및 연구를 행하는 시설입니다. 그래서 미술관의 유명세를 논할 때 그곳이 가진 소장품이 최우선으로 거론되기도 하며, 소장품의 퀄리티가 곧 미술관의 랭킹을 끌어올리는 나름의 척도가 되기도 합니다. 일례로 영국의 미술 전문지 '아트 뉴스 페이퍼'는 매년 방문자 수를 기준으로 전 세계 미술관의 랭킹을 집계합니다. 그렇다면 롯폰기에서 랭킹에 올라간 미술관은 무엇일까요?</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       BUILDING 01
+  ════════════════════════════════════════════════════════════ -->
+  <article class="d-building" id="building-01">
+    <div class="d-building__header">
+      <div class="d-building__num-wrap">
+        <span class="d-building__num">01</span>
+        <span class="d-building__subtitle">거장이 마지막으로 빗어낸 유작</span>
+      </div>
+      <div class="d-building__meta">
+        <span class="d-building__tag">Cultural · 2007</span>
+        <span class="d-building__architect">Kisho Kurokawa</span>
+      </div>
+    </div>
+
+    <h2 class="d-building__title">The National Art Center, Tokyo</h2>
+    <p class="d-building__title-jp">국립 신미술관</p>
+
+    <div class="d-building__img" id="img-01">
+      <div class="d-building__img-placeholder"></div>
+      <span class="d-building__img-label">The National Art Center, Tokyo · 2007 · Kisho Kurokawa</span>
+    </div>
+
+    <div class="d-building__text">
+      <p>이렇듯 소장품과 미술관의 파워는 불가분의 관계에 있는데요, 다시 롯폰기의 미술관 얘기로 넘어오면 산토리 미술관이나 모리 미술관 등등 미술관이 많다는 롯폰기에서 방금 전에 랭킹에 올라간 미술관은 단 한 곳뿐입니다. 바로 일본의 다섯 번째 국립 박물관인 국립신미술관이 그 주인공이죠. 그런데 특이한 점은 여기에는 소장품이 단 하나도 없다는 것인데요, 그렇다면 무엇이 그토록 많은 방문자들을 끌어모으는 것일까요?</p>
+      <p>국립신미술관은 도쿄 롯폰기역 또는 노기자카역에서 쉽게 찾아갈 수 있는데요. 이 동네 자체가 상당히 조용한 곳이라 도심의 한복판이 아닌 교회에 있다는 느낌이 들 정도죠. 5번 출구로 나와서 왼쪽으로 조금만 걸으면 큼지막한 입구가 등장합니다. 이쪽은 주로 전시 작품의 반입 반출을 하는 하역장으로 바로 연결되는 곳인데요, 정문을 놔두고 이쪽으로 들어가는 것을 추천하는 이유는 이 미술관의 트레이드마크이기도 한 언덕을 따라 굽이치고 있는 커튼홀 파사드를 쭉 훑으면서 진입할 수 있기 때문입니다.</p>
+      <p>유리벽이 수직 수평으로 나열되어 마치, 파도치는 듯한 덩어리를 만들고 있으며, 그 굽이치는 파도의 크기가 주는 압도감이 어마어마하죠. 차가운 소재임에도 부드러운 곡선을 이루고 있어서인지, 차가움이 덜한 느낌인데요. 덕분에 주변을 따라 심어져 있는 나무들과 꽤 조화롭게 잘 어울리는 모습입니다. 멀리서 보면 규격화된 직사각형 루버들의 단순한 나열처럼 보이기도 하지만, 가까이서 보면 기둥의 각도나 루버 하나하나의 곡면이 전부 미세한 차이로 다르게 기울어지고, 다르게 깎여서 더욱 유기적인, 진짜 자연물에서나 볼 법한 곡선이 반복되어 파도를 만들고 있음을 알 수 있습니다.</p>
+      <p>이곳은 쿠로카와 키쇼의 생전에 마지막으로 나온 그의 유작인데요, 그는 건축물의 생물학적 신진대사를 뜻하는 일본의 유기적 건축 사조 '메타볼리즘'을 만든 주역이며, 대세에 반하는 꽤 파격적인 프로젝트를 자주 선보인 바 있습니다. 이곳 국립 신 미술관은 일본에서 박물관을 포함하여 국립이라 이름이 붙은 다섯 번째 미술관으로, 우에노에 있는 도쿄도 미술관의 기획 전시, 공모전, 미술 교육 등의 역할을 분담하기 위한 목적으로 설립되었다고 합니다. 다시 말해 이곳은 애초부터 소장품 수집보다는 대규모 기획전시와 이벤트를 위해 만들어진 공간인 셈인데요.</p>
+      <p>이러한 미술관의 성격 또한 쿠로카와 키쇼의 작품과 뭔가 어울린다고 생각이 든 것이, 상설전이 없이 모든 전시장이 기획전으로서 쉴 새 없이 색을 달리하고 작품들이 끊임없이 들어갔다 나갔다 하는 게 마치 정말로 어떤 거대 생물체의 신진대사를 보는 것 같달까요? 그래서 이곳은 전시 공간의 면적만 무려 14,000m²에 달하는 일본에서는 비교 자체를 불허하는 최대급의 크기를 자랑하고 있으며, 전시장을 제외한 모든 면이 유리벽으로 되어 있기 때문에 조명이 없음에도 상당히 밝은 것이 특징입니다.</p>
+      <p>그 공간감의 비밀은 그의 시그니처인 원뿔에 있는데요, 쿠로카와 키쇼 그는 여기에서 세 개의 원뿔을 사용했습니다. 그리고 입구의 원뿔을 제외한 나머지 두 개의 원뿔은 똑바로 서 있지 않고 거꾸로 서서 땅속에 박혀 있는데요, 역원뿔의 둘레가 가장 넓은 위쪽에는 레스토랑과 카페가 위치해 있으며, 둘레가 작아지는 아래쪽은 창고, 비상 계단, 화장실 등으로 채워져 있습니다. 이로 하여금 광활한 공간감은 유지한 채 위쪽에 수직 공간은 야무지게 활용하고 1층의 바닥 면적은 훨씬 넓게 사용할 수 있는 것이죠. 게다가 역원뿔이 노출 콘크리트로 묵직하게 솟아서 그 그림자를 받아 웅장함을 더하고 있으니 극강의 조형미에 효율성까지 챙긴 그야말로 그의 원뿔 사랑이 극대화된 걸작이라고 할 수 있겠습니다.</p>
+    </div>
+  </article>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__top">
+      <span class="footer__logo">Marginalia</span>
+      <p class="footer__tagline">A record of what stands<br />and what remains.</p>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 Marginalia Archive</span>
+      <span>Tokyo, Japan</span>
+      <span>Web Design I — Project</span>
+    </div>
+  </footer>
+
+  <script type="importmap">
+    { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.167.0/build/three.module.js" } }
+  </script>
+  <script type="module" src="roppongi.js"></script>
+</body>
+</html>

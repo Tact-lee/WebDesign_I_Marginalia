@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aoyama — Marginalia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="district.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="index.html" class="nav__logo">Marginalia</a>
+    <ul class="nav__links">
+      <li><a href="#">Archive</a></li>
+      <li><a href="#">Districts</a></li>
+      <li><a href="#">Architects</a></li>
+      <li><a href="#">About</a></li>
+    </ul>
+    <span class="nav__index">도쿄 건축</span>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════════════════
+       HERO
+  ════════════════════════════════════════════════════════════ -->
+  <header class="d-hero">
+
+    <!-- Left -->
+    <div class="d-hero__content">
+      <div class="d-hero__breadcrumb">
+        <a href="index.html" class="label">Marginalia</a>
+        <span class="label">→</span>
+        <span class="label">District</span>
+      </div>
+
+      <div class="d-hero__label-row">
+        <span class="label">미나토구 · 시부야구</span>
+        <span class="label">— 5개 건축물</span>
+      </div>
+
+      <h1 class="d-hero__title">
+        Aoyama
+        <em class="d-hero__title-jp">아오야마</em>
+      </h1>
+
+      <p class="d-hero__intro">
+        구매력 있는 현지인의 도시. 버블 시대의 영욕과 재건의 역사가 벽돌과 콘크리트로 켜켜이 쌓인 도쿄 상류 주거·업무 지구.
+      </p>
+
+      <div class="d-hero__stats">
+        <div class="d-stat">
+          <span class="d-stat__val">5</span>
+          <span class="d-stat__label">Structures</span>
+        </div>
+        <div class="d-stat">
+          <span class="d-stat__val">4</span>
+          <span class="d-stat__label">Architects</span>
+        </div>
+        <div class="d-stat">
+          <span class="d-stat__val">1975–2003</span>
+          <span class="d-stat__label">Span</span>
+        </div>
+      </div>
+
+      <div class="d-hero__scroll">
+        <span class="label">Scroll to explore</span>
+        <div class="d-hero__scroll-line"></div>
+      </div>
+    </div>
+
+    <!-- Right: 2D Canvas Heatmap -->
+    <div class="d-hero__map" id="dMapWrapper">
+      <canvas id="dMapCanvas"></canvas>
+      <div class="d-hero__map-label" id="dMapLabel">
+        <span class="d-hero__map-label-name" id="dMapLabelName"></span>
+        <span class="d-hero__map-label-year" id="dMapLabelYear"></span>
+      </div>
+    </div>
+
+  </header>
+
+  <!-- ═══════════════════════════════════════════════════════
+       INTRO
+  ════════════════════════════════════════════════════════════ -->
+  <section class="d-intro">
+    <div class="d-intro__inner">
+      <p class="d-intro__text">도쿄의 상업지 중에서 구매력 있는 현지인의 비중이 높은 곳은 어디일까요? 여러분은 분명 유명 쇼핑가인 오모테산도의 가로수길, 혹은 긴자 거리를 생각하셨을 것입니다. 물론…뭐 아예 틀린 말은 아닙니다만, 그쪽은 진입 장벽이 상대적으로 낮은 패션 잡화, 그리고 면세를 내세워서 관광객의 비중이 가장 높은 곳들이기도 하죠. 하지만 이 땅에 세금 내고 사는 현지인들로 한정한다면 얘기는 약간 달라집니다.</p>
+      <p class="d-intro__text">이번에 소개할 곳은 바로 고급 쇼핑가이면서도 차분한 주거지와 업무 지구로도 유명한 아오야마가 되겠습니다. 이전에 소개해 드렸던 오모테산도 마찬가지로 아오야마가 지금의 이미지로 변모한 데에는 브랜드나 기업의 정체성을 보여주는 명소들이 큰 기여를 해왔습니다. 특히 이 동네를 걸으면 버블 시대로 일컬어지는 20세기 중후반 일본의 변천사를 한번에 이해할 수 있는데요, 지금의 아오야마를 상징적인 건축물부터 앞으로의 미래까지 구경해 보려 합니다.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       BUILDING 01
+  ════════════════════════════════════════════════════════════ -->
+  <article class="d-building" id="building-01">
+    <div class="d-building__header">
+      <div class="d-building__num-wrap">
+        <span class="d-building__num">01</span>
+        <span class="d-building__subtitle">1970년대 호황기를 지낸 건축물</span>
+      </div>
+      <div class="d-building__meta">
+        <span class="d-building__tag">Mixed-use · 1975</span>
+        <span class="d-building__architect">Kazumasa Yamashita</span>
+      </div>
+    </div>
+
+    <h2 class="d-building__title">From 1st Building</h2>
+    <p class="d-building__title-jp">프롬 퍼스트 빌딩</p>
+
+    <div class="d-building__img" id="img-01">
+      <div class="d-building__img-placeholder"></div>
+      <span class="d-building__img-label">From 1st Building · 1975 · Kazumasa Yamashita</span>
+    </div>
+
+    <div class="d-building__text">
+      <p>지금이야 굉장히 깔끔하게 정비된 모습을 보여주고 있지만 20세기 중반까지만 해도 오모테산도와 아오야마 주변은 작은 주택이 가득한 서민 주거지 였다고 합니다. 그러다가 1964년 도쿄 올림픽 경기장이 근처에 지어지면서 오늘날 상급지의 위치까지 이른 것이죠. 그때만 해도 우후죽순 진행되는 개발에 동네가 꽤나 혼란스러웠겠죠.</p>
+      <p>이런 과거 아오야마의 모습을 과감하게 표현한 건물이 근처에 있는데요, 프라다와 미우미우 그리고 젠틀몬스터를 지나서 네즈미술관을 향해 걸어가다 보면 별안간 묵직한 벽돌 더미를 마주할 수 있습니다. 건축가 야마시타 카즈마사에 의해 1975년에 준공된 주상복합 '프롬 퍼스트 빌딩'입니다. 이곳의 탄생 컨셉은 쇼핑과 미식, 그리고 주거가 섞인 라이프스타일을 제안하는 것이었다고 합니다.</p>
+      <p>그래서일까요, 여러 큐브들이 이리저리 섞인 모습이죠. 내부에서는 대각선을 활용하거나 부분적으로 바닥을 없애서 외부의 입체적인 형태를 한층 더 과감하게 이어가고 있습니다. 이 점에선 마치 리카르도 보필 건축물을 연상케 한달까요? 누가 뭐래도 외부에 이어 내부까지 모두 벽돌 타일로 마감되어 있다는 것이 되겠죠. 요즘 하도 유리와 콘크리트를 많이 봐서 그런지, 이런 아날로그적 감성이 오히려 새로운 매력으로 다가올 때가 있죠.</p>
+      <p>특히 이곳이 보여주는 과감한 구조는 요즘 새로 생기는 건물들에 절대 뒤쳐지지 않다 보니, 좋은 의미로 굉장히 이질적인 느낌을 자아내고 있는데요. 이 건물이 들어서면서 아오야마에 이를 벤치마킹하는 곳들이 많이 들어섰다고 하니, 여러모로 과거에 이 동네를 대표하는 건축물이라고 할 수 있겠죠. 상층부에는 주로 사무실과 주택이 입주해 있는데다, 층마다 계속되는 레이아웃의 변화 덕분에 올라갈수록 더욱 고요한 공간을 마주할 수 있는데요. 그게 마치 도심 속의 고요를 위해 의도적으로 공간을 비워낸 것 같은 느낌을 준달까요?</p>
+    </div>
+  </article>
+
+  <!-- ═══════════════════════════════════════════════════════
+       BUILDING 02
+  ════════════════════════════════════════════════════════════ -->
+  <article class="d-building" id="building-02">
+    <div class="d-building__header">
+      <div class="d-building__num-wrap">
+        <span class="d-building__num">02</span>
+        <span class="d-building__subtitle">1980년대 과밀된 도시에 부여된 여백</span>
+      </div>
+      <div class="d-building__meta">
+        <span class="d-building__tag">Mixed-use · 1989</span>
+        <span class="d-building__architect">Tadao Ando</span>
+      </div>
+    </div>
+
+    <h2 class="d-building__title">La Collezione</h2>
+    <p class="d-building__title-jp">라 콜레지오네</p>
+
+    <div class="d-building__img" id="img-02">
+      <div class="d-building__img-placeholder"></div>
+      <span class="d-building__img-label">La Collezione · 1989 · Tadao Ando</span>
+    </div>
+
+    <div class="d-building__text">
+      <p>이러한 관점에서 함께 구경하면 좋은 건축물이 바로 옆에 있는데요. 한켠에 기하학적인 형이 얽혀 있는 듯한 노출 콘크리트 소재의 건물이 눈에 띄죠. 바로 우리에게도 이미 친숙한 거장, 안도 다다오에 의해 태생적으로 공간을 비워내기 위해 설계된 건축물, 라 콜레지오네입니다.</p>
+      <p>오모테산도의 그의 대표작인 오모테산도 힐즈. 서로 가까운 거리에 있긴 하지만, 라 콜레지오네는 그만큼 유명한 곳은 아닙니다. 하지만 1980년대에 지어진 라 콜레지오네 쪽이 안도 타다오 건축의 정수에는 보다 가깝다고 감히 말씀드릴 수 있습니다. 왜냐하면 이곳에서의 주제 의식이 훗날의 오모테산도 힐즈, 지중미술관, 시부야역 등으로 계승되었기 때문입니다.</p>
+      <p>지금이야 일본하면 깨끗한 모습이 보다 자주 거론되는 편이지만, 1960년대부터 80년대까지 고도의 경제 성장기를 거치며 일본 역시 무차별적인 개발이 성행했었다고 합니다. 안도 타다오는 그때 청년기를 보내며 지역의 고유성이 파괴되는 광경들을 목도해왔고, 때문에 그는 건축물이 기존의 도시 경관을 침범하는 것을 굉장히 경계해 왔는데요. 그의 건축은 내려가는 경험에 집중합니다. 이처럼 높이를 억제하기 위해 건축물 자체를 깊게 묻는 것이 그에게 있어서 사상적으로 자리 잡은 것이죠.</p>
+      <p>한편으론 이 계획을 용인한 건축주도 참 대단하다는 생각이 들죠. 도쿄대의 후쿠타케 홀과 마찬가지로 바깥에서 보이는 콘크리트 벽은 내부의 공간을 외부의 공간과 한 차례 구분 짓는 울타리의 역할을 하고 있습니다. 때문에 이곳은 올라가기보다, 내려가면 내려갈수록 고요하고 넓은 공간을 마주할 수 있습니다. 그렇게 내려가다 보면 이내 막다른 공간에 다다르게 되는데요, 그때 꼭 가만히 서서 오감을 열고 위를 올려다 보시길 바랍니다. 그러면 1980년대에 안도 타다오가 이곳에서 말하고 싶은 것이 무엇이었는지 바로 느끼실 수 있을 것입니다.</p>
+    </div>
+  </article>
+
+  <!-- ═══════════════════════════════════════════════════════
+       BUILDING 03
+  ════════════════════════════════════════════════════════════ -->
+  <article class="d-building" id="building-03">
+    <div class="d-building__header">
+      <div class="d-building__num-wrap">
+        <span class="d-building__num">03</span>
+        <span class="d-building__subtitle">1990년대 버블지옥에서 돌아온 건축가</span>
+      </div>
+      <div class="d-building__meta">
+        <span class="d-building__tag">Commercial · 1991</span>
+        <span class="d-building__architect">Kengo Kuma</span>
+      </div>
+    </div>
+
+    <h2 class="d-building__title">Doria Minami Aoyama</h2>
+    <p class="d-building__title-jp">도릭 미나미 아오야마</p>
+
+    <div class="d-building__img" id="img-03">
+      <div class="d-building__img-placeholder"></div>
+      <span class="d-building__img-label">Doria Minami Aoyama · 1991 · Kengo Kuma</span>
+    </div>
+
+    <div class="d-building__text">
+      <p>스칸디나비안 모던 디자인의 대표격인 프리츠 한센의 도쿄 쇼룸으로 사용되고 있는 이곳은 1991년에 지어져 어느덧 30년을 훌쩍 넘은 건축물, 쿠마 켄고의 도릭 미나미 아오야마가 되겠습니다. 우리에게 쿠마 켄고의 건축은 나무 루버를 지나칠 정도로 많이 사용하는 것으로 익숙하기에 이런 모습은 사뭇 생소하기도 합니다. 이름에서도 알 수 있듯 그리스의 도리아 양식을 연상케 하는 디테일이 특징인데요, 삼각형의 부지를 살려서 모서리에 코어를 놓고 이를 중심으로 대칭을 이뤄서 우리가 아는 신전의 대칭 구조를 뒤집은 느낌이 재미있죠.</p>
+      <p>사실 90년대까지만 해도 그는 이렇게 포스트모더니즘에 기반한 건축 스타일을 곧잘 선보였으며, 이곳 또한 건축주로부터 유럽풍으로 해달라는 부탁을 받아 설계한 곳이라고 합니다. 그런데 건물이 지어진 1991년이라 하면 일본의 버블 경제가 본격적으로 붕괴된 시기인데요. 다행이라고 해야할지, 이곳은 버블이 터지기 직전에 아슬아슬하게 완성될 수 있었지만, 그와 동시에 쿠마 켄고의 도쿄에서 향후 10년간 예정됐던 프로젝트가 모두 증발해 버렸다고 합니다.</p>
+      <p>일이 끊긴 그는 생존을 위해 여러 지방으로 눈을 돌리게 되었고, 거기에서 전통 건축과 목재의 가능성에 주목하여 지금의 스타일이 정립된 것이죠. 그렇게 지옥에서 돌아온 그는 한동안 일본의 국민 건축가 타이틀을 거머쥘 수 있었습니다. 결과적으로 이곳이 20세기에 그의 도쿄에서의 마지막 프로젝트가 된 덕분에 더욱 비상할 수 있었던 셈입니다. 물론 지금과 스타일이 하도 다르다 보니 후배 건축가들에게 나름 그의 흑역사로 통하기도 한다는데요.</p>
+      <p>그리고 한 가지 더 사실, 아오야마는 쿠마 켄고의 사무소가 자리한 곳이기도 합니다. 그래서인지 그의 손길이 묻은 건물만 모아도 길 한쪽은 가득 채울 수 있을 정도인데요, 아오야마 부근에 위치한 그의 프로젝트들이 보여주는 재미있는 공통점이 하나 있습니다. 바로 나무 혹은 어떠한 패턴이 길게 반복되는 터널이 존재한다는 것입니다. 이들은 아오야마 도리의 번잡함부터 벗어나는 모종의 포탈 같은 장치로서 기능하고 있으며, 실제로 그 끝을 지나면 어떠한 장소들을 다다르게 되는데요, 그 길들의 너머에 무엇이 나타나는지는 아오야마에 방문하실 분들을 위한 두근거림으로 남겨두도록 하겠습니다.</p>
+    </div>
+  </article>
+
+  <!-- ═══════════════════════════════════════════════════════
+       BUILDING 04
+  ════════════════════════════════════════════════════════════ -->
+  <article class="d-building" id="building-04">
+    <div class="d-building__header">
+      <div class="d-building__num-wrap">
+        <span class="d-building__num">04</span>
+        <span class="d-building__subtitle">2000~ 미래를 준비하는 아오야마</span>
+      </div>
+      <div class="d-building__meta">
+        <span class="d-building__tag">Corporate · 2002</span>
+        <span class="d-building__architect">Nikken Sekkei</span>
+      </div>
+    </div>
+
+    <h2 class="d-building__title">ITOCHU Headquarters</h2>
+    <p class="d-building__title-jp">이토추 본사 · 아오야마 진구가이엔</p>
+
+    <div class="d-building__img" id="img-04">
+      <div class="d-building__img-placeholder"></div>
+      <span class="d-building__img-label">ITOCHU Headquarters · Aoyama</span>
+    </div>
+
+    <div class="d-building__text">
+      <p>지금까지 아오야마에서 뭔가 오래도록 변치 않았던 것들을 소개해 드린 느낌인데요, 하지만 현재 이곳은 개발에 항상 목마른 곳이기도 합니다. 그도 그럴게 애초에 부동산 수요가 넘치는 상급지인데다, 앞서 나왔듯 1964년, 2021년 두 번의 올림픽마다 재미를 본 동네이기 때문이죠.</p>
+      <p>아오야마거리를 이어서 지나다 보면 일본의 거대 종합상사중 하나인 이토추 본사가 나타납니다. 이들 역시 70년대에 아오야마 거리의 떡상을 점치고 니혼바시에서 이쪽으로 이주해 온 터라 개발에 굉장히 적극적으로 참여하고 있는 것이 특징인데요, 현재 이 일대에서 규모가 가장 큰 4자 재개발 사업, '진구가이엔 마을만들기' 한 축이기도 합니다.</p>
+      <p>공원 한가운데 애매하게 배치된 비장과 야구장을 정비해서 공원 보존을 위한 수익성과 녹지 면적을 둘 다 챙기기 위한 계획이죠. 의도는 좋으나 상업 시설 건설을 위해 멀쩡한 나무를 베어버린다는 것이 밝혀졌고, 그게 또 이곳의 상징인 은행나무길이 없어진다는 괴담으로 번져서 한때 적지 않은 반발을 일으켰던 사업이기도 합니다. 사유지이긴 하지만 인근 주민들의 공원으로 이용되는 등 오랜 시간 동안 공공적인 성격으로 이용되어 왔다는 걸 간과한 것이죠. 때문에 이후 시민들의 이해를 구해가며 굉장히 조심스럽게 추진되어 왔는데요, 현 시점 개발 계획은 나름 순조롭게 진행되고 있다고 하네요.</p>
+      <p>참고로 개발이 완료되는 시점인 2036년의 조감도를 보면, 이토추 임직원들은 거의 회사에서 야구장이 내려다 보이겠는데요? 역시 굴러도 대감집에서 굴러야 되는구나, 새삼 생각해보며 지나가도록 하겠습니다.</p>
+    </div>
+  </article>
+
+  <!-- ═══════════════════════════════════════════════════════
+       BUILDING 05
+  ════════════════════════════════════════════════════════════ -->
+  <article class="d-building" id="building-05">
+    <div class="d-building__header">
+      <div class="d-building__num-wrap">
+        <span class="d-building__num">05</span>
+        <span class="d-building__subtitle">창업주의 꿈을 계승하는 곳</span>
+      </div>
+      <div class="d-building__meta">
+        <span class="d-building__tag">Corporate · 2003</span>
+        <span class="d-building__architect">Honda / Nikken Sekkei</span>
+      </div>
+    </div>
+
+    <h2 class="d-building__title">Honda Aoyama Welcome Plaza</h2>
+    <p class="d-building__title-jp">혼다 아오야마 웰컴 플라자</p>
+
+    <div class="d-building__img" id="img-05">
+      <div class="d-building__img-placeholder"></div>
+      <span class="d-building__img-label">Honda Aoyama Welcome Plaza · Aoyama</span>
+    </div>
+
+    <div class="d-building__text">
+      <p>아오야마 거리를 이어서 걸어가다 보면 '아오야마 잇초메 역'이 있는 사거리에 도착하는데요, 그 한 켠에 묘하게 바이크 엔진을 세워 놓은 듯한 생김새의 빌딩을 만나보실 수 있습니다. 바로 바이크나 자동차로 유명한 혼다의 본사 사옥이 되겠습니다. 회사 이름을 듣고 나니 이러한 생김새를 갖고 있는 것도 무리는 아닌데요. 하지만 사실 이 외관은 단순히 형태를 따랐다기보다 창업자의 경영 이념이 반영된 결과물이라고 합니다. 네, 바이크를 좋아하시는 분들은 한 번쯤 들어보셨을 그 이름, 혼다 소이치로, 메카닉의 성공 신화로 일본에서 가장 유명한 인물임에도 그는 철저히 인본주의를 바탕으로 사업을 일궈온 것으로 유명합니다.</p>
+      <p>이 건물을 올릴 때에도 마찬가지로 그는 인근의 보행자들을 배려하기 원했습니다. 고층 사옥의 경우 전면이 커튼월로 되어 있는 경우가 많은데요, 하지만 이곳은 특이하게도 알루미늄 패널로 마감되어 전층에 발코니가 나 있는, 어떻게 보면 일본의 가정집 같은 수수한 모양을 택하고 있습니다. 이는 화재 시 유리 파편이 바깥으로 떨어지지 않도록 함과 동시에 위로는 화재가 번지는 것을 최대한 억제하기 위함이라고 하는데요, 형태뿐 아니라 차체의 안전성을 우선으로 생각한다는 브랜드의 이념과도 일맥상통하죠. 1층은 브랜드 홍보를 겸한 공간으로 시민들에게 개방되어 있으며, 이는 옛날에 근처에서 배달일을 하는 혼다 소이치로의 형제가 마음대로 쉬다 갔으면 하는 마음에서 착안했다고 합니다.</p>
+      <p>게다가 인테리어에선 글로벌 기업의 사옥임에도 내부의 대리석이나 화강암, 황동 등등 타 기업의 본사에선 곧잘 보이는 소재들을 일절 찾아볼 수 없었는데요, 이 또한 혼다 소이치로의 의견이 반영된 것으로 그는 생전에 권위주의를 극도로 기피한 것으로도 유명합니다. 때문에 인테리어나 설비를 더도 말고 덜도 말고 공장과 똑같은 수준으로 맞추라고 지시했다고 합니다. 이 알 수 없는 수수함에 다 나름의 이유가 있었던 셈이죠.</p>
+      <p>이와 관해서는 재미있는 일화가 하나 있는데요, 입구에 위치한 원형 기둥의 양옆이 직선으로 잘려 있는 모습이 보이죠. 처음에는 완전한 원기둥으로 되어 있었으나, 대칭 구조의 원기둥을 싫어하는 혼다 소이치의 극대노로 인해 옆을 잘라낸 형태로 변경되었다고 합니다. 엔진을 닮은 건물은 2025년 5월을 끝으로 제 역할을 다하고 미래에 다가올 전기차 시대에 맞춰 2030년 새로운 사옥으로 거듭나게 될 텐데요, 새 사옥이 기존 혼다의 철학에서 과연 어떤 부분을 계승할지, 그리고 어떤 식으로 변화할지 벌써부터 기대되는 곳이라고 할 수 있겠습니다.</p>
+    </div>
+  </article>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__top">
+      <span class="footer__logo">Marginalia</span>
+      <p class="footer__tagline">A record of what stands<br />and what remains.</p>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 Marginalia Archive</span>
+      <span>Tokyo, Japan</span>
+      <span>Web Design I — Project</span>
+    </div>
+  </footer>
+
+  <script type="importmap">
+    { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.167.0/build/three.module.js" } }
+  </script>
+  <script type="module" src="aoyama.js"></script>
+</body>
+</html>

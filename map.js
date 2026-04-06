@@ -28,12 +28,20 @@ const TILT_MAX  = 0.16;
 
 // Map ward name → district config
 const HIGHLIGHT_WARDS = {
-  '新宿区': { id: 'shinjuku',    nameEn: 'Shinjuku',         nameJp: '新宿',   count: '24 works' },
-  '渋谷区': { id: 'shibuya',     nameEn: 'Shibuya',          nameJp: '渋谷',   count: '21 works' },
-  '港区':   { id: 'omotesando',  nameEn: 'Omotesando / Aoyama', nameJp: '表参道・青山', count: '28 works' },
-  '台東区': { id: 'ueno',        nameEn: 'Ueno',             nameJp: '上野',   count: '17 works' },
-  '中央区': { id: 'ginza',       nameEn: 'Ginza',            nameJp: '銀座',   count: '19 works' },
-  '豊島区': { id: 'ikebukuro',   nameEn: 'Ikebukuro',        nameJp: '池袋',   count: '18 works' },
+  //                                                                              offsetX  offsetY  ← px 단위, 양수=오른쪽/아래, 음수=왼쪽/위
+  '新宿区': { id: 'shinjuku',    nameEn: 'Shinjuku',            nameJp: '新宿',        count: '24 works', offsetX:   0, offsetY:   0 },
+  '渋谷区': { id: 'shibuya',     nameEn: 'Shibuya',             nameJp: '渋谷',        count: '21 works', offsetX:   0, offsetY:   0 },
+  '港区':   { id: 'omotesando',  nameEn: 'Minato',              nameJp: '港区',        count: '44 works', offsetX:   0, offsetY:   0,
+    subDistricts: [
+      { nameEn: 'Omotesando', href: 'district.html' },
+      { nameEn: 'Harajuku',   href: 'harajuku.html' },
+      { nameEn: 'Aoyama',     href: 'aoyama.html'   },
+      { nameEn: 'Roppongi',   href: 'roppongi.html' },
+    ],
+  },
+  '台東区': { id: 'ueno',        nameEn: 'Ueno',                nameJp: '上野',        count: '17 works', offsetX:   0, offsetY:   0 },
+  '中央区': { id: 'ginza',       nameEn: 'Ginza',               nameJp: '銀座',        count: '19 works', offsetX:   0, offsetY:   0 },
+  '豊島区': { id: 'ikebukuro',   nameEn: 'Ikebukuro',           nameJp: '池袋',        count: '18 works', offsetX:   0, offsetY:   0 },
 };
 
 // ── DOM ────────────────────────────────────────────────────────────────────
@@ -42,6 +50,7 @@ const wrapper   = document.getElementById('mapWrapper');
 const canvas    = document.getElementById('mapCanvas');
 const tooltip   = document.getElementById('mapTooltip');
 const labelsEl  = document.getElementById('districtLabels');
+const coordsEl  = document.getElementById('mapCoords');
 
 // ── Renderer ───────────────────────────────────────────────────────────────
 
@@ -129,8 +138,8 @@ function buildShapes(geometry) {
 function makeGrid() {
   const group = new THREE.Group();
   const mat   = new THREE.LineBasicMaterial({ color: INK, transparent: true, opacity: 0.08 });
-  const ext   = 8;
-  const step  = 0.6;
+  const ext   = 16;
+  const step  = 0.3;   // ~16px — matches hero grid density
   for (let x = -ext; x <= ext; x += step) {
     const g = new THREE.BufferGeometry().setFromPoints([
       new THREE.Vector3(x, -ext, 0.001), new THREE.Vector3(x, ext, 0.001)
@@ -227,6 +236,20 @@ fetch('tokyo_wards.geojson')
       el.className = 'district-label';
       el.id = `label-${cfg.id}`;
       el.innerHTML = `<span class="district-label__en">${cfg.nameEn}</span><span class="district-label__jp">${cfg.nameJp}</span>`;
+      if (cfg.subDistricts) {
+        el.classList.add('district-label--minato');
+        const subsDiv = document.createElement('div');
+        subsDiv.className = 'district-label__subs';
+        cfg.subDistricts.forEach(sub => {
+          const a = document.createElement('a');
+          a.className = 'district-label__sub';
+          a.textContent = sub.nameEn;
+          a.href = sub.href;
+          a.addEventListener('click', e => e.stopPropagation());
+          subsDiv.appendChild(a);
+        });
+        el.appendChild(subsDiv);
+      }
       labelsEl.appendChild(el);
     }
 
@@ -292,6 +315,32 @@ function setHover(wardName) {
 
 // ── Events ─────────────────────────────────────────────────────────────────
 
+function toDMS(deg, posDir, negDir) {
+  const d = Math.floor(Math.abs(deg));
+  const m = Math.floor((Math.abs(deg) - d) * 60);
+  const s = Math.round(((Math.abs(deg) - d) * 60 - m) * 60);
+  const dir = deg >= 0 ? posDir : negDir;
+  return `${d}°${String(m).padStart(2,'0')}′${String(s).padStart(2,'0')}″${dir}`;
+}
+
+const _groundPlane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0);
+const _groundHit   = new THREE.Vector3();
+
+// 클릭 시 district.html?id=... 으로 이동
+wrapper.addEventListener('click', e => {
+  const rect = wrapper.getBoundingClientRect();
+  const cx = ((e.clientX - rect.left) / rect.width)  * 2 - 1;
+  const cy = ((e.clientY - rect.top)  / rect.height) * 2 - 1;
+  mouse3.set(cx, -cy);
+  raycaster.setFromCamera(mouse3, camera);
+  const hits = raycaster.intersectObjects(wardMeshes, false);
+  if (hits.length > 0) {
+    const wardName = hits[0].object.parent?.userData?.wardName;
+    const cfg = HIGHLIGHT_WARDS[wardName];
+    if (cfg) window.location.href = `district.html?id=${cfg.id}`;
+  }
+});
+
 wrapper.addEventListener('mousemove', e => {
   const rect = wrapper.getBoundingClientRect();
   mouseNorm.x = ((e.clientX - rect.left) / rect.width)  * 2 - 1;
@@ -307,11 +356,22 @@ wrapper.addEventListener('mousemove', e => {
   } else {
     setHover(null);
   }
+
+  // Update coordinate display
+  if (coordsEl) {
+    raycaster.ray.intersectPlane(_groundPlane, _groundHit);
+    const lon = LON_MIN + (_groundHit.x / MAP_W + 0.5) * (LON_MAX - LON_MIN);
+    const lat = LAT_MIN + (_groundHit.y / MAP_H + 0.5) * (LAT_MAX - LAT_MIN);
+    if (lon >= LON_MIN - 0.1 && lon <= LON_MAX + 0.1) {
+      coordsEl.textContent = `${toDMS(lat,'N','S')}  ${toDMS(lon,'E','W')}`;
+    }
+  }
 });
 
 wrapper.addEventListener('mouseleave', () => {
   mouseNorm = { x: 0, y: 0 };
   setHover(null);
+  if (coordsEl) coordsEl.textContent = '—';
 });
 
 // ── Labels ─────────────────────────────────────────────────────────────────
@@ -335,13 +395,36 @@ function updateLabels() {
     const { x, y } = centroidByWard[wardName];
     const state = wardState[wardName];
     const pos = project3D(
-      x + (x - x * state.scale),
-      y + (y - y * state.scale),
+      x,
+      y,
       state.z + SLAB_REST * 1.5 + 0.1
     );
-    el.style.left    = pos.left + 'px';
-    el.style.top     = pos.top  + 'px';
-    el.style.opacity = hoveredWard && hoveredWard !== wardName ? '0.35' : '1';
+    const isHovered = hoveredWard === wardName;
+    const isFaded   = hoveredWard && !isHovered;
+
+    el.style.left    = (pos.left + (isHovered ? (cfg.offsetX ?? 0) : 0)) + 'px';
+    el.style.top     = (pos.top  + (isHovered ? (cfg.offsetY ?? 0) : 0)) + 'px';
+    el.style.opacity = isFaded ? '0.35' : '1';
+
+    /* Minato sub-district split */
+    if (el.classList.contains('district-label--minato')) {
+      if (isHovered) {
+        el.classList.add('is-hovered');
+      } else {
+        el.classList.remove('is-hovered');
+      }
+    }
+
+    const enEl = el.querySelector('.district-label__en');
+    const jpEl = el.querySelector('.district-label__jp');
+    if (enEl) {
+      enEl.style.fontSize = isHovered ? '13px' : '';
+      enEl.style.color    = isHovered ? '#ffffff' : '';
+    }
+    if (jpEl) {
+      jpEl.style.fontSize = isHovered ? '11px' : '';
+      jpEl.style.color    = isHovered ? 'rgba(255,255,255,0.7)' : '';
+    }
   }
 }
 

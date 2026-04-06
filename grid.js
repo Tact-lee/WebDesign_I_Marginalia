@@ -105,10 +105,11 @@
 
   /* ── INTERACTIVE PHASE ──────────────────────────────── */
   function renderInteractive() {
-    ctx.clearRect(0, 0, W, H);
+    /* fill with background instead of clear — required for 'darken' blend */
+    ctx.fillStyle = '#f2f0eb';
+    ctx.fillRect(0, 0, W, H);
 
     var rSq = RADIUS * RADIUS;
-    var maxElev = 0;
 
     /* ── pass 0: update elevations ──────────────────── */
     for (var i = 0; i < cells.length; i++) {
@@ -123,25 +124,38 @@
         }
       }
       c.elev += (target > c.elev ? LERP_IN : LERP_OUT) * (target - c.elev);
-      if (c.elev > maxElev) maxElev = c.elev;
     }
 
-    /* ── pass 1: single ambient shadow (no per-block halos) ──
-       One radial gradient covers the entire elevated region.
-       This eliminates the overlap / accumulation problem.    */
-    if (maxElev > 0.01) {
-      var grd = ctx.createRadialGradient(
-        mouseX, mouseY, RADIUS * 0.08,
-        mouseX, mouseY, RADIUS * 1.1
-      );
-      grd.addColorStop(0,    'rgba(26,26,24,0.0)');
-      grd.addColorStop(0.55, 'rgba(26,26,24,' + (maxElev * 0.22) + ')');
-      grd.addColorStop(1,    'rgba(26,26,24,0.0)');
-      ctx.fillStyle = grd;
-      ctx.beginPath();
-      ctx.arc(mouseX, mouseY, RADIUS * 1.1, 0, Math.PI * 2);
-      ctx.fill();
+    /* ── pass 1: per-block shadow halos with 'darken' blend ──
+       'darken' takes min(src, dst) per channel → overlapping
+       halos never accumulate; they just reach their individual
+       darkest value, eliminating the dark-ring artifact.     */
+    ctx.globalCompositeOperation = 'darken';
+    for (var i = 0; i < cells.length; i++) {
+      var c = cells[i];
+      if (c.elev > 0.004) {
+        var e2     = c.elev * c.elev;
+        var spread = c.elev * 9;  // halo radius in px
+        /* pre-multiply shadow color against #f2f0eb (242,240,235)
+           so we can draw opaque RGB — no alpha to accumulate     */
+        var strength = e2 * 0.28;
+        var r = Math.round(242 - (242 - 26) * strength);
+        var g = Math.round(240 - (240 - 26) * strength);
+        var b = Math.round(235 - (235 - 24) * strength);
+        var grd = ctx.createRadialGradient(
+          c.cx, c.cy, 0,
+          c.cx, c.cy, GRID / 2 + spread
+        );
+        grd.addColorStop(0,   'rgb(' + r + ',' + g + ',' + b + ')');
+        grd.addColorStop(1,   'rgb(242,240,235)');
+        ctx.fillStyle = grd;
+        ctx.fillRect(
+          c.x - spread, c.y - spread,
+          GRID + spread * 2, GRID + spread * 2
+        );
+      }
     }
+    ctx.globalCompositeOperation = 'source-over';
 
     /* ── pass 2: elevated top surfaces ─────────────── */
     for (var i = 0; i < cells.length; i++) {
