@@ -3,71 +3,68 @@
   var ctx    = canvas.getContext('2d');
   var dpr    = Math.min(window.devicePixelRatio || 1, 2);
 
-  var GRID    = 80;
-  var STAGGER = 36;
-  var DUR     = 620;
-  var GAP     = 320;
+  var GRID = 16; // px
+  var T1   = 1.1; // s — vertical sweep duration
+  var T2   = 0.9; // s — horizontal sweep duration
+  var GAP  = 0.18; // s — pause between phases
 
-  var W, H, vLines, hLines, startTime, raf;
+  var W, H, startTime, raf;
 
-  function ease(t) { return 1 - Math.pow(1 - t, 2.2); }
+  function ease(t) { return 1 - Math.pow(1 - t, 2.5); }
 
   function setup() {
-    W = window.innerWidth;
-    H = window.innerHeight;
+    W = canvas.offsetWidth;
+    H = canvas.offsetHeight;
     canvas.width  = W * dpr;
     canvas.height = H * dpr;
-    canvas.style.width  = W + 'px';
-    canvas.style.height = H + 'px';
     ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
-    vLines = [];
-    for (var x = 0, i = 0; x <= W; x += GRID, i++) {
-      vLines.push({ x: x, delay: i * STAGGER });
-    }
-    var vEnd = (vLines.length - 1) * STAGGER + DUR + GAP;
-
-    hLines = [];
-    for (var y = 0, j = 0; y <= H; y += GRID, j++) {
-      hLines.push({ y: y, delay: vEnd + j * STAGGER });
-    }
   }
 
   function render(ts) {
     if (!startTime) startTime = ts;
-    var elapsed = ts - startTime;
+    var t = (ts - startTime) / 1000;
 
     ctx.clearRect(0, 0, W, H);
-    ctx.lineWidth   = 0.5;
     ctx.strokeStyle = 'rgba(26,26,24,0.08)';
+    ctx.lineWidth   = 0.5;
 
-    var allDone = true;
+    // Phase 1 — vertical lines revealed by left-to-right clip
+    var v     = ease(Math.min(1, t / T1));
+    var clipW = W * v;
 
-    for (var vi = 0; vi < vLines.length; vi++) {
-      var vl = vLines[vi];
-      var vt = (elapsed - vl.delay) / DUR;
-      if (vt <= 0) { allDone = false; continue; }
-      if (vt < 1)  allDone = false;
-      var vp = ease(Math.min(1, vt));
+    ctx.save();
+    ctx.beginPath();
+    ctx.rect(0, 0, clipW, H);
+    ctx.clip();
+    for (var x = 0; x <= W; x += GRID) {
       ctx.beginPath();
-      ctx.moveTo(vl.x, 0);
-      ctx.lineTo(vl.x, H * vp);
+      ctx.moveTo(x, 0);
+      ctx.lineTo(x, H);
       ctx.stroke();
     }
+    ctx.restore();
 
-    for (var hi = 0; hi < hLines.length; hi++) {
-      var hl = hLines[hi];
-      var ht = (elapsed - hl.delay) / DUR;
-      if (ht <= 0) { allDone = false; continue; }
-      if (ht < 1)  allDone = false;
-      var hp = ease(Math.min(1, ht));
+    // Phase 2 — horizontal lines revealed by top-to-bottom clip
+    if (t > T1 + GAP) {
+      var h     = ease(Math.min(1, (t - T1 - GAP) / T2));
+      var clipH = H * h;
+
+      ctx.save();
       ctx.beginPath();
-      ctx.moveTo(0, hl.y);
-      ctx.lineTo(W * hp, hl.y);
-      ctx.stroke();
+      ctx.rect(0, 0, W, clipH);
+      ctx.clip();
+      for (var y = 0; y <= H; y += GRID) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(W, y);
+        ctx.stroke();
+      }
+      ctx.restore();
     }
 
-    if (!allDone) raf = requestAnimationFrame(render);
+    if (t < T1 + GAP + T2) {
+      raf = requestAnimationFrame(render);
+    }
   }
 
   function init() {

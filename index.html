@@ -11,8 +11,6 @@
 </head>
 <body>
 
-  <canvas id="gridCanvas"></canvas>
-
   <!-- NAV -->
   <nav class="nav">
     <span class="nav__logo">Marginalia</span>
@@ -27,101 +25,16 @@
 
   <!-- HERO -->
   <header class="hero">
-    <div class="hero__content">
-      <div class="hero__meta">
-        <span class="label">Est. 1964 — Ongoing</span>
-        <span class="label">Vol. 07</span>
-      </div>
-      <h1 class="hero__title">Marginalia</h1>
-      <p class="hero__sub">교양 있는 척하는 당신을 위한<br />도쿄 건축 아카이브</p>
-      <div class="hero__scroll-hint">
-        <span>Scroll</span>
-        <div class="hero__scroll-line"></div>
-      </div>
+    <canvas id="gridCanvas"></canvas>
+    <div class="hero__meta">
+      <span class="label">Est. 1964 — Ongoing</span>
+      <span class="label">Vol. 07</span>
     </div>
-
-    <div class="hero__graphic">
-      <div class="hero__svg-wrap" id="heroSvgWrap">
-        <svg class="hero__svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg" fill="none">
-          <!-- Axis cross lines -->
-          <line class="svg-axis" x1="0"   y1="200" x2="400" y2="200" />
-          <line class="svg-axis" x1="200" y1="0"   x2="200" y2="400" />
-
-          <!-- Outer dashed ring -->
-          <circle class="svg-ring--outer" cx="200" cy="200" r="180"
-            stroke-dasharray="5 9" />
-
-          <!-- Main ring -->
-          <circle class="svg-ring--main" cx="200" cy="200" r="145" />
-
-          <!-- Inner ring -->
-          <circle class="svg-ring--inner" cx="200" cy="200" r="28" />
-
-          <!-- Major tick marks at cardinal points (N,E,S,W) -->
-          <line class="svg-tick svg-tick--major" x1="200" y1="55"  x2="200" y2="38"  />
-          <line class="svg-tick svg-tick--major" x1="345" y1="200" x2="362" y2="200" />
-          <line class="svg-tick svg-tick--major" x1="200" y1="345" x2="200" y2="362" />
-          <line class="svg-tick svg-tick--major" x1="55"  y1="200" x2="38"  y2="200" />
-
-          <!-- Minor ticks at 30° intervals -->
-          <line class="svg-tick" x1="272.5" y1="74.4"  x2="280"  y2="61.4"  />
-          <line class="svg-tick" x1="325.6" y1="127.5" x2="338.6" y2="120"  />
-          <line class="svg-tick" x1="325.6" y1="272.5" x2="338.6" y2="280"  />
-          <line class="svg-tick" x1="272.5" y1="325.6" x2="280"  y2="338.6" />
-          <line class="svg-tick" x1="127.5" y1="325.6" x2="120"  y2="338.6" />
-          <line class="svg-tick" x1="74.4"  y1="272.5" x2="61.4"  y2="280"  />
-          <line class="svg-tick" x1="74.4"  y1="127.5" x2="61.4"  y2="120"  />
-          <line class="svg-tick" x1="127.5" y1="74.4"  x2="120"  y2="61.4"  />
-
-          <!-- Angle arc (NE quadrant) -->
-          <path class="svg-arc" d="M 200 172 A 28 28 0 0 1 228 200" />
-
-          <!-- Center crosshair -->
-          <line class="svg-center" x1="184" y1="200" x2="216" y2="200" />
-          <line class="svg-center" x1="200" y1="184" x2="200" y2="216" />
-
-          <!-- Cardinal dots on main ring -->
-          <circle class="svg-dot" cx="200" cy="55"  r="2.5" />
-          <circle class="svg-dot" cx="345" cy="200" r="2.5" />
-          <circle class="svg-dot" cx="200" cy="345" r="2.5" />
-          <circle class="svg-dot" cx="55"  cy="200" r="2.5" />
-
-          <!-- Center dot -->
-          <circle class="svg-dot svg-dot--center" cx="200" cy="200" r="3.5" />
-
-          <!-- Dimension line (bottom) -->
-          <line class="svg-dim" x1="55" y1="377" x2="345" y2="377" />
-          <line class="svg-dim-tick" x1="55"  y1="372" x2="55"  y2="382" />
-          <line class="svg-dim-tick" x1="345" y1="372" x2="345" y2="382" />
-
-          <!-- Dimension line (right) -->
-          <line class="svg-dim" x1="377" y1="55" x2="377" y2="345" />
-          <line class="svg-dim-tick" x1="372" y1="55"  x2="382" y2="55"  />
-          <line class="svg-dim-tick" x1="372" y1="345" x2="382" y2="345" />
-
-          <!-- Coordinate labels -->
-          <text class="svg-label svg-label--coord" x="200" y="13" text-anchor="middle">35°40′34″ N</text>
-          <text class="svg-label svg-label--coord" x="0" y="0"
-            transform="translate(396 200) rotate(-90)" text-anchor="middle">139°39′02″ E</text>
-
-          <!-- Dimension values -->
-          <text class="svg-label svg-label--tech" x="200" y="393" text-anchor="middle">290 m</text>
-          <text class="svg-label svg-label--tech" x="0" y="0"
-            transform="translate(393 200) rotate(-90)" text-anchor="middle">290 m</text>
-
-          <!-- Corner labels -->
-          <text class="svg-label svg-label--card" x="8"   y="14">N</text>
-          <text class="svg-label svg-label--card" x="392" y="14"  text-anchor="end">E</text>
-          <text class="svg-label svg-label--card" x="8"   y="396">S</text>
-          <text class="svg-label svg-label--card" x="392" y="396" text-anchor="end">W</text>
-
-          <!-- Technical annotations -->
-          <text class="svg-label svg-label--title" x="392" y="27" text-anchor="end">TOKYO</text>
-          <text class="svg-label svg-label--title" x="392" y="39" text-anchor="end">東京</text>
-          <text class="svg-label svg-label--tech"  x="8"   y="396">SCALE 1:50,000</text>
-          <text class="svg-label svg-label--tech"  x="392" y="396" text-anchor="end">DWG. 07-A</text>
-        </svg>
-      </div>
+    <h1 class="hero__title">Marginalia</h1>
+    <p class="hero__sub">교양 있는 척하는 당신을 위한<br />도쿄 건축 아카이브</p>
+    <div class="hero__scroll-hint">
+      <span>Scroll</span>
+      <div class="hero__scroll-line"></div>
     </div>
   </header>
 
@@ -183,6 +96,13 @@
       </div>
     </div>
   </section>
+
+  <!-- DIVIDER -->
+  <div class="section-divider">
+    <span class="divider-label">Archive — 建築記録</span>
+    <div class="divider-line"></div>
+    <span class="divider-count">127 Structures</span>
+  </div>
 
   <!-- MASONRY GALLERY -->
   <section class="gallery-section">
@@ -372,25 +292,5 @@
   <script type="module" src="map.js"></script>
   <script src="gallery.js"></script>
   <script src="grid.js"></script>
-  <script>
-    // Hero SVG mouse tilt interaction
-    (function () {
-      var hero = document.querySelector('.hero');
-      var wrap = document.getElementById('heroSvgWrap');
-      if (!hero || !wrap) return;
-
-      hero.addEventListener('mousemove', function (e) {
-        var r  = hero.getBoundingClientRect();
-        var mx = (e.clientX - r.left)  / r.width  - 0.5; // -0.5 ~ 0.5
-        var my = (e.clientY - r.top)   / r.height - 0.5;
-        wrap.style.transform =
-          'perspective(800px) rotateX(' + (-my * 10) + 'deg) rotateY(' + (mx * 10) + 'deg)';
-      });
-
-      hero.addEventListener('mouseleave', function () {
-        wrap.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg)';
-      });
-    }());
-  </script>
 </body>
 </html>
