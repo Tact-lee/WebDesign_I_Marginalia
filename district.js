@@ -15,48 +15,48 @@ const BUILDINGS = [
     num:       '01',
     nameEn:    'Yoyogi National Gymnasium',
     tag:       'Sports / Cultural · 1964',
-    lat:       35.6720,
-    lon:       139.7080,   /* 지도상 미나토구 방향으로 당김 */
+    lat:       35.6742,
+    lon:       139.7074,
     intensity: 1.0,
   },
   {
     num:       '02',
     nameEn:    'Dior Omotesando',
     tag:       'Retail · 2004',
-    lat:       35.6681,
-    lon:       139.7126,
+    lat:       35.6698,
+    lon:       139.7115,
     intensity: 0.8,
   },
   {
     num:       '03',
     nameEn:    'Omotesando Hills',
     tag:       'Mixed-use · 2006',
-    lat:       35.6688,
-    lon:       139.7124,
+    lat:       35.6680,
+    lon:       139.7130,
     intensity: 0.9,
   },
   {
     num:       '04',
     nameEn:    'Bottega Veneta Omotesando',
     tag:       'Retail · 2003',
-    lat:       35.6684,
-    lon:       139.7130,
+    lat:       35.6690,
+    lon:       139.7148,
     intensity: 0.75,
   },
   {
     num:       '05',
     nameEn:    'Prada Aoyama',
     tag:       'Retail · 2003',
-    lat:       35.6650,
-    lon:       139.7129,
+    lat:       35.6658,
+    lon:       139.7138,
     intensity: 0.95,
   },
   {
     num:       '06',
     nameEn:    'Spiral',
     tag:       'Cultural · 1985',
-    lat:       35.6648,
-    lon:       139.7141,
+    lat:       35.6643,
+    lon:       139.7158,
     intensity: 0.7,
   },
 ];
@@ -67,10 +67,10 @@ const BUILDINGS = [
    ================================================================ */
 /* 건축물 중심 확대 뷰 — 파티클이 겹치지 않을 만큼 확대 */
 const VIEW = {
-  lonMin: 139.688,
-  lonMax: 139.755,
-  latMin: 35.645,
-  latMax: 35.690,
+  lonMin: 139.700,
+  lonMax: 139.722,
+  latMin: 35.659,
+  latMax: 35.679,
 };
 
 /* 위도 보정 계수 — 도쿄 위도 35.7° 기준
@@ -335,6 +335,35 @@ window.addEventListener('resize', () => {
     render(cachedGeoJSON);
   });
 });
+
+/* ─── 스크롤 리빌: .js-img-reveal 요소 ──────────────────────── */
+
+(function initReveal() {
+  // 브라우저가 초기 clip-path 상태를 먼저 페인트하도록 충분히 지연
+  requestAnimationFrame(() => {
+    setTimeout(() => {
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-revealed');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        {
+          threshold: 0.05,
+        }
+      );
+
+      document.querySelectorAll('.js-img-reveal').forEach(el => {
+        observer.observe(el);
+      });
+
+    }, 200); // 200ms: 레이아웃·페인트 완료 후 관찰 시작
+  });
+})();
 
 /* ─── nav 스크롤 ─────────────────────────────────────────────── */
 

@@ -10,16 +10,16 @@ const BUILDINGS = [
     num:       '01',
     nameEn:    'From 1st Building',
     tag:       'Mixed-use · 1975',
-    lat:       35.6641,
-    lon:       139.7147,
+    lat:       35.6650,
+    lon:       139.7133,
     intensity: 0.80,
   },
   {
     num:       '02',
     nameEn:    'La Collezione',
     tag:       'Mixed-use · 1989',
-    lat:       35.6635,
-    lon:       139.7157,
+    lat:       35.6628,
+    lon:       139.7158,
     intensity: 0.90,
   },
   {
@@ -34,25 +34,25 @@ const BUILDINGS = [
     num:       '04',
     nameEn:    'ITOCHU Headquarters',
     tag:       'Corporate · 2002',
-    lat:       35.6716,
-    lon:       139.7228,
+    lat:       35.6726,
+    lon:       139.7218,
     intensity: 0.70,
   },
   {
     num:       '05',
     nameEn:    'Honda Aoyama Welcome Plaza',
     tag:       'Corporate · 2003',
-    lat:       35.6711,
-    lon:       139.7236,
+    lat:       35.6708,
+    lon:       139.7244,
     intensity: 0.85,
   },
 ];
 
 const VIEW = {
-  lonMin: 139.700,
-  lonMax: 139.742,
-  latMin: 35.652,
-  latMax: 35.682,
+  lonMin: 139.706,
+  lonMax: 139.732,
+  latMin: 35.655,
+  latMax: 35.678,
 };
 
 const LAT_COS = Math.cos(35.7 * Math.PI / 180);

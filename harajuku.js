@@ -10,41 +10,41 @@ const BUILDINGS = [
     num:       '01',
     nameEn:    'With Harajuku',
     tag:       'Mixed-use · 2020',
-    lat:       35.6718,
-    lon:       139.7027,
+    lat:       35.6722,
+    lon:       139.7025,
     intensity: 0.95,
   },
   {
     num:       '02',
     nameEn:    'Think of Things',
     tag:       'Retail / Café · 2017',
-    lat:       35.6671,
-    lon:       139.7096,
+    lat:       35.6672,
+    lon:       139.7088,
     intensity: 0.75,
   },
   {
     num:       '03',
     nameEn:    'Gyre Omotesando',
     tag:       'Mixed-use · 2007',
-    lat:       35.6679,
-    lon:       139.7109,
+    lat:       35.6684,
+    lon:       139.7113,
     intensity: 0.85,
   },
   {
     num:       '04',
     nameEn:    'Ragtag Harajuku',
     tag:       'Retail · 2003',
-    lat:       35.6660,
-    lon:       139.7102,
+    lat:       35.6655,
+    lon:       139.7100,
     intensity: 0.70,
   },
 ];
 
 const VIEW = {
-  lonMin: 139.690,
-  lonMax: 139.726,
-  latMin: 35.656,
-  latMax: 35.680,
+  lonMin: 139.696,
+  lonMax: 139.717,
+  latMin: 35.659,
+  latMax: 35.677,
 };
 
 const LAT_COS = Math.cos(35.7 * Math.PI / 180);

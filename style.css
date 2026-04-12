@@ -275,6 +275,63 @@ button { background: none; border: none; cursor: pointer; font: inherit; color: 
   margin-top: 1px;
 }
 
+/* ─── Minato Sub-district Split Labels ───────────────────────── */
+.district-label--minato .district-label__en,
+.district-label--minato .district-label__jp {
+  transition: opacity 0.15s;
+}
+.district-label--minato.is-hovered .district-label__en,
+.district-label--minato.is-hovered .district-label__jp {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.district-label__subs {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  pointer-events: none;
+  white-space: nowrap;
+}
+.district-label--minato.is-hovered .district-label__subs {
+  pointer-events: auto;
+}
+
+.district-label__sub {
+  display: block;
+  font-family: var(--f-sans);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: #ffffff;
+  opacity: 0;
+  transform: translateY(0px);
+  transition: opacity 0.2s, transform 0.2s;
+}
+.district-label--minato.is-hovered .district-label__sub:nth-child(1) {
+  opacity: 1; transform: translateY(-22px);
+  transition-delay: 0s;
+}
+.district-label--minato.is-hovered .district-label__sub:nth-child(2) {
+  opacity: 1; transform: translateY(-7px);
+  transition-delay: 0.04s;
+}
+.district-label--minato.is-hovered .district-label__sub:nth-child(3) {
+  opacity: 1; transform: translateY(7px);
+  transition-delay: 0.08s;
+}
+.district-label--minato.is-hovered .district-label__sub:nth-child(4) {
+  opacity: 1; transform: translateY(22px);
+  transition-delay: 0.12s;
+}
+
 /* Map Tooltip */
 .map-tooltip {
   position: absolute;
