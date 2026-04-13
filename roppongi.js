@@ -17,10 +17,10 @@ const BUILDINGS = [
 ];
 
 const VIEW = {
-  lonMin: 139.718,
-  lonMax: 139.738,
-  latMin: 35.658,
-  latMax: 35.674,
+  lonMin: 139.698,
+  lonMax: 139.758,
+  latMin: 35.638,
+  latMax: 35.690,
 };
 
 const LAT_COS = Math.cos(35.7 * Math.PI / 180);
@@ -260,3 +260,26 @@ requestAnimationFrame(() => {
     })
     .catch(() => {});
 });
+
+/* ─── 스크롤 애니메이션 (js-img-reveal) ──────────────────────── */
+
+(function initReveal() {
+  requestAnimationFrame(() => {
+    setTimeout(() => {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-revealed');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.05 }
+      );
+      document.querySelectorAll('.js-img-reveal').forEach(el => {
+        observer.observe(el);
+      });
+    }, 200);
+  });
+})();

@@ -302,3 +302,26 @@ requestAnimationFrame(() => {
     })
     .catch(() => {});
 });
+
+/* ─── 스크롤 애니메이션 (js-img-reveal) ──────────────────────── */
+
+(function initReveal() {
+  requestAnimationFrame(() => {
+    setTimeout(() => {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-revealed');
+              observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.05 }
+      );
+      document.querySelectorAll('.js-img-reveal').forEach(el => {
+        observer.observe(el);
+      });
+    }, 200);
+  });
+})();

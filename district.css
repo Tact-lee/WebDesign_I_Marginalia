@@ -45,17 +45,20 @@
   line-height: 0.9;
   letter-spacing: -0.04em;
   margin-bottom: 32px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+  position: relative;
 }
 
 .d-hero__title-jp {
-  font-style: italic;
-  font-size: 0.42em;
-  letter-spacing: 0.02em;
+  font-family: var(--f-sans);
+  font-style: normal;
+  font-weight: 100;
+  font-size: 0.36em;
+  letter-spacing: 0.12em;
   color: var(--ink-40);
   line-height: 1.4;
+  position: absolute;
+  right: 0;
+  bottom: 0;
 }
 
 .d-hero__intro {
@@ -304,8 +307,8 @@
 
 .d-building__text p {
   font-family: var(--f-mono);
-  font-size: 13px;
-  line-height: 2.2;
+  font-size: 14.5px;
+  line-height: 2.3;
   color: var(--ink-40);
 }
 
@@ -400,6 +403,11 @@
   display: block;
   filter: grayscale(100%);
 }
+.d-building__portrait-photo--contain img {
+  object-fit: contain;
+  object-position: center;
+  background: #f2f0eb;
+}
 
 .d-building__portrait-info {
   opacity: 0;
@@ -418,6 +426,17 @@
   letter-spacing: -0.03em;
   line-height: 1;
   margin-bottom: 16px;
+  position: relative;
+}
+.d-building__portrait-name-kr {
+  display: block;
+  font-family: var(--f-mono);
+  font-size: 11px;
+  font-weight: 400;
+  letter-spacing: 0.06em;
+  color: var(--ink-30);
+  margin-top: 6px;
+  line-height: 1;
 }
 
 .d-building__portrait-sub {
@@ -433,12 +452,12 @@
 .d-building__seg {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  height: 560px;           /* 고정 높이 — 텍스트·이미지 균형 */
+  min-height: 520px;
   border-top: 1px solid var(--ink-15);
 }
 
 .d-building__seg-text {
-  padding: 64px 56px;
+  padding: 56px 52px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -447,8 +466,8 @@
 }
 .d-building__seg-text p {
   font-family: var(--f-mono);
-  font-size: 13px;
-  line-height: 2.4;
+  font-size: 14.5px;
+  line-height: 2.3;
   color: var(--ink-40);
 }
 
@@ -530,6 +549,7 @@
 .d-building__gallery.is-revealed .d-building__gallery-item:nth-child(4) { clip-path: inset(0 0 0% 0); transition-delay: 0.24s; }
 
 .d-building__gallery--3 { grid-template-columns: repeat(3, 1fr); }
+.d-building__gallery--2 { grid-template-columns: repeat(2, 1fr); }
 
 .d-building__gallery-item img {
   width: 100%;
@@ -573,6 +593,36 @@
   color: var(--ink-40);
   text-align: center;
   margin-top: 28px;
+}
+
+/* ─── 구글 맵 임베드 ─────────────────────────────────────────── */
+
+.d-building__gmap {
+  width: 100%;
+  height: 320px;
+  border-top: 1px solid var(--ink-15);
+  overflow: hidden;
+  position: relative;
+}
+.d-building__gmap iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  filter: grayscale(100%) contrast(0.92);
+  display: block;
+}
+.d-building__gmap-label {
+  position: absolute;
+  top: 16px;
+  left: 20px;
+  font-family: var(--f-mono);
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-60);
+  pointer-events: none;
+  background: var(--bg);
+  padding: 4px 8px;
 }
 
 /* ─── RESPONSIVE ─────────────────────────────────────────────── */
