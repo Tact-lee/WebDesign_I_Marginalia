@@ -24,7 +24,7 @@ const BUILDINGS = [
   },
   {
     num:       '03',
-    nameEn:    'Doria Minami Aoyama',
+    nameEn:    'Doric Minami Aoyama',
     tag:       'Commercial · 1991',
     lat:       35.6619,
     lon:       139.7196,
