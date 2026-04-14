@@ -52,8 +52,8 @@
 
   /* ── grid stroke ────────────────────────────────────── */
   function strokeGrid() {
-    ctx.strokeStyle = 'rgba(26,26,24,0.08)';
-    ctx.lineWidth   = 0.5;
+    ctx.strokeStyle = 'rgba(26,26,24,0.15)';
+    ctx.lineWidth   = 0.75;
     for (var x = 0; x <= W; x += GRID) {
       ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
     }
@@ -62,37 +62,59 @@
     }
   }
 
+  /* ── sweep-front highlight ──────────────────────────── */
+  function drawFrontH(x) {
+    /* vertical bright stripe at the sweep front */
+    var grd = ctx.createLinearGradient(x - 40, 0, x, 0);
+    grd.addColorStop(0, 'rgba(26,26,24,0)');
+    grd.addColorStop(1, 'rgba(26,26,24,0.10)');
+    ctx.fillStyle = grd;
+    ctx.fillRect(x - 40, 0, 40, H);
+  }
+  function drawFrontV(y) {
+    /* horizontal bright stripe at the sweep front */
+    var grd = ctx.createLinearGradient(0, y - 40, 0, y);
+    grd.addColorStop(0, 'rgba(26,26,24,0)');
+    grd.addColorStop(1, 'rgba(26,26,24,0.10)');
+    ctx.fillStyle = grd;
+    ctx.fillRect(0, y - 40, W, 40);
+  }
+
   /* ── ANIMATION PHASE ────────────────────────────────── */
   function renderAnim(ts) {
     if (!startTime) startTime = ts;
     var t = (ts - startTime) / 1000;
 
     ctx.clearRect(0, 0, W, H);
-    ctx.strokeStyle = 'rgba(26,26,24,0.08)';
-    ctx.lineWidth   = 0.5;
+    ctx.strokeStyle = 'rgba(26,26,24,0.22)';
+    ctx.lineWidth   = 1;
 
     /* phase 1 — vertical lines, clip sweeps left → right */
-    var v = easeInOut(Math.min(1, t / T1));
+    var v  = easeInOut(Math.min(1, t / T1));
+    var vx = W * v;
     ctx.save();
     ctx.beginPath();
-    ctx.rect(0, 0, W * v, H);
+    ctx.rect(0, 0, vx, H);
     ctx.clip();
     for (var x = 0; x <= W; x += GRID) {
       ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, H); ctx.stroke();
     }
     ctx.restore();
+    if (v < 1) drawFrontH(vx);
 
     /* phase 2 — horizontal lines, clip sweeps top → bottom */
     if (t > T1 + GAP) {
-      var h = easeInOut(Math.min(1, (t - T1 - GAP) / T2));
+      var h  = easeInOut(Math.min(1, (t - T1 - GAP) / T2));
+      var hy = H * h;
       ctx.save();
       ctx.beginPath();
-      ctx.rect(0, 0, W, H * h);
+      ctx.rect(0, 0, W, hy);
       ctx.clip();
       for (var y = 0; y <= H; y += GRID) {
         ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(W, y); ctx.stroke();
       }
       ctx.restore();
+      if (h < 1) drawFrontV(hy);
     }
 
     if (t < TOTAL) {
