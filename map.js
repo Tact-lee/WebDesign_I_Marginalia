@@ -473,3 +473,35 @@ function animate() {
 }
 
 animate();
+
+/* ─── Legend hover → 맵 hover 연동 ─────────────────────────────── */
+
+// legend data-district → GeoJSON 구명 (HIGHLIGHT_WARDS 키)
+// 오모테산도·아오야마·하라주쿠·롯폰기는 모두 港区/渋谷区 구역을 강조
+const LEGEND_TO_WARD = {
+  shinjuku:   '新宿区',
+  shibuya:    '渋谷区',
+  omotesando: '港区',
+  harajuku:   '港区',
+  aoyama:     '港区',
+  roppongi:   '港区',
+  ueno:       '台東区',
+  ginza:      '中央区',
+  ikebukuro:  '豊島区',
+};
+
+document.querySelectorAll('.legend-item').forEach(item => {
+  const wardName = LEGEND_TO_WARD[item.dataset.district];
+  if (!wardName) return;
+
+  item.style.cursor = 'pointer';
+
+  item.addEventListener('mouseenter', () => setHover(wardName));
+  item.addEventListener('mouseleave', () => setHover(null));
+
+  // 클릭 시 해당 페이지로 이동 (data-href가 있는 경우)
+  const href = item.dataset.href;
+  if (href) {
+    item.addEventListener('click', () => { window.location.href = href; });
+  }
+});

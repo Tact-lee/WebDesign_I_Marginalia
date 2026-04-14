@@ -270,6 +270,22 @@ wrapper.addEventListener('mouseleave', () => {
   render(cachedGeoJSON);
 });
 
+wrapper.addEventListener('click', e => {
+  const rect = wrapper.getBoundingClientRect();
+  const mx   = e.clientX - rect.left;
+  const my   = e.clientY - rect.top;
+  let clicked = -1;
+  BUILDINGS.forEach((b, i) => {
+    const [px, py] = toXY(b.lon, b.lat);
+    const size = 7 + b.intensity * 9 + 4;
+    if (Math.abs(mx - px) < size && Math.abs(my - py) < size) clicked = i;
+  });
+  if (clicked >= 0) {
+    const target = document.getElementById(`building-0${clicked + 1}`);
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+});
+
 window.addEventListener('resize', () => {
   requestAnimationFrame(() => {
     setup();

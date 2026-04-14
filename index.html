@@ -15,33 +15,25 @@
   <nav class="nav">
     <span class="nav__logo">Marginalia</span>
     <ul class="nav__links">
-      <li><a href="#">Archive</a></li>
-      <li><a href="#">Districts</a></li>
-      <li><a href="#">Architects</a></li>
-      <li><a href="#">About</a></li>
+      <li><a href="#map-section">Location Map</a></li>
+      <li><a href="#gallery-section">Gallery</a></li>
     </ul>
-    <span class="nav__index">東京建築</span>
   </nav>
 
   <!-- HERO -->
   <header class="hero">
     <canvas id="gridCanvas"></canvas>
-    <div class="hero__meta">
-      <span class="label">Est. 1964 — Ongoing</span>
-      <span class="label">Vol. 07</span>
-    </div>
     <h1 class="hero__title">Marginalia</h1>
     <p class="hero__sub">교양 있는 척하는 당신을 위한<br />도쿄 건축 아카이브</p>
     <div class="hero__scroll-hint">
       <span>Scroll</span>
-      <div class="hero__scroll-line"></div>
     </div>
   </header>
 
   <!-- MAP SECTION -->
-  <section class="map-section">
+  <section class="map-section" id="map-section">
     <div class="map-section__header">
-      <h2 class="section-title">District Map</h2>
+      <h2 class="section-title">Location Map</h2>
       <p class="section-note">Move cursor to explore — hover district to elevate</p>
     </div>
 
@@ -72,15 +64,25 @@
         <span class="legend-name">Shibuya</span>
         <span class="legend-count">渋谷</span>
       </div>
-      <div class="legend-item" data-district="omotesando">
+      <div class="legend-item" data-district="omotesando" data-href="district.html">
         <span class="legend-dot"></span>
         <span class="legend-name">Omotesando</span>
         <span class="legend-count">表参道</span>
       </div>
-      <div class="legend-item" data-district="aoyama">
+      <div class="legend-item" data-district="harajuku" data-href="harajuku.html">
+        <span class="legend-dot"></span>
+        <span class="legend-name">Harajuku</span>
+        <span class="legend-count">原宿</span>
+      </div>
+      <div class="legend-item" data-district="aoyama" data-href="aoyama.html">
         <span class="legend-dot"></span>
         <span class="legend-name">Aoyama</span>
         <span class="legend-count">青山</span>
+      </div>
+      <div class="legend-item" data-district="roppongi" data-href="roppongi.html">
+        <span class="legend-dot"></span>
+        <span class="legend-name">Roppongi</span>
+        <span class="legend-count">六本木</span>
       </div>
       <div class="legend-item" data-district="ueno">
         <span class="legend-dot"></span>
@@ -108,167 +110,12 @@
   </div>
 
   <!-- MASONRY GALLERY -->
-  <section class="gallery-section">
+  <section class="gallery-section" id="gallery-section">
     <div class="gallery-section__header">
-      <h2 class="section-title">Selected Works</h2>
-      <div class="gallery-filters">
-        <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="structure">Structure</button>
-        <button class="filter-btn" data-filter="architect">Architect</button>
-      </div>
+      <h2 class="section-title">Gallery</h2>
     </div>
 
-    <div class="masonry-grid" id="masonryGrid">
-
-      <!-- Structure Card 1 -->
-      <article class="card card--structure" data-type="structure">
-        <div class="card__img-wrap" style="height:380px">
-          <div class="card__img card__img--1"></div>
-        </div>
-        <div class="card__body">
-          <span class="card__tag">Shinjuku · 1974</span>
-          <h3 class="card__title">Shinjuku NS Building</h3>
-          <p class="card__desc">A pioneering curtain-wall tower defined by its exposed structural lattice and atrium void.</p>
-          <span class="card__meta">Nikken Sekkei</span>
-        </div>
-      </article>
-
-      <!-- Architect Card 1 -->
-      <article class="card card--architect" data-type="architect">
-        <div class="card__body card__body--architect">
-          <span class="card__tag">Architect</span>
-          <h3 class="card__title card__title--lg">Tadao<br />Ando</h3>
-          <p class="card__desc">Known for poetic use of raw concrete, natural light, and meditative spatial compression.</p>
-          <div class="card__stats">
-            <div class="stat">
-              <span class="stat__num">14</span>
-              <span class="stat__label">Works</span>
-            </div>
-            <div class="stat">
-              <span class="stat__num">1941</span>
-              <span class="stat__label">Born</span>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <!-- Structure Card 2 -->
-      <article class="card card--structure" data-type="structure">
-        <div class="card__img-wrap" style="height:200px">
-          <div class="card__img card__img--2"></div>
-        </div>
-        <div class="card__body">
-          <span class="card__tag">Ginza · 2007</span>
-          <h3 class="card__title">Hermès Maison Ginza</h3>
-          <p class="card__desc">Glass block facade reinterpreting the Japanese lantern as urban skin.</p>
-          <span class="card__meta">Renzo Piano</span>
-        </div>
-      </article>
-
-      <!-- Structure Card 3 -->
-      <article class="card card--structure" data-type="structure">
-        <div class="card__img-wrap" style="height:260px">
-          <div class="card__img card__img--3"></div>
-        </div>
-        <div class="card__body">
-          <span class="card__tag">Ueno · 1959</span>
-          <h3 class="card__title">Tokyo National Museum Honkan</h3>
-          <p class="card__desc">Imperial crown-style roof grafted onto modernist concrete — a contested synthesis of East and West.</p>
-          <span class="card__meta">Jin Watanabe</span>
-        </div>
-      </article>
-
-      <!-- Architect Card 2 -->
-      <article class="card card--architect" data-type="architect">
-        <div class="card__body card__body--architect">
-          <span class="card__tag">Architect</span>
-          <h3 class="card__title">Toyo<br />Ito</h3>
-          <p class="card__desc">Fluid forms and structural innovation dissolving boundary between body and environment.</p>
-          <div class="card__stats">
-            <div class="stat">
-              <span class="stat__num">9</span>
-              <span class="stat__label">Works</span>
-            </div>
-            <div class="stat">
-              <span class="stat__num">1941</span>
-              <span class="stat__label">Born</span>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <!-- Structure Card 4 -->
-      <article class="card card--structure" data-type="structure">
-        <div class="card__img-wrap" style="height:420px">
-          <div class="card__img card__img--4"></div>
-        </div>
-        <div class="card__body">
-          <span class="card__tag">Omotesando · 2003</span>
-          <h3 class="card__title">Prada Epicenter</h3>
-          <p class="card__desc">Diamond-grid glass shell transforms retail into an urban crystal in motion.</p>
-          <span class="card__meta">Herzog & de Meuron</span>
-        </div>
-      </article>
-
-      <!-- Structure Card 5 -->
-      <article class="card card--structure" data-type="structure">
-        <div class="card__img-wrap" style="height:180px">
-          <div class="card__img card__img--5"></div>
-        </div>
-        <div class="card__body">
-          <span class="card__tag">Aoyama · 2006</span>
-          <h3 class="card__title">21_21 Design Sight</h3>
-          <p class="card__desc">Single steel plate folded like origami into the landscape — Ando's dialogue with steel.</p>
-          <span class="card__meta">Tadao Ando</span>
-        </div>
-      </article>
-
-      <!-- Architect Card 3 -->
-      <article class="card card--architect" data-type="architect">
-        <div class="card__body card__body--architect">
-          <span class="card__tag">Architect</span>
-          <h3 class="card__title card__title--lg">Kengo<br />Kuma</h3>
-          <p class="card__desc">Erasing architecture through material grain, texture, and the rhythm of natural elements.</p>
-          <div class="card__stats">
-            <div class="stat">
-              <span class="stat__num">22</span>
-              <span class="stat__label">Works</span>
-            </div>
-            <div class="stat">
-              <span class="stat__num">1954</span>
-              <span class="stat__label">Born</span>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <!-- Structure Card 6 -->
-      <article class="card card--structure" data-type="structure">
-        <div class="card__img-wrap" style="height:320px">
-          <div class="card__img card__img--6"></div>
-        </div>
-        <div class="card__body">
-          <span class="card__tag">Ikebukuro · 1978</span>
-          <h3 class="card__title">Sunshine 60</h3>
-          <p class="card__desc">Tokyo's first supertall — vertical city of commerce, culture, and aquarium suspended above the grid.</p>
-          <span class="card__meta">Mitsubishi Estate</span>
-        </div>
-      </article>
-
-      <!-- Structure Card 7 -->
-      <article class="card card--structure" data-type="structure">
-        <div class="card__img-wrap" style="height:240px">
-          <div class="card__img card__img--7"></div>
-        </div>
-        <div class="card__body">
-          <span class="card__tag">Shibuya · 2019</span>
-          <h3 class="card__title">Shibuya Stream</h3>
-          <p class="card__desc">Riverfront regeneration weaving the exposed Shibuya River into a mixed-use vertical district.</p>
-          <span class="card__meta">Coelacanth K&H</span>
-        </div>
-      </article>
-
-    </div>
+    <div class="bento-grid" id="bentoGrid"></div>
   </section>
 
   <!-- FOOTER -->

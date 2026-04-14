@@ -45,20 +45,20 @@
   line-height: 0.9;
   letter-spacing: -0.04em;
   margin-bottom: 32px;
-  position: relative;
+  display: flex;
+  align-items: flex-end;
+  gap: 20px;
 }
 
 .d-hero__title-jp {
   font-family: var(--f-sans);
   font-style: normal;
   font-weight: 100;
-  font-size: 0.36em;
+  font-size: 0.24em;
   letter-spacing: 0.12em;
   color: var(--ink-40);
   line-height: 1.4;
-  position: absolute;
-  right: 0;
-  bottom: 0;
+  padding-bottom: 0.12em;
 }
 
 .d-hero__intro {
@@ -370,7 +370,12 @@
 }
 .d-building--segmented > .d-building__title-jp {
   padding: 0 48px;
-  margin-bottom: 0;
+  margin-bottom: 56px;
+}
+
+/* portrait 밴드가 있으면 margin 흡수 — portrait이 없을 때만 간격 부여 */
+.d-building--segmented > .d-building__portrait {
+  margin-top: -40px;
 }
 
 /* ─── 건축가 포트레이트 밴드 ────────────────────────────────── */
