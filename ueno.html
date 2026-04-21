@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ueno — Marginalia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="district.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="index.html" class="nav__logo">Marginalia</a>
+    <ul class="nav__links">
+      <li><a href="index.html#map-section">Location Map</a></li>
+      <li><a href="index.html#gallery-section">Gallery</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <header class="d-hero">
+    <div class="d-hero__content">
+      <div class="d-hero__breadcrumb">
+        <a href="index.html" class="label">Marginalia</a>
+        <span class="label">→</span>
+        <span class="label">District</span>
+      </div>
+
+      <div class="d-hero__label-row">
+        <span class="label">다이토구</span>
+        <span class="label">— 3개 건축물</span>
+      </div>
+
+      <h1 class="d-hero__title">
+        Ueno
+        <em class="d-hero__title-jp">우에노</em>
+      </h1>
+
+      <p class="d-hero__intro">
+        도쿄 원조 미술관의 도시. 르 코르뷔지에의 유일한 동북아시아 작품이 세계문화유산으로 자리한 곳.
+      </p>
+
+      <div class="d-hero__stats">
+        <div class="d-stat">
+          <span class="d-stat__val">3</span>
+          <span class="d-stat__label">Structures</span>
+        </div>
+        <div class="d-stat">
+          <span class="d-stat__val">UNESCO</span>
+          <span class="d-stat__label">World Heritage</span>
+        </div>
+        <div class="d-stat">
+          <span class="d-stat__val">1959</span>
+          <span class="d-stat__label">Oldest Built</span>
+        </div>
+      </div>
+
+      <div class="d-hero__scroll">
+        <span class="label">Scroll to explore</span>
+        <div class="d-hero__scroll-line"></div>
+      </div>
+    </div>
+
+    <div class="d-hero__map" id="dMapWrapper">
+      <canvas id="dMapCanvas"></canvas>
+      <div class="d-hero__map-label" id="dMapLabel">
+        <span class="d-hero__map-label-name" id="dMapLabelName"></span>
+        <span class="d-hero__map-label-year" id="dMapLabelYear"></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- INTRO -->
+  <section class="d-intro">
+    <div class="d-intro__inner">
+      <p class="d-intro__text">사실상 나리타 공항과 도쿄를 연결하며 한국과의 관문이라고 할 수 있는 도쿄 우에노. 신칸센을 포함하여 수많은 노선들이 우에노역을 지나가며, 일반적으로 도쿄에서 가장 큰 재래시장, 시끌벅적한 포차, 술 공원 등으로 유명합니다. 한국으로 치면 여러모로 서울의 청량리역과 비슷하다는 느낌을 지울 수 없는 동네이죠.</p>
+      <p class="d-intro__text">하지만 이곳 우에노는 도쿄에서 원조격인 박물관, 미술관들의 도시이기도 합니다. 일반적으로 미술관의 도시라 하면 국립 신 미술관이 있는 롯폰기를 떠올리시겠지만, 예로부터 가장 많은 국립 미술관이 위치한 동네는 바로 이 우에노입니다. 심지어 그중에는 역사적인 중요성과 아름다움을 인정받아 건물 자체가 유네스코 세계문화유산으로 등재된 곳까지 있습니다.</p>
+    </div>
+  </section>
+
+  <!-- BUILDING 01 -->
+  <article class="d-building d-building--segmented" id="building-01">
+    <div class="d-building__header">
+      <div class="d-building__num-wrap">
+        <span class="d-building__num">01</span>
+        <span class="d-building__subtitle">모더니즘이 만든 세계문화유산</span>
+      </div>
+      <div class="d-building__meta">
+        <span class="d-building__tag">Cultural · 1959</span>
+        <span class="d-building__architect">Le Corbusier</span>
+      </div>
+    </div>
+
+    <h2 class="d-building__title">National Museum of Western Art Tokyo</h2>
+    <p class="d-building__title-jp">국립서양미술관</p>
+
+    <!-- Seg 1: text | photo_01 -->
+    <div class="d-building__seg js-img-reveal">
+      <div class="d-building__seg-text">
+        <p>우에노역 공원 출구로 나오면, 나무들 사이에 별안간 콘크리트로 뒤덮인 건물이 보이기 시작합니다. 바닥부터가 콘크리트 슬라브로 묵직하게 깔려 있는 이곳은 유네스코 세계 문화유산으로 지정된 건축가 르 코르뷔지에의 '도쿄 국립서양미술관'입니다. 그는 우리가 지금 살고 있는 창밖의 모든 아파트와 현대 건축물의 탄생에 막대한 영향을 끼쳤으며, 아인슈타인, 에드윈 허블, 월트 디즈니 등과 함께 20세기를 대표하는 인물로 꼽힌 유일한 건축가이기도 합니다.</p>
+      </div>
+      <div class="d-building__seg-img">
+        <img src="picture/National_Museum_of_Western_Art_Tokyo_01.png" alt="National Museum of Western Art Tokyo exterior" />
+      </div>
+    </div>
+
+    <!-- Seg 2 (alt): photo_02 | text -->
+    <div class="d-building__seg d-building__seg--alt js-img-reveal">
+      <div class="d-building__seg-img">
+        <img src="picture/National_Museum_of_Western_Art_Tokyo_02.png" alt="National Museum of Western Art Tokyo facade" />
+      </div>
+      <div class="d-building__seg-text">
+        <p>1959년에 만들어진 이곳은 세계 문화유산으로 지정된 르 코르뷔지에의 수많은 건축물 중 동북아시아에 위치한 유일한 건물로, 그가 정립한 모듈러, 근대 건축의 5대 원칙 등 여러 개념들이 곳곳에 적용되어 있습니다. 필로티의 그늘 아래 정문으로 들어가면 네모난 건물의 정중앙에 상설 전시장의 입구와 홀이 자리하고 있는데요. 삼각형으로 천장 가운데를 뚫어 체감상 더욱 높아 보이며, 그 비워진 자리로 기둥과 보가 드러나 있습니다. 이 모든 것들이 그의 독자적인 단위 체계인 모듈러에 의해 배치된 간격이라 하는데, 그냥 그런 거 모르고 봐도 점과 선, 면, 도형 그리고 공간이 한 자리에 있으니 마치 르 코르뷔지에가 "나 기하학 좋아해요"라고 대놓고 소리치는 느낌입니다.</p>
+      </div>
+    </div>
+
+    <!-- Gallery: photo_03, photo_04 -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+      <div class="d-building__gallery-item">
+        <img src="picture/National_Museum_of_Western_Art_Tokyo_03.png" alt="National Museum lobby view" />
+      </div>
+      <div class="d-building__gallery-item">
+        <img src="picture/National_Museum_of_Western_Art_Tokyo_04.png" alt="National Museum interior detail" />
+      </div>
+    </div>
+
+    <!-- Seg 3: text | photo_05 -->
+    <div class="d-building__seg js-img-reveal">
+      <div class="d-building__seg-text">
+        <p>이 미술관의 구조적인 특징은 교묘하게 나선형으로 이어지는 전시장입니다. 이는 추후에 증축을 하기 위한 배열로, 미술관의 규모가 확장되면 확장될수록 건물 또한 나선형으로 무한히 확장될 수 있음을 염두에 둔 '무한 성장 미술관' 개념이죠. 신관 증축을 맡은 그의 제자들은 컨셉 그대로 연결하기보다는 옆에 별관을 따로 지어 연결했는데, 결과적으로 본관과 신관 사이에 중정이 만들어지며 미술관의 프로그램을 더욱 다양하게 만들었다고 생각됩니다.</p>
+      </div>
+      <div class="d-building__seg-img">
+        <img src="picture/National_Museum_of_Western_Art_Tokyo_05.png" alt="National Museum courtyard" />
+      </div>
+    </div>
+
+    <!-- Gallery: photo_06, photo_07 -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+      <div class="d-building__gallery-item">
+        <img src="picture/National_Museum_of_Western_Art_Tokyo_06.png" alt="National Museum exterior approach" />
+      </div>
+      <div class="d-building__gallery-item">
+        <img src="picture/National_Museum_of_Western_Art_Tokyo_07.png" alt="National Museum pilotis" />
+      </div>
+    </div>
+
+    <!-- Seg 4 (alt): photo_08 | text -->
+    <div class="d-building__seg d-building__seg--alt js-img-reveal">
+      <div class="d-building__seg-img">
+        <img src="picture/National_Museum_of_Western_Art_Tokyo_08.png" alt="National Museum basement seismic isolation" />
+      </div>
+      <div class="d-building__seg-text">
+        <p>이 미술관에는 전시와 건축물 이외에도 주목할 관전 포인트가 몇 가지 있습니다. 건물이 1959년에 지어진 곳이기에 갈수록 엄격해지는 내진 설계 규제를 충족하기가 힘들었는데, 허물고 새로 올리자니 세간의 반대와 후환이 두려워 그 또한 쉽지 않았다고 합니다. 때문에 여러 차례 대대적인 내진 보수공사를 거쳐 재오픈했으며, 지하 휴게실에는 기둥마다 박힌 면진용 고무들을 볼 수 있는 작은 창이 뚫려 있습니다. 의미 있는 건축물을 길이길이 온전히 보존하고자 하는 그들의 진심이 느껴지는 공간이죠.</p>
+      </div>
+    </div>
+
+    <!-- Seg 5: text | photo_09 -->
+    <div class="d-building__seg js-img-reveal">
+      <div class="d-building__seg-text">
+        <p>1층 상설전 출구 쪽 로비에는 르 코르뷔지에와 샤를로트 페리앙, 피에르 잔느레의 3인 합작인 의자 시리즈를 포함한 가구들이 전시되어 있습니다. 르 코르뷔지에의 '사람이 앉는 일곱 가지 자세' 스케치를 바탕으로 탄생한 이 의자들은, 오리지널의 가격대가 정말 어마어마하지만 여기에서는 마음대로 앉아볼 수 있습니다. 그 외에도 샤를로트 페리앙의 벤타글리오 테이블 등 쇼룸처럼 주기적으로 가구와 배치를 바꾸고 있어, 가구와 인테리어를 좋아하시는 분들께는 미술관에 더할 나위 없는 또 하나의 전시장이라고 할 수 있겠네요.</p>
+      </div>
+      <div class="d-building__seg-img">
+        <img src="picture/National_Museum_of_Western_Art_Tokyo_09.png" alt="National Museum Le Corbusier furniture" />
+      </div>
+    </div>
+
+    <!-- Gallery: photo_10, photo_11 -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+      <div class="d-building__gallery-item">
+        <img src="picture/National_Museum_of_Western_Art_Tokyo_10.png" alt="National Museum gallery interior" />
+      </div>
+      <div class="d-building__gallery-item">
+        <img src="picture/National_Museum_of_Western_Art_Tokyo_11.png" alt="National Museum goods shop" />
+      </div>
+    </div>
+
+    <!-- Gallery: photo_12, photo_13 -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+      <div class="d-building__gallery-item">
+        <img src="picture/National_Museum_of_Western_Art_Tokyo_12.png" alt="National Museum detail view" />
+      </div>
+      <div class="d-building__gallery-item">
+        <img src="picture/National_Museum_of_Western_Art_Tokyo_13.png" alt="National Museum outdoor sculpture" />
+      </div>
+    </div>
+
+    <div class="d-building__gmap">
+      <span class="d-building__gmap-label">Location · 東京都台東区上野公園7-7</span>
+      <iframe src="https://maps.google.com/maps?q=National+Museum+of+Western+Art+Tokyo&hl=ko&z=17&output=embed" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </article>
+
+  <!-- BUILDING 02 -->
+  <article class="d-building d-building--segmented" id="building-02">
+    <div class="d-building__header">
+      <div class="d-building__num-wrap">
+        <span class="d-building__num">02</span>
+        <span class="d-building__subtitle">그의 제자가 보여주는 특별한 공간</span>
+      </div>
+      <div class="d-building__meta">
+        <span class="d-building__tag">Cultural · 1961</span>
+        <span class="d-building__architect">Kunio Maekawa</span>
+      </div>
+    </div>
+
+    <h2 class="d-building__title">Tokyo Bunka Kaikan</h2>
+    <p class="d-building__title-jp">도쿄 문화회관</p>
+
+    <!-- Seg 1: text | photo_01 -->
+    <div class="d-building__seg js-img-reveal">
+      <div class="d-building__seg-text">
+        <p>르 코르뷔지에를 거쳐간 건축가는 수도 없이 많지만, 그중에 마에카와 쿠니오 건축가가 있었습니다. 우에노 공원도 이 서양 미술관을 포함해 그때부터 본격적인 현대화에 착수했기 때문에 이곳에는 그의 흔적 또한 아주 많이 남아 있는데요. 서양 미술관 맞은편에 보이는 넓다란 콘크리트 건물은 마에카와 쿠니오의 대표작인 일본 최초의 콘서트 홀, 도쿄 문화회관으로, 그가 르 코르뷔지에로부터 받은 영향이 가장 강하게 남아 있는 장소이기도 합니다.</p>
+      </div>
+      <div class="d-building__seg-img">
+        <img src="picture/Tokyo_Bunka_Kaikan_01.png" alt="Tokyo Bunka Kaikan exterior" />
+      </div>
+    </div>
+
+    <!-- Seg 2 (alt): photo_02 | text -->
+    <div class="d-building__seg d-building__seg--alt js-img-reveal">
+      <div class="d-building__seg-img">
+        <img src="picture/Tokyo_Bunka_Kaikan_02.png" alt="Tokyo Bunka Kaikan facade detail" />
+      </div>
+      <div class="d-building__seg-text">
+        <p>정면에서 봤을 때 얇은 기둥 위에 콘크리트로 된 묵직한 처마가 올려져 있는데, 각도가 위로 갈수록 넓어지니 마치 거대한 배처럼 보이기도 합니다. 창문의 섀시를 이리저리 쪼갠 것도 르 코르뷔지에의 건축물로부터 배운 것 같으며, 바로 앞에 서양 미술관과의 통일성을 가져가기 위해 콘서트 홀의 벽면은 상당히 유사한 구성으로 이루어져 있습니다. 이게 전부 콘크리트 하나만 갖고 만들어져 있기 때문에 꽤나 칙칙한 인상을 주기도 하지만, 안으로 들어가면 최초의 대형 콘서트홀답게 은근 화려한 기하학 장식들을 구경할 수 있습니다.</p>
+      </div>
+    </div>
+
+    <!-- Gallery: photo_03, photo_04 -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+      <div class="d-building__gallery-item">
+        <img src="picture/Tokyo_Bunka_Kaikan_03.png" alt="Tokyo Bunka Kaikan interior" />
+      </div>
+      <div class="d-building__gallery-item">
+        <img src="picture/Tokyo_Bunka_Kaikan_04.png" alt="Tokyo Bunka Kaikan staircase" />
+      </div>
+    </div>
+
+    <!-- Seg 3: text | photo_05 -->
+    <div class="d-building__seg js-img-reveal">
+      <div class="d-building__seg-text">
+        <p>외부에서도 그랬지만 내부에서도 마에카와 쿠니오가 그의 스승에게 헌정하기 위한 공간이 아닌가 하는 생각이 들었는데요. 그 이유는 위층으로 통하는 나선형 계단에서 찾을 수 있었습니다. 이 어두운 계단에는 작은 창문이 북쪽에 단 하나만 뚫려 있는데, 액자처럼 걸린 이 창을 통해 바깥을 바라보면 바로 그의 스승의 건물, 국립 서양 미술관이 한눈에 들어오기 시작합니다. 여기는 우에노 공원에서 국립 서양 미술관을 완전하게 조망할 수 있는 유일한 장소이기도 합니다. 세계 최고의 모더니스트 건축가 아래에서 배우고 일본 최고의 모더니스트 건축가가 된 마에카와 쿠니오의, 스승에 대한 감사함이 표현된 공간은 아닐까 괜히 혼자 흐뭇하게 생각해 봅니다.</p>
+      </div>
+      <div class="d-building__seg-img">
+        <img src="picture/Tokyo_Bunka_Kaikan_05.png" alt="Tokyo Bunka Kaikan north window view" />
+      </div>
+    </div>
+
+    <!-- Gallery: photo_06, photo_07 -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+      <div class="d-building__gallery-item">
+        <img src="picture/Tokyo_Bunka_Kaikan_06.png" alt="Tokyo Bunka Kaikan concert hall" />
+      </div>
+      <div class="d-building__gallery-item">
+        <img src="picture/Tokyo_Bunka_Kaikan_07.png" alt="Tokyo Bunka Kaikan geometric ornament" />
+      </div>
+    </div>
+
+    <div class="d-building__gmap">
+      <span class="d-building__gmap-label">Location · 東京都台東区上野公園5-45</span>
+      <iframe src="https://maps.google.com/maps?q=Tokyo+Bunka+Kaikan&hl=ko&z=17&output=embed" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </article>
+
+  <!-- BUILDING 03 -->
+  <article class="d-building d-building--segmented" id="building-03">
+    <div class="d-building__header">
+      <div class="d-building__num-wrap">
+        <span class="d-building__num">03</span>
+        <span class="d-building__subtitle">일본 미니멀리즘의 끝판왕</span>
+      </div>
+      <div class="d-building__meta">
+        <span class="d-building__tag">Cultural · 1999</span>
+        <span class="d-building__architect">Yoshio Taniguchi</span>
+      </div>
+    </div>
+
+    <h2 class="d-building__title">The Gallery of Horyuji Treasures</h2>
+    <p class="d-building__title-jp">호류지 보물관</p>
+
+    <!-- Seg 1: text | photo_01 -->
+    <div class="d-building__seg js-img-reveal">
+      <div class="d-building__seg-text">
+        <p>한반도와 일본 열도의 교류는 지금으로부터 약 1600년 전으로 거슬러 올라갑니다. 이 시기 일본은 백제와의 교류를 기반으로 불교를 비롯한 문화 전반을 받아들였다고 합니다. 호류지 보물관은 그 당시 백제로부터 전해진 불상과 공예품들을 보관, 전시하기 위해 1999년에 개관한 박물관입니다. 도쿄 국립 박물관을 구성하는 여러 전시관 중 하나로, 건축가 다니구치 요시오의 설계로 지어졌으며, 정문으로 들어서서 왼쪽으로 꺾어 조용한 샛길을 따라가면 마주할 수 있습니다.</p>
+      </div>
+      <div class="d-building__seg-img">
+        <img src="picture/The_Gallery_of_Horyuji_Treasures_01.png" alt="Gallery of Horyuji Treasures exterior" />
+      </div>
+    </div>
+
+    <!-- Seg 2 (alt): photo_02 | text -->
+    <div class="d-building__seg d-building__seg--alt js-img-reveal">
+      <div class="d-building__seg-img">
+        <img src="picture/The_Gallery_of_Horyuji_Treasures_02.png" alt="Gallery of Horyuji Treasures approach" />
+      </div>
+      <div class="d-building__seg-text">
+        <p>호류지 보물관의 전체적인 형태를 보자마자 느껴지는 건, 저마다 화려한 양식으로 존재감을 과시하던 메인 전시관들과는 결이 조금 다르다는 것입니다. 크게 보아도 작게 보아도 크기나 소재가 제각각인 직사각형 박스들이 중첩되어 깊이감을 만들어낼 뿐, 건물을 이루는 기둥이나 벽면에는 어떠한 장식적인 요소도 존재하지 않죠. 그 표면 위로는 물결의 일렁임과 나뭇잎의 흔들림을 포착하는 햇빛만이 투영되고 있어, 이 사각형의 집합은 스스로의 존재를 과시한다기보다 오히려 주변 자연을 그대로 받아들이는 하나의 조용한 스크린처럼 보입니다.</p>
+      </div>
+    </div>
+
+    <!-- Gallery: photo_03, photo_04 -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+      <div class="d-building__gallery-item">
+        <img src="picture/The_Gallery_of_Horyuji_Treasures_03.png" alt="Gallery of Horyuji Treasures water reflection" />
+      </div>
+      <div class="d-building__gallery-item">
+        <img src="picture/The_Gallery_of_Horyuji_Treasures_04.png" alt="Gallery of Horyuji Treasures side view" />
+      </div>
+    </div>
+
+    <!-- Seg 3: text | photo_05 -->
+    <div class="d-building__seg js-img-reveal">
+      <div class="d-building__seg-text">
+        <p>다니구치 요시오는 평생에 걸쳐 반듯한 미니멀리즘을 추구한 건축가입니다. 본질에 집중하기 위해 불필요한 요소를 걷어내는 것이 미니멀리즘의 기본이므로, 그의 건축 언어 역시 자연스럽게 장식을 배제하고 수직·수평의 질서만으로 구성된 작품들이 많죠. 어떤 이들은 그의 건축이 너무 비어 있어서 무취하다고 말하기까지 하지만, 겉으로는 담백해 보이는 이 공간은 사실 건축가의 의도가 줄눈 하나하나까지 스며들어 전체의 분위기와 흐름을 섬세하게 이끌고 있습니다. 사찰 건축에서 불상의 배치가 알고 보면 치밀한 수학적 계산에 따라 이루어지듯, 이 또한 오차나 우연을 결코 허락하지 않는 공간입니다.</p>
+      </div>
+      <div class="d-building__seg-img">
+        <img src="picture/The_Gallery_of_Horyuji_Treasures_05.png" alt="Gallery of Horyuji Treasures metal louver" />
+      </div>
+    </div>
+
+    <!-- Gallery: photo_06, photo_07 -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+      <div class="d-building__gallery-item">
+        <img src="picture/The_Gallery_of_Horyuji_Treasures_06.png" alt="Gallery of Horyuji Treasures corridor" />
+      </div>
+      <div class="d-building__gallery-item">
+        <img src="picture/The_Gallery_of_Horyuji_Treasures_07.png" alt="Gallery of Horyuji Treasures interior space" />
+      </div>
+    </div>
+
+    <!-- Seg 4 (alt): photo_08 | text -->
+    <div class="d-building__seg d-building__seg--alt js-img-reveal">
+      <div class="d-building__seg-img">
+        <img src="picture/The_Gallery_of_Horyuji_Treasures_08.png" alt="Gallery of Horyuji Treasures CAB chair" />
+      </div>
+      <div class="d-building__seg-text">
+        <p>박물관 내부를 들어오면 1층 회랑에는 유리벽을 제외한 각각의 면마다 Cassina사의 CAB 체어가 놓여 있습니다. 고요한 박물관 안에서 이 의자들만 유독 붉은 빛으로 존재감을 드러내며 마치 여기에 앉아 보라고 권하고 있는 듯하죠. 이 자리가 바로 이 공간을 가장 온전히 느낄 수 있는 일종의 사용설명서 같은 지점이기 때문입니다. 의자를 들어보시면 다리가 정확한 위치에 놓이도록 바닥에 작은 홈이 파여 있는 것을 확인할 수 있는데요. 이 의자를 어디에 어떤 간격으로 둘 것인지까지 건축적 설계의 일부였기에, 1999년 준공 당시부터 지금까지 같은 자리를 지켜오고 있습니다.</p>
+      </div>
+    </div>
+
+    <!-- Gallery: photo_09, photo_10 -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+      <div class="d-building__gallery-item">
+        <img src="picture/The_Gallery_of_Horyuji_Treasures_09.png" alt="Gallery of Horyuji Treasures second floor lounge" />
+      </div>
+      <div class="d-building__gallery-item">
+        <img src="picture/The_Gallery_of_Horyuji_Treasures_10.png" alt="Gallery of Horyuji Treasures light and shadow" />
+      </div>
+    </div>
+
+    <!-- Seg 5: text | photo_11 -->
+    <div class="d-building__seg js-img-reveal">
+      <div class="d-building__seg-text">
+        <p>시간이 흐를수록 건물에 비치는 풍경이 말 그대로 끝없이 달라지기 때문인데요. 특히 해가 서쪽으로 기울 때면 나무가 드리우는 그림자와 금속 간살이 만드는 결이 겹이지며, 마치 건물 전체가 하나의 대나무숲처럼 호흡하는 듯한 장면이 펼쳐집니다. 다니구치 요시오의 건축이 자연을 단순히 끌어들이는 데에서 그치지 않고 새로운 풍경을 스스로 그려내고 있다는 생각까지 들게 만드는 부분이죠. 호류지 보물관의 소장품 규모는 도쿄 국립 박물관의 다른 전시관에 비하면 작은 편입니다. 하지만 삼국 시대에 일본으로 전래된 불상들을 마주하고 있으면 그 정교한 디테일 하나하나가 이 공간을 우습게 압도하는 듯합니다.</p>
+      </div>
+      <div class="d-building__seg-img">
+        <img src="picture/The_Gallery_of_Horyuji_Treasures_11.png" alt="Gallery of Horyuji Treasures bamboo shadow" />
+      </div>
+    </div>
+
+    <!-- Gallery: photo_12, photo_13 -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+      <div class="d-building__gallery-item">
+        <img src="picture/The_Gallery_of_Horyuji_Treasures_12.png" alt="Gallery of Horyuji Treasures detail" />
+      </div>
+      <div class="d-building__gallery-item">
+        <img src="picture/The_Gallery_of_Horyuji_Treasures_13.png" alt="Gallery of Horyuji Treasures dusk" />
+      </div>
+    </div>
+
+    <div class="d-building__gmap">
+      <span class="d-building__gmap-label">Location · 東京都台東区上野公園13-9</span>
+      <iframe src="https://maps.google.com/maps?q=Gallery+of+Horyuji+Treasures+Tokyo&hl=ko&z=17&output=embed" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </article>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__top">
+      <span class="footer__logo">Marginalia</span>
+      <p class="footer__tagline">A record of what stands<br />and what remains.</p>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 Marginalia Archive</span>
+      <span>Tokyo, Japan</span>
+      <span>Web Design I — Project</span>
+    </div>
+  </footer>
+
+  <script type="importmap">
+    { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.167.0/build/three.module.js" } }
+  </script>
+  <script type="module" src="ueno.js"></script>
+</body>
+</html>

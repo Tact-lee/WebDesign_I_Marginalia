@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shibuya — Marginalia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="district.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="index.html" class="nav__logo">Marginalia</a>
+    <ul class="nav__links">
+      <li><a href="index.html#map-section">Location Map</a></li>
+      <li><a href="index.html#gallery-section">Gallery</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <header class="d-hero">
+    <div class="d-hero__content">
+      <div class="d-hero__breadcrumb">
+        <a href="index.html" class="label">Marginalia</a>
+        <span class="label">→</span>
+        <span class="label">District</span>
+      </div>
+
+      <div class="d-hero__label-row">
+        <span class="label">시부야구</span>
+        <span class="label">— 6개 건축물</span>
+      </div>
+
+      <h1 class="d-hero__title">
+        Shibuya
+        <em class="d-hero__title-jp">시부야</em>
+      </h1>
+
+      <p class="d-hero__intro">
+        스크램블 교차로와 젊음의 문화가 공존하는 도쿄의 아이콘. 안도 타다오의 섬세한 손길이 곳곳에 새겨진 동네.
+      </p>
+
+      <div class="d-hero__stats">
+        <div class="d-stat">
+          <span class="d-stat__val">6</span>
+          <span class="d-stat__label">Structures</span>
+        </div>
+        <div class="d-stat">
+          <span class="d-stat__val">Tadao Ando</span>
+          <span class="d-stat__label">Featured Architect</span>
+        </div>
+        <div class="d-stat">
+          <span class="d-stat__val">2020</span>
+          <span class="d-stat__label">Latest Built</span>
+        </div>
+      </div>
+
+      <div class="d-hero__scroll">
+        <span class="label">Scroll to explore</span>
+        <div class="d-hero__scroll-line"></div>
+      </div>
+    </div>
+
+    <div class="d-hero__map" id="dMapWrapper">
+      <canvas id="dMapCanvas"></canvas>
+      <div class="d-hero__map-label" id="dMapLabel">
+        <span class="d-hero__map-label-name" id="dMapLabelName"></span>
+        <span class="d-hero__map-label-year" id="dMapLabelYear"></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- INTRO -->
+  <section class="d-intro">
+    <div class="d-intro__inner">
+      <p class="d-intro__text">도쿄의 최고 부촌 중 하나이면서도, 거대한 상권과 함께 유동인구가 가장 많은 시부야. 특히 이 교차로는 많으면 한 번에 2000명이 건넌다고 하죠. 위로는 오모테산도와 하라주쿠, 아래로는 에비스와 다이칸야마, 옆으로는 히로오가 있는, 도쿄의 도심 안에서 가장 많은 명소들이 모이는 지역 중 하나입니다. 하지만 그만큼 일찍이 개발이 되었기 때문에 곳곳에 낙후된 건물들이 가득하고, 난개발로 인한 문제점들이 지적되어 왔습니다. 물론 돈이 몰리는 동네인만큼, 재건축 또한 활발히 이루어지고 있죠. 특히 2000년대에 들어서부터는 철저히 계획적인 개발을 통해 신축 오피스부터 쇼핑몰, 지하철역, 심지어 동네의 공중화장실까지도 유명 건축가 혹은 디자이너들의 작품으로 이루어진 어마어마한 곳입니다. 오늘은 이 중에서도 시부야역에서 오모테산도 사이를 돌며 역시나 알——게 알아보겠습니다.</p>
+      <p class="d-intro__text">이번 동선의 첫 시작은 역시나 하치코 출구로 나와야 합니다. 그초, 시부야에 왔으면 여기에서 시작하는게 국룰이겠죠..? 여행의 환상을 걷어내고 보면 사람이 정말 많은 끔찍한 곳이죠..예로부터 이 출구 앞쪽으로 상권이 발달했기 때문인데요. 그래서인지 2010년대부터 꾸준히 주변에 오피스 상권을 만들어 유동인구의 밀도를 분산시키려는 듯한 움직임을 보이고 있습니다.</p>
+    </div>
+  </section>
+
+  <!-- BUILDING 01 -->
+  <article class="d-building d-building--segmented" id="building-01">
+    <div class="d-building__header">
+      <div class="d-building__num-wrap">
+        <span class="d-building__num">01</span>
+        <span class="d-building__subtitle">고가 공원의 수직 재탄생</span>
+      </div>
+      <div class="d-building__meta">
+        <span class="d-building__tag">Mixed Use · 2020</span>
+        <span class="d-building__architect">Nikken Sekkei</span>
+      </div>
+    </div>
+
+    <h2 class="d-building__title">Miyashita Park</h2>
+    <p class="d-building__title-jp">미야시타 파크</p>
+
+    <!-- Seg 1: text | photo_01 -->
+    <div class="d-building__seg js-img-reveal">
+      <div class="d-building__seg-text">
+        <p>오늘 첫 번째로 돌아볼 곳 또한 최근 몇 년 사이 새로 생긴 곳인데요. 바로 올림픽을 앞둔 2020년 6월에 오픈한 미야시타 파크가 되겠습니다. 소개에 앞서 잠깐 뉴욕 이야기를 해보자면, 뉴욕의 센트럴파크를 설계한 저명한 공원 설계자, 프레드릭 로 옴스테드는 센트럴파크 조성 당시 "이곳에 공원을 만들지 않는다면 100년 후에는 이만한 크기의 정신병원이 필요할 것이다" 라고 주장했었죠. 이처럼 도심의 공원이 있음으로써 얻을 수 있는 부가효과는 생각보다 막대합니다. 하지만, 이 시부야는 인구밀도를 고려했을 때 다른 도심지들과는 달리 중앙에 공간이 없었습니다. 사실 하나 있긴 했지만, 이곳은 이전에는 단순히 상권의 뒤편에 위치해서 제법 을씨년스러운 분위기를 풍기던 곳입니다. 심지어 그 사이는 아예 기찻길로 단절되어 있었기에 노숙인이 상주하며 속칭 '어둠의 주민들'의 성지가 되었던 곳이었죠. 그랬던 공원이 2020년 도쿄 올림픽 시점에 맞춰 방문객들을 위한 새로운 랜드마크로 재탄생한 것인데요. 비록 도쿄 올림픽의 흥행 자체는 실패로 끝났지만, 미야시타 파크의 리뉴얼은 대성공한 느낌입니다. 기존의 고가공원의 특색은 유지한 채, 층고를 더욱 올려 4층 높이의 상가를 확보하고, 이를 18층 높이의 호텔과 연결하여 기존 상권의 반대편에 새로운 상권을 탄생시킨 것이죠. 내부 또한 인기 있고 개성있는 브랜드들로 꽉 차 있지만, 어디까지나 공원이라는 성격에 맞게 정말 다양한 입구를 통해 들어올 수 있도록, 그리고 자연스럽게 4층까지 도달하도록 만들어져 있죠.</p>
+      </div>
+      <div class="d-building__seg-img">
+        <img src="picture/Miyashita_Park_01.png" alt="Miyashita Park exterior view" />
+      </div>
+    </div>
+
+    <!-- Seg 2 (alt): photo_02 | text -->
+    <div class="d-building__seg d-building__seg--alt js-img-reveal">
+      <div class="d-building__seg-img">
+        <img src="picture/Miyashita_Park_02.png" alt="Miyashita Park rooftop" />
+      </div>
+      <div class="d-building__seg-text">
+        <p>아래에 충분한 상가 공간을 확보한 대신, 예전에 공원에서 볼 수 있었던 나무들이 사라진 것을 볼 수 있는데요. 대신에 나무를 형상화한 듯한 아치형 캐노피와 층마다 자리한 덩굴 식물을 통해 감각적으로 녹지를 조성해 놓았습니다. 단순 관광지로서의 기능뿐 아니라 시부야 근처에 유독 부족하던 도심 속 휴식공간의 역할 또한 충실히 수행하고 있는데요. 실제로도 2주간의 방문자 통계에서도 주말보다는 평일 동안의 방문객이 더 많았고, 이 중에서 시부야구의 직장인 비율이 가장 많았다고 합니다. 물론 관광이 풀린 지금은 주말마다 관광객이 꽉 찬 모습을 볼 수 있는데요. 쇼핑을 마치고 이곳에서 커피 한잔하면 정말 좋을 것 같네요.</p>
+      </div>
+    </div>
+
+    <!-- Gallery: photo_03, photo_04 -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+      <div class="d-building__gallery-item">
+        <img src="picture/Miyashita_Park_03.png" alt="Miyashita Park skate park" />
+      </div>
+      <div class="d-building__gallery-item">
+        <img src="picture/Miyashita_Park_04.png" alt="Miyashita Park hotel tower" />
+      </div>
+    </div>
+
+    <!-- Gallery: photo_05, photo_06 -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+      <div class="d-building__gallery-item">
+        <img src="picture/Miyashita_Park_05.png" alt="Miyashita Park interior" />
+      </div>
+      <div class="d-building__gallery-item">
+        <img src="picture/Miyashita_Park_06.png" alt="Miyashita Park street level" />
+      </div>
+    </div>
+
+    <div class="d-building__gmap">
+      <span class="d-building__gmap-label">Location · 東京都渋谷区神宮前6-20-10</span>
+      <iframe src="https://maps.google.com/maps?q=Miyashita+Park+Shibuya&hl=ko&z=17&output=embed" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </article>
+
+  <!-- BUILDING 02 -->
+  <article class="d-building d-building--segmented" id="building-02">
+    <div class="d-building__header">
+      <div class="d-building__num-wrap">
+        <span class="d-building__num">02</span>
+        <span class="d-building__subtitle">안도 타다오가 설계한 공공화장실</span>
+      </div>
+      <div class="d-building__meta">
+        <span class="d-building__tag">Public Facility · 2020</span>
+        <span class="d-building__architect">Tadao Ando</span>
+      </div>
+    </div>
+
+    <h2 class="d-building__title">Jingu-dori Park Toilet</h2>
+    <p class="d-building__title-jp">진구도리 공원 화장실</p>
+
+    <!-- Seg 1: text | photo_01 -->
+    <div class="d-building__seg js-img-reveal">
+      <div class="d-building__seg-text">
+        <p>도심 속에서는 녹지만큼이나 우리 인간에겐 중요한 것이 있죠. 바로 공중화장실인데요. 미야시타 파크의 북쪽 출구로 나가면 나오는 공터에 오늘 건축가가 만든 화장실이 있습니다. 이는 일본의 한 비영리단체가 주관한 도쿄 화장실 프로젝트 The Tokyo Toilet 중 하나인데요. 영상 시작에 얘기했던 여러 이유들 때문에 시부야의 공중화장실은 다른 것보다 더욱더 지저분하고 안전하지 않다는 인식이 많았다고 합니다. 이러한 인식에서 출발한 이 화장실 프로젝트는 현재까지 17곳으로 다양한 건축가, 디자이너와의 협업으로 진행되었습니다. 이 화장실들은 모두 이미지 개선을 위한 저마다의 컨셉이 있는데요. 여기는 그 중 하나로 일본의 세계적인 건축가 안도 타다오가 맡은 프로젝트입니다.</p>
+      </div>
+      <div class="d-building__seg-img">
+        <img src="picture/Jingu_dori_Park_Toilet_01.png" alt="Jingu-dori Park Toilet exterior" />
+      </div>
+    </div>
+
+    <!-- Seg 2 (alt): photo_02 | text -->
+    <div class="d-building__seg d-building__seg--alt js-img-reveal">
+      <div class="d-building__seg-img">
+        <img src="picture/Jingu_dori_Park_Toilet_02.png" alt="Jingu-dori Park Toilet metal louver detail" />
+      </div>
+      <div class="d-building__seg-text">
+        <p>한국에 있는 그의 작품인 뮤지엄 산이나 본태박물관 등을 봐도 그는 노출 콘크리트를 애용하는 건축가로도 유명하죠. 하지만 여기서는 청소를 더욱 용이하게 하기 위해 비교적 관리가 까다로운 노출 콘크리트 대신 금속 루버를 사용하였습니다. 입구에서 시작되는 루버들이 자연스럽게 이 공간을 차단하게 되는데요. 이를 통해 개방과 차단 사이에 연속성을 표현하고 지붕을 길게 빼서 비나 햇빛을 피해 자연스럽게 접근하고 머무를 수 있도록 했죠. 기피 시설로 여겨지던 공중화장실의 이미지를 멋지게 바꿔낸 훌륭한 발상이라고 생각됩니다. 물론 미야시타 파크가 리뉴얼된 지금은, 이 공터가 흡연 장소로 전락해버리긴 했지만 예전 같은 좁고 네모난 공중화장실에 비하면 훨씬 접근성이 높아진 것 같다는 생각이 들었습니다.</p>
+      </div>
+    </div>
+
+    <!-- Gallery: photo_03, photo_04 -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+      <div class="d-building__gallery-item">
+        <img src="picture/Jingu_dori_Park_Toilet_03.png" alt="Jingu-dori Park Toilet side view" />
+      </div>
+      <div class="d-building__gallery-item">
+        <img src="picture/Jingu_dori_Park_Toilet_04.png" alt="Jingu-dori Park Toilet in park context" />
+      </div>
+    </div>
+
+    <div class="d-building__gmap">
+      <span class="d-building__gmap-label">Location · 東京都渋谷区神宮前2-2-22</span>
+      <iframe src="https://maps.google.com/maps?q=Jingudori+Park+Public+Toilet+Shibuya&hl=ko&z=17&output=embed" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </article>
+
+  <!-- BUILDING 03 -->
+  <article class="d-building d-building--segmented" id="building-03">
+    <div class="d-building__header">
+      <div class="d-building__num-wrap">
+        <span class="d-building__num">03</span>
+        <span class="d-building__subtitle">삼각형 철판의 주거 조각</span>
+      </div>
+      <div class="d-building__meta">
+        <span class="d-building__tag">Residential · 2007</span>
+        <span class="d-building__architect">Tadao Ando</span>
+      </div>
+    </div>
+
+    <h2 class="d-building__title">Casa Jingumae</h2>
+    <p class="d-building__title-jp">카사 진구마에</p>
+
+    <!-- Seg 1: text | photo_01 -->
+    <div class="d-building__seg js-img-reveal">
+      <div class="d-building__seg-text">
+        <p>여기로 온김에 안도 타다오의 특이한 건축물을 하나 더 구경하기로 했는데요. 이를 위해 시부야에서 오모테산도 사이를 가로지르는 캣 스트리트라는 이름의 거리로 가보겠습니다. 화장실이 위치한 공터를 빠져나와 횡단보도를 건너 데상트가 있는 쪽 골목으로 들어가면 나오는 곳인데요. 이곳의 정확한 건물명은 카사 진구마에로 주로 팝업스토어로서 쓰이던 곳인데 현재는 코치의 매장으로 쓰이고 있습니다. 사실 쇼윈도우가 전혀 없는 외관이라 누가 봐도 상가로는 부적절해 보이죠 이 건물의 설계를 의뢰했던 사람은 안도 타다오의 친구이자 일본의 인테리어 컨설팅 업체인 HHstyle의 창업자 하라다 타카유키로, 그는 지금까지 하던 다른 형식의 스타일을 사용해 달라고 부탁했었다고 합니다. 때문에 이곳 또한 노출 콘크리트가 아닌 철판으로 마감되어 있으며, 건물 전체가 안도 타다오의 공간에선 좀처럼 보기 힘든 각기 다른 삼각형들의 집합으로 이루어져 있죠. 그의 가게는 개인이나 법인을 상대로 고급 가구, 사무용품 등을 취급하던 곳이었기에 굳이 이 길을 걷는 주 연령대인 10대, 20대의 눈길을 끌 필요가 없으며, 입구 또한 정면을 바라보지 않게 해달라는 의뢰인의 요청이 반영되었을 것이다라는 의견을 많이 찾아볼 수 있었습니다.</p>
+      </div>
+      <div class="d-building__seg-img">
+        <img src="picture/Casa_Jingumae_01.png" alt="Casa Jingumae exterior triangular facade" />
+      </div>
+    </div>
+
+    <!-- Seg 2 (alt): photo_02 | text -->
+    <div class="d-building__seg d-building__seg--alt js-img-reveal">
+      <div class="d-building__seg-img">
+        <img src="picture/Casa_Jingumae_02.png" alt="Casa Jingumae street perspective" />
+      </div>
+      <div class="d-building__seg-text">
+        <p>때문에 상가 건물 치고는 꽤나 불친절한 느낌의 외관이 완성되었는데요, 이 불친절함의 결과는...2년을 겨우 채우고 다시 임대를 내놓았다고 합니다. 냉정히 말해, 건물의 조형미는 제쳐두고 이 길의 성격과 건물의 용도를 생각하면 약간 뜬금없는 건축물인 셈인데, 좀 더 한적한 곳에 다른 목적으로 지어졌다면 훨씬 좋았겠다는 주제넘은 생각을 하며 발걸음을 돌렸습니다.</p>
+      </div>
+    </div>
+
+    <div class="d-building__gmap">
+      <span class="d-building__gmap-label">Location · 東京都渋谷区神宮前3丁目</span>
+      <iframe src="https://maps.google.com/maps?q=Casa+Jingumae+Tadao+Ando+Tokyo&hl=ko&z=17&output=embed" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </article>
+
+  <!-- BUILDING 04 -->
+  <article class="d-building d-building--segmented" id="building-04">
+    <div class="d-building__header">
+      <div class="d-building__num-wrap">
+        <span class="d-building__num">04</span>
+        <span class="d-building__subtitle">루이비통의 건축가가 남긴 자취</span>
+      </div>
+      <div class="d-building__meta">
+        <span class="d-building__tag">Commercial · 2003</span>
+        <span class="d-building__architect">Jun Aoki</span>
+      </div>
+    </div>
+
+    <h2 class="d-building__title">Sia Aoyama Building</h2>
+    <p class="d-building__title-jp">시아 아오야마 빌딩</p>
+
+    <!-- Seg 1: text | photo_01 -->
+    <div class="d-building__seg js-img-reveal">
+      <div class="d-building__seg-text">
+        <p>이제 다음 목적지를 가볼 텐데요 방금 전 데상트를 끼고 들어온 교차로까지 다시 돌아가서 좌측으로 쭉 직진해야 합니다. 이 구역은 오피스와 주거지역이 혼재된 곳이라 거기서 거기인 생김새들의 건물을 자주 볼 수 있는데요. 평범한 건물들을 마주하며 길을 걷다 보면 어느샌가 평범함을 거부하는 생김새 빌딩을 마주할 수 있습니다. 입구에 표지판을 보기 전까진 이게 오피스인지 집인지 가늠하기 힘들죠. 이곳은 건축가 아오키 준이 디자인한 곳으로, 그는 다양한 상업시설, 특히 일본의 거의 대부분의 루이비통 매장을 도맡아 디자인하는 사람이기도 하면서, 동시에 정말 다양한 재미있는 형태의 일본 주택들을 짓기도 했죠. 이곳은 그 두 가지의 특징이 뒤섞인 듯한 곳으로, 주거용 건물과 오피스 건물 어느 쪽에도 속하지 않는 느낌의 외관을 만들고 싶었다고 합니다. 흰 벽에 창문이 제멋대로 놓여진 것 같지만, 실제로 어떠한 배치방법론에 의해 배치되었다고 하는데요.</p>
+      </div>
+      <div class="d-building__seg-img">
+        <img src="picture/Sia_Aoyama Building_01.png" alt="Sia Aoyama Building exterior" />
+      </div>
+    </div>
+
+    <!-- Seg 2 (alt): photo_02 | text -->
+    <div class="d-building__seg d-building__seg--alt js-img-reveal">
+      <div class="d-building__seg-img">
+        <img src="picture/Sia_Aoyama Building_02.png" alt="Sia Aoyama Building facade detail" />
+      </div>
+      <div class="d-building__seg-text">
+        <p>건물의 뒤편으로 돌아가면 창문이 거의 존재하지 않는 걸 봐서 정말로 창문을 막 갖다 놓은 건 아니구나라는 걸 알 수 있었습니다. 미니멀한 흰색 벽에 창문이 옹기종기 모여있어서 안에 있으면 뭔가 답답해 보일 것 같기도 한데요. 하지만, 60m를 넘는 높은 건물임에도 플로어는 9개 밖에 없습니다 때문에 층고가 무려 5m에 달해서 안에서 보는 느낌은 이렇다고 합니다. *역시 천장고가 중요하죠. 아래의 창은 도시를 담고 위에 창은 하늘과 빛을 담는 그런 느낌인 걸까요? 창문 하나하나의 크기도 일반 창보다 대해서 답답한 느낌은 없을 것 같습니다. 물론 현재는 건물의 용도는 사무공간으로 일본 지사 등의 여러 회사들이 입주했습니다. 별개로 재미있는 것은 바깥에 위치한 자판기에 반짝반짝 빛나는 광고와 함께 레드불이 판매되고 있는 걸 볼 수 있는데요. 그 옆에 경쟁업체 몬스터가 들어있는 자판기는 웬걸 불이 꺼져 있었습니다. 이곳을 방문한다면 한번 확인해보는 것도 재미있겠네요.</p>
+      </div>
+    </div>
+
+    <!-- Gallery: photo_03, photo_04 -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+      <div class="d-building__gallery-item">
+        <img src="picture/Sia_Aoyama Building_03.png" alt="Sia Aoyama Building street context" />
+      </div>
+      <div class="d-building__gallery-item">
+        <img src="picture/Sia_Aoyama Building_04.png" alt="Sia Aoyama Building material texture" />
+      </div>
+    </div>
+
+    <div class="d-building__gmap">
+      <span class="d-building__gmap-label">Location · 東京都渋谷区神宮前5丁目</span>
+      <iframe src="https://maps.google.com/maps?q=Sia+Aoyama+Building+Tokyo&hl=ko&z=17&output=embed" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </article>
+
+  <!-- BUILDING 05 -->
+  <article class="d-building d-building--segmented" id="building-05">
+    <div class="d-building__header">
+      <div class="d-building__num-wrap">
+        <span class="d-building__num">05</span>
+        <span class="d-building__subtitle">석조 건물처럼 보이는 콘크리트 타워</span>
+      </div>
+      <div class="d-building__meta">
+        <span class="d-building__tag">Education · 1992</span>
+        <span class="d-building__architect">Kenzo Tange</span>
+      </div>
+    </div>
+
+    <h2 class="d-building__title">United Nations University</h2>
+    <p class="d-building__title-jp">유엔대학교 도쿄 본부</p>
+
+    <!-- Seg 1: text | photo_01 -->
+    <div class="d-building__seg js-img-reveal">
+      <div class="d-building__seg-text">
+        <p>이제 가던 길을 그대로 따라가면 건너편에 톰 딕슨 매장이 보이는 대로변이 나오는데요. 왼편에 거대한 브레이스가 계단식으로 쌓인 건물을 볼 수 있습니다. 이곳은 일본 최초의 프리츠커상 수상자인 단게 겐조가 1972년에 설계한 유엔 대학교 본관 건물로 유엔에서 다루는 현안들을 위한 싱크탱크이자 석, 박사과정을 보유한 대학원 건물입니다. 정면에서 봤을 때 성같은 모양으로 대칭을 이루고 있는 이 건물은, 특유의 성 모양과 화강암 타일로 뒤덮인 덕분에 중세시대의 석조건물 같은 느낌이 나기도 합니다. 파라펫의 각 모서리마다 뾰족한 삼각 몰딩을 올리고, 삼각형으로 솟은 브레이스 또한 이러한 일관성을 더하고 있죠. 이를 통해 유엔이라는 국제기구의 권위나 위엄 등을 표현하려 했을 것 같다는 생각이 들었습니다.</p>
+      </div>
+      <div class="d-building__seg-img">
+        <img src="picture/United_Nations University_01.png" alt="United Nations University Tokyo exterior" />
+      </div>
+    </div>
+
+    <!-- Seg 2 (alt): photo_02 | text -->
+    <div class="d-building__seg d-building__seg--alt js-img-reveal">
+      <div class="d-building__seg-img">
+        <img src="picture/United_Nations University_02.png" alt="United Nations University facade texture" />
+      </div>
+      <div class="d-building__seg-text">
+        <p>이러한 권위적인 외형과는 달리, 현재는 주말마다 아래의 광장에서 플리마켓을 진행하고 있으니 한번 쯤 구경해볼 만 하다고 생각됩니다.</p>
+      </div>
+    </div>
+
+    <div class="d-building__gmap">
+      <span class="d-building__gmap-label">Location · 東京都渋谷区神宮前5-53-70</span>
+      <iframe src="https://maps.google.com/maps?q=United+Nations+University+Tokyo&hl=ko&z=17&output=embed" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </article>
+
+  <!-- BUILDING 06 -->
+  <article class="d-building d-building--segmented" id="building-06">
+    <div class="d-building__header">
+      <div class="d-building__num-wrap">
+        <span class="d-building__num">06</span>
+        <span class="d-building__subtitle">땅속 우주선 역사</span>
+      </div>
+      <div class="d-building__meta">
+        <span class="d-building__tag">Transport · 2008</span>
+        <span class="d-building__architect">Tadao Ando</span>
+      </div>
+    </div>
+
+    <h2 class="d-building__title">Tokyo Metro Shibuya Station</h2>
+    <p class="d-building__title-jp">도쿄 메트로 시부야역 (후쿠토신선)</p>
+
+    <!-- Seg 1: text | photo_01 -->
+    <div class="d-building__seg js-img-reveal">
+      <div class="d-building__seg-text">
+        <p>마지막으로, 낮에 봤던 시부야스크램블 스퀘어를 따라 돌아가도록 하겠습니다. 오늘의 세 번째 안도 타다오의 작품을 볼 시간인데요. 근데 왜 집에 돌아가는 것 같냐고요? 그것은 바로 여기가 목적지이기 때문이죠. 오늘의 마지막 목적지인 도쿄메트로 후쿠토신선 시부야 역사가 되겠습니다. 2008년에 개통된 이 노선은 위로는 사이타마 현 아래로는 카나가와 현과 도쿄를 연결하고 있으며, 시부야 및 신주쿠로 오는 이 젊은 이용객과 바쁜 직장인들이 대부분인 노선입니다. 출근길이라니 기운이 확 빠지죠. 그 때문일까요? 안도 타다오는 삭막한 지하철역 출퇴근길을 통해 이용객들에게 모종의 상상력을 불러일으키고 싶었다고 합니다 .</p>
+      </div>
+      <div class="d-building__seg-img">
+        <img src="picture/Tokyo_Metro_Shibuya_Station_01.png" alt="Tokyo Metro Shibuya Station underground space" />
+      </div>
+    </div>
+
+    <!-- Seg 2 (alt): photo_02 | text -->
+    <div class="d-building__seg d-building__seg--alt js-img-reveal">
+      <div class="d-building__seg-img">
+        <img src="picture/Tokyo_Metro_Shibuya_Station_02.png" alt="Tokyo Metro Shibuya Station ellipse structure" />
+      </div>
+      <div class="d-building__seg-text">
+        <p>언뜻 보면 정말 한없이 평범해 보이는 이 역사의 컨셉은 무려 땅속의 우주선인데요. 실제로 그는 이 역에 지구를 위한 우주선이라는 뜻의 '지구선'이라는 이름을 붙였다고 합니다. 군데군데 묘한 형태 파편들이 있죠. 이것들을 의식하면서 역을 크게 돌아보면 정말로 땅속에 묻힌 우주선 마냥 길이 80m, 폭 24m의 길다란 타원의 형태를 띠고 있음을 알아차릴 수 있습니다. 중앙에 수직으로 또 한 번 뚫린 코어를 통해 역의 전층을 구경할 수 있으며, 이를 통해 스마트하게 역의 환기와 온도를 조절하고 있죠. 이 컨셉을 기억하고 보다 보면 어느 순간 '아, 이래서 여기가 이렇게 되어 있구나' 하고 알아차리게 되는, 재미있는 곳인데요. 이 노선을 통해 시부야에서 나카메구로나 다이칸야마를 가신 분들이라면 잠시 구경해 보시는 것도 좋을 것 같다고 생각합니다. 지금까지 소개해드린 시부야의 건축물들의 공통점을 발견하셨나요? 바로 도심지의 문제점으로 제기된 크고 작은 부분들을 건축물의 힘으로 해결하려 했다는 것이 되겠죠. 그 점에서 오모테산도의 건축물들과는 그 느낌부터가 다르고 타 도심지와의 차별화로 성공할 수 있었다고 생각합니다. 새로 지어지는 건축물들이 무수히 많은 만큼 건축물 하나하나가 도시의 경관과 라이프스타일을 어떻게 바꾸는지 피부에 직접 와닿는 곳이라 정말 구경하는 재미가 있는 동네라고 생각합니다.</p>
+      </div>
+    </div>
+
+    <!-- Gallery: photo_03, photo_04 -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+      <div class="d-building__gallery-item">
+        <img src="picture/Tokyo_Metro_Shibuya_Station_03.png" alt="Tokyo Metro Shibuya Station platform view" />
+      </div>
+      <div class="d-building__gallery-item">
+        <img src="picture/Tokyo_Metro_Shibuya_Station_04.png" alt="Tokyo Metro Shibuya Station concrete arch" />
+      </div>
+    </div>
+
+    <!-- Gallery: photo_05, photo_06 -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+      <div class="d-building__gallery-item">
+        <img src="picture/Tokyo_Metro_Shibuya_Station_05.png" alt="Tokyo Metro Shibuya Station entrance" />
+      </div>
+      <div class="d-building__gallery-item">
+        <img src="picture/Tokyo_Metro_Shibuya_Station_06.png" alt="Tokyo Metro Shibuya Station depth" />
+      </div>
+    </div>
+
+    <div class="d-building__gmap">
+      <span class="d-building__gmap-label">Location · 東京都渋谷区道玄坂2丁目 (후쿠토신선)</span>
+      <iframe src="https://maps.google.com/maps?q=Shibuya+Station+Tokyo+Metro+Fukutoshin&hl=ko&z=17&output=embed" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </article>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__top">
+      <span class="footer__logo">Marginalia</span>
+      <p class="footer__tagline">A record of what stands<br />and what remains.</p>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 Marginalia Archive</span>
+      <span>Tokyo, Japan</span>
+      <span>Web Design I — Project</span>
+    </div>
+  </footer>
+
+  <script type="importmap">
+    { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.167.0/build/three.module.js" } }
+  </script>
+  <script type="module" src="shibuya.js"></script>
+</body>
+</html>

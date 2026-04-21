@@ -7,7 +7,7 @@
   var GRID     = 16;
   var T1       = 2.2;    // s — vertical sweep
   var T2       = 1.8;    // s — horizontal sweep
-  var GAP      = 0.0;   // s — pause between phases
+  var GAP      = 0.1;   // s — pause between phases
   var TOTAL    = T1 + GAP + T2;
 
   var RADIUS   = 160;    // px — pin influence radius (10 grid units)

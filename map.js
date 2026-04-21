@@ -29,9 +29,9 @@ const TILT_MAX  = 0.16;
 // Map ward name → district config
 const HIGHLIGHT_WARDS = {
   //                                                                              offsetX  offsetY  ← px 단위, 양수=오른쪽/아래, 음수=왼쪽/위
-  '新宿区': { id: 'shinjuku',    nameEn: 'Shinjuku',            nameJp: '新宿',        count: '24 works', offsetX:   0, offsetY:   0 },
-  '渋谷区': { id: 'shibuya',     nameEn: 'Shibuya',             nameJp: '渋谷',        count: '21 works', offsetX:   0, offsetY:   0 },
-  '港区':   { id: 'omotesando',  nameEn: 'Minato',              nameJp: '港区',        count: '44 works', offsetX:   0, offsetY:   0,
+  '新宿区': { id: 'shinjuku',    nameEn: 'Shinjuku',            nameJp: '新宿',        count: '6 works',  offsetX:   0, offsetY:   0, href: 'shinjuku.html' },
+  '渋谷区': { id: 'shibuya',     nameEn: 'Shibuya',             nameJp: '渋谷',        count: '6 works',  offsetX:   0, offsetY:   0, href: 'shibuya.html' },
+  '港区':   { id: 'omotesando',  nameEn: 'Minato',              nameJp: '港区',        count: '21 works', offsetX:   0, offsetY:   0, href: 'district.html',
     subDistricts: [
       { nameEn: 'Omotesando', href: 'district.html' },
       { nameEn: 'Harajuku',   href: 'harajuku.html' },
@@ -39,9 +39,9 @@ const HIGHLIGHT_WARDS = {
       { nameEn: 'Roppongi',   href: 'roppongi.html' },
     ],
   },
-  '台東区': { id: 'ueno',        nameEn: 'Ueno',                nameJp: '上野',        count: '17 works', offsetX:   0, offsetY:   0 },
-  '中央区': { id: 'ginza',       nameEn: 'Ginza',               nameJp: '銀座',        count: '19 works', offsetX:   0, offsetY:   0 },
-  '豊島区': { id: 'ikebukuro',   nameEn: 'Ikebukuro',           nameJp: '池袋',        count: '18 works', offsetX:   0, offsetY:   0 },
+  '台東区': { id: 'ueno',        nameEn: 'Ueno',                nameJp: '上野',        count: '3 works',  offsetX:   0, offsetY:   0, href: 'ueno.html' },
+  '中央区': { id: 'ginza',       nameEn: 'Ginza',               nameJp: '銀座',        count: '11 works', offsetX:   0, offsetY:   0, href: 'ginza.html' },
+  '豊島区': { id: 'ikebukuro',   nameEn: 'Ikebukuro',           nameJp: '池袋',        count: '3 works',  offsetX:   0, offsetY:   0, href: 'ikebukuro.html' },
 };
 
 // ── DOM ────────────────────────────────────────────────────────────────────
@@ -337,7 +337,7 @@ wrapper.addEventListener('click', e => {
   if (hits.length > 0) {
     const wardName = hits[0].object.parent?.userData?.wardName;
     const cfg = HIGHLIGHT_WARDS[wardName];
-    if (cfg) window.location.href = `district.html?id=${cfg.id}`;
+    if (cfg) window.location.href = cfg.href || `district.html?id=${cfg.id}`;
   }
 });
 

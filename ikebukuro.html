@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ikebukuro — Marginalia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="district.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="index.html" class="nav__logo">Marginalia</a>
+    <ul class="nav__links">
+      <li><a href="index.html#map-section">Location Map</a></li>
+      <li><a href="index.html#gallery-section">Gallery</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <header class="d-hero">
+    <div class="d-hero__content">
+      <div class="d-hero__breadcrumb">
+        <a href="index.html" class="label">Marginalia</a>
+        <span class="label">→</span>
+        <span class="label">District</span>
+      </div>
+
+      <div class="d-hero__label-row">
+        <span class="label">도시마구</span>
+        <span class="label">— 3개 건축물</span>
+      </div>
+
+      <h1 class="d-hero__title">
+        Ikebukuro
+        <em class="d-hero__title-jp">이케부쿠로</em>
+      </h1>
+
+      <p class="d-hero__intro">
+        불량배와 수직 정원이 공존하는 동네. 1920년대 라이트의 유산부터 현대 목조 시청사까지 넓은 스펙트럼의 도시.
+      </p>
+
+      <div class="d-hero__stats">
+        <div class="d-stat">
+          <span class="d-stat__val">3</span>
+          <span class="d-stat__label">Structures</span>
+        </div>
+        <div class="d-stat">
+          <span class="d-stat__val">1921</span>
+          <span class="d-stat__label">Oldest Built</span>
+        </div>
+        <div class="d-stat">
+          <span class="d-stat__val">2015</span>
+          <span class="d-stat__label">Newest Built</span>
+        </div>
+      </div>
+
+      <div class="d-hero__scroll">
+        <span class="label">Scroll to explore</span>
+        <div class="d-hero__scroll-line"></div>
+      </div>
+    </div>
+
+    <div class="d-hero__map" id="dMapWrapper">
+      <canvas id="dMapCanvas"></canvas>
+      <div class="d-hero__map-label" id="dMapLabel">
+        <span class="d-hero__map-label-name" id="dMapLabelName"></span>
+        <span class="d-hero__map-label-year" id="dMapLabelYear"></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- INTRO -->
+  <section class="d-intro">
+    <div class="d-intro__inner">
+      <p class="d-intro__text">20세기부터 이어진 일본의 창작물들 중에서 꼭 불량배들의 무대로 등장하는 동네가 있습니다. 바로 신주쿠의 북쪽에 위치한 이케부쿠로라는 동네인데요. 도대체 왜 이런 것일까요? 사실 일반인들에게는 신주쿠나 시부야와 마찬가지로 규모가 큰 번화가 중 하나이기에 관광 코스로 나름 익숙한 곳이기도 합니다. 무인양품의 본사가 자리한 곳이기도 하고, 선샤인시티에서는 아키하바라 부럽지 않은 캐릭터 샵들을 만나볼 수도 있죠. 이렇게 지금에야 이케부쿠로가 도내 3대 부도심 중 하나가 되었지만, 옛날에는 화재로 일부 지역들이 유실된 데다, 과거에는 근처에 형무소가 있기도 했고, 넘쳐나는 공사판과 유흥가, 버려진 공원, 동네 한복판을 가로지르는 고속도로 밑의 음침함까지...덕분에 옛날부터 자연스럽게 폭주족이나 노숙자들이 모이는 지역이었다고 합니다 때문에 과거부터 현재까지 그러한 이미지들을 없애려는 다양한 시도들이 있었다고 하는데요, 오늘은 그 이야기를 건축물 구경을 통해 알아볼까 합니다. 일단 이 동네 유명한 랜드마크인 선샤인시티부터 철저히 부도심 재개발 사업이라는 목적을 갖고 지어진 곳이라고 하죠. 그런데 선샤인시티가 아니더라도 이곳은 1920년대, 역사적인 근대 건축물부터 21세기의 첨단 고층빌딩까지 아주 넓은 스펙트럼을 갖고 있는 의외의 장소이기도 합니다. 바로 그것을 1920년대부터 풀어보도록 하겠습니다.</p>
+    </div>
+  </section>
+
+  <!-- BUILDING 01 -->
+  <article class="d-building d-building--segmented" id="building-01">
+    <div class="d-building__header">
+      <div class="d-building__num-wrap">
+        <span class="d-building__num">01</span>
+        <span class="d-building__subtitle">수평선으로 담아낸 평등</span>
+      </div>
+      <div class="d-building__meta">
+        <span class="d-building__tag">Education · 1921</span>
+        <span class="d-building__architect">Frank Lloyd Wright</span>
+      </div>
+    </div>
+
+    <h2 class="d-building__title">Jiyu Gakuen Myonichikan</h2>
+    <p class="d-building__title-jp">자유학원 명일관</p>
+
+    <!-- Seg 1: text | photo_01 -->
+    <div class="d-building__seg js-img-reveal">
+      <div class="d-building__seg-text">
+        <p>이를 위해서는 중앙의 넓은 철도를 기준으로 서쪽으로 넘어가야 하는데요, 남쪽 출구로 나가 메트로폴리탄 호텔 뒤편으로 넘어가면, 이러한 표지판이 보이기 시작합니다. 자연스레 표지판을 따라가면 어느 순간 20세기로 빨려 들어가는 듯한, 아주 오래된 보도블록이 깔린 거리가 보이기 시작하는데요. 이곳이 바로 오늘의 첫 번째 목적지로 르 코르뷔지에와 함께 20세기 당대 최고의 건축가로 불렸던 프랭크 로이드 라이트의 자유학원 명일관입니다. 당시 프랭크 로이드 라이트의 조수였던 건축가 엔도 아라타의 추천으로 맡게 된 프로젝트로도 알려져 있습니다. 이 길을 사이에 두고 강당과 본관으로 이루어져 있고, 사실 그의 주요 작품으로 자주 거론되는 장소는 아니지만, 그럼에도 이곳이 특별한 이유는 한국의 이화학당처럼, 일본에서의 여성을 위한 최초의 교육기관이기 때문이죠.</p>
+      </div>
+      <div class="d-building__seg-img">
+        <img src="picture/Jiyu_Gakuen_Myonichikan_01.png" alt="Jiyu Gakuen Myonichikan exterior" />
+      </div>
+    </div>
+
+    <!-- Seg 2 (alt): photo_02 | text -->
+    <div class="d-building__seg d-building__seg--alt js-img-reveal">
+      <div class="d-building__seg-img">
+        <img src="picture/Jiyu_Gakuen_Myonichikan_02.png" alt="Jiyu Gakuen Myonichikan horizontal facade" />
+      </div>
+      <div class="d-building__seg-text">
+        <p>당시 취약계층이던 여성의 교육이라는 새로운 이념의 실현을 돕기 위해 당대 최고의 건축가가 선보인 건축물인데요. 또 동시대의 그의 다른 작품들과 마찬가지로 기하학적인 패턴 장식과 주변의 경관과 조화를 이루도록 수평으로 낮게 깔린 입면을 보여주고 있습니다. 이는 이 학교의 민주적인 설립 이념과도 일치하죠. 오래된 나무들이 늘어선 교정의 느낌에서 옛날 학교의 감성이 아주 낭랑히 느껴지네요.</p>
+      </div>
+    </div>
+
+    <!-- Gallery: photo_03, photo_04 -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+      <div class="d-building__gallery-item">
+        <img src="picture/Jiyu_Gakuen_Myonichikan_03.png" alt="Jiyu Gakuen Myonichikan courtyard" />
+      </div>
+      <div class="d-building__gallery-item">
+        <img src="picture/Jiyu_Gakuen_Myonichikan_04.png" alt="Jiyu Gakuen Myonichikan geometric window" />
+      </div>
+    </div>
+
+    <!-- Seg 3: text | photo_05 -->
+    <div class="d-building__seg js-img-reveal">
+      <div class="d-building__seg-text">
+        <p>창립 당시 학생 수가 26명뿐이었기에, 학교 자체의 구조도 간단하고, 크기도 상당히 작은 편인데요, 그 작은 공간을 기하학적 패턴이 심심하지 않게 꽉 채우고 있어서 구경하는 재미가 있습니다. 특히 그가 직접 디자인한 조명이나 의자들까지 같이 구경할 수 있어서 특별했습니다. 이 공간의 포인트는 아무래도 운동장 쪽으로 난 큰 수직창살로, 건물의 창문들은 마치 스테인드글라스처럼 보이긴 하지만, 비용적인 측면을 고려해서 일부는 통유리에 창살로 패턴을 입힌 것이라고 합니다. 조명의 각도 또한 기가 막히게 계산해서 이 공간을 강조하고 있죠. 이곳을 포함해 중앙에 위치한 카페에서는 간단하게 차와 과자들을 마실 수 있는데요. 입장 시 300엔만 추가하면 되니 한번쯤 경험해보는 것도 나쁘지 않다고 생각합니다. 곳곳에 화려하게 조각되고, 조립된 디테일들이 마치 그 당시 장인의 공예품을 보는 느낌이 들었습니다. 물론 세상은 르 코르뷔지에의 손을 들어준 것 같지만...똑같은 철근 콘크리트를 사용했다 하더라도 르 코르뷔지에의 차가운, 기계적인 건축 감성보다 가끔은 이런 감성에 대한 향수가 있는 것도 사실입니다. *저만 그런가요?</p>
+        <p>맞은편의 강당은 늘어나는 학생을 수용하기 위해서 앞서 말한 그의 제자 엔도 아라타에 의해 설계된 것인데요, 철저히 그의 스승의 스타일에 맞춰 설계되었다는 느낌을 받았는데, 그럼에도 입구부터 정원의 느낌이 본관과는 상당히 달라 보이지 않나요? 개인적인 견해지만 자연물이 철저히 분리되어 일본식 정원 같은 느낌도 나는 것이..프랭크 로이드 라이트의 자연을 끌어들이는 유기적인 건축 스타일과는 맞지 않는다고 느껴져서 개인적으로 아쉬웠습니다. 나중에 가보실 분들은 이러한 본관과의 미묘한 차이점에 주의하면서 구경해보시면 더욱 좋을 것 같습니다.</p>
+      </div>
+      <div class="d-building__seg-img">
+        <img src="picture/Jiyu_Gakuen_Myonichikan_05.png" alt="Jiyu Gakuen Myonichikan vertical window" />
+      </div>
+    </div>
+
+    <!-- Gallery: photo_06, photo_07 -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+      <div class="d-building__gallery-item">
+        <img src="picture/Jiyu_Gakuen_Myonichikan_06.png" alt="Jiyu Gakuen Myonichikan interior detail" />
+      </div>
+      <div class="d-building__gallery-item">
+        <img src="picture/Jiyu_Gakuen_Myonichikan_07.png" alt="Jiyu Gakuen Myonichikan Wright designed chair" />
+      </div>
+    </div>
+
+    <!-- Gallery: photo_08, photo_09 -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+      <div class="d-building__gallery-item">
+        <img src="picture/Jiyu_Gakuen_Myonichikan_08.png" alt="Jiyu Gakuen Myonichikan lecture hall" />
+      </div>
+      <div class="d-building__gallery-item">
+        <img src="picture/Jiyu_Gakuen_Myonichikan_09.png" alt="Jiyu Gakuen Myonichikan craft detail" />
+      </div>
+    </div>
+
+    <div class="d-building__gmap">
+      <span class="d-building__gmap-label">Location · 東京都豊島区西池袋2-31-3</span>
+      <iframe src="https://maps.google.com/maps?q=Jiyu+Gakuen+Myonichikan+Ikebukuro&hl=ko&z=17&output=embed" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </article>
+
+  <!-- BUILDING 02 -->
+  <article class="d-building d-building--segmented" id="building-02">
+    <div class="d-building__header">
+      <div class="d-building__num-wrap">
+        <span class="d-building__num">02</span>
+        <span class="d-building__subtitle">이케부쿠로 이미지 변화의 상징</span>
+      </div>
+      <div class="d-building__meta">
+        <span class="d-building__tag">Public Space · 2016</span>
+        <span class="d-building__architect">Urban Renewal</span>
+      </div>
+    </div>
+
+    <h2 class="d-building__title">Minami Ikebukuro Park</h2>
+    <p class="d-building__title-jp">미나미이케부쿠로 공원</p>
+
+    <!-- Seg 1: text | photo_01 -->
+    <div class="d-building__seg js-img-reveal">
+      <div class="d-building__seg-text">
+        <p>다시 이케부쿠로 동쪽 출구로 후다닥 넘어왔습니다. 동쪽의 경우 선샤인시티 앞으로 고속도로들이 아주 많이 지나다니는데요. 옛날에는 주변이 다 공사판이었다고 하니, 이런 고가도로들의 아래가 얼마나 음침했을지...앞서 이케부쿠로가 노숙자나 불량배, 폭주족들이 주로 모이는 장소였다고 얘기했죠. 이 동쪽 출구 근처에 그러한 이미지에 크게 일조했던 공원이 하나 있습니다. 바로 역에서 아주 가까운 곳에 위치한 미나미이케부쿠로 공원인데요. 지금 모습만 봐서는 전혀 그런 느낌이 없지만 예전에는 어둡고, 무섭고, 지저분한 삼박자를 두루 갖춘 공원이었다고도 합니다. 딱 일본 만화나 영화에 나오는 일진들이 모이는 공원같은 느낌이었다고 보시면 될 것 같네요. 때문에 이 동네의 상당한 골칫거리였다고 하는데요.</p>
+      </div>
+      <div class="d-building__seg-img">
+        <img src="picture/Minami_Ikebukuro_Park_01.png" alt="Minami Ikebukuro Park lawn" />
+      </div>
+    </div>
+
+    <!-- Seg 2 (alt): photo_02 | text -->
+    <div class="d-building__seg d-building__seg--alt js-img-reveal">
+      <div class="d-building__seg-img">
+        <img src="picture/Minami_Ikebukuro_Park_02.png" alt="Minami Ikebukuro Park evening" />
+      </div>
+      <div class="d-building__seg-text">
+        <p>이 공원이 입지가 워낙 좋은 만큼 이케부쿠로의 이미지에 타격을 주기도 쉬웠지만, 이를 반대로 말하면 재개발 시에 효과를 즉각적으로 볼 수 있다는 말도 되겠죠. 결국 7년간의 리뉴얼을 통해 지금의 모습이 되었고, 시민들의 품으로 되돌아올 수 있었다고 합니다. 잔디밭을 이용해서 일반 시민들이 공원에 머무르는 시간을 자연스레 늘린 것이 신의 한 수라고 생각되네요. 물론 아직도 흡연 민원이 끊이지 않는다고도 하며 지속적인 관리를 하고 있다고 합니다.</p>
+      </div>
+    </div>
+
+    <!-- Gallery: photo_03, photo_04 -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+      <div class="d-building__gallery-item">
+        <img src="picture/Minami_Ikebukuro_Park_03.png" alt="Minami Ikebukuro Park daytime" />
+      </div>
+      <div class="d-building__gallery-item">
+        <img src="picture/Minami_Ikebukuro_Park_04.png" alt="Minami Ikebukuro Park greenery" />
+      </div>
+    </div>
+
+    <div class="d-building__gmap">
+      <span class="d-building__gmap-label">Location · 東京都豊島区南池袋2-21</span>
+      <iframe src="https://maps.google.com/maps?q=Minami+Ikebukuro+Park+Tokyo&hl=ko&z=17&output=embed" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </article>
+
+  <!-- BUILDING 03 -->
+  <article class="d-building d-building--segmented" id="building-03">
+    <div class="d-building__header">
+      <div class="d-building__num-wrap">
+        <span class="d-building__num">03</span>
+        <span class="d-building__subtitle">일본의 국민 건축가 등장</span>
+      </div>
+      <div class="d-building__meta">
+        <span class="d-building__tag">Government · 2015</span>
+        <span class="d-building__architect">Kengo Kuma</span>
+      </div>
+    </div>
+
+    <h2 class="d-building__title">Toshima City Hall</h2>
+    <p class="d-building__title-jp">도시마 에코뮤제 타운</p>
+
+    <!-- Seg 1: text | photo_01 -->
+    <div class="d-building__seg js-img-reveal">
+      <div class="d-building__seg-text">
+        <p>이제 다음 장소로 넘어가도록 하겠습니다. 아까부터, 그리고 여기서도 계속 보이는 저곳인데요, 저 빌딩이 보이는 곳으로 쭉 따라서 가면 도착하는 이곳은, 토시마 에코뮤제 타운이라는 이름의 도시마 구청과 아파트가 합쳐진 곳으로, 논란 속에 펼쳐진 도쿄 올림픽 주경기장 설계를 맡았으며, 일본의 국민 건축가라고도 할 수 있는 쿠마 켄고 사무소의 작품입니다. 그가 국민 건축가인 이유는 쿠마 켄고 그 자체도 유명하긴 하지만, 정말 다작을 하기 때문이라고 하는데요. 그의 사무소에서 한 해에 진행하는 프로젝트만 500개 가까이 된다고 합니다. 이게 어느 정도냐면, 일본에서 길을 걷다가 "이거 쿠마 켄고 스타일인데...?" 싶으면 대체로 이분께 맞습니다.</p>
+      </div>
+      <div class="d-building__seg-img">
+        <img src="picture/Toshima_City_Hall_01.png" alt="Toshima City Hall exterior" />
+      </div>
+    </div>
+
+    <!-- Seg 2 (alt): photo_02 | text -->
+    <div class="d-building__seg d-building__seg--alt js-img-reveal">
+      <div class="d-building__seg-img">
+        <img src="picture/Toshima_City_Hall_02.png" alt="Toshima City Hall vertical garden" />
+      </div>
+      <div class="d-building__seg-text">
+        <p>그런데 제가 이곳을 좋아하는 이유는, 어떠한 건축학, 건축사적인 의미 때문이 아닌, 10층에서부터 4층까지 경사진 건물에 남측을 따라 나 있는 수직 정원 때문인데요. 정원이 오후 4시까지만 개방하는 상태였기에 서둘러서 정원으로 먼저 올라가도록 하겠습니다. 외부에 이상한 패널들이 길리슈트 마냥 붙어 있죠? 이것들의 정체를 확인하기 위해서도 일단 위로 바로 올라가는 편이 좋습니다. 중앙에 엘리베이터를 통해 10층으로 올라가면 펼쳐지는 이곳은 관광객에게는 정말 잘 알려지지 않은 느낌이라 아주 여유롭게 도쿄의 스카이라인을 감상할 수 있는 곳이기도 합니다.</p>
+      </div>
+    </div>
+
+    <!-- Gallery: photo_03, photo_04 -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+      <div class="d-building__gallery-item">
+        <img src="picture/Toshima_City_Hall_03.png" alt="Toshima City Hall rooftop garden" />
+      </div>
+      <div class="d-building__gallery-item">
+        <img src="picture/Toshima_City_Hall_04.png" alt="Toshima City Hall panel detail" />
+      </div>
+    </div>
+
+    <!-- Seg 3: text | photo_05 -->
+    <div class="d-building__seg js-img-reveal">
+      <div class="d-building__seg-text">
+        <p>진짜 정원처럼 나름의 생태와 환경을 구축해 놓았으며, 이용객이 많지 않아서인지 상당히 깨끗하게 관리되고 있죠. 구청에 딸린 공공시설이기에 저녁에는 운영하지 않는다는 것이 조금 아쉽지만, 이 고층 맨션의 부자들을 위한 시설을 잠시나마 빌린다고 생각하면 마음이 편해집니다. 온전히 경치를 감상할 수도 있지만, 조금 떨어져서 보면 밖에서 본 패널들이 하늘에 걸려 있는 상당히 독특한 뷰를 구경할 수 있는데요, 그는 이 건물을 구상할 때 살아있는 나무 같은 건물을 생각했다고 합니다. 때문에 이 패널들은 수직으로 나열된 재활용 목재, 태양광 패널, 그리고 실제 식물들이 숨겨진 패널들로 구성되어 있으며, 이는 쿠마 켄고 사무소의 포트폴리오가 자주 보여주는 특징이기도 합니다. 앞서 얘기했던 2020 도쿄 올림픽 주경기장에서도 이 같은 특징이 잘 드러나 있죠. 이게 또 층마다 패널의 배열이나 높이가 다 달라서 전망대의 지루함을 덜어주는 좋은 장치라고 생각합니다. 10층에서 4층까지 이어진 정원을 모두 둘러보고 나면 구청 안으로 다시 들어갈 수 있는데요. 수직 루버로 가득 찬 내부를 봐도 이곳이 쿠마 켄고 사무소의 작품임을 단번에 알 수 있었습니다. 이것 또한 그의 프로젝트에서 자주 보이는 특징이기 때문이죠. 엘리베이터의 구조물들이 그대로 드러나 있음에도, 이 수직 루버들 덕분에 전혀 조잡하지 않고 오히려 조화롭다는 느낌까지 받을 수 있었습니다. 한 가지 아쉬웠던 건, 건물의 가운데를 비워서 맞은편이 서로 보이도록 해, 수평적인 환경, 자유로운 업무 분위기를 만들려 했다고는 하나...어차피 자리는 전부 파티션으로 막혀 있어서 그러한 건축가의 의도는 온데간데없는 듯 했습니다. 사실 건축물이 엄청 독특하고 멋져서 추천한다기보다는, 날씨 좋은 날, 이 정원에서의 운치가 저는 정말 어떠한 유료 전망대보다도 훨씬 좋다고 생각하기에 이를 추천하는 마음으로 선정한 곳이기도 합니다. 마침 선샤인시티의 근처에 있으니 꼭 둘러보시면 좋겠네요.</p>
+      </div>
+      <div class="d-building__seg-img">
+        <img src="picture/Toshima_City_Hall_05.png" alt="Toshima City Hall skyline view" />
+      </div>
+    </div>
+
+    <!-- Gallery: photo_06, photo_07 -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+      <div class="d-building__gallery-item">
+        <img src="picture/Toshima_City_Hall_06.png" alt="Toshima City Hall interior louvre" />
+      </div>
+      <div class="d-building__gallery-item">
+        <img src="picture/Toshima_City_Hall_07.png" alt="Toshima City Hall recycled wood panel" />
+      </div>
+    </div>
+
+    <!-- Gallery: photo_08, photo_09 -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+      <div class="d-building__gallery-item">
+        <img src="picture/Toshima_City_Hall_08.png" alt="Toshima City Hall garden path" />
+      </div>
+      <div class="d-building__gallery-item">
+        <img src="picture/Toshima_City_Hall_09.png" alt="Toshima City Hall cityscape" />
+      </div>
+    </div>
+
+    <div class="d-building__gmap">
+      <span class="d-building__gmap-label">Location · 東京都豊島区南池袋2-45-1</span>
+      <iframe src="https://maps.google.com/maps?q=Toshima+City+Hall+Tokyo&hl=ko&z=17&output=embed" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </article>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__top">
+      <span class="footer__logo">Marginalia</span>
+      <p class="footer__tagline">A record of what stands<br />and what remains.</p>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 Marginalia Archive</span>
+      <span>Tokyo, Japan</span>
+      <span>Web Design I — Project</span>
+    </div>
+  </footer>
+
+  <script type="importmap">
+    { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.167.0/build/three.module.js" } }
+  </script>
+  <script type="module" src="ikebukuro.js"></script>
+</body>
+</html>

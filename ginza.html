@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ginza — Marginalia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="district.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="index.html" class="nav__logo">Marginalia</a>
+    <ul class="nav__links">
+      <li><a href="index.html#map-section">Location Map</a></li>
+      <li><a href="index.html#gallery-section">Gallery</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <header class="d-hero">
+    <div class="d-hero__content">
+      <div class="d-hero__breadcrumb">
+        <a href="index.html" class="label">Marginalia</a>
+        <span class="label">→</span>
+        <span class="label">District</span>
+      </div>
+
+      <div class="d-hero__label-row">
+        <span class="label">치요다구 · 추오구</span>
+        <span class="label">— 11개 건축물</span>
+      </div>
+
+      <h1 class="d-hero__title">
+        Ginza
+        <em class="d-hero__title-jp">긴자</em>
+      </h1>
+
+      <p class="d-hero__intro">
+        일본 최초의 백화점이 생겨난 곳이며, 5대 종합상사 중 4곳의 본사가 위치한 거리. 비즈니스의 중심지이자 세계적인 럭셔리 브랜드들의 플래그십 스토어가 즐비한 도쿄의 가장 화려한 동네.
+      </p>
+
+      <div class="d-hero__stats">
+        <div class="d-stat">
+          <span class="d-stat__val">11</span>
+          <span class="d-stat__label">Structures</span>
+        </div>
+        <div class="d-stat">
+          <span class="d-stat__val">Kengo Kuma</span>
+          <span class="d-stat__label">Featured Architect</span>
+        </div>
+        <div class="d-stat">
+          <span class="d-stat__val">2023</span>
+          <span class="d-stat__label">Latest Built</span>
+        </div>
+      </div>
+
+      <div class="d-hero__scroll">
+        <span class="label">Scroll to explore</span>
+        <div class="d-hero__scroll-line"></div>
+      </div>
+    </div>
+
+    <div class="d-hero__map" id="dMapWrapper">
+      <canvas id="dMapCanvas"></canvas>
+      <div class="d-hero__map-label" id="dMapLabel">
+        <span class="d-hero__map-label-name" id="dMapLabelName"></span>
+        <span class="d-hero__map-label-year" id="dMapLabelYear"></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- INTRO -->
+  <section class="d-intro">
+    <div class="d-intro__inner">
+      <p class="d-intro__text">일본의 수도 도쿄에는 시부야나 오모테산도, 신주쿠, 이케부쿠로 등 다양한 도심지가 있습니다. 하지만 이 중 그 어느 곳도 이번에 소개할 곳에 비하면 근본이 한참 부족한 동네라고 할 수 있겠습니다. 거리의 규모만 놓고 보면 신주쿠나 이케부쿠로 이상, 화려함만 놓고 보면 오모테산도 그 이상인 곳인데요. 그곳은 바로 긴자가 위치한 치요다구, 추오구로 나머지들은 예로부터 이곳이 해오던 역할을 돕는 부도심에 지나지 않았다고 합니다.</p>
+      <p class="d-intro__text">이는 도쿄의 지하철 노선 중 하나인 마루노우치선을 봐도 알 수 있는데요. 이 노선 또한 신주쿠와 이케부쿠로를 도심까지 잇기 위해 1954년에 탄생하여, 버블 이전까지의 고도 성장을 함께 일궈낸 라인이기 때문이죠. 그렇게 긴자, 니혼바시 등이 있는 이 동네는 일본 최초의 백화점이 생겨난 곳이며, 5대 종합상사 중 4곳의 본사가 위치해 있습니다. 도쿄역이 위치한 마루노우치를 시작으로 유라쿠초, 긴자, 신바시까지 역시나 알게 돌아보도록 하겠습니다.</p>
+    </div>
+  </section>
+
+  <!-- BUILDING 01 -->
+  <article class="d-building d-building--segmented" id="building-01">
+    <div class="d-building__header">
+      <div class="d-building__num-wrap">
+        <span class="d-building__num">01</span>
+        <span class="d-building__subtitle">일본에서 가장 비싼 우체국</span>
+      </div>
+      <div class="d-building__meta">
+        <span class="d-building__tag">Mixed Use · 2013</span>
+        <span class="d-building__architect">Kengo Kuma</span>
+      </div>
+    </div>
+
+    <h2 class="d-building__title">Kitte Marunouchi &amp; JP Tower</h2>
+    <p class="d-building__title-jp">키테 마루노우치 &amp; JP 타워</p>
+
+    <!-- Seg 1: text | photo_01 -->
+    <div class="d-building__seg js-img-reveal">
+      <div class="d-building__seg-text">
+        <p>동선은 일단 도쿄역에서 시작해보도록 하겠습니다. 이곳은 역 앞 광장에서부터 아래쪽은 상가이고 위쪽은 고층 사무실인 곳이 대부분이다보니, 비슷하게 생긴 건물들 투성이인데요. 그중에서 마루노우치 남쪽 출구로 나오면, 바로 눈앞에 도로를 따라 유일하게 흰색 벽으로 되어 있는 건물을 볼 수 있습니다. 이곳이 바로 도쿄중앙우체국과 붙어있는 쇼핑몰, Kitte 마루노우치입니다. 매 편마다 계속 나오는 것 같은, 다작으로 유명한 일본의 국민 건축가. 쿠마 켄고 사무소의 프로젝트로 2013년에 오픈한 이곳은, 구 중앙우체국 건물의 일부를 리노베이션한 공간인데요. 도쿄역을 바라보는 두 입면을 가능한 보존한 채, 안쪽에 현대식 상가와 고층빌딩을 지어올린 곳입니다. 새하얗게 덮인 옛 벽면과 새로 생긴 유리면들이 대비되어 아주 멋진 광장을 만들어내는데요.</p>
+      </div>
+      <div class="d-building__seg-img">
+        <img src="picture/Kitte_Marunouchi_01.png" alt="Kitte Marunouchi exterior view" />
+      </div>
+    </div>
+
+    <!-- Seg 2 (alt): photo_02 | text -->
+    <div class="d-building__seg d-building__seg--alt js-img-reveal">
+      <div class="d-building__seg-img">
+        <img src="picture/Kitte_Marunouchi_02.png" alt="Kitte Marunouchi atrium interior" />
+      </div>
+      <div class="d-building__seg-text">
+        <p>일정한 간격의 기둥과의 연결성을 위해, 재건축된 부분 또한 마찬가지로 일정한 간격의 패턴들로 구성되어 있어서, 높은 천장고와 함께 기하학적 경이로움을 자아내고 있었습니다. 그렇게 층별로 테마가 있는 공간답게 각 층의 벽들이 서로 다른 패턴으로 이루어져 있었습니다. 처음엔 왜 이렇게까지 했을까 싶었는데, 개인적인 느낌이었지만 이를 한 층씩 모아보면 기와나 나무살, 다다미 등 마치 일본 전통 가옥에서 볼 수 있는 소재나 텍스처들로 구성되어 있음을 알 수 있었습니다. 한 곳만 봐서는 알기 힘들지만, 그게 오히려 과하지 않으면서도 나무를 이용한 패턴을 즐겨 쓰는, 쿠마 켄고의 이 공간에 대한 컨셉을 확인할 수 있는 부분이었습니다. 정말 그들에게 의미 있는 것들로 가득가득 채워진 공간이라는 인상을 받았는데요. 다만, 하입보다는 클래식한 브랜드 위주로 구성되어 있기 때문에 당장의 트렌드를 읽을 수 있는 공간은 아니었지만, 그럼에도 이곳 또한 도쿄역이라는 관문에서 방문자들에게 대중적인 문화와 브랜드를 보여주는 중요한 역할을 하고 있기 때문에 한 번쯤 방문할 필요가 있다고 생각되는 곳이었습니다. 어떻게 옛날 건물을 이렇게 세련되게 바꿀 수 있는지 참 대단하다고 생각되네요.</p>
+      </div>
+    </div>
+
+    <!-- Gallery: photo_03, photo_04 -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+      <div class="d-building__gallery-item">
+        <img src="picture/Kitte_Marunouchi_03.png" alt="Kitte Marunouchi floor pattern detail" />
+      </div>
+      <div class="d-building__gallery-item">
+        <img src="picture/Kitte_Marunouchi_04.png" alt="Kitte Marunouchi atrium columns" />
+      </div>
+    </div>
+
+    <!-- Gallery: photo_05, photo_06 -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+      <div class="d-building__gallery-item">
+        <img src="picture/Kitte_Marunouchi_05.png" alt="Kitte Marunouchi rooftop terrace" />
+      </div>
+      <div class="d-building__gallery-item">
+        <img src="picture/Kitte_Marunouchi_06.png" alt="Kitte Marunouchi Tokyo Station view" />
+      </div>
+    </div>
+
+    <!-- Gallery: photo_07, photo_08 -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+      <div class="d-building__gallery-item">
+        <img src="picture/Kitte_Marunouchi_07.png" alt="Kitte Marunouchi heritage facade" />
+      </div>
+      <div class="d-building__gallery-item">
+        <img src="picture/Kitte_Marunouchi_08.png" alt="Kitte Marunouchi night view" />
+      </div>
+    </div>
+
+    <div class="d-building__gmap">
+      <span class="d-building__gmap-label">Location · 東京都千代田区丸の内2-7-2</span>
+      <iframe src="https://maps.google.com/maps?q=Kitte+Marunouchi+Tokyo&hl=ko&z=17&output=embed" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </article>
+
+  <!-- BUILDING 02 -->
+  <article class="d-building d-building--segmented" id="building-02">
+    <div class="d-building__header">
+      <div class="d-building__num-wrap">
+        <span class="d-building__num">02</span>
+        <span class="d-building__subtitle">일본에서 가장 비싼 애플스토어</span>
+      </div>
+      <div class="d-building__meta">
+        <span class="d-building__tag">Commercial · 2019</span>
+        <span class="d-building__architect">Foster + Partners</span>
+      </div>
+    </div>
+
+    <h2 class="d-building__title">Apple Marunouchi Store</h2>
+    <p class="d-building__title-jp">애플 마루노우치 스토어</p>
+
+    <!-- Seg 1: text | photo_01 -->
+    <div class="d-building__seg js-img-reveal">
+      <div class="d-building__seg-text">
+        <p>다음으로는 근처에 또 다른 리모델링을 통해 태어난 공간으로 가볼 텐데요. 이 동네에 위치한 애플 스토어로 가보겠습니다. 잠깐 일본 애플 스토어의 역사를 짚고 넘어가자면, 애플의 CEO인 팀 쿡은 2011년 취임 이후 일본에서 지방에 있는 두 군데 문을 닫고, 5개의 애플 스토어를 새로 오픈했습니다. 그리고 그 중 4군데가 도쿄를 포함한 수도권이었는데요. 이는 스티브 잡스와는 다르게 철저히 수요가 몰리는 곳에 집중하겠다는 뜻으로 받아들여지며, 그래서인지 이후 지어진 애플 스토어들은 더욱 상당한 규모와 화려한 외관을 자랑하고 있습니다. 그 중 가장 넓고 비싼 애플 스토어가 바로 이곳 애플 마루노우치 스토어인데요. 2019년에 오픈한 이곳은 당시 애플의 최고 디자인 책임자였던 조너선 아이브를 비롯한 애플의 디자인 팀과, 애플 본사인 쿠퍼티노 센터를 설계한 것으로도 유명한 건축가 노먼 포스터의 Foster + Partners의 협업으로 만들어진 곳입니다. 오모테산도의 애플 매장과 마찬가지로 바깥과 연결된 높은 개방성을 추구하려 했다고 합니다. 원래부터 있던 건물의 기저부 한 켠에 들어선 매장이기 때문에 단독 건물인 오모테산도 매장처럼 건물 전체를 유리로 할 수는 없었지만, 오히려 이러한 컨셉과 리노베이션 건축의 한계 덕분에 더욱 특색 있는 외관이 완성되었는데요. Foster + Partners 측의 책임자인 Stefan Belling 또한 이를 통해 도쿄의 분주함 속에서 절제된 존재감을 만들고 싶었다고 합니다.</p>
+      </div>
+      <div class="d-building__seg-img">
+        <img src="picture/Apple Marunouchi Store_01.png" alt="Apple Marunouchi Store exterior" />
+      </div>
+    </div>
+
+    <!-- Seg 2 (alt): photo_02 | text -->
+    <div class="d-building__seg d-building__seg--alt js-img-reveal">
+      <div class="d-building__seg-img">
+        <img src="picture/Apple Marunouchi Store_02.png" alt="Apple Marunouchi Store glass facade detail" />
+      </div>
+      <div class="d-building__seg-text">
+        <p>기둥 사이사이를 특별히 제작한 둥근 모서리의 알루미늄 프레임과, 특별히 제작된 대형 강화유리로 메웠는데요. 그런데 이거 따로 언급은 안 하지만, 어디서 많이 들어보던 소재의 조합 아닌가요..? 바로 아이폰이죠. 이는 멀리서 보면 더욱 비슷한 모양이 연상됩니다. 마치 벽을 따라 거대한 아이폰들이 서 있고, 이를 통해 내부의 쇼케이스를 보여주는 듯한 형태를 띠고 있습니다. 시기상으로도 재밌는 게, 이곳은 2019년 9월 아이폰 11 출시와 비슷한 시기에 오픈했는데요. 그리고 1년 뒤 2020년부터는 아이폰 12부터는 이렇게 열면이 평평해졌죠. 아무도 몰랐지만, 지나고 보니 마치 이 스토어 자체가 아이폰의 차기 디자인을 스포하고 있었던 느낌입니다. 대나무를 심어서 환경을 생각한다는 느낌의 완벽한 그린워싱까지, 당시 욕 좀 먹던 애플의 행보와 비슷하죠. 물론 최근에도 그것과는 상관없이 나무를 이용한 인테리어는 계속되고 있습니다. 원래 있던 공간을 리노베이션한 곳이기 때문에 내부의 구조 자체는 비교적 무난한 모습을 하고 있는데요. 조너선 아이브는 그런 이곳을 두고 말하길, "저는 공간의 단순함을 사랑합니다."라고 했다고...건물의 구조와 푸른 대나무, 투명한 유리가 한데 어우러져 생명이 넘치는 빛이 가득한 볼륨을 형성한다는 점에서 단순함과 정직함이 있다고 평했다고 하네요. 그렇지, 역시 찐은 당해낼 수가 없습니다. 한번 박수를 쳐주고 다음 장소로 넘어가도록 하겠습니다.</p>
+      </div>
+    </div>
+
+    <!-- Gallery: photo_03, photo_04 -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+      <div class="d-building__gallery-item">
+        <img src="picture/Apple Marunouchi Store_03.png" alt="Apple Marunouchi Store interior" />
+      </div>
+      <div class="d-building__gallery-item">
+        <img src="picture/Apple Marunouchi Store_04.png" alt="Apple Marunouchi Store bamboo courtyard" />
+      </div>
+    </div>
+
+    <div class="d-building__gmap">
+      <span class="d-building__gmap-label">Location · 東京都千代田区丸の内1-5-1</span>
+      <iframe src="https://maps.google.com/maps?q=Apple+Store+Marunouchi+Tokyo&hl=ko&z=17&output=embed" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </article>
+
+  <!-- BUILDING 03 -->
+  <article class="d-building d-building--segmented" id="building-03">
+    <div class="d-building__header">
+      <div class="d-building__num-wrap">
+        <span class="d-building__num">03</span>
+        <span class="d-building__subtitle">버블경제가 낳은 초거대 홀</span>
+      </div>
+      <div class="d-building__meta">
+        <span class="d-building__tag">Cultural · 1996</span>
+        <span class="d-building__architect">Rafael Viñoly</span>
+      </div>
+    </div>
+
+    <h2 class="d-building__title">Tokyo International Forum</h2>
+    <p class="d-building__title-jp">도쿄 국제 포럼</p>
+
+    <!-- Seg 1: text | photo_01 -->
+    <div class="d-building__seg js-img-reveal">
+      <div class="d-building__seg-text">
+        <p>애플스토어를 시작으로 다음 장소로 가는 동안, 허먼밀러나 usm, 에르메스, 티파니 등등 다양한 고급 브랜드들이 있으며, 각각의 빌딩들이 넓은 로비를 활용해 저마다 공연을 펼치는 호화로움을 보여주고 있는데요. 예로부터 비즈니스의 중심지였기 때문인지 상당히 고급스러운 매장이나 장식들로 가득한 가로수길을 구경할 수 있습니다. 그리고 이 길의 끝에 다음 목적지이자 일본에서 가장 비싼 컨퍼런스 센터, 도쿄 국제 포럼이 있습니다. 이곳은 서울의 종로타워와 뉴욕의 432 파크 애비뉴를 설계한 것으로도 잘 알려진 건축가 라파엘 비뇰리라는 건축가의 프로젝트로, 1989년에 공모를 통해 당선되어 7년 후 1996년에 오픈한 곳입니다. 뉴욕의 파크 애비뉴는 공사비로만 12.5억 달러, 당시 환율로 대략 1.5조 원이 들어갔다고 합니다. 그리고 이곳 도쿄 국제 포럼 또한 무려 1,647억 엔이라는 막대한 공사비가 들어갔다고 하네요. 이는 일본 최대 규모의 공사비로, 스카이트리가 650억 엔, 도쿄 게이트 브릿지가 1,125억 엔, 도쿄 도청이 1,569억 엔, 도쿄 디즈니랜드조차 1,580억 엔임을 감안하면 정말로 엄청난 금액이 들어갔음을 알 수 있습니다. 유지비만 60억 엔으로 많은 이들에게는 아픈 손가락으로 느껴질 것 같긴 하지만, 단지 구경하는 사람 입장에서는 그만큼 화려한 면모를 보여줍니다.</p>
+      </div>
+      <div class="d-building__seg-img">
+        <img src="picture/Tokyo_International_Forum_01.png" alt="Tokyo International Forum exterior glass hall" />
+      </div>
+    </div>
+
+    <!-- Seg 2 (alt): photo_02 | text -->
+    <div class="d-building__seg d-building__seg--alt js-img-reveal">
+      <div class="d-building__seg-img">
+        <img src="picture/Tokyo_International_Forum_02.png" alt="Tokyo International Forum atrium interior" />
+      </div>
+      <div class="d-building__seg-text">
+        <p>거대한 홀의 외벽이 전부 유리로 되어 있고, 양 끝에 두 개의 기둥이 아치형 빔으로 된 천장을 떠받치고 있는데요. 유리벽을 나선형으로 타고 올라가는 슬로프를 통해 각 홀로 바로 이동할 수 있기도 합니다. 저녁이 되면 조명을 통해 천장의 윤곽이 더욱 잘 드러나게 되는데요. 마치 거대한 배의 뼈대 같기도 하고 공룡 뼈 같기도 한 게, 위에 있으니까 밑에서 봤을 때 거대한 스케일이 더욱 웅장하게 다가오는 곳이었습니다. 뭔가 '아키라'에 나올 것 같은 느낌이기도 하고, 거대한 스케일과 저 다리들 때문인지 제가 개인적으로 좋아하는 만화인 니헤이 츠토무 작가의 '블레이드'에 나올 것 같은 느낌...? 정말 만화처럼 세상이 망한다면 비슷한 느낌의 흉물로 남지 않을까요... 하는 헛소리는 여기까지 하고, 이곳은 위로는 앞서 지나온 도쿄역과 마루노우치 스트리트, 아래로는 유라쿠초역과 바로 맞닿아 있는데요. 부지 면적이 27,000제곱미터, 총면적이 14만 제곱미터에 달하는 거대한 규모를 갖고 있기 때문에, 자칫 그 둘 사이를 가로막는 벽 같은 건물이 될 뻔도 했지만, 건물을 동서로 양분하고 동쪽에 위치한 철도를 따라 크기 순으로 나열해서 부지의 가운데를 자연스럽게 터놓는데요. 그 덕분에 비워진 가운데가 그대로 길거리가 되어 이를 통해 대중들의 자연스러운 접근과 통행을 유도하면서 두 곳을 잇는 통로이자 가교가 되었습니다. 동시에 안에서 보면 바깥의 분주한 환경으로부터 어느 정도 분리될 수 있는 셸터의 역할 또한 수행하고 있었습니다.</p>
+      </div>
+    </div>
+
+    <!-- Seg 3: text | photo_03 -->
+    <div class="d-building__seg js-img-reveal">
+      <div class="d-building__seg-text">
+        <p>앞서 나온 것들이 구 건물을 보존하는 리노베이션을 통해 직접적인 신구 조화를 시도했다면, 이곳은 좀 더 도시설계적인 접근으로 조화를 이뤘다는 생각이 드는 곳이었습니다.</p>
+      </div>
+      <div class="d-building__seg-img">
+        <img src="picture/Tokyo_International_Forum_03.png" alt="Tokyo International Forum structural ribs" />
+      </div>
+    </div>
+
+    <!-- Gallery: photo_04, photo_05 -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+      <div class="d-building__gallery-item">
+        <img src="picture/Tokyo_International_Forum_04.png" alt="Tokyo International Forum glass roof" />
+      </div>
+      <div class="d-building__gallery-item">
+        <img src="picture/Tokyo_International_Forum_05.png" alt="Tokyo International Forum walkway" />
+      </div>
+    </div>
+
+    <!-- Gallery: photo_06, photo_07 -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+      <div class="d-building__gallery-item">
+        <img src="picture/Tokyo_International_Forum_06.png" alt="Tokyo International Forum night view" />
+      </div>
+      <div class="d-building__gallery-item">
+        <img src="picture/Tokyo_International_Forum_07.png" alt="Tokyo International Forum plaza" />
+      </div>
+    </div>
+
+    <!-- Gallery: photo_08, photo_09 -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+      <div class="d-building__gallery-item">
+        <img src="picture/Tokyo_International_Forum_08.png" alt="Tokyo International Forum arch detail" />
+      </div>
+      <div class="d-building__gallery-item">
+        <img src="picture/Tokyo_International_Forum_09.png" alt="Tokyo International Forum corridor" />
+      </div>
+    </div>
+
+    <!-- Gallery: photo_10, photo_11 -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+      <div class="d-building__gallery-item">
+        <img src="picture/Tokyo_International_Forum_10.png" alt="Tokyo International Forum hall entrance" />
+      </div>
+      <div class="d-building__gallery-item">
+        <img src="picture/Tokyo_International_Forum_11.png" alt="Tokyo International Forum aerial view" />
+      </div>
+    </div>
+
+    <div class="d-building__gmap">
+      <span class="d-building__gmap-label">Location · 東京都千代田区丸の内3-5-1</span>
+      <iframe src="https://maps.google.com/maps?q=Tokyo+International+Forum&hl=ko&z=17&output=embed" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </article>
+
+  <!-- BUILDING 04 -->
+  <article class="d-building d-building--segmented" id="building-04">
+    <div class="d-building__header">
+      <div class="d-building__num-wrap">
+        <span class="d-building__num">04</span>
+        <span class="d-building__subtitle">없애는 것으로 완성된 공간</span>
+      </div>
+      <div class="d-building__meta">
+        <span class="d-building__tag">Commercial · 2020</span>
+        <span class="d-building__architect">Herzog &amp; de Meuron</span>
+      </div>
+    </div>
+
+    <h2 class="d-building__title">Marronnier Gate Ginza / Uniqlo Tokyo</h2>
+    <p class="d-building__title-jp">마로니에 게이트 긴자 / 유니클로 도쿄</p>
+
+    <!-- Seg 1: text | photo_01 -->
+    <div class="d-building__seg js-img-reveal">
+      <div class="d-building__seg-text">
+        <p>이렇게 도쿄 국제 포럼을 통과해 나오면, 앞서 말했듯 JR 야마노테선 유라쿠초역이 나오는데요. 이 역을 넘어가면 드디어 우리가 일반적으로 아는 시계탑이 보이는 긴자에 도착할 수 있습니다. 그 전에 이 앞에 있는 또 하나의 리노베이션 건축물을 구경해볼까 하는데요. 터널을 지나면 바로 앞에 보이는 마로니에 게이트 긴자로, 정확히는 1층부터 4층까지 위치한 유니클로 도쿄 매장입니다. 여기 자체는 2020년에 개장한 곳이지만, 이 건물은 원래 1984년에 프랑스발 백화점이 들어섰던 곳으로, 내부 또한 그 당시의 파리지앵 스타일로 만들어졌다고 하는데요. 때문에 매장 내부에 이국적인 경험을 극대화하려는 일환으로 폐쇄적인 형태를 취하게 되었다고 합니다. 당장 여기서만 봐도 뭔가 답답한 느낌이 들지 않나요? 이렇게만 보면 뭐가 파리지앵 스타일인지 전혀 모르겠는데요. 그랬던 그곳에 유니클로가 새 플래그십 매장을 열기 위해 아주 유명한 건축가에게 의뢰를 맡겼는데요. 그들은 바로 스위스의 건축가 듀오 헤르조그 드 뮤론의 작품으로, 이곳에서 이들이 표현하고자 했던 것 또한, 앞서 나온 건축물들과 마찬가지로 건물에 개방성을 부여하는 것이었다고 합니다. 스위스 듀오의 해결책은 아주 간단했습니다. 바로 벽과 천장을 허물어서 구조를 그대로 보여주는 것이었습니다. 그들은 리노베이션을 위해 이곳에 방문한 뒤, 건물이 가진 일정한 간격의 뼈대에 매력을 느꼈다고 하는데요. *이게 바로 라파예트 스타일인가??</p>
+      </div>
+      <div class="d-building__seg-img">
+        <img src="picture/Marronnier_Gate_Ginza_01.png" alt="Marronnier Gate Ginza exterior" />
+      </div>
+    </div>
+
+    <!-- Seg 2 (alt): photo_02 | text -->
+    <div class="d-building__seg d-building__seg--alt js-img-reveal">
+      <div class="d-building__seg-img">
+        <img src="picture/Marronnier_Gate_Ginza_02.png" alt="Marronnier Gate Ginza exposed structure interior" />
+      </div>
+      <div class="d-building__seg-text">
+        <p>이를 드러내기 위해 1층에서 4층까지 코어와 매장 면적을 제외한 모든 부분을 가능한 드러냈습니다. 외벽조차 원래 있던 것들을 걷어내고 그 자리를 단지 구조가 보이게 새로 메웠을 뿐이죠. 그들 또한 이 작업에서 자기들이 한 것이라고는 불필요한 부분을 걷어낸 것뿐이라고 말할 정도로, 아주 간단하게 1층과 4층을 통합시켜버렸습니다. 이를 통해 엄청난 개방감과 공간감을 부여하였으며, 또한 이를 유니클로의 수수하고 차분한 느낌과 맞추기 위해 노출된 콘크리트를 가능한 그대로 활용해 전반적인 톤을 차분하게 통일시켰죠. 이 공간의 하이라이트는 천장 곳곳에 붙은 거울들인데요. 이 거울들이 자칫 지루할 수 있는 배열의 공간을 이리저리 왜곡시키기도 하고, 넓은 공간감을 더욱 극대화하는 장치로 쓰이기도 하죠. 마치 무한 거울의 방 같기도 하고, 개인적으로는 영화 '인터스텔라'의 블랙홀의 모습 같기도 했던 공간이 펼쳐지며, 좋은 의미로 정신을 쏙 빼놓는 연출을 해내고 있습니다. 정말 그들이 말한 대로 비워내기를 통한 최소의 작업으로 최대의 효과를 낸 곳이라는 생각이 들었습니다. 고수들은 리노베이션도 이렇게 감각적으로 하시나요?</p>
+      </div>
+    </div>
+
+    <!-- Gallery: photo_03, photo_04 -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+      <div class="d-building__gallery-item">
+        <img src="picture/Marronnier_Gate_Ginza_03.png" alt="Marronnier Gate Ginza mirror ceiling" />
+      </div>
+      <div class="d-building__gallery-item">
+        <img src="picture/Marronnier_Gate_Ginza_04.png" alt="Marronnier Gate Ginza open floor plan" />
+      </div>
+    </div>
+
+    <!-- Gallery: photo_05, photo_06 -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+      <div class="d-building__gallery-item">
+        <img src="picture/Marronnier_Gate_Ginza_05.png" alt="Marronnier Gate Ginza structural detail" />
+      </div>
+      <div class="d-building__gallery-item">
+        <img src="picture/Marronnier_Gate_Ginza_06.png" alt="Marronnier Gate Ginza Uniqlo facade" />
+      </div>
+    </div>
+
+    <!-- Gallery: photo_07, photo_08 -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+      <div class="d-building__gallery-item">
+        <img src="picture/Marronnier_Gate_Ginza_07.png" alt="Marronnier Gate Ginza interior view" />
+      </div>
+      <div class="d-building__gallery-item">
+        <img src="picture/Marronnier_Gate_Ginza_08.png" alt="Marronnier Gate Ginza concrete columns" />
+      </div>
+    </div>
+
+    <!-- Gallery: photo_09, photo_10 -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+      <div class="d-building__gallery-item">
+        <img src="picture/Marronnier_Gate_Ginza_09.png" alt="Marronnier Gate Ginza upper floors" />
+      </div>
+      <div class="d-building__gallery-item">
+        <img src="picture/Marronnier_Gate_Ginza_10.png" alt="Marronnier Gate Ginza street level" />
+      </div>
+    </div>
+
+    <div class="d-building__gmap">
+      <span class="d-building__gmap-label">Location · 東京都中央区銀座2-2-14</span>
+      <iframe src="https://maps.google.com/maps?q=Marronnier+Gate+Ginza+Uniqlo+Tokyo&hl=ko&z=17&output=embed" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </article>
+
+  <!-- BUILDING 05 -->
+  <article class="d-building d-building--segmented" id="building-05">
+    <div class="d-building__header">
+      <div class="d-building__num-wrap">
+        <span class="d-building__num">05</span>
+        <span class="d-building__subtitle">빛나는 보석상자</span>
+      </div>
+      <div class="d-building__meta">
+        <span class="d-building__tag">Commercial · 2005</span>
+        <span class="d-building__architect">Toyo Ito</span>
+      </div>
+    </div>
+
+    <h2 class="d-building__title">Mikimoto II Ginza</h2>
+    <p class="d-building__title-jp">미키모토 긴자 2</p>
+
+    <!-- Seg 1: text | photo_01 -->
+    <div class="d-building__seg js-img-reveal">
+      <div class="d-building__seg-text">
+        <p>마로니에 게이트 긴자의 바로 맞은편에 독특하게 생긴 건물을 구경할 수 있습니다. 이곳은 일본에서 예물로 주로 쓰이는 주얼리 브랜드 미키모토의 긴자 2호점으로, 딱 봐도 특이하게 생긴 이곳은 만들어낸 방법 또한 특이한데요. 일반적으로 건물을 지어 올릴 때 먼저 뼈대를 한 층씩 쌓아 올리고 살을 붙이는 방식을 취할 텐데요. 하지만 여기는 내벽과 외벽이 되는 스킨 두 장을 세우고 그 사이에 콘크리트를 부어서 굳혀낸 것이라고 합니다. 과자로 예를 들면 일반 빼빼로와 누드 빼빼로의 차이라고 할 수 있을 것입니다. 군데군데 구멍이 송송 뚫린 이 외벽들 자체가 구조체로서 건물을 지탱하고 있으며, 구조체 사이사이로 자연스럽게 형성된 창들이 밤이 되면 보석마냥 빛나며 독특한 외관을 보여주고 있습니다.</p>
+      </div>
+      <div class="d-building__seg-img">
+        <img src="picture/Mikimoto_II_Ginza_01.png" alt="Mikimoto II Ginza exterior perforated facade" />
+      </div>
+    </div>
+
+    <!-- Seg 2 (alt): photo_02 | text -->
+    <div class="d-building__seg d-building__seg--alt js-img-reveal">
+      <div class="d-building__seg-img">
+        <img src="picture/Mikimoto_II_Ginza_02.png" alt="Mikimoto II Ginza night illumination" />
+      </div>
+      <div class="d-building__seg-text">
+        <p>여기에서 오모테산도 편을 주의 깊게 보신 분들이라면 한 군데 생각나시는 곳이 있을 것입니다. 바로 같은 건축가 이토 토요가 담당한 보테가 베네타 오모테산도로, 건물 앞 가로수에서 영감을 얻어 나뭇가지를 형상화한 구조체를 갖고 있는 건물인데요. 미키모토 긴자 또한 이와 마찬가지로 엘리베이터나 계단을 제외하고는 그 어떤 반복적인 기둥도 찾아볼 수 없었습니다. 그런데 말입니다, 방금 것보다 조금 답답해 보이는 느낌도 들지 않나요? 사실 이게 이 동네를 비롯한 여느 중심 상권에서 쉽게 볼 수 있는 스타일의 건물은 아닌데요. 왜냐하면 그것들은 대체로 입구를 중심으로 저층부에 거대한 유리벽을 둔 큰 쇼케이스 같은 느낌의 건물들이 많기 때문이죠. 이는 빛나는 보석상자라는 브랜드의 컨셉과 브랜드의 성격으로 미루어 볼 때, 유동인구가 많은 번잡한 긴자의 길거리와 적당한 단절감을 두어 프라이빗하면서도 넓고 쾌적한 매장 경험을 위함은 아닐까 생각되는 곳이었습니다. 이게 2005년에 지어졌으니까, 지금이야 더 특이한 건물들이 이미 많이 생겼지만 그 당시에는 시인성이 정말 엄청났을 것 같지 않나요? 예물로 주로 쓰인다는데, 저도 언젠가는...여기까지 하겠습니다.</p>
+      </div>
+    </div>
+
+    <!-- Gallery: photo_03, photo_04 -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+      <div class="d-building__gallery-item">
+        <img src="picture/Mikimoto_II_Ginza_03.png" alt="Mikimoto II Ginza window openings" />
+      </div>
+      <div class="d-building__gallery-item">
+        <img src="picture/Mikimoto_II_Ginza_04.png" alt="Mikimoto II Ginza structural skin detail" />
+      </div>
+    </div>
+
+    <!-- Gallery: photo_05, photo_06 -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+      <div class="d-building__gallery-item">
+        <img src="picture/Mikimoto_II_Ginza_05.png" alt="Mikimoto II Ginza interior display" />
+      </div>
+      <div class="d-building__gallery-item">
+        <img src="picture/Mikimoto_II_Ginza_06.png" alt="Mikimoto II Ginza street view" />
+      </div>
+    </div>
+
+    <!-- Gallery: photo_07, photo_08 -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+      <div class="d-building__gallery-item">
+        <img src="picture/Mikimoto_II_Ginza_07.png" alt="Mikimoto II Ginza facade pattern" />
+      </div>
+      <div class="d-building__gallery-item">
+        <img src="picture/Mikimoto_II_Ginza_08.png" alt="Mikimoto II Ginza dusk glow" />
+      </div>
+    </div>
+
+    <div class="d-building__gmap">
+      <span class="d-building__gmap-label">Location · 東京都中央区銀座2-8-18</span>
+      <iframe src="https://maps.google.com/maps?q=Mikimoto+Ginza+2+Tokyo&hl=ko&z=17&output=embed" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </article>
+
+  <!-- BUILDING 06 -->
+  <article class="d-building d-building--segmented" id="building-06">
+    <div class="d-building__header">
+      <div class="d-building__num-wrap">
+        <span class="d-building__num">06</span>
+        <span class="d-building__subtitle">촉감을 시각적으로 표현한다면</span>
+      </div>
+      <div class="d-building__meta">
+        <span class="d-building__tag">Commercial</span>
+        <span class="d-building__architect">Jun Aoki</span>
+      </div>
+    </div>
+
+    <h2 class="d-building__title">Loro Piana Flagship Ginza</h2>
+    <p class="d-building__title-jp">로로 피아나 플래그십 긴자</p>
+
+    <!-- Seg 1: text | photo_01 -->
+    <div class="d-building__seg js-img-reveal">
+      <div class="d-building__seg-text">
+        <p>그대로 미키모토를 지나면 이제서야 우리가 익히 아는 시계탑이 있는 사거리에 도착하게 되는데요. 긴자의 중심으로 여겨지는 곳으로 길을 찾는 데 기준이 되기도 하는 것이며, 이 사거리를 기준으로 어지간한 브랜드 매장은 다 있다고 할 수 있습니다. 미키모토를 비롯한 불가리, 까르띠에, 반클리프 등의 주얼리부터 에르메스, 루이비통, 샤넬은 물론이거니와 SNS에 잊을 만하면 뜨는 뭐 남자 여자 지갑, 가방 계급도 따위에 나오는 브랜드는 다 만나볼 수 있는데요. 이 영상에서는 그중 비교적 가장 최근에 지어진 장소들과 어떤 건축가를 기준으로 엮어서 설명해볼까 합니다. 그 주인공은 바로 로로 피아나 긴자 플래그십 스토어와 이를 설계한 건축가 아오키 준입니다. 한국에서는 안도 타다오나 SANAA 등에 비해 대중적인 인지도가 부족하지만, 그 또한 그만의 독특한 영역과 작업 스타일을 구축한 것으로 평가를 받고 있는데요. 특히 그는 프랑스의 럭셔리 브랜드 루이비통이 러브콜을 보내 일본을 비롯한 세계 각지의 루이비통 매장 디자인을 담당하기도 했습니다. 긴자에 위치한 두 군데 루이비통 또한 모두 아오키 준의 손에서 태어난 것인데요.</p>
+        <p>럭셔리 브랜드의 경우, 특히 여러 매장에서 통일된 경험을 주거나 브랜드의 개성을 바깥으로 강하게 드러내기 위해 건물의 외관에 브랜드의 DNA가 한눈에 담긴 형태를 빚거나 시그니처 패턴을 직접적으로 사용하는 곳이 많습니다. 그중 하나인 루이비통 마츠야 긴자 스토어 또한 낮에는 격자무늬의 다미에 패턴으로 된 벽을 연출하지만, 거리가 어두워지면 조명을 이용해 모노그램 패턴이 드러나는 아주 간단명료한 방법으로 보행자들의 시선을 사로잡고 있죠. 여담으로 몇 년 전부터 고가의 패션 하우스들이 로고를 정자체로 바꾸는 것 또한 이러한 패턴화를 쉽게 하기 위함이기도 하죠. 그런데 말입니다, 그게 없는 브랜드라면 어떻게 해야 될까요? 바로 그것을 보여주는 곳이 이 로로 피아나 긴자 플래그십 스토어가 되겠습니다.</p>
+        <p>저 같은 패알못에게는 다소 생소할 수도 있는 브랜드지만, 이탈리아의 럭셔리 브랜드인 로로 피아나는 특유의 최고급 소재와 색감으로 유명하며, 특히 다른 곳들과는 달리 로고 플레이를 전혀 하지 않는 것으로도 숱한 팬층을 형성하고 있는, 그야말로 진정한 이탈리안 클래식을 추구하고 있는 브랜드입니다. 때문에 루이비통처럼 정체성을 직관적으로 드러낼 수 있는 패턴 같은 게 없었습니다. 이에 대해 고민하던 아오키 준은 일단 로로 피아나의 제품들을 천천히 구경하는데요. 그러던 중 그는 어떤 깨달음을 얻게 됩니다. 세계에서 가장 최상급 섬유 중 하나로 평가받는 비쿠냐 울의 색상으로, 비쿠냐 울을 거의 독점적으로 취급하는 로로 피아나의 브랜드 컬러로 자연스럽게 자리 잡았는데요.</p>
+      </div>
+      <div class="d-building__seg-img">
+        <img src="picture/Loro_Piana_Flagship_Ginza_01.png" alt="Loro Piana Flagship Ginza exterior louver facade" />
+      </div>
+    </div>
+
+    <!-- Seg 2 (alt): photo_02 | text -->
+    <div class="d-building__seg d-building__seg--alt js-img-reveal">
+      <div class="d-building__seg-img">
+        <img src="picture/Loro_Piana_Flagship_Ginza_02.png" alt="Loro Piana Flagship Ginza upper scarf-like fins" />
+      </div>
+      <div class="d-building__seg-text">
+        <p>과연 이 최고급 소재의 색감을 마주하며 유명 건축가는 어떠한 것을 깨달았을까요? "야, 이거 벽돌 아니야?"라며 벽돌의 색깔과 비슷하다고 했다고 하네요. 듣고 나니 그렇게 보이는 것 같기도 한데, 물론 단순히 이런 평에서 그치지 않고 벽돌이라는 의외의, 정말 의외의 신박한 공통점에서 출발하여, 건축물의 단단한 물성에서 섬유의 극도로 부드럽고 매끄러운 터치를 표현하고 싶었다고 합니다. 때문에 아래쪽에 비쿠냐 울 색으로 칠해진 루버가 나열된 직선적인 파사드가 위로 갈수록 흩날리는 스카프의 끝자락 같은 느낌으로 변하고 있죠.</p>
+        <p>이게 발상 자체는 상당히 단순하지만, 저는 이 건축가의 진정한 무기는 이 색을 벽돌로 보고 그걸 여기까지 연결시킨 이러한 종잡을 수 없는 발상력이라고 생각하는데요. 그는 예전에 그의 경력에서 첫 루이비통 매장을 디자인하면서 무아레 효과를 이용한 패턴으로 루이비통의 마음을 사로잡고, 이 패턴은 이후 전 세계의 매장에 적용되기 시작했는데요. 두 장의 다미에 패턴이 겹치며 보여주는 이 아름다운 시각적인 효과의 영감은, 그가 어렸을 때 봤던 모기장 두 장 사이로 비치는 노을의 기억에서 나왔다고 합니다. 그리고 긴자에 있는 또 하나의 루이비통 매장의 외벽 또한 모네의 그림에서 영감을 얻어, 인상주의의 아름다움을 건축물에 완벽히 투영시켰죠. 심지어 진짜 인상주의 그림들처럼 세밀한 유리 가공을 통해 빛의 성질을 포착하여, 각도에 따라 입체적으로 변하는 아름다운 물결 패턴을 만들어냈습니다.</p>
+        <p>이렇게 보통 사람이라면 그냥 지나칠 만한, 혹은 단편적인 기억에 그칠 수도 있는 것들, 더 나아가면 일상의 모든 것들로부터 항상 영감을 얻을 만큼 남다른 시각을 갖고 있으며, 이를 자신의 작업에 완벽하게 적용시킨다는 게, 이게 마냥 쉽지만 정말 대단한 능력이라고 생각하거든요. 그래서인지 그는 공개된 인터뷰에서 항상 자신과 다른 분야의 이야기나 다양한 색다른 경험의 중요성을 강조하고 있기도 하고요. 모두가 알아보지 못했던 아름다움을 찾아서 드러내주는 역할을 하고 싶다고 말하는 아오키 준, 건축을 넘어 창작하는 사람은 모두 부러워할 만한 독특한 상상력의 소유자가 아닐까 생각되네요.</p>
+      </div>
+    </div>
+
+    <!-- Gallery: photo_03, photo_04 -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+      <div class="d-building__gallery-item">
+        <img src="picture/Loro_Piana_Flagship_Ginza_03.png" alt="Loro Piana Flagship Ginza louver detail" />
+      </div>
+      <div class="d-building__gallery-item">
+        <img src="picture/Loro_Piana_Flagship_Ginza_04.png" alt="Loro Piana Flagship Ginza street perspective" />
+      </div>
+    </div>
+
+    <!-- Gallery: photo_05, photo_06 -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+      <div class="d-building__gallery-item">
+        <img src="picture/Loro_Piana_Flagship_Ginza_05.png" alt="Loro Piana Flagship Ginza interior display" />
+      </div>
+      <div class="d-building__gallery-item">
+        <img src="picture/Loro_Piana_Flagship_Ginza_06.png" alt="Loro Piana Flagship Ginza facade close-up" />
+      </div>
+    </div>
+
+    <div class="d-building__gmap">
+      <span class="d-building__gmap-label">Location · 東京都中央区銀座2-6-7</span>
+      <iframe src="https://maps.google.com/maps?q=Loro+Piana+Ginza+Tokyo&hl=ko&z=17&output=embed" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </article>
+
+  <!-- BUILDING 07 -->
+  <article class="d-building d-building--segmented" id="building-07">
+    <div class="d-building__header">
+      <div class="d-building__num-wrap">
+        <span class="d-building__num">07</span>
+        <span class="d-building__subtitle">과거와 현재를 넘나드는 하이테크</span>
+      </div>
+      <div class="d-building__meta">
+        <span class="d-building__tag">Commercial · 2001</span>
+        <span class="d-building__architect">Renzo Piano</span>
+      </div>
+    </div>
+
+    <h2 class="d-building__title">Maison Hermès Ginza</h2>
+    <p class="d-building__title-jp">메종 에르메스 긴자</p>
+
+    <!-- Seg 1: text | photo_01 -->
+    <div class="d-building__seg js-img-reveal">
+      <div class="d-building__seg-text">
+        <p>이렇게 이탈리아 럭셔리 브랜드의 끝판왕을 만나봤는데요. 다음은 프랑스의 끝판왕을 구경하러 가보겠습니다. 모두에게 비교적 익숙한 브랜드, 익숙하면 안 되는 가격...인데, 렌조 피아노의 메종 에르메스 긴자입니다. 주변의 건물들과는 달리, 길가와 맞닿아 있는 부분이 유리 블록으로 뒤덮인, 겉보기에는 파리에서 그대로 날아온 것처럼 홀로 겉이 다른 세련미를 보여주는 이곳은 사실 일본의 전통 등불에서 착안한 외관이라고 하는데요. 이렇게 해당 지역이나 나라의 특징을 십분 활용하는 것도 패션 하우스의 플래그십 스토어들이 자주 보여주는 특징이기도 하죠. 에르메스는 이 건물의 설계를 의뢰하면서 트렌드나 시대를 타지 않는 지속적인 존재로서의 건축물을 만들어 달라고 했다는데요. 이에 답하기 위해 최소한 몇백 년 전부터 한자리에 있었을 등불에서 외관의 콘셉트를 따오지 않았을까 생각됩니다.</p>
+      </div>
+      <div class="d-building__seg-img">
+        <img src="picture/Maison_Hermes_Ginza_01.png" alt="Maison Hermes Ginza glass block facade" />
+      </div>
+    </div>
+
+    <!-- Seg 2 (alt): photo_02 | text -->
+    <div class="d-building__seg d-building__seg--alt js-img-reveal">
+      <div class="d-building__seg-img">
+        <img src="picture/Maison_Hermes_Ginza_02.png" alt="Maison Hermes Ginza lantern glow at night" />
+      </div>
+      <div class="d-building__seg-text">
+        <p>재미있게도 건축물은 외관이 심플하면 심플할수록 그 심플함을 구현하기 위해 구조가 더 복잡해지는 경우가 있죠. 게다가 렌조 피아노는 너무나도 잘 알려진 하이테크 건축의 대가입니다. 유리 블록들이 만들어내는 등불 같은 효과를 극대화하기 위해 이것들은 모든 층으로부터 일정한 거리만큼 떨어진 상태로 고정되어 있습니다. 덕분에 바깥에서 봤을 때 슬라브나 기둥이 최대한 부각되지 않는 구조를 취할 수 있는 것입니다. 이 역시도 과거 신사의 오중탑의 면진 설계에서 따온 구조로, 오중탑이 중앙의 기둥과 부재들이 유기적으로 움직이는 메커니즘으로 수백 년에 걸쳐 지진을 견뎌왔듯이, 이것 또한 이 유리벽을 포함하여 각 층마다 기둥부가 외력에 대응하여 유기적으로 움직여서 자연적으로 지진 하중을 경감하는 방식이라고 합니다. 이게 토목에서의 적용 사례는 있었지만 건축 구조에 상용화된 건 이곳이 세계 최초라고 하는데요. 최고의 하이테크 건축가와 최고의 럭셔리 브랜드와 최고의 시공사의 만남이 만들어낸 최고의 럭셔리 브랜드 매장이라고 할 수 있겠습니다.</p>
+      </div>
+    </div>
+
+    <!-- Gallery: photo_03, photo_04 -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+      <div class="d-building__gallery-item">
+        <img src="picture/Maison_Hermes_Ginza_03.png" alt="Maison Hermes Ginza glass block detail" />
+      </div>
+      <div class="d-building__gallery-item">
+        <img src="picture/Maison_Hermes_Ginza_04.png" alt="Maison Hermes Ginza street view" />
+      </div>
+    </div>
+
+    <!-- Gallery: photo_05, photo_06 -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+      <div class="d-building__gallery-item">
+        <img src="picture/Maison_Hermes_Ginza_05.png" alt="Maison Hermes Ginza interior gallery" />
+      </div>
+      <div class="d-building__gallery-item">
+        <img src="picture/Maison_Hermes_Ginza_06.png" alt="Maison Hermes Ginza corner facade" />
+      </div>
+    </div>
+
+    <div class="d-building__gmap">
+      <span class="d-building__gmap-label">Location · 東京都中央区銀座5-4-1</span>
+      <iframe src="https://maps.google.com/maps?q=Maison+Hermes+Ginza+Tokyo&hl=ko&z=17&output=embed" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </article>
+
+  <!-- BUILDING 08 -->
+  <article class="d-building d-building--segmented" id="building-08">
+    <div class="d-building__header">
+      <div class="d-building__num-wrap">
+        <span class="d-building__num">08</span>
+        <span class="d-building__subtitle">긴자 거리의 끝판왕</span>
+      </div>
+      <div class="d-building__meta">
+        <span class="d-building__tag">Mixed Use · 2017</span>
+        <span class="d-building__architect">Yoshio Taniguchi</span>
+      </div>
+    </div>
+
+    <h2 class="d-building__title">Ginza Six</h2>
+    <p class="d-building__title-jp">긴자 식스</p>
+
+    <!-- Seg 1: text | photo_01 -->
+    <div class="d-building__seg js-img-reveal">
+      <div class="d-building__seg-text">
+        <p>이제 에르메스를 빠져나와 다음 장소로 가볼 텐데요. 이 시계탑 기준으로 북쪽, 그러니까 방금 로로 피아나가 있던 위치에서는 각각의 브랜드가 독자적인 건물을 세워 거리를 형성하고, 지하철역과 정류장들이 사람들을 퍼트리고 있었죠. 그런데 반대쪽에는 이 모든 것들의 역할을 해내는 곳이 있습니다. 눈길을 끄는 럭셔리 브랜드를 주르륵 줄 세우고 주변의 대중교통 및 보행자 네트워크와 연계되어 당당히 이 거리에 새 랜드마크로 자리 잡고 있는 긴자 최대의 상업시설, 긴자 식스입니다.</p>
+        <p>굳이 비교하자면 더 현대 서울과 비슷한, 근래에 생긴 일본의 가장 핫한 대규모 상업시설인데요. 이전에 여러 건물이 중구난방으로 있던 큰 면적을 재건축을 통해 하나의 건물로 깔끔하게 통합시킨 곳인데요. 하지만 땅값이 비싼 긴자 거리이기에 더욱 대로변에 접한 1층 매장들에게는 독립적인 개성을 가진 파사드를 부여해야 했습니다. 그러면서도 이 거리가 기존에 갖고 있던 환경을 최대한 건드리지 않기를 원했죠. 이걸 해결하기 위해 건축가 다니구치 요시오는 일본의 전통 출입문, 간판 구조인 '히사시'와 '노렌'에서 영감을 얻어 상층부는 수평적인 차양 구조로 통일성을 주되, 저층부는 여기에 걸린 노렌들처럼 개별적인 개성을 드러내도록 제안했다고 합니다. 다양한 목적으로 이 공간을 찾는 모든 사람들을 환대한다는 전통적인 콘셉트를 갖음과 동시에, 두 블록을 하나로 통합하면서도 그 사이를 지나는 골목길들을 그대로 유지하기 위해 가운데에 터널을 뚫어서 인근 보행자들이 기존과 같이 이동할 수 있도록 하였죠.</p>
+      </div>
+      <div class="d-building__seg-img">
+        <img src="picture/Ginza_Six_01.png" alt="Ginza Six exterior horizontal canopy" />
+      </div>
+    </div>
+
+    <!-- Seg 2 (alt): photo_02 | text -->
+    <div class="d-building__seg d-building__seg--alt js-img-reveal">
+      <div class="d-building__seg-img">
+        <img src="picture/Ginza_Six_02.png" alt="Ginza Six atrium installation art" />
+      </div>
+      <div class="d-building__seg-text">
+        <p>여러모로 일본스럽고 긴자와 어울리는 컨셉이라고 생각되네요. 로고를 담당한 디자이너, 하라 켄야의 인터뷰에서도 이러한 수평 구조에 대해 힌트를 얻을 수 있는데요. 그가 긴자에서 주목한 것은 여느 동네와는 달리 정갈한 축성을 가진 토지 구역으로 나뉘어 있다는 것이었고, 이것이 자연스럽게 긴자 식스의 브랜드 아이덴티티가 되었다고 말합니다. 이 수평 처마들은 스테인리스 스틸로 마감되어 있어서 야간에는 주변의 빛을 받아, 아래에서 봤을 때 간접광을 통해 건물에 통일감을 주며 예사롭지 않은 화려함을 연출합니다.</p>
+        <p>그리고 더욱 화려한 아래 노렌들을 차지한 것은 6개의 하이패션 브랜드로, 파사드 디자인에 참여한 디자이너나 건축가들의 라인업만 봐도 어마어마한데요. 로고를 담당한 하라 켄야를 시작으로, 그웨나엘 니콜라스나 데이비드 치퍼필드, 피에르파올로 피치올리, 피터 마리노, 다니구치 요시오 등이 있으며, 내부 공용 공간의 인테리어 또한 펜디 매장을 디자인한 그웨나엘 니콜라스의 디자인으로, 그는 환대라는 공간의 컨셉에 맞춰 여러 가지 전통 무늬를 기반으로 일본의 에센스를 넣고 싶었다고 하는데요. 때문에 곳곳에 다양한 무늬들이 현대적으로 이식되어 있으며, 이러한 변수들이 이 넓은 공간을 지루하지 않도록 가득 채우고 있었습니다. 그중 하이라이트는 중앙 천장에 위치한 설치 미술로, 이렇게 매번 기간별로 거대한 설치 미술들이 장식되어 건물의 스케일을 유감없이 뽐내고 있지만, 반면에 매장 쪽 배치는 군데군데 지그재그로 틀어서 넓고 네모난 쇼핑몰이 가지는 특유의 대형 마트 같은 공간감을 없애고, 마치 긴자 뒤편의 골목길을 이리저리 걷는 느낌이 나도록 했다고 하네요. 앞서 말했듯 골목길 테마는 긴자 식스를 관통하는 개념이기도 하죠. 혹시 천재들의 인사이트란 서로 통하는 게 있는 것 같습니다.</p>
+      </div>
+    </div>
+
+    <!-- Gallery: photo_03, photo_04 -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+      <div class="d-building__gallery-item">
+        <img src="picture/Ginza_Six_03.png" alt="Ginza Six brand noren facades" />
+      </div>
+      <div class="d-building__gallery-item">
+        <img src="picture/Ginza_Six_04.png" alt="Ginza Six interior atrium void" />
+      </div>
+    </div>
+
+    <!-- Gallery: photo_05, photo_06 -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+      <div class="d-building__gallery-item">
+        <img src="picture/Ginza_Six_05.png" alt="Ginza Six street level entrance" />
+      </div>
+      <div class="d-building__gallery-item">
+        <img src="picture/Ginza_Six_06.png" alt="Ginza Six rooftop garden" />
+      </div>
+    </div>
+
+    <div class="d-building__gmap">
+      <span class="d-building__gmap-label">Location · 東京都中央区銀座6-10-1</span>
+      <iframe src="https://maps.google.com/maps?q=Ginza+Six+Tokyo&hl=ko&z=17&output=embed" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </article>
+
+  <!-- BUILDING 09 -->
+  <article class="d-building d-building--segmented" id="building-09">
+    <div class="d-building__header">
+      <div class="d-building__num-wrap">
+        <span class="d-building__num">09</span>
+        <span class="d-building__subtitle">미래를 위한 신소재 공법</span>
+      </div>
+      <div class="d-building__meta">
+        <span class="d-building__tag">Commercial · 2022</span>
+        <span class="d-building__architect">Kengo Kuma</span>
+      </div>
+    </div>
+
+    <h2 class="d-building__title">Apple Store Ginza / Hulic Ginza 8</h2>
+    <p class="d-building__title-jp">애플 스토어 긴자 / 휴릭 긴자 8</p>
+
+    <!-- Seg 1: text | photo_01 -->
+    <div class="d-building__seg js-img-reveal">
+      <div class="d-building__seg-text">
+        <p>흔히 목조 빌딩에 대해 많이들 갖는 의구심은 화재나 지진 등의 재난에 취약하며 콘크리트보다 강도가 약해 고층으로 올리기 힘들다는 것인데요. 이러한 의심을 완벽히 날려버리기 위해 탄생한 곳이 있습니다. 긴자 애플스토어가 새로 이전한 12층 높이의 빌딩인데요. 이곳은 차세대 건축 소재로 불리는 CLT라는 소재를 이용해 만든 빌딩으로, 말이 어려워 보이지만 마치 젠가처럼 원목을 교차로 짜서 이어붙이는 소재를 의미합니다. 그 간단한 원리를 통해 콘크리트에 필적하는 수준의 강도를 낼 수 있으며, 지진과 화재에도 내성이 보다 강하다고 하는데요. 하지만 아직은 규모의 경제가 실현되지 않아 생산 비용이 보다 높다는 단점 또한 존재한다고 합니다.</p>
+      </div>
+      <div class="d-building__seg-img">
+        <img src="picture/Apple_Store_Ginza_01.png" alt="Apple Store Ginza CLT timber facade" />
+      </div>
+    </div>
+
+    <!-- Seg 2 (alt): photo_02 | text -->
+    <div class="d-building__seg d-building__seg--alt js-img-reveal">
+      <div class="d-building__seg-img">
+        <img src="picture/Apple_Store_Ginza_02.png" alt="Apple Store Ginza wood and glass interior" />
+      </div>
+      <div class="d-building__seg-text">
+        <p>때문에 여기에서는 철골 구조와의 하이브리드를 통해 비용과 공사 기간을 최적으로 맞추고, 외관 또한 나무를 적극적으로 사용하는 유명 건축가, 통칭 나무 아저씨 쿠마 켄고의 사무소가 디자인을 맡았으며, 무엇보다 그 친환경성과 첨단 목조 기술이 들어간 곳이라는 걸 야무지게 드러내기 위해 친환경에 아주 관심이 많은 애플스토어를 들였습니다. 앞서 말한 모든 구차한 설명들 따위보다 간단히 정리되죠. 단순히 나무를 심은 애플스토어는 많지만 구조 자체가 나무로 된 애플스토어는 이것이 최초이기에, 구경할 만한 가치는 충분하다고 생각되네요. 아이폰에서 충전기를 빼버리는 경우는 있어도 건물에서 기둥을 빼버리는 경우는 없으니, 안심하고 들어가 보시면 될 것 같습니다.</p>
+      </div>
+    </div>
+
+    <!-- Gallery: photo_03, photo_04 -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+      <div class="d-building__gallery-item">
+        <img src="picture/Apple_Store_Ginza_03.png" alt="Apple Store Ginza CLT structure detail" />
+      </div>
+      <div class="d-building__gallery-item">
+        <img src="picture/Apple_Store_Ginza_04.png" alt="Apple Store Ginza building exterior" />
+      </div>
+    </div>
+
+    <!-- Gallery: photo_05, photo_06 -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+      <div class="d-building__gallery-item">
+        <img src="picture/Apple_Store_Ginza_05.png" alt="Apple Store Ginza timber columns" />
+      </div>
+      <div class="d-building__gallery-item">
+        <img src="picture/Apple_Store_Ginza_06.png" alt="Apple Store Ginza street approach" />
+      </div>
+    </div>
+
+    <div class="d-building__gmap">
+      <span class="d-building__gmap-label">Location · 東京都中央区銀座3-5-12</span>
+      <iframe src="https://maps.google.com/maps?q=Apple+Store+Ginza+Hulic+Ginza+8+Tokyo&hl=ko&z=17&output=embed" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </article>
+
+  <!-- BUILDING 10 -->
+  <article class="d-building d-building--segmented" id="building-10">
+    <div class="d-building__header">
+      <div class="d-building__num-wrap">
+        <span class="d-building__num">10</span>
+        <span class="d-building__subtitle">인식 전환을 위한 아이디어</span>
+      </div>
+      <div class="d-building__meta">
+        <span class="d-building__tag">Mixed Use · 2023</span>
+        <span class="d-building__architect">Tetsuo Yamaji</span>
+      </div>
+    </div>
+
+    <h2 class="d-building__title">Ginza Takagi Building</h2>
+    <p class="d-building__title-jp">긴자 타카기 빌딩</p>
+
+    <!-- Seg 1: text | photo_01 -->
+    <div class="d-building__seg js-img-reveal">
+      <div class="d-building__seg-text">
+        <p>방금까지 긴자의 나무로 된 애플스토어를 구경해 봤는데요. 앞서 설명했듯 여기는 정문이 위치한 앞쪽을 목재로, 뒤쪽은 철골로 해서 반반 합친 구조를 띠고 있죠. 그런데 이 큰 길 맞은편에서는 앞뒤가 아닌 위아래가 반반으로 된 목조 구조물을 구경할 수 있습니다. 아마도 현 시점 긴자에서 향후가 가장 주목되는 목조 건물일 텐데요. 2023년 9월에 완공된 타카기 빌딩입니다. 이곳은 테츠오 야마지라는 건축가가 설계한 곳으로, 그 또한 탈탄소화를 위해 나무를 즐겨 사용하는 건축가로 유명한데요. 앞서 나온 애플스토어의 외관을 맡은 쿠마 켄고의 사무소에서 6년 동안 근무한 경력이 있는 만큼, 자연스럽게 그의 영향을 받았을 것으로 생각됩니다.</p>
+      </div>
+      <div class="d-building__seg-img">
+        <img src="picture/Ginza_Takagi_Building_01.png" alt="Ginza Takagi Building timber upper floors" />
+      </div>
+    </div>
+
+    <!-- Seg 2 (alt): photo_02 | text -->
+    <div class="d-building__seg d-building__seg--alt js-img-reveal">
+      <div class="d-building__seg-img">
+        <img src="picture/Ginza_Takagi_Building_02.png" alt="Ginza Takagi Building balcony detail" />
+      </div>
+      <div class="d-building__seg-text">
+        <p>건물의 구조나 외관 자체는 매우 평범하지만, 이곳의 실험적인 시도는 바로 9층에서 13층까지가 완전히 목구조로 되어 있다는 것인데요. 특히 나무로 된 층은 모두 발코니를 갖고 있으며, 이 이유에 대해 건축가 테츠오 야마지는 "고층의 단순히 간판으로서의 파사드가 아니라, 발코니를 통해 여기에 찾아온 사람들이 적극적으로 외부로 표출되길 원했다"고 합니다.</p>
+        <p>근데 그 심볼릭한 목조 파사드, 이분의 스승님이 진짜 잘하시는 거거든요. "뭐지, 스승님을 저격하는 건가?" 라기보다는, 바깥에서 이곳을 쳐다보는 사람들에게 자연스럽게 목조 건물에 대한 인식을 전환시키기 위한 간단하면서도 재미있는 아이디어로 보여집니다. 향후 이 고층부에는 교토의 유명 미슐랭 레스토랑의 도쿄 분점을 비롯한 식당들과 무려 노천 사우나가 들어설 예정이라고 하니, 인식이 충분히 전환될 것 같다고 생각되네요.</p>
+      </div>
+    </div>
+
+    <!-- Gallery: photo_03, photo_04 -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+      <div class="d-building__gallery-item">
+        <img src="picture/Ginza_Takagi_Building_03.png" alt="Ginza Takagi Building full elevation" />
+      </div>
+      <div class="d-building__gallery-item">
+        <img src="picture/Ginza_Takagi_Building_04.png" alt="Ginza Takagi Building wood-concrete junction" />
+      </div>
+    </div>
+
+    <!-- Gallery: photo_05, photo_06 -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+      <div class="d-building__gallery-item">
+        <img src="picture/Ginza_Takagi_Building_05.png" alt="Ginza Takagi Building street view" />
+      </div>
+      <div class="d-building__gallery-item">
+        <img src="picture/Ginza_Takagi_Building_06.png" alt="Ginza Takagi Building timber structure" />
+      </div>
+    </div>
+
+    <div class="d-building__gmap">
+      <span class="d-building__gmap-label">Location · 東京都中央区銀座8-8-1</span>
+      <iframe src="https://maps.google.com/maps?q=Ginza+Takagi+Building+Tokyo&hl=ko&z=17&output=embed" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </article>
+
+  <!-- BUILDING 11 -->
+  <article class="d-building d-building--segmented" id="building-11">
+    <div class="d-building__header">
+      <div class="d-building__num-wrap">
+        <span class="d-building__num">11</span>
+        <span class="d-building__subtitle">목조건물의 본질은 무엇일까?</span>
+      </div>
+      <div class="d-building__meta">
+        <span class="d-building__tag">Restaurant · 2021</span>
+        <span class="d-building__architect">Jo Nagasaki</span>
+      </div>
+    </div>
+
+    <h2 class="d-building__title">Ginza Innit / Jo Nagasaki</h2>
+    <p class="d-building__title-jp">긴자 이닛 / 조 나가사카</p>
+
+    <!-- Seg 1: text | photo_01 -->
+    <div class="d-building__seg js-img-reveal">
+      <div class="d-building__seg-text">
+        <p>이렇게 지금까지는 긴자의 정말로 나무를 사용한 재건축 건물들에 대해 알아봤는데요. 그런데 목조 건물을 짓는 행위의 본질은 무엇일까요? 질문이 너무 갑작스러웠지만 그것은 바로 처음에 설명했던 친환경을 위한 노력, 즉 탄소 배출 억제일 것입니다. 하지만 나무 건물을 짓기 위해 아직 수명이 남아있는 기존의 건물이나 설비를 무리해서 다시 짓거나 나무를 과도하게 사용한다면, 예를 들어 일회용 컵을 줄이기 위해 텀블러 수백 개를 사용한다면 다시금 본질을 어긋나겠죠. 이번에는 그 본질에 대해서 생각하게 하는 장소에 대해 소개합니다. 긴자 최대 상업 시설, 긴자 식스 뒤편에 위치한 레스토랑 긴자 이닛과 건축가 조 나가사카입니다.</p>
+        <p>이곳이 이 자체로도 특이한 점은, 재난 시의 비상식량을 판매하는 동시에 그 비상식량을 조리해서 판매하는 레스토랑이기도 하다는 것인데요. 비상식량 치고 상당히 맛있는, 저녁 식사로도 충분한 퀄리티에 놀라게 되는 곳이었습니다. 그 퀄리티에 한몫 보태는 것이 인테리어로, 의자와 테이블을 포함한 모든 가구가 나무로 마감되어 아늑한 분위기 속에서 식사를 할 수 있는 곳이기도 합니다. 긴자는 콘크리트로 대변되는 회색빛을 띤 물질로 덮여있는 동네이기에, 이와 반대인 따뜻한 감성, 즉 나무로 된 인테리어 제안이 필요했다고 하는데요. 그런데 말입니다, 이 건물은 실내 마감재로 나무를 쓰는 것이 제한되어 있는 빌딩이라고 합니다. 이게 무슨 말인가 하면, 사실 여기서 진짜 나무가 쓰인 부분은 오로지 의자뿐인데요.</p>
+      </div>
+      <div class="d-building__seg-img">
+        <img src="picture/Ginza_Innit_01.png" alt="Ginza Innit restaurant interior warm wood tones" />
+      </div>
+    </div>
+
+    <!-- Seg 2 (alt): photo_02 | text -->
+    <div class="d-building__seg d-building__seg--alt js-img-reveal">
+      <div class="d-building__seg-img">
+        <img src="picture/Ginza_innit_02.png" alt="Ginza Innit wood film pattern interior detail" />
+      </div>
+      <div class="d-building__seg-text">
+        <p>나머지는 이전의 인테리어와 비품들을 최대한 그대로 활용하기 위해 나뭇결 무늬가 그려진 인테리어용 필름을 붙인 것입니다. 탄소 배출을 줄이기 위함이라는 목재 사용의 본질적인 이유를 최선의 과제로 놓고 생각해 보면, 천연 목재를 무리해서 꾸역꾸역 사용하는 것보다 기존 설비를 그대로 보다 탄소 배출이 적은 방법으로 활용하면서 우드톤의 인테리어 효과까지 낼 수 있다면, 그게 더 친환경에 가까운 현실적인 선택이라고 계산을 때린 것이죠. 이는 물론 인테리어 리모델링 작업이었기에, 클라이언트의 믿음과 이해가 있었기에 가능한 프로젝트라고도 생각됩니다.</p>
+        <p>이렇듯 조 나가사카는 본질을 탐구하기 위해 나머지를 파격적으로 비틀어버리는 건축가이기도 한데요. 긴자의 어느 안경점 인테리어 프로젝트에서는 안경 받침대로 주방 스펀지를 이용해 꾸미기도 했으며, 오모테산도의 이솝 매장에서는 건물을 철하하면서 생긴 나무를 그대로 인테리어에 활용하기도 했죠. 심지어 시골에서 쓰이던 버려진 목구조 창고의 뼈대를 그대로 도쿄 한복판으로 가져와 뉴발란스 매장으로 다시 지어 올리기도 했습니다. 이렇게 벌목과 생산, 유통, 건설, 사용, 해체 그리고 폐기까지의 사이클이 필연적으로 수반되는 건축물의 모든 부분을 염두에 두는, 어떤 의미에선 진정한 의미의 친환경 건축가라는 생각이 드는데요. 실제로 그는 지속적으로 무언가를 더하는 것보다 빼는 것을 중요시하는 반건축이라는 철학을 강조하고 있기도 하죠. 물론 그로 인해 한편으로는 일부 대중으로부터 "이거 미완성 아니냐"라는 평을 받기도 하지만, 저는 그의 작업 스타일은 앞으로 시간이 지날수록 대두되는 친환경 흐름에 맞춰 지금보다 더더욱 고평가를 받을 것이라고 생각됩니다.</p>
+      </div>
+    </div>
+
+    <!-- Gallery: photo_03, photo_04 -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+      <div class="d-building__gallery-item">
+        <img src="picture/Ginza_Innit_03.png" alt="Ginza Innit dining space" />
+      </div>
+      <div class="d-building__gallery-item">
+        <img src="picture/Ginza_Innit_04.png" alt="Ginza Innit emergency food display" />
+      </div>
+    </div>
+
+    <!-- Gallery: photo_05, photo_06 -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+      <div class="d-building__gallery-item">
+        <img src="picture/Ginza_Innit_05.png" alt="Ginza Innit wood grain film detail" />
+      </div>
+      <div class="d-building__gallery-item">
+        <img src="picture/Ginza_Innit_06.png" alt="Ginza Innit entrance and signage" />
+      </div>
+    </div>
+
+    <div class="d-building__gmap">
+      <span class="d-building__gmap-label">Location · 東京都中央区銀座6丁目</span>
+      <iframe src="https://maps.google.com/maps?q=Ginza+Innit+Restaurant+Tokyo&hl=ko&z=17&output=embed" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </article>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__top">
+      <span class="footer__logo">Marginalia</span>
+      <p class="footer__tagline">A record of what stands<br />and what remains.</p>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 Marginalia Archive</span>
+      <span>Tokyo, Japan</span>
+      <span>Web Design I — Project</span>
+    </div>
+  </footer>
+
+  <script src="ginza.js"></script>
+</body>
+</html>

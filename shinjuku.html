@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shinjuku — Marginalia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="district.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="index.html" class="nav__logo">Marginalia</a>
+    <ul class="nav__links">
+      <li><a href="index.html#map-section">Location Map</a></li>
+      <li><a href="index.html#gallery-section">Gallery</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <header class="d-hero">
+    <div class="d-hero__content">
+      <div class="d-hero__breadcrumb">
+        <a href="index.html" class="label">Marginalia</a>
+        <span class="label">→</span>
+        <span class="label">District</span>
+      </div>
+
+      <div class="d-hero__label-row">
+        <span class="label">신주쿠구</span>
+        <span class="label">— 6개 건축물</span>
+      </div>
+
+      <h1 class="d-hero__title">
+        Shinjuku
+        <em class="d-hero__title-jp">신주쿠</em>
+      </h1>
+
+      <p class="d-hero__intro">
+        하루 350만 명이 지나치는 세계 최대 교통 허브이자 도쿄 부도심의 심장. 마천루들이 만들어내는 극적인 도시 스카이라인.
+      </p>
+
+      <div class="d-hero__stats">
+        <div class="d-stat">
+          <span class="d-stat__val">6</span>
+          <span class="d-stat__label">Structures</span>
+        </div>
+        <div class="d-stat">
+          <span class="d-stat__val">243m</span>
+          <span class="d-stat__label">Tallest Height</span>
+        </div>
+        <div class="d-stat">
+          <span class="d-stat__val">1991</span>
+          <span class="d-stat__label">Key Completed</span>
+        </div>
+      </div>
+
+      <div class="d-hero__scroll">
+        <span class="label">Scroll to explore</span>
+        <div class="d-hero__scroll-line"></div>
+      </div>
+    </div>
+
+    <div class="d-hero__map" id="dMapWrapper">
+      <canvas id="dMapCanvas"></canvas>
+      <div class="d-hero__map-label" id="dMapLabel">
+        <span class="d-hero__map-label-name" id="dMapLabelName"></span>
+        <span class="d-hero__map-label-year" id="dMapLabelYear"></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- INTRO -->
+  <section class="d-intro">
+    <div class="d-intro__inner">
+      <p class="d-intro__text">하루 유동인구 350만 명으로 세계에서 가장 바쁜 역으로 기록된 신주쿠역이 자리한 동네. 도쿄의 부도심 중에서도 가장 강렬한 존재감을 발산하는 곳입니다. 역 동쪽에는 가부키초로 대표되는 유흥가와 골든가이의 낡은 술집들이, 서쪽에는 도쿄도청을 중심으로 한 마천루들이 서로 대비되는 두 개의 얼굴을 만들고 있죠.</p>
+      <p class="d-intro__text">전후 복구와 고도 성장기를 거치면서 도쿄의 새로운 도심으로 급부상한 신주쿠에는, 일본 근현대 건축사의 굵직한 작품들이 밀집해 있습니다. 수십 년의 시간차를 두고 서로 다른 언어로 세워진 건물들이 한 동네 안에 공존하며, 도시의 밀도와 속도를 그 자체로 구현하고 있습니다.</p>
+    </div>
+  </section>
+
+  <!-- BUILDING 01 -->
+  <article class="d-building d-building--segmented" id="building-01">
+    <div class="d-building__header">
+      <div class="d-building__num-wrap">
+        <span class="d-building__num">01</span>
+        <span class="d-building__subtitle">신주쿠의 시계탑</span>
+      </div>
+      <div class="d-building__meta">
+        <span class="d-building__tag">Commercial · 2000</span>
+        <span class="d-building__architect">Michael Graves</span>
+      </div>
+    </div>
+
+    <h2 class="d-building__title">NTT Docomo Yoyogi Building</h2>
+    <p class="d-building__title-jp">NTT 도코모 요요기 빌딩</p>
+
+    <!-- Seg 1: text | photo_01 -->
+    <div class="d-building__seg js-img-reveal">
+      <div class="d-building__seg-text">
+        <p>신주쿠 서쪽 스카이라인을 이야기할 때 빠지지 않는 건물이 있습니다. 바로 NTT 도코모의 통신 중계탑 역할을 겸하는 이 빌딩으로, 높이 240m에 달하는 타워에 사면 각각 방향에 대형 시계가 달려 있어 주변 어디서든 시간을 확인할 수 있는 신주쿠의 랜드마크가 되었습니다. 2000년에 완공된 이 빌딩은 뉴욕의 엠파이어 스테이트 빌딩을 연상시키는 아르데코 스타일의 단계적 수직 구성이 특징으로, 21세기 직전에 지어진 건물임에도 불구하고 의도적으로 고전적인 마천루의 문법을 따르고 있습니다.</p>
+      </div>
+      <div class="d-building__seg-img">
+        <img src="picture/NTT_Docomo_Tower_01.png" alt="NTT Docomo Yoyogi Building exterior" />
+      </div>
+    </div>
+
+    <!-- Seg 2 (alt): photo_02 | text -->
+    <div class="d-building__seg d-building__seg--alt js-img-reveal">
+      <div class="d-building__seg-img">
+        <img src="picture/NTT_Docomo_Tower_02.png" alt="NTT Docomo Tower clock face" />
+      </div>
+      <div class="d-building__seg-text">
+        <p>네 방향에 설치된 시계는 지름 10m에 달할 정도로 거대하며, 야간에는 조명을 받아 멀리서도 선명하게 읽을 수 있습니다. 통신 안테나 역할과 랜드마크 기능을 동시에 수행하도록 설계된 이 빌딩은, 도시의 스카이라인에서 일종의 좌표계 역할을 합니다. 신주쿠 어디에서 보아도, 심지어 멀리 시부야나 하라주쿠에서 올려다보아도 이 타워가 눈에 들어오기 때문에, 도쿄 도심에서 방향 감각을 잡는 데 은근히 유용한 건물이기도 합니다.</p>
+      </div>
+    </div>
+
+    <!-- Gallery: photo_03, photo_04 -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+      <div class="d-building__gallery-item">
+        <img src="picture/NTT_Docomo_Tower_03.png" alt="NTT Docomo Tower skyline" />
+      </div>
+      <div class="d-building__gallery-item">
+        <img src="picture/NTT_Docomo_Tower_04.png" alt="NTT Docomo Tower night view" />
+      </div>
+    </div>
+
+    <div class="d-building__gmap">
+      <span class="d-building__gmap-label">Location · 東京都渋谷区千駄ヶ谷5-24-10</span>
+      <iframe src="https://maps.google.com/maps?q=NTT+Docomo+Yoyogi+Building+Tokyo&hl=ko&z=17&output=embed" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </article>
+
+  <!-- BUILDING 02 -->
+  <article class="d-building d-building--segmented" id="building-02">
+    <div class="d-building__header">
+      <div class="d-building__num-wrap">
+        <span class="d-building__num">02</span>
+        <span class="d-building__subtitle">가부키초의 새로운 얼굴</span>
+      </div>
+      <div class="d-building__meta">
+        <span class="d-building__tag">Mixed Use · 2023</span>
+        <span class="d-building__architect">Kohn Pedersen Fox</span>
+      </div>
+    </div>
+
+    <h2 class="d-building__title">Tokyo Kabukicho Tower</h2>
+    <p class="d-building__title-jp">도쿄 가부키초 타워</p>
+
+    <!-- Seg 1: text | photo_01 -->
+    <div class="d-building__seg js-img-reveal">
+      <div class="d-building__seg-text">
+        <p>신주쿠 가부키초에 2023년 등장한 225m, 48층 규모의 복합 타워입니다. 가부키초는 도쿄 최대의 유흥가로 오랫동안 독특한 분위기를 유지해 온 동네인데, 이 타워의 등장은 그 지역에 새로운 층위의 엔터테인먼트 문화를 더하는 시도라고 볼 수 있습니다. 저층부에는 영화관과 라이브 홀, 식당가가 자리하고, 중간층에는 숙박 시설인 THL 호텔과 BELLUSTAR TOKYO가 들어서 있으며, 고층부에는 전망 시설이 위치합니다.</p>
+      </div>
+      <div class="d-building__seg-img">
+        <img src="picture/Tokyo_Kabukicho_Tower_01.png" alt="Tokyo Kabukicho Tower exterior" />
+      </div>
+    </div>
+
+    <!-- Seg 2 (alt): photo_02 | text -->
+    <div class="d-building__seg d-building__seg--alt js-img-reveal">
+      <div class="d-building__seg-img">
+        <img src="picture/Tokyo_Kabukicho_Tower_02.png" alt="Tokyo Kabukicho Tower facade detail" />
+      </div>
+      <div class="d-building__seg-text">
+        <p>건물의 외관은 수직으로 뻗은 금속 핀과 유리면이 교차하는 구성으로, 주변 가부키초 특유의 네온사인 문화와도 어울리도록 야간에 조명 효과가 극대화되도록 설계되었습니다. 가부키초의 기존 도시 조직과 어떻게 관계 맺을 것인가, 엔터테인먼트 시설과 고급 호텔을 한 건물에 어떻게 공존시킬 것인가—이 두 가지 질문에 대한 건축적 해답이 이 타워에 담겨 있습니다. 저층 광장은 기존 가부키초의 보행자 흐름을 그대로 이어받아 언제나 개방된 상태로 유지되고 있습니다.</p>
+      </div>
+    </div>
+
+    <!-- Gallery: photo_03, photo_04 -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+      <div class="d-building__gallery-item">
+        <img src="picture/Tokyo_Kabukicho_Tower_03.png" alt="Tokyo Kabukicho Tower night illumination" />
+      </div>
+      <div class="d-building__gallery-item">
+        <img src="picture/Tokyo_Kabukicho_Tower_04.png" alt="Tokyo Kabukicho Tower plaza" />
+      </div>
+    </div>
+
+    <!-- Gallery: photo_05, photo_06 -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+      <div class="d-building__gallery-item">
+        <img src="picture/Tokyo_Kabukicho_Tower_05.png" alt="Tokyo Kabukicho Tower interior" />
+      </div>
+      <div class="d-building__gallery-item">
+        <img src="picture/Tokyo_Kabukicho_Tower_06.png" alt="Tokyo Kabukicho Tower skyline view" />
+      </div>
+    </div>
+
+    <div class="d-building__gmap">
+      <span class="d-building__gmap-label">Location · 東京都新宿区歌舞伎町1-29-1</span>
+      <iframe src="https://maps.google.com/maps?q=Tokyo+Kabukicho+Tower&hl=ko&z=17&output=embed" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </article>
+
+  <!-- BUILDING 03 -->
+  <article class="d-building d-building--segmented" id="building-03">
+    <div class="d-building__header">
+      <div class="d-building__num-wrap">
+        <span class="d-building__num">03</span>
+        <span class="d-building__subtitle">철거를 앞둔 모더니즘 백화점</span>
+      </div>
+      <div class="d-building__meta">
+        <span class="d-building__tag">Commercial · 1967</span>
+        <span class="d-building__architect">Junzo Sakakura</span>
+      </div>
+    </div>
+
+    <h2 class="d-building__title">Odakyu Department Store</h2>
+    <p class="d-building__title-jp">오다큐 백화점 신주쿠점</p>
+
+    <!-- Seg 1: text | photo_01 -->
+    <div class="d-building__seg js-img-reveal">
+      <div class="d-building__seg-text">
+        <p>신주쿠역 서쪽 출구를 나오면 가장 먼저 눈에 들어오는 건물 중 하나가 오다큐 백화점입니다. 르 코르뷔지에의 제자이기도 한 건축가 사카쿠라 준조가 설계한 이 건물은 1967년에 완공되어 반세기 이상 신주쿠의 관문 역할을 해왔습니다. 수평 줄무늬 패턴의 파사드는 당시 일본 모더니즘 상업 건축의 전형을 보여주는 예이기도 합니다.</p>
+      </div>
+      <div class="d-building__seg-img">
+        <img src="picture/Odakyu_Department_Store_01.png" alt="Odakyu Department Store exterior" />
+      </div>
+    </div>
+
+    <!-- Seg 2 (alt): photo_02 | text -->
+    <div class="d-building__seg d-building__seg--alt js-img-reveal">
+      <div class="d-building__seg-img">
+        <img src="picture/Odakyu_Department_Store_02.png" alt="Odakyu Department Store facade" />
+      </div>
+      <div class="d-building__seg-text">
+        <p>오다큐 전철과 직결된 이 복합 시설은 신주쿠역이라는 거대한 교통 허브의 동선과 긴밀하게 연결되어 있어, 일본식 대형 역사 백화점의 원형을 보여주는 건물이기도 합니다. 현재는 신주쿠역 주변 재개발 계획에 따라 철거 및 재건축이 예정되어 있어, 멀지 않은 미래에 사라질 도시 풍경 중 하나가 될 것입니다. 어쩌면 그것이 이 건물을 지금 이 시점에 기록해야 하는 이유이기도 합니다.</p>
+      </div>
+    </div>
+
+    <!-- Gallery: photo_03, photo_04 -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+      <div class="d-building__gallery-item">
+        <img src="picture/Odakyu_Department_Store_03.png" alt="Odakyu Department Store street view" />
+      </div>
+      <div class="d-building__gallery-item">
+        <img src="picture/Odakyu_Department_Store_04.png" alt="Odakyu Department Store connection to station" />
+      </div>
+    </div>
+
+    <div class="d-building__gmap">
+      <span class="d-building__gmap-label">Location · 東京都新宿区西新宿1-1-3</span>
+      <iframe src="https://maps.google.com/maps?q=Odakyu+Department+Store+Shinjuku&hl=ko&z=17&output=embed" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </article>
+
+  <!-- BUILDING 04 -->
+  <article class="d-building d-building--segmented" id="building-04">
+    <div class="d-building__header">
+      <div class="d-building__num-wrap">
+        <span class="d-building__num">04</span>
+        <span class="d-building__subtitle">200m 누에고치 패션 캠퍼스</span>
+      </div>
+      <div class="d-building__meta">
+        <span class="d-building__tag">Education · 2008</span>
+        <span class="d-building__architect">Tange Associates</span>
+      </div>
+    </div>
+
+    <h2 class="d-building__title">Mode Gakuen Cocoon Tower</h2>
+    <p class="d-building__title-jp">모드 학원 코쿤 타워</p>
+
+    <!-- Seg 1: text | photo_01 -->
+    <div class="d-building__seg js-img-reveal">
+      <div class="d-building__seg-text">
+        <p>신주쿠 서쪽 부도심의 마천루 군 사이에 유독 독특한 외관으로 시선을 끄는 건물이 있습니다. 바로 모드 학원 코쿤 타워로, 높이 204m의 이 고층 건물은 패션, 의료, IT 세 개의 전문학교 캠퍼스를 하나의 탑 속에 수직으로 쌓아올린 구조입니다. 캠퍼스를 고층 타워로 만든다는 발상 자체도 특이하지만, 이 건물을 더욱 눈에 띄게 만드는 것은 바로 그 외관입니다.</p>
+      </div>
+      <div class="d-building__seg-img">
+        <img src="picture/Mode_Cocoon_Tower_01.png" alt="Mode Gakuen Cocoon Tower exterior" />
+      </div>
+    </div>
+
+    <!-- Seg 2 (alt): photo_02 | text -->
+    <div class="d-building__seg d-building__seg--alt js-img-reveal">
+      <div class="d-building__seg-img">
+        <img src="picture/Mode_Cocoon_Tower_02.png" alt="Mode Gakuen Cocoon Tower mesh pattern" />
+      </div>
+      <div class="d-building__seg-text">
+        <p>타원형의 구조체를 감싸는 메쉬 형태의 외피는 누에고치(cocoon)를 형상화한 것으로, 이 안에서 미래의 패션 디자이너들이 자라난다는 개념적 메시지를 담고 있습니다. 도쿄의 마천루 지구에서 전형적인 유리 커튼월 박스들 사이에서 이 유기적 형태는 단연 눈에 띄죠. 건물 내부는 나선형 동선으로 연결되어 각 학교의 학생들이 수직으로 이동하며 자연스럽게 서로 다른 분야의 학생들과 교류할 수 있도록 의도되었습니다.</p>
+      </div>
+    </div>
+
+    <!-- Gallery: photo_03, photo_04 -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+      <div class="d-building__gallery-item">
+        <img src="picture/Mode_Cocoon_Tower_03.png" alt="Mode Gakuen Cocoon Tower structural detail" />
+      </div>
+      <div class="d-building__gallery-item">
+        <img src="picture/Mode_Cocoon_Tower_04.png" alt="Mode Gakuen Cocoon Tower skyline" />
+      </div>
+    </div>
+
+    <!-- Gallery: photo_05, photo_06 -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+      <div class="d-building__gallery-item">
+        <img src="picture/Mode_Cocoon_Tower_05.png" alt="Mode Gakuen Cocoon Tower at dusk" />
+      </div>
+      <div class="d-building__gallery-item">
+        <img src="picture/Mode_Cocoon_Tower_06.png" alt="Mode Gakuen Cocoon Tower base" />
+      </div>
+    </div>
+
+    <div class="d-building__gmap">
+      <span class="d-building__gmap-label">Location · 東京都新宿区西新宿1-7-3</span>
+      <iframe src="https://maps.google.com/maps?q=Mode+Gakuen+Cocoon+Tower+Tokyo&hl=ko&z=17&output=embed" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </article>
+
+  <!-- BUILDING 05 -->
+  <article class="d-building d-building--segmented" id="building-05">
+    <div class="d-building__header">
+      <div class="d-building__num-wrap">
+        <span class="d-building__num">05</span>
+        <span class="d-building__subtitle">'너의 이름은'의 그 건물</span>
+      </div>
+      <div class="d-building__meta">
+        <span class="d-building__tag">Office · 1976</span>
+        <span class="d-building__architect">Nikken Sekkei</span>
+      </div>
+    </div>
+
+    <h2 class="d-building__title">SOMPO Japan Head Office</h2>
+    <p class="d-building__title-jp">손포 재팬 본사 빌딩</p>
+
+    <!-- Seg 1: text | photo_01 -->
+    <div class="d-building__seg js-img-reveal">
+      <div class="d-building__seg-text">
+        <p>건축물 자체의 화려함보다 그 안에 담긴 이야기로 더 유명한 건물이 있습니다. 신주쿠 서쪽의 손포 재팬 본사 빌딩이 바로 그런 곳인데요. 1976년에 완공된 이 오피스 빌딩은 미야자키 마코토 감독의 애니메이션 영화 '너의 이름은(君の名は.)'에서 주인공 타키가 일하는 건물로 등장해 큰 주목을 받았습니다. 애니메이션 팬들에게는 성지순례 코스 중 하나가 된 곳이기도 합니다.</p>
+      </div>
+      <div class="d-building__seg-img">
+        <img src="picture/SOMPO_Japan_Head_Office_01.png" alt="SOMPO Japan Head Office exterior" />
+      </div>
+    </div>
+
+    <!-- Seg 2 (alt): photo_02 | text -->
+    <div class="d-building__seg d-building__seg--alt js-img-reveal">
+      <div class="d-building__seg-img">
+        <img src="picture/SOMPO_Japan_Head_Office_02.png" alt="SOMPO Japan Head Office museum entrance" />
+      </div>
+      <div class="d-building__seg-text">
+        <p>하지만 이 건물이 진정으로 주목받아야 할 이유는 애니메이션 배경 외에도 있습니다. 빌딩 42층에는 손포 재팬 일본흥아 미술관이 운영되고 있는데, 이곳에는 빈센트 반 고흐의 '해바라기' 원화가 소장되어 있습니다. 1987년 당시 일본 기업이 58억 엔이라는 당시 세계 최고가로 낙찰받아 화제가 되었던 이 작품은, 지금도 이 자리를 지키며 예약 없이 일반에 공개되고 있습니다. 신주쿠의 비즈니스 빌딩 안에서 고흐의 원화를 만날 수 있다는 의외성이 이 장소를 더욱 특별하게 만듭니다.</p>
+      </div>
+    </div>
+
+    <div class="d-building__gmap">
+      <span class="d-building__gmap-label">Location · 東京都新宿区西新宿1-26-1</span>
+      <iframe src="https://maps.google.com/maps?q=SOMPO+Japan+Nipponkoa+Museum+of+Art&hl=ko&z=17&output=embed" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </article>
+
+  <!-- BUILDING 06 -->
+  <article class="d-building d-building--segmented" id="building-06">
+    <div class="d-building__header">
+      <div class="d-building__num-wrap">
+        <span class="d-building__num">06</span>
+        <span class="d-building__subtitle">노트르담에서 영감 받은 공짜 전망대</span>
+      </div>
+      <div class="d-building__meta">
+        <span class="d-building__tag">Government · 1991</span>
+        <span class="d-building__architect">Kenzo Tange</span>
+      </div>
+    </div>
+
+    <h2 class="d-building__title">Tokyo Metropolitan Government Building</h2>
+    <p class="d-building__title-jp">도쿄도청사</p>
+
+    <!-- Seg 1: text | photo_01 -->
+    <div class="d-building__seg js-img-reveal">
+      <div class="d-building__seg-text">
+        <p>신주쿠 서쪽 도청 앞 광장에 서면, 정면에 두 개의 쌍둥이 타워가 보이기 시작합니다. 높이 243m의 제1청사와 그보다 낮은 제2청사, 그리고 의회동으로 구성된 이 복합 청사는 건축가 단게 켄조가 설계하여 1991년에 완공되었습니다. 건설비가 무려 1,569억 엔에 달해 당시 일본 최대 규모의 공공 건설 공사로 기록되었습니다. 그 거대한 건설비 덕분에 '도민의 세금 낭비'라는 비판도 있었지만, 지금은 연간 수백만 명이 찾는 도쿄의 대표 관광지가 되었습니다.</p>
+      </div>
+      <div class="d-building__seg-img">
+        <img src="picture/Tokyo_Metropolitan_Government_Building_01.png" alt="Tokyo Metropolitan Government Building exterior" />
+      </div>
+    </div>
+
+    <!-- Seg 2 (alt): photo_02 | text -->
+    <div class="d-building__seg d-building__seg--alt js-img-reveal">
+      <div class="d-building__seg-img">
+        <img src="picture/Tokyo_Metropolitan_Government_Building_02.png" alt="Tokyo Metropolitan Government Building facade pattern" />
+      </div>
+      <div class="d-building__seg-text">
+        <p>건물의 파사드에는 그 규모에 걸맞게 파리 노트르담 대성당의 고딕 창문에서 영감을 받은 격자 패턴이 전면에 사용되었습니다. 단게 켄조는 일본의 전통 문양과 서양의 고딕 장식을 현대적으로 재해석하여 이 패턴을 만들어냈는데, 멀리서 보면 마치 복잡한 회로 기판처럼 보이기도 합니다. 제1청사의 45층에는 무료 전망대가 설치되어 있어, 날씨가 맑은 날에는 멀리 후지산까지 볼 수 있습니다. 유료 전망대가 넘쳐나는 도쿄에서 이 정도 높이의 전망을 무료로 즐길 수 있다는 것은 분명한 특권입니다.</p>
+      </div>
+    </div>
+
+    <!-- Gallery: photo_03, photo_04 -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+      <div class="d-building__gallery-item">
+        <img src="picture/Tokyo_Metropolitan_Government_Building_03.png" alt="Tokyo Metropolitan Government Building twin towers" />
+      </div>
+      <div class="d-building__gallery-item">
+        <img src="picture/Tokyo_Metropolitan_Government_Building_04.png" alt="Tokyo Metropolitan Government Building observatory" />
+      </div>
+    </div>
+
+    <!-- Gallery: photo_05, photo_06 -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+      <div class="d-building__gallery-item">
+        <img src="picture/Tokyo_Metropolitan_Government_Building_05.png" alt="Tokyo Metropolitan Government Building detail" />
+      </div>
+      <div class="d-building__gallery-item">
+        <img src="picture/Tokyo_Metropolitan_Government_Building_06.png" alt="Tokyo Metropolitan Government Building plaza" />
+      </div>
+    </div>
+
+    <!-- Gallery: photo_07, photo_08 -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+      <div class="d-building__gallery-item">
+        <img src="picture/Tokyo_Metropolitan_Government_Building_07.png" alt="Tokyo Metropolitan Government Building view from observatory" />
+      </div>
+      <div class="d-building__gallery-item">
+        <img src="picture/Tokyo_Metropolitan_Government_Building_08.png" alt="Tokyo Metropolitan Government Building night view" />
+      </div>
+    </div>
+
+    <div class="d-building__gmap">
+      <span class="d-building__gmap-label">Location · 東京都新宿区西新宿2-8-1</span>
+      <iframe src="https://maps.google.com/maps?q=Tokyo+Metropolitan+Government+Building&hl=ko&z=17&output=embed" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </article>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__top">
+      <span class="footer__logo">Marginalia</span>
+      <p class="footer__tagline">A record of what stands<br />and what remains.</p>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 Marginalia Archive</span>
+      <span>Tokyo, Japan</span>
+      <span>Web Design I — Project</span>
+    </div>
+  </footer>
+
+  <script type="importmap">
+    { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.167.0/build/three.module.js" } }
+  </script>
+  <script type="module" src="shinjuku.js"></script>
+</body>
+</html>
