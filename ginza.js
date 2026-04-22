@@ -18,10 +18,10 @@ const BUILDINGS = [
 ];
 
 const VIEW = {
-  lonMin: 139.752,
-  lonMax: 139.782,
-  latMin: 35.663,
-  latMax: 35.690,
+  lonMin: 139.758,
+  lonMax: 139.771,
+  latMin: 35.667,
+  latMax: 35.684,
 };
 
 const LAT_COS = Math.cos(35.676 * Math.PI / 180);

@@ -306,15 +306,23 @@
     <div class="d-building__seg js-img-reveal">
       <div class="d-building__seg-text">
         <p>당시 주변 일대가 상업 건축들로 한창 개발되고 있었기 때문인데요. 물론 이 건물이 오모테산도 일대의 최대규모 상업시설이 되어버렸긴 한데, 어쨌든 이를 우려한 안도타다오는 건축물의 높이를, 길 전체에 걸쳐 늘어져 있는 가로수를 넘지 않도록 철저히 제안했으며, 옥상에 정원을 조성해 가로수와의 조화를 꾀했습니다. 그리고 재건축되기 전 그 자리에 있던 아파트 일부를 상업시설로 재현해서, 장소에 헤리티지를 기억하는 공간으로도 만들었습니다. 건물의 내부 또한 외부의 경사진 길의 각도를 그대로 활용해 전층을 나선형 구조로 만들어, 길을 걷는 느낌이 그대로 이어지도록 상가를 조성해 내부와 외부의 경계를 최소화하려 했죠.</p>
-        <p>경사진 건물 주위로 배수로까지 파서, 완벽한 진지공사가...아니라 실개천이 흐르는 듯한 운치까지 더했습니다. 이러한 의미와 구조의 유사성으로 인해 서울 인사동의 쌈지길과 종종 비교되기도 하는데요. 하지만 오늘 비교할 것은 다른 건물이 되겠습니다.</p>
       </div>
       <div class="d-building__seg-img">
         <img src="picture/Omotesando_Hills_03.png" alt="Omotesando Hills detail" />      </div>
     </div>
 
+    <!-- Segment 04 (alt) -->
+    <div class="d-building__seg d-building__seg--alt js-img-reveal">
+      <div class="d-building__seg-img">
+        <img src="picture/Omotesando_Hills_05.png" alt="Omotesando Hills waterway" />
+      </div>
+      <div class="d-building__seg-text">
+        <p>경사진 건물 주위로 배수로까지 파서, 완벽한 진지공사가...아니라 실개천이 흐르는 듯한 운치까지 더했습니다. 이러한 의미와 구조의 유사성으로 인해 서울 인사동의 쌈지길과 종종 비교되기도 하는데요. 하지만 오늘 비교할 것은 다른 건물이 되겠습니다.</p>
+      </div>
+    </div>
+
     <!-- 갤러리 스트립 -->
-    <div class="d-building__gallery js-img-reveal">
-      <div class="d-building__gallery-item"><img src="picture/Omotesando_Hills_05.png" /></div>
+    <div class="d-building__gallery d-building__gallery--3 js-img-reveal">
       <div class="d-building__gallery-item"><img src="picture/Omotesando_Hills_06.png" /></div>
       <div class="d-building__gallery-item"><img src="picture/Omotesando_Hills_07.png" /></div>
       <div class="d-building__gallery-item"><img src="picture/Omotesando_Hills_08.png" /></div>
@@ -505,7 +513,7 @@
       <div class="d-building__seg-img">
         <img src="picture/spiral_02.png" alt="Spiral interior" />      </div>
       <div class="d-building__seg-text">
-        <p>그는 처음에 소개했던 건축가 단게 겐조의 제자로 초창기 일본 모더니즘 건축의 주역으로 활동한 사람인데요, 때문에 당시 움직임에 맞는 기하학적인 도형들이 여러 개 중첩된 듯한 형상을 갖고 있습니다. 모더니즘 건축답게 1층을 비워서 공유 공간으로 쓰도록 만들었으며, 이 오너의 센스에 감탄했던 것 중에 하나가 2층의 쉼터에서는 쉽게 안 잡을 수 없는 마리오 보타의 세콘다 체어에 앉아볼 수도 있습니다. 이 건축물의 특징과 정말 잘 어울리는 가구 선택이라고 생각합니다.</p>
+        <p>그는 처음에 소개했던 건축가 단게 겐조의 제자로 초창기 일본 모더니즘 건축의 주역으로 활동한 사람인데요, 때문에 당시 움직임에 맞는 기하학적인 도형들이 여러 개 중첩된 듯한 형상을 갖고 있습니다. 모더니즘 건축답게 1층을 비워서 공유 공간으로 쓰도록 만들었으며, 이 오너의 센스에 감탄했던 것 중에 하나가 2층의 쉼터에서는 쉽게 앉아볼 수 없는 마리오 보타의 세콘다 체어에 앉아볼 수도 있습니다. 이 건축물의 특징과 정말 잘 어울리는 가구 선택이라고 생각합니다.</p>
       </div>
     </div>
 
@@ -537,9 +545,22 @@
     </div>
   </footer>
 
+  <button class="btn-top" id="btnTop" aria-label="Back to top">↑</button>
+
   <script type="importmap">
     { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.167.0/build/three.module.js" } }
   </script>
   <script type="module" src="district.js"></script>
+  <script>
+    (function () {
+      var btn = document.getElementById('btnTop');
+      window.addEventListener('scroll', function () {
+        btn.classList.toggle('visible', window.scrollY > 400);
+      }, { passive: true });
+      btn.addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    })();
+  </script>
 </body>
 </html>

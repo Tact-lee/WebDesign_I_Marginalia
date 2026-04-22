@@ -16,6 +16,7 @@
     'picture/RAGTAG_HARAJUKU_04.png',
     'picture/ ITOCHU_Headquarter_Bldg_04.png',
     'picture/he_National_Art_Center_09.png',
+    'picture/Marronnier_Gate_Ginza_04.png',
   ]);
 
   /* ── 건물 데이터 ────────────────────────────────────────────────── */
