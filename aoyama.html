@@ -440,21 +440,28 @@
       </div>
     </div>
 
-    <!-- Seg 4 (alt): photo_04 | P4 -->
+    <!-- Seg 4 (alt): photo_04 | P4 part 1 -->
     <div class="d-building__seg d-building__seg--alt js-img-reveal">
       <div class="d-building__seg-img">
         <img src="picture/Honda_Aoyama_Building_04.png" alt="Honda Aoyama Building column detail" />
       </div>
       <div class="d-building__seg-text">
-        <p>이와 관해서는 재미있는 일화가 하나 있는데요, 입구에 위치한 원형 기둥의 양옆이 직선으로 잘려 있는 모습이 보이죠. 처음에는 완전한 원기둥으로 되어 있었으나, 대칭 구조의 원기둥을 싫어하는 혼다 소이치의 극대노로 인해 옆을 잘라낸 형태로 변경되었다고 합니다. 이 또한 사장의 권위 남용이 아닌가 싶지만, 그 정도로 선수 일고의 브랜드의 진심이었다는 뜻이겠죠. 엔진을 닮은 건물은 2025년 5월을 끝으로 제 역할을 다하고 미래에 다가올 전기차 시대에 맞춰 2030년 새로운 사옥으로 거듭나게 될 텐데요, 업계가 워낙 어렵고 변화에 목마른 시기인 만큼 새 사옥이 기존 혼다의 철학에서 과연 어떤 부분을 계승할지, 그리고 어떤 식으로 변화할지 벌써부터 기대되는 곳이라고 할 수 있겠습니다.</p>
+        <p>이와 관해서는 재미있는 일화가 하나 있는데요, 입구에 위치한 원형 기둥의 양옆이 직선으로 잘려 있는 모습이 보이죠. 처음에는 완전한 원기둥으로 되어 있었으나, 대칭 구조의 원기둥을 싫어하는 혼다 소이치의 극대노로 인해 옆을 잘라낸 형태로 변경되었다고 합니다.</p>
       </div>
     </div>
 
-    <!-- Gallery: photo_05, photo_06 -->
-    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
-      <div class="d-building__gallery-item">
+    <!-- Seg 5: photo_05 | P4 part 2 -->
+    <div class="d-building__seg js-img-reveal">
+      <div class="d-building__seg-text">
+        <p>이 또한 사장의 권위 남용이 아닌가 싶지만, 그 정도로 선수 일고의 브랜드의 진심이었다는 뜻이겠죠. 엔진을 닮은 건물은 2025년 5월을 끝으로 제 역할을 다하고 미래에 다가올 전기차 시대에 맞춰 2030년 새로운 사옥으로 거듭나게 될 텐데요, 업계가 워낙 어렵고 변화에 목마른 시기인 만큼 새 사옥이 기존 혼다의 철학에서 과연 어떤 부분을 계승할지, 그리고 어떤 식으로 변화할지 벌써부터 기대되는 곳이라고 할 수 있겠습니다.</p>
+      </div>
+      <div class="d-building__seg-img">
         <img src="picture/Honda_Aoyama_Building_05.png" alt="Honda Aoyama Building view 5" />
       </div>
+    </div>
+
+    <!-- Gallery: photo_06 -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
       <div class="d-building__gallery-item">
         <img src="picture/Honda_Aoyama_Building_06.png" alt="Honda Aoyama Building view 6" />
       </div>
@@ -489,12 +496,14 @@
   <script>
     (function () {
       var btn = document.getElementById('btnTop');
-      window.addEventListener('scroll', function () {
+      function updateBtn() {
         btn.classList.toggle('visible', window.scrollY > 400);
-      }, { passive: true });
+      }
+      window.addEventListener('scroll', updateBtn, { passive: true });
       btn.addEventListener('click', function () {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
+      updateBtn();
     })();
   </script>
 </body>

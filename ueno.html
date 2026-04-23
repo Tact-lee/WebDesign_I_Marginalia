@@ -427,12 +427,14 @@
   <script>
     (function () {
       var btn = document.getElementById('btnTop');
-      window.addEventListener('scroll', function () {
+      function updateBtn() {
         btn.classList.toggle('visible', window.scrollY > 400);
-      }, { passive: true });
+      }
+      window.addEventListener('scroll', updateBtn, { passive: true });
       btn.addEventListener('click', function () {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
+      updateBtn();
     })();
   </script>
 </body>

@@ -222,6 +222,16 @@
     <h2 class="d-building__title">Odakyu Department Store</h2>
     <p class="d-building__title-jp">오다큐 백화점 신주쿠점</p>
 
+    <div class="d-building__portrait js-img-reveal">
+      <div class="d-building__portrait-photo">
+        <img src="picture/architect/Junzo_Sakakura.png" alt="Junzo Sakakura" />
+      </div>
+      <div class="d-building__portrait-info">
+        <p class="d-building__portrait-name">Junzo Sakakura<span class="d-building__portrait-name-kr">사카쿠라 준조</span></p>
+        <p class="d-building__portrait-sub">坂倉準三 · 1901–1969<br>Japanese Modernist Architect<br>Sakakura Associates</p>
+      </div>
+    </div>
+
     <!-- Seg 1: text | photo_01 -->
     <div class="d-building__seg js-img-reveal">
       <div class="d-building__seg-text">
@@ -355,16 +365,6 @@
 
     <h2 class="d-building__title">SOMPO Japan Head Office</h2>
     <p class="d-building__title-jp">손포 재팬 본사 빌딩</p>
-
-    <div class="d-building__portrait js-img-reveal">
-      <div class="d-building__portrait-photo">
-        <img src="picture/architect/Maekawa_Kunio.png" alt="Kunio Maekawa" />
-      </div>
-      <div class="d-building__portrait-info">
-        <p class="d-building__portrait-name">Kunio Maekawa<span class="d-building__portrait-name-kr">마에카와 쿠니오</span></p>
-        <p class="d-building__portrait-sub">前川國男 · 1905–1986<br>Japanese Modernist Architect<br>Maekawa Associates</p>
-      </div>
-    </div>
 
     <!-- Seg 1: text | photo_01 -->
     <div class="d-building__seg js-img-reveal">
@@ -506,12 +506,14 @@
   <script>
     (function () {
       var btn = document.getElementById('btnTop');
-      window.addEventListener('scroll', function () {
+      function updateBtn() {
         btn.classList.toggle('visible', window.scrollY > 400);
-      }, { passive: true });
+      }
+      window.addEventListener('scroll', updateBtn, { passive: true });
       btn.addEventListener('click', function () {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
+      updateBtn();
     })();
   </script>
 </body>
