@@ -555,7 +555,7 @@
 .d-building__gallery.is-revealed .d-building__gallery-item:nth-child(4) { clip-path: inset(0 0 0% 0); transition-delay: 0.24s; }
 
 .d-building__gallery--3 { grid-template-columns: repeat(3, 1fr); }
-.d-building__gallery--2 { grid-template-columns: repeat(2, 1fr); }
+.d-building__gallery--2 { grid-template-columns: repeat(2, 1fr); height: 480px; }
 
 .d-building__gallery-item img {
   width: 100%;

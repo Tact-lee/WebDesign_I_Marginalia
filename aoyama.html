@@ -54,8 +54,8 @@
           <span class="d-stat__label">Structures</span>
         </div>
         <div class="d-stat">
-          <span class="d-stat__val">4</span>
-          <span class="d-stat__label">Architects</span>
+          <span class="d-stat__val">Tadao Ando</span>
+          <span class="d-stat__label">Architect</span>
         </div>
         <div class="d-stat">
           <span class="d-stat__val">1975–2003</span>
@@ -496,14 +496,16 @@
   <script>
     (function () {
       var btn = document.getElementById('btnTop');
-      function updateBtn() {
-        btn.classList.toggle('visible', window.scrollY > 400);
+      var hideTimer = null;
+      function onScroll() {
+        if (window.scrollY > 400) btn.classList.add('visible');
+        clearTimeout(hideTimer);
+        hideTimer = setTimeout(function () { btn.classList.remove('visible'); }, 1500);
       }
-      window.addEventListener('scroll', updateBtn, { passive: true });
+      window.addEventListener('scroll', onScroll, { passive: true });
       btn.addEventListener('click', function () {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
-      updateBtn();
     })();
   </script>
 </body>

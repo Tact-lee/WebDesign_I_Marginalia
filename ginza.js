@@ -18,10 +18,10 @@ const BUILDINGS = [
 ];
 
 const VIEW = {
-  lonMin: 139.758,
-  lonMax: 139.771,
-  latMin: 35.667,
-  latMax: 35.684,
+  lonMin: 139.762,
+  lonMax: 139.767,
+  latMin: 35.670,
+  latMax: 35.681,
 };
 
 const LAT_COS = Math.cos(35.676 * Math.PI / 180);
@@ -105,8 +105,8 @@ function drawWard(geojson) {
     });
   });
 
-  drawWardLabel('Chuo', 139.774, 35.670);
-  drawWardLabel('Chiyoda', 139.758, 35.683);
+  drawWardLabel('Chuo', 139.7635, 35.6715);
+  drawWardLabel('Chiyoda', 139.7655, 35.6795);
 }
 
 function drawParticles() {

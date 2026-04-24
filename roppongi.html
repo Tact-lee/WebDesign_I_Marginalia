@@ -51,15 +51,15 @@
       <div class="d-hero__stats">
         <div class="d-stat">
           <span class="d-stat__val">1</span>
-          <span class="d-stat__label">Structure</span>
+          <span class="d-stat__label">Structures</span>
         </div>
         <div class="d-stat">
-          <span class="d-stat__val">14,000㎡</span>
-          <span class="d-stat__label">Exhibition Area</span>
+          <span class="d-stat__val">Kisho Kurokawa</span>
+          <span class="d-stat__label">Architect</span>
         </div>
         <div class="d-stat">
           <span class="d-stat__val">2007</span>
-          <span class="d-stat__label">Completed</span>
+          <span class="d-stat__label">Span</span>
         </div>
       </div>
 
@@ -234,14 +234,16 @@
   <script>
     (function () {
       var btn = document.getElementById('btnTop');
-      function updateBtn() {
-        btn.classList.toggle('visible', window.scrollY > 400);
+      var hideTimer = null;
+      function onScroll() {
+        if (window.scrollY > 400) btn.classList.add('visible');
+        clearTimeout(hideTimer);
+        hideTimer = setTimeout(function () { btn.classList.remove('visible'); }, 1500);
       }
-      window.addEventListener('scroll', updateBtn, { passive: true });
+      window.addEventListener('scroll', onScroll, { passive: true });
       btn.addEventListener('click', function () {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
-      updateBtn();
     })();
   </script>
 </body>

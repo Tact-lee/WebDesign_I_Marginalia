@@ -51,11 +51,11 @@
         </div>
         <div class="d-stat">
           <span class="d-stat__val">Kengo Kuma</span>
-          <span class="d-stat__label">Featured Architect</span>
+          <span class="d-stat__label">Architect</span>
         </div>
         <div class="d-stat">
-          <span class="d-stat__val">2023</span>
-          <span class="d-stat__label">Latest Built</span>
+          <span class="d-stat__val">1996–2023</span>
+          <span class="d-stat__label">Span</span>
         </div>
       </div>
 
@@ -131,17 +131,20 @@
     <!-- Seg 3: text | photo_03 -->
     <div class="d-building__seg js-img-reveal">
       <div class="d-building__seg-text">
-        <p>한 곳만 봐서는 알기 힘들지만, 그게 오히려 과하지 않으면서도 나무를 이용한 패턴을 즐겨 쓰는, 쿠마 켄고의 이 공간에 대한 컨셉을 확인할 수 있는 부분이었습니다. 정말 그들에게 의미 있는 것들로 가득가득 채워진 공간이라는 인상을 받았는데요. 다만, 하입보다는 클래식한 브랜드 위주로 구성되어 있기 때문에 당장의 트렌드를 읽을 수 있는 공간은 아니었지만, 그럼에도 이곳 또한 도쿄역이라는 관문에서 방문자들에게 대중적인 문화와 브랜드를 보여주는 중요한 역할을 하고 있기 때문에 한 번쯤 방문할 필요가 있다고 생각되는 곳이었습니다. 어떻게 옛날 건물을 이렇게 세련되게 바꿀 수 있는지 참 대단하다고 생각되네요.</p>
+        <p>한 곳만 봐서는 알기 힘들지만, 그게 오히려 과하지 않으면서도 나무를 이용한 패턴을 즐겨 쓰는, 쿠마 켄고의 이 공간에 대한 컨셉을 확인할 수 있는 부분이었습니다. 정말 그들에게 의미 있는 것들로 가득가득 채워진 공간이라는 인상을 받았는데요.</p>
       </div>
       <div class="d-building__seg-img">
         <img src="picture/Kitte_Marunouchi_03.png" alt="Kitte Marunouchi floor pattern detail" />
       </div>
     </div>
 
-    <!-- Gallery: photo_04 -->
-    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
-      <div class="d-building__gallery-item">
+    <!-- Seg 4 (alt): photo_04 | text -->
+    <div class="d-building__seg d-building__seg--alt js-img-reveal">
+      <div class="d-building__seg-img">
         <img src="picture/Kitte_Marunouchi_04.png" alt="Kitte Marunouchi atrium columns" />
+      </div>
+      <div class="d-building__seg-text">
+        <p>다만, 하입보다는 클래식한 브랜드 위주로 구성되어 있기 때문에 당장의 트렌드를 읽을 수 있는 공간은 아니었지만, 그럼에도 이곳 또한 도쿄역이라는 관문에서 방문자들에게 대중적인 문화와 브랜드를 보여주는 중요한 역할을 하고 있기 때문에 한 번쯤 방문할 필요가 있다고 생각되는 곳이었습니다. 어떻게 옛날 건물을 이렇게 세련되게 바꿀 수 있는지 참 대단하다고 생각되네요.</p>
       </div>
     </div>
 
@@ -1053,14 +1056,16 @@
   <script>
     (function () {
       var btn = document.getElementById('btnTop');
-      function updateBtn() {
-        btn.classList.toggle('visible', window.scrollY > 400);
+      var hideTimer = null;
+      function onScroll() {
+        if (window.scrollY > 400) btn.classList.add('visible');
+        clearTimeout(hideTimer);
+        hideTimer = setTimeout(function () { btn.classList.remove('visible'); }, 1500);
       }
-      window.addEventListener('scroll', updateBtn, { passive: true });
+      window.addEventListener('scroll', onScroll, { passive: true });
       btn.addEventListener('click', function () {
         window.scrollTo({ top: 0, behavior: 'smooth' });
       });
-      updateBtn();
     })();
   </script>
 </body>
