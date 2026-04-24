@@ -138,20 +138,18 @@ function buildShapes(geometry) {
 function makeGrid() {
   const group = new THREE.Group();
   const mat   = new THREE.LineBasicMaterial({ color: INK, transparent: true, opacity: 0.08 });
-  const ext   = 16;
+  const ext   = 80;    // covers 5K ultrawide + tilt margin (camera half-width ≈ 47u at 5120px)
   const step  = 0.3;   // ~16px — matches hero grid density
+  const positions = [];
   for (let x = -ext; x <= ext; x += step) {
-    const g = new THREE.BufferGeometry().setFromPoints([
-      new THREE.Vector3(x, -ext, 0.001), new THREE.Vector3(x, ext, 0.001)
-    ]);
-    group.add(new THREE.Line(g, mat));
+    positions.push(x, -ext, 0.001,  x, ext, 0.001);
   }
   for (let y = -ext; y <= ext; y += step) {
-    const g = new THREE.BufferGeometry().setFromPoints([
-      new THREE.Vector3(-ext, y, 0.001), new THREE.Vector3(ext, y, 0.001)
-    ]);
-    group.add(new THREE.Line(g, mat));
+    positions.push(-ext, y, 0.001,  ext, y, 0.001);
   }
+  const g = new THREE.BufferGeometry();
+  g.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+  group.add(new THREE.LineSegments(g, mat));
   return group;
 }
 
