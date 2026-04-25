@@ -5,14 +5,14 @@
 
   /* ── constants ─────────────────────────────────────── */
   var GRID     = 16;
-  var T1       = 2.2;    // s — vertical sweep
-  var T2       = 1.8;    // s — horizontal sweep
-  var GAP      = 0.1;   // s — pause between phases
+  var T1       = 1.3;    // s — vertical sweep
+  var T2       = 1.0;    // s — horizontal sweep
+  var GAP      = 0.06;  // s — pause between phases
   var TOTAL    = T1 + GAP + T2;
 
-  var RADIUS   = 160;    // px — pin influence radius (10 grid units)
-  var LERP_IN  = 0.13;
-  var LERP_OUT = 0.08;
+  var RADIUS   = 210;    // px — pin influence radius
+  var LERP_IN  = 0.16;
+  var LERP_OUT = 0.055;
 
   /* ── state ─────────────────────────────────────────── */
   var W, H, cells = [];
@@ -121,6 +121,7 @@
       raf = requestAnimationFrame(renderAnim);
     } else {
       animDone = true;
+      document.dispatchEvent(new CustomEvent('gridAnimDone'));
       raf = requestAnimationFrame(renderInteractive); // hand off
     }
   }
@@ -157,10 +158,10 @@
       var c = cells[i];
       if (c.elev > 0.004) {
         var e2     = c.elev * c.elev;
-        var spread = c.elev * 9;  // halo radius in px
+        var spread = c.elev * 36;  // halo radius in px
         /* pre-multiply shadow color against #f2f0eb (242,240,235)
            so we can draw opaque RGB — no alpha to accumulate     */
-        var strength = e2 * 0.28;
+        var strength = Math.pow(c.elev, 1.4) * 0.72;
         var r = Math.round(242 - (242 - 26) * strength);
         var g = Math.round(240 - (240 - 26) * strength);
         var b = Math.round(235 - (235 - 24) * strength);
@@ -187,11 +188,11 @@
         var e2 = e * e; // non-linear → more contrast at edges
 
         /* bright top surface — overhead light hits elevated face */
-        ctx.fillStyle = 'rgba(255,253,248,' + (e2 * 0.96) + ')';
+        ctx.fillStyle = 'rgba(255,253,248,' + Math.min(1, Math.pow(e, 0.7)) + ')';
         ctx.fillRect(c.x, c.y, GRID, GRID);
 
         /* dark border defines each block's edge */
-        ctx.strokeStyle = 'rgba(26,26,24,' + (e2 * 0.38) + ')';
+        ctx.strokeStyle = 'rgba(26,26,24,' + Math.min(0.7, e2 * 0.6) + ')';
         ctx.lineWidth   = 0.75;
         ctx.strokeRect(c.x + 0.5, c.y + 0.5, GRID - 1, GRID - 1);
       }
@@ -222,12 +223,22 @@
       });
     }
 
-    /* delay one rAF frame so layout is fully computed
-       before we read clientWidth / clientHeight         */
-    requestAnimationFrame(function () {
-      setup();
-      raf = requestAnimationFrame(renderAnim);
-    });
+    /* ── Sync with loading screen ──
+       grid.js runs before transition.js, so the sessionStorage flag
+       is still set here. Read it now to decide the start delay.
+       · Fresh load  → wait ~1100ms (badge phase ends, strips begin dropping)
+       · Via transition → start immediately (strips drop right away)      */
+    var viaTransition = sessionStorage.getItem('pt-active') === '1';
+    var animDelay = viaTransition ? 0 : 1100;
+
+    setTimeout(function () {
+      /* delay one rAF frame so layout is fully computed
+         before we read clientWidth / clientHeight       */
+      requestAnimationFrame(function () {
+        setup();
+        raf = requestAnimationFrame(renderAnim);
+      });
+    }, animDelay);
   }
 
   if (document.readyState === 'loading') {

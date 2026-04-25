@@ -10,6 +10,27 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <!-- Page Transition Overlay -->
+  <div class="page-transition" id="pageTransition">
+    <div class="pt-badges">
+      <div class="pt-badge"><span>LOADING</span></div>
+      <div class="pt-badge"><span>PLZ</span></div>
+      <div class="pt-badge"><span>WAIT</span></div>
+    </div>
+    <div class="pt-strips">
+      <div class="pt-strip" style="--i:0"></div>
+      <div class="pt-strip" style="--i:1"></div>
+      <div class="pt-strip" style="--i:2"></div>
+      <div class="pt-strip" style="--i:3"></div>
+      <div class="pt-strip" style="--i:4"></div>
+      <div class="pt-strip" style="--i:5"></div>
+      <div class="pt-strip" style="--i:6"></div>
+      <div class="pt-strip" style="--i:7"></div>
+      <div class="pt-strip" style="--i:8"></div>
+      <div class="pt-strip" style="--i:9"></div>
+    </div>
+  </div>
+
 
   <!-- NAV -->
   <nav class="nav">
@@ -23,7 +44,24 @@
   <!-- HERO -->
   <header class="hero">
     <canvas id="gridCanvas"></canvas>
-    <h1 class="hero__title">Marginalia</h1>
+
+    <div class="hero__title-wrap">
+      <!-- typeface label -->
+      <div class="hero__annot hero__annot--tag" aria-hidden="true">DM Serif Display &thinsp;&middot;&thinsp; Regular 400 &thinsp;&middot;&thinsp; &minus;0.04em</div>
+      <!-- horizontal dimension line -->
+      <div class="hero__annot hero__annot--h" aria-hidden="true">
+        <span class="hero__annot__val">9 vw</span>
+      </div>
+      <!-- vertical height dimension line -->
+      <div class="hero__annot hero__annot--v" aria-hidden="true">
+        <span class="hero__annot__val">128</span>
+      </div>
+      <!-- title — clip + slide reveal -->
+      <div class="hero__title-clip">
+        <h1 class="hero__title">Marginalia</h1>
+      </div>
+    </div>
+
     <p class="hero__sub">교양 있는 척하는 당신을 위한<br />도쿄 건축 아카이브</p>
     <div class="hero__scroll-hint">
       <span>Scroll</span>
@@ -142,5 +180,45 @@
   <script type="module" src="map.js"></script>
   <script src="gallery.js"></script>
   <script src="grid.js"></script>
+  <script>
+    (function () {
+      document.addEventListener('gridAnimDone', function () {
+        var title  = document.querySelector('.hero__title');
+        var wrap   = document.querySelector('.hero__title-wrap');
+        var hLine  = document.querySelector('.hero__annot--h');
+        var annots = document.querySelectorAll('.hero__annot');
+        var sub    = document.querySelector('.hero__sub');
+        var hint   = document.querySelector('.hero__scroll-hint');
+
+        /* fit h-line to actual rendered text width (not block width) */
+        if (title && wrap && hLine) {
+          var range  = document.createRange();
+          range.selectNodeContents(title);
+          var titleW = range.getBoundingClientRect().width;
+          var wrapW  = wrap.getBoundingClientRect().width;
+          hLine.style.right = Math.max(0, wrapW - titleW) + 'px';
+        }
+
+        /* title slides up immediately */
+        if (title) title.classList.add('is-revealed');
+
+        /* annotations fade in with slight delay */
+        setTimeout(function () {
+          annots.forEach(function (a) { a.classList.add('is-revealed'); });
+        }, 140);
+
+        /* subtitle fades up */
+        setTimeout(function () {
+          if (sub) sub.classList.add('is-revealed');
+        }, 420);
+
+        /* scroll hint fades */
+        setTimeout(function () {
+          if (hint) hint.classList.add('is-revealed');
+        }, 620);
+      });
+    })();
+  </script>
+  <script src="transition.js"></script>
 </body>
 </html>

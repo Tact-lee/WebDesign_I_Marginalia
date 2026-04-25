@@ -11,6 +11,27 @@
   <link rel="stylesheet" href="district.css" />
 </head>
 <body>
+  <!-- Page Transition Overlay -->
+  <div class="page-transition" id="pageTransition">
+    <div class="pt-badges">
+      <div class="pt-badge"><span>LOADING</span></div>
+      <div class="pt-badge"><span>PLZ</span></div>
+      <div class="pt-badge"><span>WAIT</span></div>
+    </div>
+    <div class="pt-strips">
+      <div class="pt-strip" style="--i:0"></div>
+      <div class="pt-strip" style="--i:1"></div>
+      <div class="pt-strip" style="--i:2"></div>
+      <div class="pt-strip" style="--i:3"></div>
+      <div class="pt-strip" style="--i:4"></div>
+      <div class="pt-strip" style="--i:5"></div>
+      <div class="pt-strip" style="--i:6"></div>
+      <div class="pt-strip" style="--i:7"></div>
+      <div class="pt-strip" style="--i:8"></div>
+      <div class="pt-strip" style="--i:9"></div>
+    </div>
+  </div>
+
 
   <!-- NAV -->
   <nav class="nav">
@@ -50,7 +71,7 @@
           <span class="d-stat__label">Structures</span>
         </div>
         <div class="d-stat">
-          <span class="d-stat__val">Kengo Kuma</span>
+          <span class="d-stat__val">7</span>
           <span class="d-stat__label">Architect</span>
         </div>
         <div class="d-stat">
@@ -445,7 +466,7 @@
     </div>
 
     <!-- Gallery: photo_06 -->
-    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+    <div class="d-building__gallery d-building__gallery--solo js-img-reveal">
       <div class="d-building__gallery-item">
         <img src="picture/Marronnier_Gate_Ginza_06.png" alt="Marronnier Gate Ginza Uniqlo facade" />
       </div>
@@ -524,7 +545,7 @@
     </div>
 
     <!-- Gallery: photo_04 -->
-    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+    <div class="d-building__gallery d-building__gallery--solo js-img-reveal">
       <div class="d-building__gallery-item">
         <img src="picture/Mikimoto_II_Ginza_04.png" alt="Mikimoto II Ginza structural skin detail" />
       </div>
@@ -636,7 +657,7 @@
     </div>
 
     <!-- Gallery: photo_06 -->
-    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+    <div class="d-building__gallery d-building__gallery--solo js-img-reveal">
       <div class="d-building__gallery-item">
         <img src="picture/Loro_Piana_Flagship_Ginza_06.png" alt="Loro Piana Flagship Ginza facade close-up" />
       </div>
@@ -715,7 +736,7 @@
     </div>
 
     <!-- Gallery: photo_06 -->
-    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+    <div class="d-building__gallery d-building__gallery--solo js-img-reveal">
       <div class="d-building__gallery-item">
         <img src="picture/Maison_Hermes_Ginza_06.png" alt="Maison Hermes Ginza corner facade" />
       </div>
@@ -1025,7 +1046,7 @@
     </div>
 
     <!-- Gallery: photo_06 -->
-    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+    <div class="d-building__gallery d-building__gallery--solo js-img-reveal">
       <div class="d-building__gallery-item">
         <img src="picture/Ginza_Innit_06.png" alt="Ginza Innit entrance and signage" />
       </div>
@@ -1068,5 +1089,7 @@
       });
     })();
   </script>
+  <script src="district-ui.js"></script>
+  <script src="transition.js"></script>
 </body>
 </html>
