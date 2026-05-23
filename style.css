@@ -24,8 +24,8 @@
   --ink-08:   rgba(26,26,24,0.08);
 
   --f-serif:  'DM Serif Display', Georgia, serif;
-  --f-mono:   'Space Mono', monospace;
-  --f-sans:   'Syne', sans-serif;
+  --f-mono:   'Space Mono', 'Noto Sans KR', monospace;
+  --f-sans:   'Syne', 'Noto Sans KR', sans-serif;
 
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -45,9 +45,20 @@ a { color: inherit; text-decoration: none; }
 ul { list-style: none; }
 button { background: none; border: none; cursor: pointer; font: inherit; color: inherit; }
 
-/* Korean word-spacing correction — letter-spacing bleeds into space chars */
+/* Korean text correction — letter-spacing bleeds into space chars */
 p, .hero__sub, .d-hero__title-jp, .d-intro__body, .d-building__seg-text {
   word-spacing: -0.04em;
+}
+
+/* Korean character spacing reset — Space Mono's tracking is too wide for 한글 */
+.hero__sub,
+.d-intro__text,
+.d-building__seg-text p,
+.d-building__text p,
+.d-building__portrait-name-kr,
+.d-hero__intro,
+.footer__tagline {
+  letter-spacing: 0;
 }
 
 /* ---------- Shared Typography ---------- */
@@ -67,14 +78,57 @@ p, .hero__sub, .d-hero__title-jp, .d-intro__body, .d-building__seg-text {
   letter-spacing: -0.02em;
 }
 
-.section-note {
+/* ---------- Map Canvas Hint ---------- */
+.map-hint {
+  position: absolute;
+  top: 50%;
+  left: 28px;
+  transform: translateY(-50%);
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  pointer-events: none;
+
+  /* visibility state */
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+.map-hint.is-visible { opacity: 1; }
+.map-hint.is-hiding  { opacity: 0; }
+
+.map-hint__text {
+  display: block;
   font-family: var(--f-mono);
   font-size: 10px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ink-40);
-  margin-top: 6px;
+  letter-spacing: 0.04em;
+  color: var(--ink);
+  background: rgba(242,240,235,0.88);
+  backdrop-filter: blur(4px);
+  padding: 8px 14px;
+  border: 1px solid var(--ink-15);
+  white-space: nowrap;
 }
+
+/* ---------- Cursor Label (gallery only) ---------- */
+.cursor-label {
+  position: fixed;
+  top: 0; left: 0;
+  z-index: 9999;
+  pointer-events: none;
+  font-family: var(--f-mono);
+  font-size: 10px;
+  letter-spacing: 0.06em;
+  color: var(--ink);
+  background: rgba(242,240,235,0.92);
+  border: 1px solid var(--ink-15);
+  padding: 6px 12px;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  will-change: opacity;
+}
+.cursor-label.is-visible { opacity: 1; }
 
 /* ---------- NAV ---------- */
 .nav {
@@ -183,13 +237,15 @@ p, .hero__sub, .d-hero__title-jp, .d-intro__body, .d-building__seg-text {
   grid-row: 4;
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 16px;
   margin-top: 80px;
   font-family: var(--f-mono);
-  font-size: 10px;
-  letter-spacing: 0.12em;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--ink-40);
+  color: var(--ink);
   opacity: 0;
   transition: opacity 0.7s ease;
 }
@@ -590,6 +646,9 @@ p, .hero__sub, .d-hero__title-jp, .d-intro__body, .d-building__seg-text {
   cursor: pointer;
   display: block;
   background: var(--ink-08);
+  /* isolate each item into its own paint layer — prevents hover from
+     triggering full-column repaints */
+  contain: layout style paint;
 }
 
 .bento-item img {
@@ -597,10 +656,13 @@ p, .hero__sub, .d-hero__title-jp, .d-intro__body, .d-building__seg-text {
   height: auto;
   display: block;
   transition: transform 0.6s var(--ease-out);
+  /* promote to GPU layer only while hovering — not upfront to save VRAM */
+  will-change: auto;
 }
 
 .bento-item:hover img {
   transform: scale(1.04);
+  will-change: transform;
 }
 
 .bento-item__overlay {
@@ -909,6 +971,7 @@ p, .hero__sub, .d-hero__title-jp, .d-intro__body, .d-building__seg-text {
   transform: translateY(0);     /* default: covering */
   will-change: transform;
   pointer-events: all;
+  margin-right: -1px;           /* 서브픽셀 틈 방지 — strips 1px 겹침 */
 }
 
 /* State: reveal — strips drop downward, staggered left → right */

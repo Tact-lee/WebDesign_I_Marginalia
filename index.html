@@ -6,7 +6,7 @@
   <title>Marginalia — Tokyo Architecture Archive</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Noto+Sans+KR:wght@300;400;500&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -31,6 +31,9 @@
     </div>
   </div>
 
+
+  <!-- Gallery cursor label -->
+  <div class="cursor-label" id="cursorLabel" aria-hidden="true">사진을 클릭하면 상세 페이지로 이동합니다</div>
 
   <!-- NAV -->
   <nav class="nav">
@@ -72,10 +75,13 @@
   <section class="map-section" id="map-section">
     <div class="map-section__header">
       <h2 class="section-title">Location Map</h2>
-      <p class="section-note">Move cursor to explore — hover district to elevate</p>
     </div>
 
     <div class="map-wrapper" id="mapWrapper">
+      <!-- one-time hint overlay -->
+      <div class="map-hint" id="mapHint" aria-hidden="true">
+        <span class="map-hint__text">원하는 지역을 클릭하면 해당 지역의 상세 페이지로 이동합니다 →</span>
+      </div>
       <canvas id="mapCanvas"></canvas>
 
       <!-- Real-time coordinates -->
@@ -218,6 +224,89 @@
         }, 620);
       });
     })();
+  </script>
+
+  <!-- ── Section hints + cursor label ─────────────────────────── -->
+  <script>
+  (function () {
+    'use strict';
+
+    /* ── helpers ── */
+    function showHint(el, duration) {
+      if (!el) return;
+      el.classList.remove('is-hiding');
+      el.classList.add('is-visible');
+      setTimeout(function () {
+        el.classList.add('is-hiding');
+        /* remove is-visible after transition ends */
+        el.addEventListener('transitionend', function done() {
+          el.removeEventListener('transitionend', done);
+          el.classList.remove('is-visible', 'is-hiding');
+        });
+      }, duration);
+    }
+
+    /* ── map hint ────────────────────────────────────────────── */
+    var mapSection  = document.getElementById('map-section');
+    var mapHint     = document.getElementById('mapHint');
+    var mapShown    = false;
+
+    if (mapSection && mapHint) {
+      var mapObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting && !mapShown) {
+            mapShown = true;
+            /* small delay so the section is visually settled before hint appears */
+            setTimeout(function () { showHint(mapHint, 7000); }, 400);
+            mapObserver.disconnect();
+          }
+        });
+      }, { threshold: 0.3 });
+      mapObserver.observe(mapSection);
+    }
+
+    /* ── gallery cursor label ────────────────────────────────── */
+    var gallerySection = document.getElementById('gallery-section');
+    var cursorLabel    = document.getElementById('cursorLabel');
+
+    if (gallerySection && cursorLabel) {
+      var labelTimer   = null;
+      var labelShowing = false;
+
+      /* follow mouse anywhere on the page (throttled via rAF) */
+      var rafPending = false;
+      var latestX = 0, latestY = 0;
+      document.addEventListener('mousemove', function (e) {
+        latestX = e.clientX; latestY = e.clientY;
+        if (!rafPending) {
+          rafPending = true;
+          requestAnimationFrame(function () {
+            rafPending = false;
+            cursorLabel.style.left = (latestX + 14) + 'px';
+            cursorLabel.style.top  = (latestY - 10) + 'px';
+          });
+        }
+      });
+
+      function showCursorLabel() {
+        if (labelShowing) return;
+        labelShowing = true;
+        cursorLabel.classList.add('is-visible');
+        clearTimeout(labelTimer);
+        /* auto-hide after 4 s */
+        labelTimer = setTimeout(hideCursorLabel, 4000);
+      }
+      function hideCursorLabel() {
+        labelShowing = false;
+        cursorLabel.classList.remove('is-visible');
+        clearTimeout(labelTimer);
+      }
+
+      gallerySection.addEventListener('mouseenter', showCursorLabel);
+      gallerySection.addEventListener('mouseleave', hideCursorLabel);
+    }
+
+  }());
   </script>
   <script src="transition.js"></script>
 </body>

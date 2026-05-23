@@ -808,7 +808,7 @@
     const el = document.createElement('div');
     el.className = 'bento-item';
     el.innerHTML = `
-      <img src="${item.src}" alt="${item.name}" />
+      <img src="${item.src}" alt="${item.name}" loading="lazy" decoding="async" />
       <div class="bento-item__overlay">
         <span class="bento-item__district">${item.district} · ${item.year}</span>
         <span class="bento-item__name">${item.name}</span>
