@@ -51,7 +51,7 @@
 }
 
 .d-hero__title-jp {
-  font-family: 'Pretendard', sans-serif;
+  font-family: 'Pretendard', 'Noto Sans JP', sans-serif;
   font-style: normal;
   font-weight: 100;
   font-size: 0.24em;
@@ -209,7 +209,7 @@
 }
 
 .d-building__subtitle {
-  font-family: 'Pretendard', sans-serif;
+  font-family: 'Pretendard', 'Noto Sans JP', sans-serif;
   font-size: clamp(15px, 1.9vw, 27px);
   font-weight: 100;
   font-style: normal;
