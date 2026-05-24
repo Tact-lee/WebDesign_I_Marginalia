@@ -324,6 +324,28 @@ function toDMS(deg, posDir, negDir) {
 const _groundPlane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0);
 const _groundHit   = new THREE.Vector3();
 
+// ── 모바일 감지 ─────────────────────────────────────────────────
+const isMobile = () => window.matchMedia('(pointer: coarse)').matches;
+
+// ── 페이지 이동 (모바일: transition 애니메이션 후 1초 추가 대기) ───
+function navigateTo(href) {
+  const overlay = document.getElementById('pageTransition');
+  if (!overlay) { window.location.href = href; return; }
+
+  // transition.js의 is-in 애니메이션 트리거
+  overlay.classList.remove('is-out', 'is-in');
+  overlay.classList.add('is-reset');
+  overlay.getBoundingClientRect(); // force reflow
+  overlay.classList.remove('is-reset');
+  overlay.classList.add('is-in');
+
+  try { sessionStorage.setItem('pt-active', '1'); } catch(e) {}
+
+  const STRIP_COVER = 620;
+  const extra = isMobile() ? 1000 : 0;
+  setTimeout(() => { window.location.href = href; }, STRIP_COVER + extra);
+}
+
 // 클릭 시 district.html?id=... 으로 이동
 wrapper.addEventListener('click', e => {
   const rect = wrapper.getBoundingClientRect();
@@ -335,11 +357,51 @@ wrapper.addEventListener('click', e => {
   if (hits.length > 0) {
     const wardName = hits[0].object.parent?.userData?.wardName;
     const cfg = HIGHLIGHT_WARDS[wardName];
-    if (cfg) window.location.href = cfg.href || `district.html?id=${cfg.id}`;
+    if (cfg) navigateTo(cfg.href || `district.html?id=${cfg.id}`);
   }
 });
 
+// ── 자이로 센서 (모바일) ────────────────────────────────────────
+let gyroEnabled = false;
+let gyroBase = { beta: null, gamma: null };
+
+function initGyro() {
+  if (!isMobile()) return;
+  if (typeof DeviceOrientationEvent === 'undefined') return;
+
+  function handleOrientation(e) {
+    if (!gyroEnabled) return;
+    // 처음 값을 기준점으로 설정
+    if (gyroBase.beta === null) {
+      gyroBase.beta  = e.beta  ?? 0;
+      gyroBase.gamma = e.gamma ?? 0;
+    }
+    const db = (e.beta  - gyroBase.beta)  / 30;  // 30° 범위 → -1 ~ 1
+    const dg = (e.gamma - gyroBase.gamma) / 30;
+    mouseNorm.x =  Math.max(-1, Math.min(1, dg));
+    mouseNorm.y = -Math.max(-1, Math.min(1, db));
+  }
+
+  // iOS 13+ 는 권한 요청 필요
+  if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+    wrapper.addEventListener('click', function requestGyro() {
+      DeviceOrientationEvent.requestPermission().then(state => {
+        if (state === 'granted') {
+          gyroEnabled = true;
+          window.addEventListener('deviceorientation', handleOrientation);
+        }
+      }).catch(() => {});
+      wrapper.removeEventListener('click', requestGyro);
+    }, { once: false });
+  } else {
+    gyroEnabled = true;
+    window.addEventListener('deviceorientation', handleOrientation);
+  }
+}
+initGyro();
+
 wrapper.addEventListener('mousemove', e => {
+  if (isMobile()) return;   // 모바일에서는 자이로 사용
   const rect = wrapper.getBoundingClientRect();
   mouseNorm.x = ((e.clientX - rect.left) / rect.width)  * 2 - 1;
   mouseNorm.y = ((e.clientY - rect.top)  / rect.height) * 2 - 1;
@@ -500,6 +562,6 @@ document.querySelectorAll('.legend-item').forEach(item => {
   // 클릭 시 해당 페이지로 이동 (data-href가 있는 경우)
   const href = item.dataset.href;
   if (href) {
-    item.addEventListener('click', () => { window.location.href = href; });
+    item.addEventListener('click', () => { navigateTo(href); });
   }
 });

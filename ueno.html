@@ -53,7 +53,25 @@
           <button class="lang-btn" data-lang="en">EN</button>
       </div>
     </div>
+      <button class="nav__hamburger" id="navHamburger" aria-label="메뉴" aria-expanded="false">
+        <span></span><span></span>
+      </button>
   </nav>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="nav__mobile-menu" id="navMobileMenu" aria-hidden="true">
+    <div class="nav__mobile-inner">
+      <ul class="nav__mobile-links">
+        <li><a href="index.html#map-section">Location Map</a></li>
+        <li><a href="index.html#gallery-section">Gallery</a></li>
+      </ul>
+      <div class="nav__mobile-lang">
+        <button class="lang-btn is-active" data-lang="ko">KO</button>
+        <button class="lang-btn" data-lang="ja">JA</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </div>
+    </div>
+  </div>
 
   <!-- HERO -->
   <header class="d-hero">
@@ -469,6 +487,7 @@
   </script>
   <script src="district-ui.js"></script>
   <script src="i18n.js"></script>
+  <script src="nav.js"></script>
   <script src="transition.js"></script>
 </body>
 </html>
