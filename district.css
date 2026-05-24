@@ -51,7 +51,7 @@
 }
 
 .d-hero__title-jp {
-  font-family: var(--f-sans);
+  font-family: 'Pretendard', sans-serif;
   font-style: normal;
   font-weight: 100;
   font-size: 0.24em;
@@ -173,7 +173,7 @@
 
 .d-intro__text {
   font-family: var(--f-mono);
-  font-size: 13px;
+  font-size: 16px;
   line-height: 2.2;
   color: var(--ink-40);
 }
@@ -209,11 +209,13 @@
 }
 
 .d-building__subtitle {
-  font-family: var(--f-mono);
-  font-size: 10px;
-  letter-spacing: 0.10em;
-  text-transform: uppercase;
-  color: var(--ink-40);
+  font-family: 'Pretendard', sans-serif;
+  font-size: clamp(15px, 1.9vw, 27px);
+  font-weight: 100;
+  font-style: normal;
+  line-height: 1.4;
+  letter-spacing: 0.12em;
+  color: var(--ink-15);
 }
 
 .d-building__meta {
@@ -471,7 +473,7 @@
 }
 .d-building__seg-text p {
   font-family: var(--f-mono);
-  font-size: 14.5px;
+  font-size: 16px;
   line-height: 2.3;
   color: var(--ink-40);
 }
@@ -493,6 +495,28 @@
   object-fit: cover;
   display: block;
   filter: grayscale(100%);
+  transition: transform 0.6s var(--ease-out);
+}
+.d-building__seg-img:hover img {
+  transform: scale(1.04);
+}
+
+/* 호버 힌트 — 세그먼트 이미지 */
+.d-building__seg-img::after {
+  content: '클릭하여 원본 비율로 보기';
+  position: absolute;
+  bottom: 14px;
+  right: 14px;
+  font-family: var(--f-mono);
+  font-size: 9px;
+  letter-spacing: 0.10em;
+  color: rgba(242,240,235,0.90);
+  background: rgba(26,26,24,0.55);
+  padding: 5px 10px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 3;
 }
 
 /* 캡션 */
@@ -593,10 +617,34 @@
   object-fit: cover;
   display: block;
   filter: grayscale(100%);
-  transition: transform 0.6s ease;
+  transition: transform 0.6s var(--ease-out);
 }
 .d-building__gallery-item:hover img {
   transform: scale(1.04);
+}
+
+/* 호버 힌트 — 갤러리 스트립 */
+.d-building__gallery-item::after {
+  content: '클릭하여 원본 비율로 보기';
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  font-family: var(--f-mono);
+  font-size: 9px;
+  letter-spacing: 0.10em;
+  color: rgba(242,240,235,0.90);
+  background: rgba(26,26,24,0.55);
+  padding: 5px 10px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 3;
+}
+
+/* 호버 시 힌트 표시 */
+.d-building__seg-img:hover::after,
+.d-building__gallery-item:hover::after {
+  opacity: 1;
 }
 
 /* ─── 구조 다이어그램 — 전폭 ─────────────────────────────────── */

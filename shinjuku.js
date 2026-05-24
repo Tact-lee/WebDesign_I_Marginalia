@@ -65,7 +65,7 @@ function drawPolyRing(ring) {
 
 function drawWardLabel(name, lon, lat) {
   const [x, y] = toXY(lon, lat);
-  ctx.save(); ctx.font = '500 10px "Syne", sans-serif'; ctx.letterSpacing = '0.10em';
+  ctx.save(); ctx.font = '500 10px "Pretendard", sans-serif'; ctx.letterSpacing = '0.10em';
   ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillStyle = 'rgba(26,26,24,0.45)';
   ctx.fillText(name.toUpperCase(), x, y); ctx.restore();
 }
@@ -105,7 +105,7 @@ function drawParticles() {
     ctx.strokeStyle = 'rgba(26,26,24,0.55)'; ctx.lineWidth = isHovered ? 1.2 : 0.75;
     ctx.strokeRect(x - size + 0.5, y - size + 0.5, size * 2 - 1, size * 2 - 1);
     ctx.fillStyle = isHovered ? '#1a1a18' : '#f2f0eb';
-    ctx.font = `bold ${isHovered ? 9 : 8}px "Space Mono"`;
+    ctx.font = `bold ${isHovered ? 9 : 8}px "Pretendard"`;
     ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(b.num, x, y);
   });
 }

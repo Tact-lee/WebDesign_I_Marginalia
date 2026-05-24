@@ -119,7 +119,7 @@ function drawPolyRing(ring) {
 function drawWardLabel(name, lon, lat) {
   const [x, y] = toXY(lon, lat);
   ctx.save();
-  ctx.font         = '500 10px "Syne", sans-serif';
+  ctx.font         = '500 10px "Pretendard", sans-serif';
   ctx.letterSpacing = '0.10em';
   ctx.textAlign    = 'center';
   ctx.textBaseline = 'middle';
@@ -216,7 +216,7 @@ function drawParticles() {
 
     const textColor = isHovered ? '#1a1a18' : '#f2f0eb';
     ctx.fillStyle    = textColor;
-    ctx.font         = `bold ${isHovered ? 9 : 8}px "Space Mono"`;
+    ctx.font         = `bold ${isHovered ? 9 : 8}px "Pretendard"`;
     ctx.textAlign    = 'center';
     ctx.textBaseline = 'middle';
     ctx.fillText(b.num, x, y);

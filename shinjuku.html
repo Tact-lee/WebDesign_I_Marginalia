@@ -6,7 +6,8 @@
   <title>Shinjuku — Marginalia</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Noto+Sans+KR:wght@300;400;500&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@latest/dist/web/static/pretendard-dynamic-subset.css" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
   <link rel="stylesheet" href="district.css" />
 </head>
@@ -36,24 +37,30 @@
   <!-- NAV -->
   <nav class="nav">
     <a href="index.html" class="nav__logo">Marginalia</a>
-    <ul class="nav__links">
-      <li><a href="index.html#map-section">Location Map</a></li>
-      <li><a href="index.html#gallery-section">Gallery</a></li>
-    </ul>
+    <div class="nav__right">
+      <ul class="nav__links">
+        <li><a href="index.html#map-section">Location Map</a></li>
+        <li><a href="index.html#gallery-section">Gallery</a></li>
+      </ul>
+      <div class="lang-switcher" aria-label="Language">
+        <button class="lang-trigger" aria-expanded="false">
+          <span class="lang-current">KO</span>
+          <svg class="lang-arrow" width="8" height="5" viewBox="0 0 8 5" fill="none" aria-hidden="true"><path d="M1 1L4 4L7 1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="lang-dropdown">
+          <button class="lang-btn is-active" data-lang="ko">KO</button>
+          <button class="lang-btn" data-lang="ja">JA</button>
+          <button class="lang-btn" data-lang="en">EN</button>
+      </div>
+    </div>
   </nav>
 
   <!-- HERO -->
   <header class="d-hero">
     <div class="d-hero__content">
-      <div class="d-hero__breadcrumb">
-        <a href="index.html" class="label">Marginalia</a>
-        <span class="label">→</span>
-        <span class="label">District</span>
-      </div>
-
       <div class="d-hero__label-row">
-        <span class="label">신주쿠구</span>
-        <span class="label">— 6개 건축물</span>
+        <span class="label" data-i18n="sj-hero-area">신주쿠구</span>
+        <span class="label" data-i18n="sj-hero-count">— 6개 건축물</span>
       </div>
 
       <h1 class="d-hero__title">
@@ -61,7 +68,7 @@
         <em class="d-hero__title-jp">신주쿠</em>
       </h1>
 
-      <p class="d-hero__intro">
+      <p class="d-hero__intro" data-i18n="sj-hero-intro">
         하루 350만 명이 지나치는 세계 최대 교통 허브이자 도쿄 부도심의 심장. 마천루들이 만들어내는 극적인 도시 스카이라인.
       </p>
 
@@ -98,8 +105,8 @@
   <!-- INTRO -->
   <section class="d-intro">
     <div class="d-intro__inner">
-      <p class="d-intro__text">세계에서 다섯 손가락 안에 드는 대도시, 도쿄. 도쿄에서 가장 사람이 붐비는 지역은 어딜까요? 정말이지 극혐 역들이 너무나도 많아서 우열을 가리기가 힘든데요. 스크램블 교차로의 존재 때문에 많은 분들이 시부야역을 떠올리실 것 같지만, 정답은 바로 신주쿠입니다. 이건 다들 어느 정도 예상하셨겠지만, 세계에서 가장 사람이 붐비는 역은 어딜까요? 마음 같아선 신도림, 사당, 강남 등을 외치고 싶지만, 아쉽게도 순위권에도 들지 못했는데요. 그렇다면, 하루 평균 이용객이 75만 명 이상인, 세계의 경제 수도 뉴욕의 그랜드 센트럴 역일까요? 틀렸습니다. 이것도 신주쿠입니다. 하루에 무려 그랜드 센트럴 역 통행량의 다섯 배에 달하는 360만 명이 역을 이용한다고 하는데요. 이 괴랄한 타이틀로 기네스북에도 등재되었을 정도죠.</p>
-      <p class="d-intro__text">그 정도로 출퇴근 시간이나 주말에 이용하기에는 정말이지 극혐 중에 극혐인 역이라고 할 수 있겠습니다. 몇 날 몇 시에 가도 역에서 내리자마자 사람에 치이는 게 거의 확정으로 꽂히는 역이거든요, 역 바깥은 또 어떤가요? 가부키초 필두로 온갖 유흥가에 술집, 노숙자 등등 지속적으로 몰려드는 피로감까지, 저 같은 은둔형 인간은 큰 마음 먹고 가야 하는 곳이란 말이죠.</p>
+      <p class="d-intro__text" data-i18n="sj-intro-p1">세계에서 다섯 손가락 안에 드는 대도시, 도쿄. 도쿄에서 가장 사람이 붐비는 지역은 어딜까요? 정말이지 극혐 역들이 너무나도 많아서 우열을 가리기가 힘든데요. 스크램블 교차로의 존재 때문에 많은 분들이 시부야역을 떠올리실 것 같지만, 정답은 바로 신주쿠입니다. 이건 다들 어느 정도 예상하셨겠지만, 세계에서 가장 사람이 붐비는 역은 어딜까요? 마음 같아선 신도림, 사당, 강남 등을 외치고 싶지만, 아쉽게도 순위권에도 들지 못했는데요. 그렇다면, 하루 평균 이용객이 75만 명 이상인, 세계의 경제 수도 뉴욕의 그랜드 센트럴 역일까요? 틀렸습니다. 이것도 신주쿠입니다. 하루에 무려 그랜드 센트럴 역 통행량의 다섯 배에 달하는 360만 명이 역을 이용한다고 하는데요. 이 괴랄한 타이틀로 기네스북에도 등재되었을 정도죠.</p>
+      <p class="d-intro__text" data-i18n="sj-intro-p2">그 정도로 출퇴근 시간이나 주말에 이용하기에는 정말이지 극혐 중에 극혐인 역이라고 할 수 있겠습니다. 몇 날 몇 시에 가도 역에서 내리자마자 사람에 치이는 게 거의 확정으로 꽂히는 역이거든요, 역 바깥은 또 어떤가요? 가부키초 필두로 온갖 유흥가에 술집, 노숙자 등등 지속적으로 몰려드는 피로감까지, 저 같은 은둔형 인간은 큰 마음 먹고 가야 하는 곳이란 말이죠.</p>
     </div>
   </section>
 
@@ -108,7 +115,7 @@
     <div class="d-building__header">
       <div class="d-building__num-wrap">
         <span class="d-building__num">01</span>
-        <span class="d-building__subtitle">신주쿠의 시계탑</span>
+        <span class="d-building__subtitle" data-i18n="sj-b01-subtitle">신주쿠의 시계탑</span>
       </div>
       <div class="d-building__meta">
         <span class="d-building__tag">Commercial · 2000</span>
@@ -117,12 +124,12 @@
     </div>
 
     <h2 class="d-building__title">NTT Docomo Yoyogi Building</h2>
-    <p class="d-building__title-jp">NTT 도코모 요요기 빌딩</p>
+    <p class="d-building__title-jp" data-i18n="sj-b01-title-jp">NTT 도코모 요요기 빌딩</p>
 
     <!-- Seg 1: text | photo_01 -->
     <div class="d-building__seg js-img-reveal">
       <div class="d-building__seg-text">
-        <p>마치 뉴욕의 엠파이어 스테이트 빌딩 혹은 크라이슬러 빌딩 마냥 뾰족한 탑이 얹어진 건물이 있죠. 이것은 일본의 최대 이동통신사인 NTT 도코모 빌딩으로, 정확히는 신주쿠가 아니라 한 정거장 아래인, 요요기 역에 위치해 있는 빌딩입니다. 그럼에도 신주쿠에서 더욱 친숙한 이유는 신주쿠 일대에서 정말 잘 보이기 때문인데요.</p>
+        <p data-i18n="sj-b01-seg1">마치 뉴욕의 엠파이어 스테이트 빌딩 혹은 크라이슬러 빌딩 마냥 뾰족한 탑이 얹어진 건물이 있죠. 이것은 일본의 최대 이동통신사인 NTT 도코모 빌딩으로, 정확히는 신주쿠가 아니라 한 정거장 아래인, 요요기 역에 위치해 있는 빌딩입니다. 그럼에도 신주쿠에서 더욱 친숙한 이유는 신주쿠 일대에서 정말 잘 보이기 때문인데요.</p>
       </div>
       <div class="d-building__seg-img">
         <img src="picture/NTT_Docomo_Tower_01.png" alt="NTT Docomo Yoyogi Building exterior" />
@@ -135,7 +142,7 @@
         <img src="picture/NTT_Docomo_Tower_02.png" alt="NTT Docomo Tower clock face" />
       </div>
       <div class="d-building__seg-text">
-        <p>특히 북쪽, 그러니까 정확히 신주쿠 방면으로는 상부의 거대한 시계가 달려 있기 때문에 신주쿠에 오는 사람들에게는 시계탑 역할을 하고 있기도 하고, 저녁부터 자정까지 정각마다 일루미네이션으로 하나의 볼거리를 선사하기도 하죠. 최근에 LED 모듈을 갈아엎은 건지, 불빛의 그라데이션이 더욱 자연스럽게 바뀌었더라고요. 아쉽게도 건물 자체는 외부인이 이용할 수 없는 단순한 업무용 빌딩인데요. 전망대나 편의 시설 같은 건 존재하지 않기 때문에 멀리서 구경하는 정도로도 충분하다고 생각되네요.</p>
+        <p data-i18n="sj-b01-seg2">특히 북쪽, 그러니까 정확히 신주쿠 방면으로는 상부의 거대한 시계가 달려 있기 때문에 신주쿠에 오는 사람들에게는 시계탑 역할을 하고 있기도 하고, 저녁부터 자정까지 정각마다 일루미네이션으로 하나의 볼거리를 선사하기도 하죠. 최근에 LED 모듈을 갈아엎은 건지, 불빛의 그라데이션이 더욱 자연스럽게 바뀌었더라고요. 아쉽게도 건물 자체는 외부인이 이용할 수 없는 단순한 업무용 빌딩인데요. 전망대나 편의 시설 같은 건 존재하지 않기 때문에 멀리서 구경하는 정도로도 충분하다고 생각되네요.</p>
       </div>
     </div>
 
@@ -160,7 +167,7 @@
     <div class="d-building__header">
       <div class="d-building__num-wrap">
         <span class="d-building__num">02</span>
-        <span class="d-building__subtitle">가부키초의 새로운 얼굴</span>
+        <span class="d-building__subtitle" data-i18n="sj-b02-subtitle">가부키초의 새로운 얼굴</span>
       </div>
       <div class="d-building__meta">
         <span class="d-building__tag">Mixed Use · 2023</span>
@@ -169,12 +176,12 @@
     </div>
 
     <h2 class="d-building__title">Tokyo Kabukicho Tower</h2>
-    <p class="d-building__title-jp">도쿄 가부키초 타워</p>
+    <p class="d-building__title-jp" data-i18n="sj-b02-title-jp">도쿄 가부키초 타워</p>
 
     <!-- Seg 1: text | photo_01 -->
     <div class="d-building__seg js-img-reveal">
       <div class="d-building__seg-text">
-        <p>이제 옆으로 움직여 보겠습니다. 아마 현재 신주쿠에서 가장 핫한 건물이 되겠죠. 여기의 이름은 도쿄 가부키초 타워입니다. 고층 빌딩이 밀집한 신주쿠 서쪽 출구와는 다르게, 동쪽에는 이 친구 혼자 우뚝 서 있어서 그런지 더욱 거대해 보이기도 하고, 바깥의 형태 자체도 유리 벽들이 뭔가 위로 쭉 뻗은 것처럼 생겨서, 저게 신주쿠에서 가장 높겠다 싶었는데 높이가 정작 225m로 도코모 타워보다 낮아서 살짝 의외였습니다. 물론 도쿄에 300m 넘는 건물이 단 하나 있는 걸 감안하면 충분히 높기는 합니다.</p>
+        <p data-i18n="sj-b02-seg1">이제 옆으로 움직여 보겠습니다. 아마 현재 신주쿠에서 가장 핫한 건물이 되겠죠. 여기의 이름은 도쿄 가부키초 타워입니다. 고층 빌딩이 밀집한 신주쿠 서쪽 출구와는 다르게, 동쪽에는 이 친구 혼자 우뚝 서 있어서 그런지 더욱 거대해 보이기도 하고, 바깥의 형태 자체도 유리 벽들이 뭔가 위로 쭉 뻗은 것처럼 생겨서, 저게 신주쿠에서 가장 높겠다 싶었는데 높이가 정작 225m로 도코모 타워보다 낮아서 살짝 의외였습니다. 물론 도쿄에 300m 넘는 건물이 단 하나 있는 걸 감안하면 충분히 높기는 합니다.</p>
       </div>
       <div class="d-building__seg-img">
         <img src="picture/Tokyo_Kabukicho_Tower_01.png" alt="Tokyo Kabukicho Tower exterior" />
@@ -187,14 +194,14 @@
         <img src="picture/Tokyo_Kabukicho_Tower_02.png" alt="Tokyo Kabukicho Tower facade detail" />
       </div>
       <div class="d-building__seg-text">
-        <p>특히나 가부키초에선 말할 것도 없겠죠. 그 가부키초가 어떤 곳이냐 하면, 각종 업소에 가출 청소년까지, 도쿄 최대의 환락가임과 동시에 각종 사회 문제의 중심지 같은 곳인데요. 그 이미지가 강해서일까요? 저는 개인적으로 가급적 저녁부터는 피하고 싶은 장소이기도 합니다. 물론 최근 몇 년 사이에 이미지가 꽤 나아진 곳이긴 합니다. 그 이미지 쇄신의 일환으로 가부키초에 새 랜드마크가 생겼으니, 그것이 바로 이곳인데요. 이미지가 쇄신이 된 건지 아닌지 모르겠는데, 외형에 관해서는 도대체 무엇이냐는 말이 많았는데, 옛날 가부키초 이 자리에 있었던 분수대에서 영감을 얻어 솟아오르는 물줄기 같은 형상을 표현한 것이라고 합니다. *역시 과거의 영광을 파는 건 일본에서 잘 먹히는 소재인 것 같기도 하고요.</p>
+        <p data-i18n="sj-b02-seg2">특히나 가부키초에선 말할 것도 없겠죠. 그 가부키초가 어떤 곳이냐 하면, 각종 업소에 가출 청소년까지, 도쿄 최대의 환락가임과 동시에 각종 사회 문제의 중심지 같은 곳인데요. 그 이미지가 강해서일까요? 저는 개인적으로 가급적 저녁부터는 피하고 싶은 장소이기도 합니다. 물론 최근 몇 년 사이에 이미지가 꽤 나아진 곳이긴 합니다. 그 이미지 쇄신의 일환으로 가부키초에 새 랜드마크가 생겼으니, 그것이 바로 이곳인데요. 이미지가 쇄신이 된 건지 아닌지 모르겠는데, 외형에 관해서는 도대체 무엇이냐는 말이 많았는데, 옛날 가부키초 이 자리에 있었던 분수대에서 영감을 얻어 솟아오르는 물줄기 같은 형상을 표현한 것이라고 합니다. *역시 과거의 영광을 파는 건 일본에서 잘 먹히는 소재인 것 같기도 하고요.</p>
       </div>
     </div>
 
     <!-- Seg 3: text | photo_03 -->
     <div class="d-building__seg js-img-reveal">
       <div class="d-building__seg-text">
-        <p>이곳의 특징은 가부키초답게, 2층의 스테이지를 포함한 푸드홀 가부키요코초가 사실상 24시간 영업을 하고 있다는 것입니다. 건물의 모든 층이 술집, 오락실 등 엔터테인먼트 시설과 호텔로 이루어져 있어서 이 정도 되는 높이의 고층 빌딩임에도 사무실 임차인이 단 하나도 없는 아주 특이한 건물이죠. 젊은 친구들 밖에서 말썽 피우지 말고 안에서 놀라는 것일까요? 그 어느 가게보다 텐션을 올리는 데 집중하고 있는데요. 해외를 포함한 여러 지역을 테마로 한 식당들이 모여 있어, 각종 화려한 조명으로 광란의 분위기를 자아내고 있으며, 정령 클럽인가 싶을 정도로 음악 소리와 대화 소리가 섞여 정신을 쏙 빼놓고 있기 때문에, 가부키초의 바이브가 정말 단번에 이해되는 장소라고 할 수 있겠습니다. 마치 힙합 아티스트 A$AP Rocky의 뮤직비디오를 보는 것 같은 몽롱한 분위기인데요. *그리고 촬영도 가부키초에서 했다죠?</p>
+        <p data-i18n="sj-b02-seg3">이곳의 특징은 가부키초답게, 2층의 스테이지를 포함한 푸드홀 가부키요코초가 사실상 24시간 영업을 하고 있다는 것입니다. 건물의 모든 층이 술집, 오락실 등 엔터테인먼트 시설과 호텔로 이루어져 있어서 이 정도 되는 높이의 고층 빌딩임에도 사무실 임차인이 단 하나도 없는 아주 특이한 건물이죠. 젊은 친구들 밖에서 말썽 피우지 말고 안에서 놀라는 것일까요? 그 어느 가게보다 텐션을 올리는 데 집중하고 있는데요. 해외를 포함한 여러 지역을 테마로 한 식당들이 모여 있어, 각종 화려한 조명으로 광란의 분위기를 자아내고 있으며, 정령 클럽인가 싶을 정도로 음악 소리와 대화 소리가 섞여 정신을 쏙 빼놓고 있기 때문에, 가부키초의 바이브가 정말 단번에 이해되는 장소라고 할 수 있겠습니다. 마치 힙합 아티스트 A$AP Rocky의 뮤직비디오를 보는 것 같은 몽롱한 분위기인데요. *그리고 촬영도 가부키초에서 했다죠?</p>
       </div>
       <div class="d-building__seg-img">
         <img src="picture/Tokyo_Kabukicho_Tower_03.png" alt="Tokyo Kabukicho Tower night illumination" />
@@ -207,7 +214,7 @@
         <img src="picture/Tokyo_Kabukicho_Tower_04.png" alt="Tokyo Kabukicho Tower plaza" />
       </div>
       <div class="d-building__seg-text">
-        <p>배우 찰리 채플린은 "인생은 멀리서 보면 비극이지만 가까이서 보면 희극이다"라는 명언을 남기셨죠. 선생님, 아니요, 멀리서 봐야 희극일 때도 있습니다. 물론 이러한 분위기를 즐길 줄 아시는 분들께는 더할 나위 없는 장소니까, 꼭 구경해 보면 좋겠습니다.</p>
+        <p data-i18n="sj-b02-seg4">배우 찰리 채플린은 "인생은 멀리서 보면 비극이지만 가까이서 보면 희극이다"라는 명언을 남기셨죠. 선생님, 아니요, 멀리서 봐야 희극일 때도 있습니다. 물론 이러한 분위기를 즐길 줄 아시는 분들께는 더할 나위 없는 장소니까, 꼭 구경해 보면 좋겠습니다.</p>
       </div>
     </div>
 
@@ -232,7 +239,7 @@
     <div class="d-building__header">
       <div class="d-building__num-wrap">
         <span class="d-building__num">03</span>
-        <span class="d-building__subtitle">철거를 앞둔 모더니즘 백화점</span>
+        <span class="d-building__subtitle" data-i18n="sj-b03-subtitle">철거를 앞둔 모더니즘 백화점</span>
       </div>
       <div class="d-building__meta">
         <span class="d-building__tag">Commercial · 1967</span>
@@ -241,14 +248,14 @@
     </div>
 
     <h2 class="d-building__title">Odakyu Department Store</h2>
-    <p class="d-building__title-jp">오다큐 백화점 신주쿠점</p>
+    <p class="d-building__title-jp" data-i18n="sj-b03-title-jp">오다큐 백화점 신주쿠점</p>
 
     <div class="d-building__portrait js-img-reveal">
       <div class="d-building__portrait-photo">
         <img src="picture/architect/Junzo_Sakakura.png" alt="Junzo Sakakura" />
       </div>
       <div class="d-building__portrait-info">
-        <p class="d-building__portrait-name">Junzo Sakakura<span class="d-building__portrait-name-kr">사카쿠라 준조</span></p>
+        <p class="d-building__portrait-name">Junzo Sakakura<span class="d-building__portrait-name-kr" data-i18n="sj-b03-name-kr">사카쿠라 준조</span></p>
         <p class="d-building__portrait-sub">坂倉準三 · 1901–1969<br>Japanese Modernist Architect<br>Sakakura Associates</p>
       </div>
     </div>
@@ -256,7 +263,7 @@
     <!-- Seg 1: text | photo_01 -->
     <div class="d-building__seg js-img-reveal">
       <div class="d-building__seg-text">
-        <p>이제 본격적으로 왼쪽으로 넘어가 보도록 하겠습니다. 도쿄 도청쪽으로 걸어가 볼 텐데요. 아래에 조막만하게 삐져나온 이 간판들은 서쪽 출구에 오다큐 백화점 옆으로 늘어선 건물들로, 지금은 철거되고 신축 공사가 시작된 모습이지만, 이전에 오다큐 백화점을 포함하여 앞에 펼쳐진 이 버스 터미널은 일본의 1세대 건축가 중 한 사람인 준조 사카쿠라가 1960년대에 설계한 것으로, 이곳 사람들에게는 나름 버블 이전에 신주쿠 지역 성장의 상징과도 같은 건물이었다고 합니다. 하지만 신주쿠역을 완벽히 등지고 뻗어 있기 때문에, 오늘날에 와서는 신주쿠의 동서 이동을 막는 큰 벽이 되어 버렸다고 하네요. 이 점에서는 마치 한국으로 치면 김수근 건축가의 종로 세운상가가 듣는 비판과 비슷하죠.</p>
+        <p data-i18n="sj-b03-seg1">이제 본격적으로 왼쪽으로 넘어가 보도록 하겠습니다. 도쿄 도청쪽으로 걸어가 볼 텐데요. 아래에 조막만하게 삐져나온 이 간판들은 서쪽 출구에 오다큐 백화점 옆으로 늘어선 건물들로, 지금은 철거되고 신축 공사가 시작된 모습이지만, 이전에 오다큐 백화점을 포함하여 앞에 펼쳐진 이 버스 터미널은 일본의 1세대 건축가 중 한 사람인 준조 사카쿠라가 1960년대에 설계한 것으로, 이곳 사람들에게는 나름 버블 이전에 신주쿠 지역 성장의 상징과도 같은 건물이었다고 합니다. 하지만 신주쿠역을 완벽히 등지고 뻗어 있기 때문에, 오늘날에 와서는 신주쿠의 동서 이동을 막는 큰 벽이 되어 버렸다고 하네요. 이 점에서는 마치 한국으로 치면 김수근 건축가의 종로 세운상가가 듣는 비판과 비슷하죠.</p>
       </div>
       <div class="d-building__seg-img">
         <img src="picture/Odakyu_Department_Store_01.png" alt="Odakyu Department Store exterior" />
@@ -269,7 +276,7 @@
         <img src="picture/Odakyu_Department_Store_02.png" alt="Odakyu Department Store facade" />
       </div>
       <div class="d-building__seg-text">
-        <p>물론 신주쿠의 경우 이 건물도 건물이지만, 단절의 정말 근본적인 원인은 지역을 동서로 깔끔하게 나눠버리는 수많은 철도를 비롯하여 중구난방으로 펼쳐진 도로들이라고 생각합니다. 아무래도 20세기 중후반의 경제 성장을 견인한 동네이다 보니 사람보다는 교통수단 중심의 네트워크가 우선이었기에, 그게 이제와서는 난처한 장애물이 되어버린 것이겠고, TMI만, 도심지의 난개발로 인한 디스토피아화는 그 당시의 애니메이션 *아키라에서도 정말 자주 다룬 소재이기도 하고요. 어쨌든 그렇기 때문에 이 백화점과 정류장은 이미 철거 수순을 밟고 있으며, 2029년까지 완공을 목표로 새 고층 빌딩과 함께 동서를 연결하는 사람 중심의 데크를 만들 계획이라고 하네요.</p>
+        <p data-i18n="sj-b03-seg2">물론 신주쿠의 경우 이 건물도 건물이지만, 단절의 정말 근본적인 원인은 지역을 동서로 깔끔하게 나눠버리는 수많은 철도를 비롯하여 중구난방으로 펼쳐진 도로들이라고 생각합니다. 아무래도 20세기 중후반의 경제 성장을 견인한 동네이다 보니 사람보다는 교통수단 중심의 네트워크가 우선이었기에, 그게 이제와서는 난처한 장애물이 되어버린 것이겠고, TMI만, 도심지의 난개발로 인한 디스토피아화는 그 당시의 애니메이션 *아키라에서도 정말 자주 다룬 소재이기도 하고요. 어쨌든 그렇기 때문에 이 백화점과 정류장은 이미 철거 수순을 밟고 있으며, 2029년까지 완공을 목표로 새 고층 빌딩과 함께 동서를 연결하는 사람 중심의 데크를 만들 계획이라고 하네요.</p>
       </div>
     </div>
 
@@ -294,7 +301,7 @@
     <div class="d-building__header">
       <div class="d-building__num-wrap">
         <span class="d-building__num">04</span>
-        <span class="d-building__subtitle">200m 누에고치 패션 캠퍼스</span>
+        <span class="d-building__subtitle" data-i18n="sj-b04-subtitle">200m 누에고치 패션 캠퍼스</span>
       </div>
       <div class="d-building__meta">
         <span class="d-building__tag">Education · 2008</span>
@@ -303,14 +310,14 @@
     </div>
 
     <h2 class="d-building__title">Mode Gakuen Cocoon Tower</h2>
-    <p class="d-building__title-jp">모드 학원 코쿤 타워</p>
+    <p class="d-building__title-jp" data-i18n="sj-b04-title-jp">모드 학원 코쿤 타워</p>
 
     <div class="d-building__portrait js-img-reveal">
       <div class="d-building__portrait-photo">
         <img src="picture/architect/Paul_Noritaka_Tange.png" alt="Paul Noritaka Tange" />
       </div>
       <div class="d-building__portrait-info">
-        <p class="d-building__portrait-name">Paul Noritaka Tange<span class="d-building__portrait-name-kr">다니 노리타카 탄게</span></p>
+        <p class="d-building__portrait-name">Paul Noritaka Tange<span class="d-building__portrait-name-kr" data-i18n="sj-b04-name-kr">다니 노리타카 탄게</span></p>
         <p class="d-building__portrait-sub">丹下典孝 · b. 1962<br>Japanese Architect<br>Tange Associates</p>
       </div>
     </div>
@@ -318,7 +325,7 @@
     <!-- Seg 1: text | photo_01 -->
     <div class="d-building__seg js-img-reveal">
       <div class="d-building__seg-text">
-        <p>이제서야 서쪽 지대의 빌딩들을 구경해 볼까 합니다. 여기는 동쪽과는 다르게 정말 비즈니스를 위한 고층 오피스들로 가득합니다. 때문에 장식적인 요소를 우선하기보다는 구조 설계에 뛰어난 대형 회사들이 처음부터 끝까지 다룬 건물들이 대부분이며, 투박하지만 무슨 일이 있어도 버틸 만큼 강인해 보이는 건물들이 많은데요. 그래서인지 더욱 돋보이고 가장 유명한 것은 바로 이거겠죠. 네모난 박스들 사이에서 쉽게 잊혀지지 않는 형태이기 때문에 신주쿠에 와 보신 분들은 이 건물은 무조건 기억하실 것 같습니다.</p>
+        <p data-i18n="sj-b04-seg1">이제서야 서쪽 지대의 빌딩들을 구경해 볼까 합니다. 여기는 동쪽과는 다르게 정말 비즈니스를 위한 고층 오피스들로 가득합니다. 때문에 장식적인 요소를 우선하기보다는 구조 설계에 뛰어난 대형 회사들이 처음부터 끝까지 다룬 건물들이 대부분이며, 투박하지만 무슨 일이 있어도 버틸 만큼 강인해 보이는 건물들이 많은데요. 그래서인지 더욱 돋보이고 가장 유명한 것은 바로 이거겠죠. 네모난 박스들 사이에서 쉽게 잊혀지지 않는 형태이기 때문에 신주쿠에 와 보신 분들은 이 건물은 무조건 기억하실 것 같습니다.</p>
       </div>
       <div class="d-building__seg-img">
         <img src="picture/Mode_Cocoon_Tower_01.png" alt="Mode Gakuen Cocoon Tower exterior" />
@@ -331,14 +338,14 @@
         <img src="picture/Mode_Cocoon_Tower_02.png" alt="Mode Gakuen Cocoon Tower mesh pattern" />
       </div>
       <div class="d-building__seg-text">
-        <p>가까이서 보면 뭔가 묵직한 덩어리를 흰색 실 같은 게 칭칭 감은 것처럼 보이는데요. 그 이름 또한 '모드 코쿤 타워'로, 컨셉이 어디서 왔는지를 이름에서부터 확실하게 얘기하고 있습니다. 이곳은 일본에서 꽤 유명한 미용, 패션, 디자인 등을 가르치는 전문학교의 캠퍼스 건물로, 당연하게도 학생을 품은 누에고치 같은 건물이라는 컨셉을 갖고 있습니다.</p>
+        <p data-i18n="sj-b04-seg2">가까이서 보면 뭔가 묵직한 덩어리를 흰색 실 같은 게 칭칭 감은 것처럼 보이는데요. 그 이름 또한 '모드 코쿤 타워'로, 컨셉이 어디서 왔는지를 이름에서부터 확실하게 얘기하고 있습니다. 이곳은 일본에서 꽤 유명한 미용, 패션, 디자인 등을 가르치는 전문학교의 캠퍼스 건물로, 당연하게도 학생을 품은 누에고치 같은 건물이라는 컨셉을 갖고 있습니다.</p>
       </div>
     </div>
 
     <!-- Seg 3: text | photo_04 -->
     <div class="d-building__seg js-img-reveal">
       <div class="d-building__seg-text">
-        <p>비슷한 느낌의 건물로는 오모테산도에 위치한 보테가 베네타 빌딩이 되겠는데요. 하지만 외관의 콘크리트 줄기들이 그대로 구조체의 역할까지 하는 보테가 베네타 빌딩과 다르게, 이곳 모드 학원 코쿤 타워는 엮여 있는 실들이 구조체의 역할을 하고 있지는 않고, 더욱 아이코닉한 외관을 만드는 데 집중한 듯 보입니다. 수직으로만 200m 가까이 쌓인 학교 캠퍼스라는 점에서 강의실만 가득해서 뭔가 답답하진 않을까 싶었지만, 일단 층고 자체가 매우 높으며 층마다 하나씩 넓은 공용 공간을 만들어서 커뮤니케이션의 중요성을 놓치지 않았다고 합니다.</p>
+        <p data-i18n="sj-b04-seg3">비슷한 느낌의 건물로는 오모테산도에 위치한 보테가 베네타 빌딩이 되겠는데요. 하지만 외관의 콘크리트 줄기들이 그대로 구조체의 역할까지 하는 보테가 베네타 빌딩과 다르게, 이곳 모드 학원 코쿤 타워는 엮여 있는 실들이 구조체의 역할을 하고 있지는 않고, 더욱 아이코닉한 외관을 만드는 데 집중한 듯 보입니다. 수직으로만 200m 가까이 쌓인 학교 캠퍼스라는 점에서 강의실만 가득해서 뭔가 답답하진 않을까 싶었지만, 일단 층고 자체가 매우 높으며 층마다 하나씩 넓은 공용 공간을 만들어서 커뮤니케이션의 중요성을 놓치지 않았다고 합니다.</p>
       </div>
       <div class="d-building__seg-img">
         <img src="picture/Mode_Cocoon_Tower_04.png" alt="Mode Gakuen Cocoon Tower skyline" />
@@ -351,7 +358,7 @@
         <img src="picture/Mode_Cocoon_Tower_03.png" alt="Mode Gakuen Cocoon Tower structural detail" />
       </div>
       <div class="d-building__seg-text">
-        <p>여기서 잠깐, 이외에도 뭔가 특이한 점을 발견하셨나요? 고층 건물에서 쉽게 발견할 수 있는 헬기 착륙장이 눈 씻고 찾아도 보이지 않는다는 것인데요. 일본의 경우, 빌딩의 높이가 100m 이상이면 비상용 헬기 착륙장을 설치하도록 권고하고 있습니다. 한마디로 강제성이 없기 때문에 옥상에 착륙장이 없는 고층 빌딩도 많다고 하는데요. 모드 학원 타워 또한 어딜 봐도 헬기가 앉을 자리가 없어 보이죠. 그런데 또 한번 반전으로 신기하게도 설치가 되어 있다고 합니다. 어디 있을까요? 정답은 저 동그란 부분이 긴급 상황 시 변신해서 헬기 착륙장이 된다고 합니다. 아, 변신까지 얼마나 걸리는지는 자료가 없어서 확인하지 못했지만, 그 무게를 생각하면 기다리다가 그냥 지상으로 가지 않을까요?</p>
+        <p data-i18n="sj-b04-seg4">여기서 잠깐, 이외에도 뭔가 특이한 점을 발견하셨나요? 고층 건물에서 쉽게 발견할 수 있는 헬기 착륙장이 눈 씻고 찾아도 보이지 않는다는 것인데요. 일본의 경우, 빌딩의 높이가 100m 이상이면 비상용 헬기 착륙장을 설치하도록 권고하고 있습니다. 한마디로 강제성이 없기 때문에 옥상에 착륙장이 없는 고층 빌딩도 많다고 하는데요. 모드 학원 타워 또한 어딜 봐도 헬기가 앉을 자리가 없어 보이죠. 그런데 또 한번 반전으로 신기하게도 설치가 되어 있다고 합니다. 어디 있을까요? 정답은 저 동그란 부분이 긴급 상황 시 변신해서 헬기 착륙장이 된다고 합니다. 아, 변신까지 얼마나 걸리는지는 자료가 없어서 확인하지 못했지만, 그 무게를 생각하면 기다리다가 그냥 지상으로 가지 않을까요?</p>
       </div>
     </div>
 
@@ -376,7 +383,7 @@
     <div class="d-building__header">
       <div class="d-building__num-wrap">
         <span class="d-building__num">05</span>
-        <span class="d-building__subtitle">'너의 이름은'의 그 건물</span>
+        <span class="d-building__subtitle" data-i18n="sj-b05-subtitle">'너의 이름은'의 그 건물</span>
       </div>
       <div class="d-building__meta">
         <span class="d-building__tag">Office · 1976</span>
@@ -385,12 +392,12 @@
     </div>
 
     <h2 class="d-building__title">SOMPO Japan Head Office</h2>
-    <p class="d-building__title-jp">손포 재팬 본사 빌딩</p>
+    <p class="d-building__title-jp" data-i18n="sj-b05-title-jp">손포 재팬 본사 빌딩</p>
 
     <!-- Seg 1: text | photo_01 -->
     <div class="d-building__seg js-img-reveal">
       <div class="d-building__seg-text">
-        <p>모드 코쿤 타워를 지나 뒤쪽으로 넘어가면 저층부가 함수 곡선 마냥 휘어진 건물이 나오는데요. 이곳은 보험 회사인 솜포(손보) 홀딩스 재팬의 본사 건물로, 앞서 말했듯 미국 시카고의 체이스 타워, 서울의 육삼 빌딩을 연상시키는 듯한 구부러진 밑둥이 특징이죠. 특히 63 빌딩이 한화생명의 본사로 쓰이고 있는 것처럼 보험 회사의 본사 건물로 사용되고 있다는 것 또한 닮아 있네요. 물론 높이는 육삼 빌딩이 50m 더 높으며 여러 부대 시설을 갖추고 있고, 낮에 보면 어디서 봐도 마치 금괴 한 덩이가 서 있는 듯한 자랑스러운 우리의 63 빌딩에 비하면 손포 빌딩은 현재에서도 단지 체이스 타워의 아류가 아닌가 하는 말이 있을 정도로 이곳만의 특색은 딱히 없어 보이는데요.</p>
+        <p data-i18n="sj-b05-seg1">모드 코쿤 타워를 지나 뒤쪽으로 넘어가면 저층부가 함수 곡선 마냥 휘어진 건물이 나오는데요. 이곳은 보험 회사인 솜포(손보) 홀딩스 재팬의 본사 건물로, 앞서 말했듯 미국 시카고의 체이스 타워, 서울의 육삼 빌딩을 연상시키는 듯한 구부러진 밑둥이 특징이죠. 특히 63 빌딩이 한화생명의 본사로 쓰이고 있는 것처럼 보험 회사의 본사 건물로 사용되고 있다는 것 또한 닮아 있네요. 물론 높이는 육삼 빌딩이 50m 더 높으며 여러 부대 시설을 갖추고 있고, 낮에 보면 어디서 봐도 마치 금괴 한 덩이가 서 있는 듯한 자랑스러운 우리의 63 빌딩에 비하면 손포 빌딩은 현재에서도 단지 체이스 타워의 아류가 아닌가 하는 말이 있을 정도로 이곳만의 특색은 딱히 없어 보이는데요.</p>
       </div>
       <div class="d-building__seg-img">
         <img src="picture/SOMPO_Japan_Head_Office_01.png" alt="SOMPO Japan Head Office exterior" />
@@ -403,7 +410,7 @@
         <img src="picture/SOMPO_Japan_Head_Office_02.png" alt="SOMPO Japan Head Office museum entrance" />
       </div>
       <div class="d-building__seg-text">
-        <p>하지만 이곳 솜포재팬은 애니메이션의 본고장인 일본답게 다른 쪽으로 유명하다고 합니다. 바로 이 빌딩을 포함한 대로변에 있는 신호등이 일본에서 대박을 친 유명 애니메이션 필름 '너의 이름은'에 정말 자주 등장하기 때문이죠. 특히 이 감독이 신주쿠에 꽤 남다른 애착이 있는 건지, 작품마다 신주쿠의 다양한 모습들이 등장하기도 합니다. 때문에 아직까지도 곳곳에 인증샷을 찍는 사람들이 있을 정도며, 그 외에도 신호등 아래에는 LOVE 조각상까지 있으니 인증샷으로 유명한 의외의 장소라고 할 수 있겠습니다.</p>
+        <p data-i18n="sj-b05-seg2">하지만 이곳 솜포재팬은 애니메이션의 본고장인 일본답게 다른 쪽으로 유명하다고 합니다. 바로 이 빌딩을 포함한 대로변에 있는 신호등이 일본에서 대박을 친 유명 애니메이션 필름 '너의 이름은'에 정말 자주 등장하기 때문이죠. 특히 이 감독이 신주쿠에 꽤 남다른 애착이 있는 건지, 작품마다 신주쿠의 다양한 모습들이 등장하기도 합니다. 때문에 아직까지도 곳곳에 인증샷을 찍는 사람들이 있을 정도며, 그 외에도 신호등 아래에는 LOVE 조각상까지 있으니 인증샷으로 유명한 의외의 장소라고 할 수 있겠습니다.</p>
       </div>
     </div>
 
@@ -418,7 +425,7 @@
     <div class="d-building__header">
       <div class="d-building__num-wrap">
         <span class="d-building__num">06</span>
-        <span class="d-building__subtitle">노트르담에서 영감 받은 공짜 전망대</span>
+        <span class="d-building__subtitle" data-i18n="sj-b06-subtitle">노트르담에서 영감 받은 공짜 전망대</span>
       </div>
       <div class="d-building__meta">
         <span class="d-building__tag">Government · 1991</span>
@@ -427,14 +434,14 @@
     </div>
 
     <h2 class="d-building__title">Tokyo Metropolitan Government Building</h2>
-    <p class="d-building__title-jp">도쿄도청사</p>
+    <p class="d-building__title-jp" data-i18n="sj-b06-title-jp">도쿄도청사</p>
 
     <div class="d-building__portrait js-img-reveal">
       <div class="d-building__portrait-photo">
         <img src="picture/architect/tange_kenzo.png" alt="Kenzo Tange" />
       </div>
       <div class="d-building__portrait-info">
-        <p class="d-building__portrait-name">Kenzo Tange<span class="d-building__portrait-name-kr">단게 겐조</span></p>
+        <p class="d-building__portrait-name">Kenzo Tange<span class="d-building__portrait-name-kr" data-i18n="sj-b06-name-kr">단게 겐조</span></p>
         <p class="d-building__portrait-sub">丹下健三 · 1913–2005<br>Pritzker Architecture Prize, 1987<br>Kenzo Tange Associates</p>
       </div>
     </div>
@@ -442,7 +449,7 @@
     <!-- Seg 1: text | photo_01 -->
     <div class="d-building__seg js-img-reveal">
       <div class="d-building__seg-text">
-        <p>이렇게 높은 빌딩들을 짓는 데 들어가는 비용도 어마어마하겠죠. 실제로 고층 빌딩들은 건축 비용 순위에서 대체로 상위권을 차지하고 있는데요, 그 와중에 2등을 차지하고 있는 어떤 건물이 이곳에 있습니다. 우리에게는 도쿄의 야경과 후지산을 볼 수 있는 공짜 전망대로 가장 유명하죠.</p>
+        <p data-i18n="sj-b06-seg1">이렇게 높은 빌딩들을 짓는 데 들어가는 비용도 어마어마하겠죠. 실제로 고층 빌딩들은 건축 비용 순위에서 대체로 상위권을 차지하고 있는데요, 그 와중에 2등을 차지하고 있는 어떤 건물이 이곳에 있습니다. 우리에게는 도쿄의 야경과 후지산을 볼 수 있는 공짜 전망대로 가장 유명하죠.</p>
       </div>
       <div class="d-building__seg-img">
         <img src="picture/Tokyo_Metropolitan_Government_Building_01.png" alt="Tokyo Metropolitan Government Building exterior" />
@@ -455,14 +462,14 @@
         <img src="picture/Tokyo_Metropolitan_Government_Building_04.png" alt="Tokyo Metropolitan Government Building observatory" />
       </div>
       <div class="d-building__seg-text">
-        <p>그곳은 바로 유명 대기업의 본사도, 유명 백화점이나 호텔도 아닌 도쿄도청 청사가 되겠습니다. 아직까지도 정부 청사인 도쿄 도청이 가장 웅장하고 가장 크게 돈을 들여 지은 건물이라니, 뭔가 남의 나라지만 한편으론 씁쓸한데, 도쿄의 부동산을 팔면 맨해튼는 우습고 아예 미국 전체를 살 수 있다던 버블 경제의 정점 때 지어진 것이니 그러려니 해도 될 것 같습니다. 그런 그 당시에 1,600억 엔이나 지어서 만든 만큼, 추후 건물의 보수에 사용되는 비용만 1천억 엔에 달한다고 하며, 때문에 이 나라 안에서도 세금 먹는 타워라는 소리를 자주 듣는 건물이기도 하죠. 뭐, 우리는 그냥 들어가서 열심히 즐기고 나오면 그만이 되겠습니다.</p>
+        <p data-i18n="sj-b06-seg2">그곳은 바로 유명 대기업의 본사도, 유명 백화점이나 호텔도 아닌 도쿄도청 청사가 되겠습니다. 아직까지도 정부 청사인 도쿄 도청이 가장 웅장하고 가장 크게 돈을 들여 지은 건물이라니, 뭔가 남의 나라지만 한편으론 씁쓸한데, 도쿄의 부동산을 팔면 맨해튼는 우습고 아예 미국 전체를 살 수 있다던 버블 경제의 정점 때 지어진 것이니 그러려니 해도 될 것 같습니다. 그런 그 당시에 1,600억 엔이나 지어서 만든 만큼, 추후 건물의 보수에 사용되는 비용만 1천억 엔에 달한다고 하며, 때문에 이 나라 안에서도 세금 먹는 타워라는 소리를 자주 듣는 건물이기도 하죠. 뭐, 우리는 그냥 들어가서 열심히 즐기고 나오면 그만이 되겠습니다.</p>
       </div>
     </div>
 
     <!-- Seg 3: text | photo_02 -->
     <div class="d-building__seg js-img-reveal">
       <div class="d-building__seg-text">
-        <p>앞모습을 보면 둘로 나뉘어진 상층부가 마치 중세 유럽의 대성당을 보는 듯한데요. 이후에 밝혀진 바로는 실제로도 파리의 노트르담 성당이 외관에서 특징적인 부분을 따왔다고 하며, 요즘 지어지는 마천루처럼 유리벽이 아니라 돌덩어리처럼 묵직하게 쌓여 있기 때문에 더욱 고딕 양식의 건물을 보는 듯한 느낌이 납니다. 이전에 이케부쿠로에서 소개드린 토시마 구청과 마찬가지로, 도쿄 도청 역시 고층 건물인 데다 정부 청사임에도 무료로 개방하고 있는데요. 간단한 소지품 검사를 마치면 엘리베이터를 타고 위로 올라갈 수 있습니다. 위험한 물건들을 포함하여 사람이 몰리는 장소인 만큼 삼각대 역시 통행에 방해가 되기 때문에 들고 올라갈 수 없다고 하네요.</p>
+        <p data-i18n="sj-b06-seg3">앞모습을 보면 둘로 나뉘어진 상층부가 마치 중세 유럽의 대성당을 보는 듯한데요. 이후에 밝혀진 바로는 실제로도 파리의 노트르담 성당이 외관에서 특징적인 부분을 따왔다고 하며, 요즘 지어지는 마천루처럼 유리벽이 아니라 돌덩어리처럼 묵직하게 쌓여 있기 때문에 더욱 고딕 양식의 건물을 보는 듯한 느낌이 납니다. 이전에 이케부쿠로에서 소개드린 토시마 구청과 마찬가지로, 도쿄 도청 역시 고층 건물인 데다 정부 청사임에도 무료로 개방하고 있는데요. 간단한 소지품 검사를 마치면 엘리베이터를 타고 위로 올라갈 수 있습니다. 위험한 물건들을 포함하여 사람이 몰리는 장소인 만큼 삼각대 역시 통행에 방해가 되기 때문에 들고 올라갈 수 없다고 하네요.</p>
       </div>
       <div class="d-building__seg-img">
         <img src="picture/Tokyo_Metropolitan_Government_Building_02.png" alt="Tokyo Metropolitan Government Building facade pattern" />
@@ -475,7 +482,7 @@
         <img src="picture/Tokyo_Metropolitan_Government_Building_03.png" alt="Tokyo Metropolitan Government Building twin towers" />
       </div>
       <div class="d-building__seg-text">
-        <p>높이가 높이인지라 도쿄의 무료 전망대 중 꽤나 훌륭한 뷰를 자랑하는데요. 시부야에 위치한 유료 전망대, 시부야 스카이처럼 동쪽으로는 도심 내의 주요 랜드마크가 보이고 서쪽으로는 날씨가 좋으면 후지산까지도 볼 수 있는 아주 알찬 곳입니다. 보이는 뷰가 대체로 비슷하다는 말인데, 아무래도 하늘까지 탁 트인 시부야 스카이에 비하면 도쿄 도청은 화각이 다소 제한적이라는 단점이 있는데요. 인스타 재질의 사진을 찍으려면 시부야 스카이 쪽이 당연히 좋겠지만, 전망대에 집중하고 싶을 경우 도쿄 도청은 실내이기 때문에 계절을 전혀 타지 않고 편하게 구경할 수 있다는 장점도 있습니다. 무엇보다 오늘 지나친 빌딩들이 한눈에 전부 내려다보이니, 이번 코스의 마무리로 정말 손색없는 장소가 되겠네요.</p>
+        <p data-i18n="sj-b06-seg4">높이가 높이인지라 도쿄의 무료 전망대 중 꽤나 훌륭한 뷰를 자랑하는데요. 시부야에 위치한 유료 전망대, 시부야 스카이처럼 동쪽으로는 도심 내의 주요 랜드마크가 보이고 서쪽으로는 날씨가 좋으면 후지산까지도 볼 수 있는 아주 알찬 곳입니다. 보이는 뷰가 대체로 비슷하다는 말인데, 아무래도 하늘까지 탁 트인 시부야 스카이에 비하면 도쿄 도청은 화각이 다소 제한적이라는 단점이 있는데요. 인스타 재질의 사진을 찍으려면 시부야 스카이 쪽이 당연히 좋겠지만, 전망대에 집중하고 싶을 경우 도쿄 도청은 실내이기 때문에 계절을 전혀 타지 않고 편하게 구경할 수 있다는 장점도 있습니다. 무엇보다 오늘 지나친 빌딩들이 한눈에 전부 내려다보이니, 이번 코스의 마무리로 정말 손색없는 장소가 되겠네요.</p>
       </div>
     </div>
 
@@ -540,6 +547,7 @@
     })();
   </script>
   <script src="district-ui.js"></script>
+  <script src="i18n.js"></script>
   <script src="transition.js"></script>
 </body>
 </html>

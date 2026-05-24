@@ -24,8 +24,8 @@
   --ink-08:   rgba(26,26,24,0.08);
 
   --f-serif:  'DM Serif Display', Georgia, serif;
-  --f-mono:   'Space Mono', 'Noto Sans KR', monospace;
-  --f-sans:   'Syne', 'Noto Sans KR', sans-serif;
+  --f-mono:   'Pretendard', sans-serif;
+  --f-sans:   'Pretendard', sans-serif;
 
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -50,7 +50,7 @@ p, .hero__sub, .d-hero__title-jp, .d-intro__body, .d-building__seg-text {
   word-spacing: -0.04em;
 }
 
-/* Korean character spacing reset — Space Mono's tracking is too wide for 한글 */
+/* Korean character spacing reset — letter-spacing 0 for natural 한글 rendering */
 .hero__sub,
 .d-intro__text,
 .d-building__seg-text p,
@@ -148,6 +148,9 @@ p, .hero__sub, .d-hero__title-jp, .d-intro__body, .d-building__seg-text {
   font-family: var(--f-serif);
   font-size: 18px;
   letter-spacing: -0.02em;
+  cursor: pointer;
+  text-decoration: none;
+  color: inherit;
 }
 
 .nav__links {
@@ -167,6 +170,86 @@ p, .hero__sub, .d-hero__title-jp, .d-intro__body, .d-building__seg-text {
 
 .nav__links a:hover { opacity: 1; }
 
+/* nav 우측 그룹 (links + lang switcher) */
+.nav__right {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+}
+
+/* ---------- Language Switcher (Dropdown) ---------- */
+.lang-switcher {
+  position: relative;
+}
+
+.lang-trigger {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-family: var(--f-mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--ink-40);
+  padding: 5px 10px;
+  line-height: 1;
+  border: 1px solid var(--ink-15);
+  background: transparent;
+  cursor: pointer;
+  transition: color 0.18s, border-color 0.18s;
+}
+.lang-trigger:hover { color: var(--ink); }
+.lang-switcher.is-open .lang-trigger {
+  color: var(--ink);
+  border-color: var(--ink-40);
+}
+
+.lang-arrow {
+  flex-shrink: 0;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.lang-switcher.is-open .lang-arrow { transform: rotate(180deg); }
+
+.lang-dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  min-width: 100%;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+  border: 1px solid var(--ink-15);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-6px);
+  transition: opacity 0.18s ease, transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  z-index: 200;
+}
+.lang-switcher.is-open .lang-dropdown {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.lang-btn {
+  font-family: var(--f-mono);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--ink-40);
+  padding: 7px 14px;
+  line-height: 1;
+  text-align: left;
+  border: none;
+  border-bottom: 1px solid var(--ink-15);
+  background: transparent;
+  cursor: pointer;
+  transition: color 0.15s, background 0.15s;
+  white-space: nowrap;
+}
+.lang-btn:last-child { border-bottom: none; }
+.lang-btn:hover      { color: var(--ink); background: var(--ink-08); }
+.lang-btn.is-active  { color: var(--ink); background: var(--ink-08); }
 
 /* ---------- HERO ---------- */
 .hero {
@@ -250,6 +333,20 @@ p, .hero__sub, .d-hero__title-jp, .d-intro__body, .d-building__seg-text {
   transition: opacity 0.7s ease;
 }
 .hero__scroll-hint.is-revealed { opacity: 1; }
+
+/* SCROLL hint idle bounce */
+@keyframes scroll-bounce {
+  0%   { transform: translateY(0);    }
+  18%  { transform: translateY(-9px); }
+  34%  { transform: translateY(0);    }
+  50%  { transform: translateY(-5px); }
+  64%  { transform: translateY(0);    }
+  78%  { transform: translateY(-2px); }
+  100% { transform: translateY(0);    }
+}
+.hero__scroll-hint.is-bouncing {
+  animation: scroll-bounce 1.2s cubic-bezier(0.33, 1, 0.68, 1);
+}
 
 /* ── annotation system ─────────────────────────── */
 .hero__annot {

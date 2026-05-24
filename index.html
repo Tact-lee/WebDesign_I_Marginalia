@@ -6,7 +6,8 @@
   <title>Marginalia — Tokyo Architecture Archive</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Noto+Sans+KR:wght@300;400;500&family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@latest/dist/web/static/pretendard-dynamic-subset.css" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
@@ -33,15 +34,28 @@
 
 
   <!-- Gallery cursor label -->
-  <div class="cursor-label" id="cursorLabel" aria-hidden="true">사진을 클릭하면 상세 페이지로 이동합니다</div>
+  <div class="cursor-label" id="cursorLabel" aria-hidden="true" data-i18n="cursor-label">사진을 클릭하면 상세 페이지로 이동합니다</div>
 
   <!-- NAV -->
   <nav class="nav">
-    <span class="nav__logo">Marginalia</span>
-    <ul class="nav__links">
-      <li><a href="#map-section">Location Map</a></li>
-      <li><a href="#gallery-section">Gallery</a></li>
-    </ul>
+    <a class="nav__logo" href="#">Marginalia</a>
+    <div class="nav__right">
+      <ul class="nav__links">
+        <li><a href="#map-section">Location Map</a></li>
+        <li><a href="#gallery-section">Gallery</a></li>
+      </ul>
+      <div class="lang-switcher" aria-label="Language">
+        <button class="lang-trigger" aria-expanded="false">
+          <span class="lang-current">KO</span>
+          <svg class="lang-arrow" width="8" height="5" viewBox="0 0 8 5" fill="none" aria-hidden="true"><path d="M1 1L4 4L7 1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="lang-dropdown">
+          <button class="lang-btn is-active" data-lang="ko">KO</button>
+          <button class="lang-btn" data-lang="ja">JA</button>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+      </div>
+    </div>
   </nav>
 
   <!-- HERO -->
@@ -65,9 +79,9 @@
       </div>
     </div>
 
-    <p class="hero__sub">교양 있는 척하는 당신을 위한<br />도쿄 건축 아카이브</p>
+    <p class="hero__sub" data-i18n="hero-sub">교양 있는 척하는 당신을 위한<br />도쿄 건축 아카이브</p>
     <div class="hero__scroll-hint">
-      <span>Scroll</span>
+      <span>SCROLL DOWN</span>
     </div>
   </header>
 
@@ -80,7 +94,7 @@
     <div class="map-wrapper" id="mapWrapper">
       <!-- one-time hint overlay -->
       <div class="map-hint" id="mapHint" aria-hidden="true">
-        <span class="map-hint__text">원하는 지역을 클릭하면 해당 지역의 상세 페이지로 이동합니다 →</span>
+        <span class="map-hint__text" data-i18n="map-hint">원하는 지역을 클릭하면 해당 지역의 상세 페이지로 이동합니다 →</span>
       </div>
       <canvas id="mapCanvas"></canvas>
 
@@ -166,7 +180,7 @@
   <footer class="footer">
     <div class="footer__top">
       <span class="footer__logo">Marginalia</span>
-      <p class="footer__tagline">A record of what stands<br />and what remains.</p>
+      <p class="footer__tagline" data-i18n="footer-tagline">A record of what stands<br />and what remains.</p>
     </div>
     <div class="footer__bottom">
       <span>© 2026 Marginalia Archive</span>
@@ -221,6 +235,38 @@
         /* scroll hint fades */
         setTimeout(function () {
           if (hint) hint.classList.add('is-revealed');
+          /* ── idle bounce: 7s no movement → bounce, repeat while idle ── */
+          if (hint) {
+            var hero      = document.querySelector('.hero');
+            var bounceTimer = null;
+
+            function scheduleBounce() {
+              clearTimeout(bounceTimer);
+              bounceTimer = setTimeout(function () {
+                /* skip if user has already scrolled past the hero */
+                if (window.scrollY > window.innerHeight * 0.4) return;
+                hint.classList.remove('is-bouncing');
+                /* force reflow so re-adding the class restarts the animation */
+                void hint.offsetWidth;
+                hint.classList.add('is-bouncing');
+                hint.addEventListener('animationend', function onEnd() {
+                  hint.removeEventListener('animationend', onEnd);
+                  hint.classList.remove('is-bouncing');
+                  /* schedule next bounce only if still idle */
+                  scheduleBounce();
+                });
+              }, 7000);
+            }
+
+            /* reset timer on any mouse activity inside the hero */
+            if (hero) {
+              hero.addEventListener('mousemove', scheduleBounce, { passive: true });
+            }
+            /* also reset on scroll */
+            window.addEventListener('scroll', scheduleBounce, { passive: true });
+
+            scheduleBounce(); /* kick off first timer */
+          }
         }, 620);
       });
     })();
@@ -308,6 +354,7 @@
 
   }());
   </script>
+  <script src="i18n.js"></script>
   <script src="transition.js"></script>
 </body>
 </html>
