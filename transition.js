@@ -84,6 +84,13 @@
       link.target === '_blank'
     ) return;
 
+    /* skip: 같은 페이지 내 앵커 이동 (예: index.html#map-section → 이미 index.html에 있을 때)
+       — 전환 없이 브라우저 스크롤에 맡김 */
+    try {
+      var targetUrl = new URL(href, window.location.href);
+      if (targetUrl.pathname === window.location.pathname) return;
+    } catch (ex) {}
+
     e.preventDefault();
 
     /* 1. Snap strips above viewport (no animation) */
