@@ -1133,6 +1133,16 @@ p, .hero__sub, .d-hero__title-jp, .d-intro__body, .d-building__seg-text {
   .gallery-section__header { flex-direction: column; align-items: flex-start; gap: 20px; }
   .map-legend { flex-direction: column; }
   .legend-item { flex: none; }
+
+  /* 지도 힌트 — 모바일: 상단 중앙 배치로 지역 가림 방지 */
+  .map-hint {
+    top: 22%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  .map-hint__text {
+    font-size: 9.5px;
+  }
 }
 
 
