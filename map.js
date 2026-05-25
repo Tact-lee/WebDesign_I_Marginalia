@@ -24,7 +24,7 @@ const FILL_HO = 0x1a1a18;   // hovered
 const SLAB_REST = 0.05;
 const SLAB_ELEV = 1.4;
 const SCALE_HOV = 1.5;
-const TILT_MAX  = 0.16;
+const TILT_MAX  = 0.26;   // 데스크탑 + 모바일 공통 최대 틸트 (↑ 강화)
 
 // Map ward name → district config
 const HIGHLIGHT_WARDS = {
@@ -327,12 +327,11 @@ const _groundHit   = new THREE.Vector3();
 // ── 모바일 감지 ─────────────────────────────────────────────────
 const isMobile = () => window.matchMedia('(pointer: coarse)').matches;
 
-// ── 페이지 이동 (모바일: transition 애니메이션 후 1초 추가 대기) ───
+// ── 페이지 이동 (트랜지션 애니메이션 후 이동) ───────────────────
 function navigateTo(href) {
   const overlay = document.getElementById('pageTransition');
   if (!overlay) { window.location.href = href; return; }
 
-  // transition.js의 is-in 애니메이션 트리거
   overlay.classList.remove('is-out', 'is-in');
   overlay.classList.add('is-reset');
   overlay.getBoundingClientRect(); // force reflow
@@ -342,11 +341,12 @@ function navigateTo(href) {
   try { sessionStorage.setItem('pt-active', '1'); } catch(e) {}
 
   const STRIP_COVER = 620;
-  const extra = isMobile() ? 1000 : 0;
-  setTimeout(() => { window.location.href = href; }, STRIP_COVER + extra);
+  setTimeout(() => { window.location.href = href; }, STRIP_COVER);
 }
 
-// 클릭 시 district.html?id=... 으로 이동
+// 클릭 시 지역 이동
+// 모바일: 탭 → 호버 효과 표시(800ms) → 트랜지션 시작 → 이동
+// 데스크탑: 클릭 → 즉시 트랜지션 시작 → 이동
 wrapper.addEventListener('click', e => {
   const rect = wrapper.getBoundingClientRect();
   const cx = ((e.clientX - rect.left) / rect.width)  * 2 - 1;
@@ -357,7 +357,15 @@ wrapper.addEventListener('click', e => {
   if (hits.length > 0) {
     const wardName = hits[0].object.parent?.userData?.wardName;
     const cfg = HIGHLIGHT_WARDS[wardName];
-    if (cfg) navigateTo(cfg.href || `district.html?id=${cfg.id}`);
+    if (!cfg) return;
+    const href = cfg.href || `district.html?id=${cfg.id}`;
+    if (isMobile()) {
+      // 먼저 호버 효과 표시 → 800ms 후 트랜지션
+      setHover(wardName);
+      setTimeout(() => navigateTo(href), 800);
+    } else {
+      navigateTo(href);
+    }
   }
 });
 
@@ -376,8 +384,8 @@ function initGyro() {
       gyroBase.beta  = e.beta  ?? 0;
       gyroBase.gamma = e.gamma ?? 0;
     }
-    const db = (e.beta  - gyroBase.beta)  / 30;  // 30° 범위 → -1 ~ 1
-    const dg = (e.gamma - gyroBase.gamma) / 30;
+    const db = (e.beta  - gyroBase.beta)  / 10;  // 10° 범위 → -1 ~ 1 (민감도 3× 강화)
+    const dg = (e.gamma - gyroBase.gamma) / 10;
     mouseNorm.x =  Math.max(-1, Math.min(1, dg));
     mouseNorm.y = -Math.max(-1, Math.min(1, db));
   }
@@ -508,8 +516,9 @@ function animate() {
 
   tiltTarget.rx = -mouseNorm.y * TILT_MAX;
   tiltTarget.ry =  mouseNorm.x * TILT_MAX;
-  tiltCurrent.rx = lerp(tiltCurrent.rx, tiltTarget.rx, 0.06);
-  tiltCurrent.ry = lerp(tiltCurrent.ry, tiltTarget.ry, 0.06);
+  const lerpT = isMobile() ? 0.10 : 0.06;   // 모바일 자이로 반응 속도 ↑
+  tiltCurrent.rx = lerp(tiltCurrent.rx, tiltTarget.rx, lerpT);
+  tiltCurrent.ry = lerp(tiltCurrent.ry, tiltTarget.ry, lerpT);
   tiltGroup.rotation.x = tiltCurrent.rx;
   tiltGroup.rotation.y = tiltCurrent.ry;
 
@@ -559,9 +568,16 @@ document.querySelectorAll('.legend-item').forEach(item => {
   item.addEventListener('mouseenter', () => setHover(wardName));
   item.addEventListener('mouseleave', () => setHover(null));
 
-  // 클릭 시 해당 페이지로 이동 (data-href가 있는 경우)
+  // 클릭 시 해당 페이지로 이동
   const href = item.dataset.href;
   if (href) {
-    item.addEventListener('click', () => { navigateTo(href); });
+    item.addEventListener('click', () => {
+      if (isMobile()) {
+        setHover(wardName);
+        setTimeout(() => navigateTo(href), 800);
+      } else {
+        navigateTo(href);
+      }
+    });
   }
 });
