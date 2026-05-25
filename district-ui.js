@@ -25,11 +25,19 @@
       btn.className = 'd-side-nav__item';
       btn.setAttribute('aria-label', 'Jump to building ' + label + (title ? ' ' + title : ''));
       btn.innerHTML =
-        '<span class="d-side-nav__num">' + label + '</span>' +
+        '<span class="d-side-nav__num">' + label +
+          (title ? '<span class="d-side-nav__title">' + title + '</span>' : '') +
+        '</span>' +
         '<div class="d-side-nav__tick"></div>';
 
       btn.addEventListener('click', function () {
         b.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        /* 클릭 후 2초간 타이틀 표시 */
+        btn.classList.add('show-title');
+        clearTimeout(btn._titleTimer);
+        btn._titleTimer = setTimeout(function () {
+          btn.classList.remove('show-title');
+        }, 2000);
       });
       sidenav.appendChild(btn);
       return btn;

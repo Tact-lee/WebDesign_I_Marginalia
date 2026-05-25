@@ -840,11 +840,37 @@
   transform: translateX(6px);
   transition: opacity 0.22s ease, transform 0.22s ease;
   white-space: nowrap;
+  display: flex;
+  align-items: baseline;
+  gap: 0;
 }
+/* 숫자 — active 또는 hover 시 표시 */
 .d-side-nav__item.is-active .d-side-nav__num,
 .d-side-nav__item:hover .d-side-nav__num {
   opacity: 1;
   transform: translateX(0);
+}
+/* 타이틀 — 기본 숨김, hover 또는 show-title 클래스일 때만 표시 */
+.d-side-nav__title {
+  font-family: var(--f-sans);
+  font-size: 8.5px;
+  letter-spacing: 0.06em;
+  font-weight: 400;
+  color: var(--ink);
+  opacity: 0;
+  text-transform: uppercase;
+  max-width: 0;
+  overflow: hidden;
+  padding-left: 0;
+  transition: opacity 0.25s ease,
+              max-width 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              padding-left 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.d-side-nav__item:hover .d-side-nav__title,
+.d-side-nav__item.show-title .d-side-nav__title {
+  opacity: 0.5;
+  max-width: 260px;
+  padding-left: 9px;
 }
 
 .d-side-nav__tick {
