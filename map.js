@@ -243,7 +243,7 @@ fetch('tokyo_wards.geojson')
           a.className = 'district-label__sub';
           a.textContent = sub.nameEn;
           a.href = sub.href;
-          a.addEventListener('click', e => e.stopPropagation());
+          /* stopPropagation 제거 — wrapper가 직접 sub-label 클릭 감지 */
           subsDiv.appendChild(a);
         });
         el.appendChild(subsDiv);
@@ -346,26 +346,45 @@ function navigateTo(href) {
 
 // 클릭 시 지역 이동
 // 모바일: 탭 → 호버 효과 표시(800ms) → 트랜지션 시작 → 이동
+// 모바일 미나토: 첫 탭 → 4개 서브 선택지 표시, 두 번째 탭 → 닫기
 // 데스크탑: 클릭 → 즉시 트랜지션 시작 → 이동
 wrapper.addEventListener('click', e => {
+  // sub-district 링크 클릭은 wrapper가 아닌 transition.js가 처리
+  if (e.target.closest('.district-label__sub')) return;
+
   const rect = wrapper.getBoundingClientRect();
   const cx = ((e.clientX - rect.left) / rect.width)  * 2 - 1;
   const cy = ((e.clientY - rect.top)  / rect.height) * 2 - 1;
   mouse3.set(cx, -cy);
   raycaster.setFromCamera(mouse3, camera);
   const hits = raycaster.intersectObjects(wardMeshes, false);
+
   if (hits.length > 0) {
     const wardName = hits[0].object.parent?.userData?.wardName;
     const cfg = HIGHLIGHT_WARDS[wardName];
     if (!cfg) return;
     const href = cfg.href || `district.html?id=${cfg.id}`;
+
     if (isMobile()) {
-      // 먼저 호버 효과 표시 → 800ms 후 트랜지션
-      setHover(wardName);
-      setTimeout(() => navigateTo(href), 800);
+      if (cfg.subDistricts) {
+        // 서브 구역 선택지가 있는 경우 (미나토구):
+        // 첫 탭 → 선택지 표시, 두 번째 탭 → 닫기
+        if (hoveredWard === wardName) {
+          setHover(null);
+        } else {
+          setHover(wardName);
+        }
+      } else {
+        // 일반 구: 호버 효과 → 800ms → 이동
+        setHover(wardName);
+        setTimeout(() => navigateTo(href), 800);
+      }
     } else {
       navigateTo(href);
     }
+  } else if (isMobile() && hoveredWard) {
+    // 빈 영역 탭 → 열린 서브 선택지 닫기
+    setHover(null);
   }
 });
 
@@ -568,16 +587,9 @@ document.querySelectorAll('.legend-item').forEach(item => {
   item.addEventListener('mouseenter', () => setHover(wardName));
   item.addEventListener('mouseleave', () => setHover(null));
 
-  // 클릭 시 해당 페이지로 이동
+  // 클릭 시 해당 페이지로 이동 (모바일/데스크탑 공통 — 즉시 전환)
   const href = item.dataset.href;
   if (href) {
-    item.addEventListener('click', () => {
-      if (isMobile()) {
-        setHover(wardName);
-        setTimeout(() => navigateTo(href), 800);
-      } else {
-        navigateTo(href);
-      }
-    });
+    item.addEventListener('click', () => navigateTo(href));
   }
 });

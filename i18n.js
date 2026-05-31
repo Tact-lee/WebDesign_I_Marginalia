@@ -1267,8 +1267,9 @@
     document.querySelectorAll('.lang-btn').forEach(function (btn) {
       btn.classList.toggle('is-active', btn.getAttribute('data-lang') === lang);
     });
+    var LANG_DISPLAY = { ko: 'KR', ja: 'JP', en: 'EN' };
     document.querySelectorAll('.lang-current').forEach(function (el) {
-      el.textContent = lang.toUpperCase();
+      el.textContent = LANG_DISPLAY[lang] || lang.toUpperCase();
     });
 
     /* 4. 드롭다운 닫기 */

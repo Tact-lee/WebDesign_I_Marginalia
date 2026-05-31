@@ -214,7 +214,7 @@
       ],
     },
     {
-      name: 'Doria Minami Aoyama',
+      name: 'Doric Minami Aoyama',
       district: 'Aoyama',
       architect: 'Kengo Kuma',
       year: '1991',
