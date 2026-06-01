@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Asakusa — Marginalia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@latest/dist/web/static/pretendard-dynamic-subset.css" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Noto+Sans+JP:wght@100&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="district.css" />
+</head>
+<body>
+  <!-- Page Transition Overlay -->
+  <div class="page-transition" id="pageTransition">
+    <div class="pt-badges">
+      <div class="pt-badge"><span>LOADING</span></div>
+      <div class="pt-badge"><span>PLZ</span></div>
+      <div class="pt-badge"><span>WAIT</span></div>
+    </div>
+    <div class="pt-strips">
+      <div class="pt-strip" style="--i:0"></div>
+      <div class="pt-strip" style="--i:1"></div>
+      <div class="pt-strip" style="--i:2"></div>
+      <div class="pt-strip" style="--i:3"></div>
+      <div class="pt-strip" style="--i:4"></div>
+      <div class="pt-strip" style="--i:5"></div>
+      <div class="pt-strip" style="--i:6"></div>
+      <div class="pt-strip" style="--i:7"></div>
+      <div class="pt-strip" style="--i:8"></div>
+      <div class="pt-strip" style="--i:9"></div>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="index.html" class="nav__logo">Marginalia</a>
+    <div class="nav__right">
+      <ul class="nav__links">
+        <li><a href="index.html#map-section">Location Map</a></li>
+        <li><a href="index.html#gallery-section">Gallery</a></li>
+      </ul>
+      <div class="lang-switcher" aria-label="Language">
+        <button class="lang-trigger" aria-expanded="false">
+          <span class="lang-current">KR</span>
+          <svg class="lang-arrow" width="8" height="5" viewBox="0 0 8 5" fill="none" aria-hidden="true"><path d="M1 1L4 4L7 1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="lang-dropdown">
+          <button class="lang-btn is-active" data-lang="ko">KR</button>
+          <button class="lang-btn" data-lang="ja">JP</button>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+      </div>
+      <button class="nav__hamburger" id="navHamburger" aria-label="메뉴" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="nav__mobile-menu" id="navMobileMenu" aria-hidden="true">
+    <div class="nav__mobile-inner">
+      <ul class="nav__mobile-links">
+        <li><a href="index.html#map-section">Location Map</a></li>
+        <li><a href="index.html#gallery-section">Gallery</a></li>
+      </ul>
+      <div class="nav__mobile-lang">
+        <button class="lang-btn is-active" data-lang="ko">KR</button>
+        <button class="lang-btn" data-lang="ja">JP</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       HERO
+  ════════════════════════════════════════════════════════════ -->
+  <header class="d-hero">
+    <div class="d-hero__content">
+      <div class="d-hero__label-row">
+        <span class="label" data-i18n="as-hero-area">다이토구</span>
+        <span class="label" data-i18n="as-hero-count">— 6개 건축물</span>
+      </div>
+
+      <h1 class="d-hero__title">
+        Asakusa
+        <em class="d-hero__title-jp" data-i18n="as-hero-title-jp">아사쿠사</em>
+      </h1>
+
+      <p class="d-hero__intro" data-i18n="as-hero-intro">
+        에도의 기억과 현대가 한 블록 간격으로 뒤섞이는 곳. 번화가의 조상, 도쿄에서 가장 오래된 절을 품은 동네.
+      </p>
+
+      <div class="d-hero__stats">
+        <div class="d-stat">
+          <span class="d-stat__val">6</span>
+          <span class="d-stat__label">Structures</span>
+        </div>
+        <div class="d-stat">
+          <span class="d-stat__val">4</span>
+          <span class="d-stat__label">Architect</span>
+        </div>
+        <div class="d-stat">
+          <span class="d-stat__val">1930–2022</span>
+          <span class="d-stat__label">Span</span>
+        </div>
+      </div>
+
+      <div class="d-hero__scroll">
+        <span class="label">Scroll to explore</span>
+        <div class="d-hero__scroll-line"></div>
+      </div>
+    </div>
+
+    <!-- Right: 2D Canvas Map -->
+    <div class="d-hero__map" id="dMapWrapper">
+      <canvas id="dMapCanvas"></canvas>
+      <div class="d-hero__map-label" id="dMapLabel">
+        <span class="d-hero__map-label-name" id="dMapLabelName"></span>
+        <span class="d-hero__map-label-year" id="dMapLabelYear"></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════════════════════
+       INTRO
+  ════════════════════════════════════════════════════════════ -->
+  <section class="d-intro">
+    <div class="d-intro__inner">
+      <p class="d-intro__text" data-i18n="as-intro-p1">일본의 수도 도쿄에는 도내에서 가장 오래된 절, 센소지를 품은 아사쿠사라는 동네가 있습니다. 에도시대부터 도쿄 최고의 번화가로 급부상하고, 지금은 그 지위를 시부야, 긴자 등에게 물려준, 어떻게 보면 화석 같은 장소죠. 마치 번화가의 조상 같은 느낌이기 때문에 아사쿠사는 도쿄의 다른 명소들과 확연히 구분되는 분위기를 보여줍니다.</p>
+      <p class="d-intro__text" data-i18n="as-intro-p2">시부야와 긴자의 묵직한 자본의 냄새로 눈을 사로잡는 건축물들이 늘어서 있다면, 아사쿠사의 건축물은 과거와 현대가 한 블록 간격으로 끊임없이 공존하다 못해 뒤섞여서 이곳의 과거와 현재, 그리고 미래까지도 가늠할 수 있습니다. 이번에는 그런 아사쿠사에 대한 이야기를 풀어볼까 합니다.</p>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       BUILDING 01 — Tokyo Metro Asakusa Station Exit 4
+  ════════════════════════════════════════════════════════════ -->
+  <article class="d-building d-building--segmented" id="building-01">
+    <div class="d-building__header">
+      <div class="d-building__num-wrap">
+        <span class="d-building__num">01</span>
+        <span class="d-building__subtitle" data-i18n="as-b01-subtitle">아사쿠사의 근본 출입구</span>
+      </div>
+      <div class="d-building__meta">
+        <span class="d-building__tag">Infrastructure · 1930</span>
+        <span class="d-building__architect">Tokyo Metro</span>
+      </div>
+    </div>
+
+    <h2 class="d-building__title">Asakusa Station Exit 4</h2>
+    <p class="d-building__title-jp" data-i18n="as-b01-title-jp">도쿄 메트로 아사쿠사역 4번 출구</p>
+
+    <!-- Segment 01 -->
+    <div class="d-building__seg js-img-reveal">
+      <div class="d-building__seg-text">
+        <p data-i18n="as-b01-seg1">지하철 긴자선 아사쿠사역 승강장에는 기둥과 천장이 주홍색으로 칠해져 있습니다. 이 동네의 정체성을 반영한 듯 보이죠. 아사쿠사에 오시는 분들은 대부분 센소지의 입구와 가장 가까운 2, 3번 출구를 이용하시겠지만, 저는 4번 출구를 먼저 안내하고자 합니다.</p>
+      </div>
+      <div class="d-building__seg-img">
+        <img src="picture/Tokyo_Metro_Asakusa_Station_Exit4_01.png" alt="Asakusa Station Exit 4 exterior" />
+      </div>
+    </div>
+
+    <!-- Segment 02 (alt) -->
+    <div class="d-building__seg d-building__seg--alt js-img-reveal">
+      <div class="d-building__seg-img">
+        <img src="picture/Tokyo_Metro_Asakusa_Station_Exit4_02.png" alt="Asakusa Station Exit 4 facade" />
+      </div>
+      <div class="d-building__seg-text">
+        <p data-i18n="as-b01-seg2">마치 센소지를 조막만하게 축소한 듯 키치한 느낌마저 나는 이곳은 사실 아사쿠사에서 가장 오래된 100년 전의 건조물을 그대로 갖고 있는 출입구입니다. 1930년에 지어진 원형이 그대로 보존되어 있으며, 비교적 현대화된 다른 출구와 달리 근처에 실제로 오래된 건물들이 많이 자리하고 있는 구역이기도 합니다.</p>
+      </div>
+    </div>
+
+    <!-- Segment 03 -->
+    <div class="d-building__seg js-img-reveal">
+      <div class="d-building__seg-text">
+        <p data-i18n="as-b01-seg3">게다가 그 옛날 건물들과 대조되는 강 너머의 미래적인 스카이라인을 한눈에 담을 수 있는 장소이기도 합니다. 도쿄에서 가장 높은 건축물 스카이트리와 나란히 서 있는 이 오래된 출구는, 아사쿠사가 품고 있는 과거와 현대의 공존을 그 자체로 보여주는 상징적인 장소입니다.</p>
+      </div>
+      <div class="d-building__seg-img">
+        <img src="picture/Tokyo_Metro_Asakusa_Station_Exit4_03.png" alt="Asakusa Station view" />
+      </div>
+    </div>
+
+    <!-- Segment 04 (alt) -->
+    <div class="d-building__seg d-building__seg--alt js-img-reveal">
+      <div class="d-building__seg-img">
+        <img src="picture/Tokyo_Metro_Asakusa_Station_Exit4_04.png" alt="Asakusa Station interior" />
+      </div>
+      <div class="d-building__seg-text">
+        <p data-i18n="as-b01-seg4">이번 동선의 시작이 된 센소지를 본떠 만들었다고 하는 아사쿠사역 4번 출구, 하지만 나중에 센소지 섹션에서 밝히겠지만, 지금 서 있는 센소지보다 2, 30년은 더 오래된 이 구역의 진정한 큰 형님이라 할 수 있겠습니다.</p>
+      </div>
+    </div>
+
+    <!-- Gallery -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+      <div class="d-building__gallery-item"><img src="picture/Tokyo_Metro_Asakusa_Station_Exit4_05.png" alt="Asakusa Station detail" /></div>
+      <div class="d-building__gallery-item"><img src="picture/Tokyo_Metro_Asakusa_Station_Exit4_06.png" alt="Asakusa Station platform" /></div>
+    </div>
+
+    <!-- Google Map -->
+    <div class="d-building__gmap">
+      <span class="d-building__gmap-label">Location · 도쿄도 다이토구 아사쿠사 1-1-1</span>
+      <iframe src="https://maps.google.com/maps?q=Asakusa+Station+Exit+4+Tokyo&hl=ko&z=17&output=embed" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </article>
+
+  <!-- ═══════════════════════════════════════════════════════
+       BUILDING 02 — Asahi Super Dry Hall
+  ════════════════════════════════════════════════════════════ -->
+  <article class="d-building d-building--segmented" id="building-02">
+    <div class="d-building__header">
+      <div class="d-building__num-wrap">
+        <span class="d-building__num">02</span>
+        <span class="d-building__subtitle" data-i18n="as-b02-subtitle">필립 스탁의 황금 똥</span>
+      </div>
+      <div class="d-building__meta">
+        <span class="d-building__tag">Corporate · 1989</span>
+        <span class="d-building__architect">Philippe Starck</span>
+      </div>
+    </div>
+
+    <h2 class="d-building__title">Asahi Super Dry Hall</h2>
+    <p class="d-building__title-jp" data-i18n="as-b02-title-jp">아사히 슈퍼드라이 홀</p>
+
+    <!-- Portrait -->
+    <div class="d-building__portrait js-img-reveal">
+      <div class="d-building__portrait-photo d-building__portrait-photo--contain">
+        <img src="picture/architect/Philippe_Starck.png" alt="Philippe Starck" />
+      </div>
+      <div class="d-building__portrait-info">
+        <p class="d-building__portrait-name">Philippe Starck<span class="d-building__portrait-name-kr" data-i18n="as-b02-name-kr">필립 스탁</span></p>
+        <p class="d-building__portrait-sub">フィリップ・スタルク · 1949–<br>French Industrial Designer &amp; Architect<br>Starck Network</p>
+      </div>
+    </div>
+
+    <!-- Segment 01 -->
+    <div class="d-building__seg js-img-reveal">
+      <div class="d-building__seg-text">
+        <p data-i18n="as-b02-seg1">도쿄에서 가장 높은 건축물 스카이트리 앞으로 묘하게 생긴 건물들이 있습니다. 이곳은 아사히 그룹의 본사로, 맥주로 유명한 회사답게 본사 건물마저 맥주 거품이 올라간 맥주잔의 형상을 띠고 있는 것이 특징입니다.</p>
+      </div>
+      <div class="d-building__seg-img">
+        <img src="picture/Asahi_Super_Dry_Hall_01.png" alt="Asahi Super Dry Hall exterior" />
+      </div>
+    </div>
+
+    <!-- Segment 02 (alt) -->
+    <div class="d-building__seg d-building__seg--alt js-img-reveal">
+      <div class="d-building__seg-img">
+        <img src="picture/Asahi_Super_Dry_Hall_02.png" alt="Asahi Super Dry Hall flame sculpture" />
+      </div>
+      <div class="d-building__seg-text">
+        <p data-i18n="as-b02-seg2">특히 옆에 있는 아사히 슈퍼드라이 홀은 다방면으로 활약한 디자이너 필립 스탁의 작품으로, 당시 신맥주였던 아사히 슈퍼드라이 출시를 기념하기 위해 지어졌습니다. 성화에 휘날리는 불꽃에서 영감을 얻었다고 하는데, 이 색깔과 형태 때문에 현지에서도 "황금 똥" 이라는 불명예스러운 별명을 얻기도 했죠. 그 와중에도 아사쿠사의 서정적인 풍경과 대조되며 확실히 시각적 이목을 끄는 데는 성공했습니다.</p>
+      </div>
+    </div>
+
+    <!-- Segment 03 -->
+    <div class="d-building__seg js-img-reveal">
+      <div class="d-building__seg-text">
+        <p data-i18n="as-b02-seg3">필립 스탁은 가구, 인테리어, 제품 디자인까지 경계를 가리지 않는 작업 영역으로 유명합니다. 이 건물은 단순한 기업 사옥을 넘어, 당대 산업 디자인의 아이콘으로 자리 잡았습니다. 아사쿠사의 전통적인 가옥들 사이에서 더욱 이질적으로 빛나는 이 황금빛 오브제는, 의도치 않게 이 동네의 혼종적 정체성을 상징하는 존재가 되었습니다.</p>
+      </div>
+      <div class="d-building__seg-img">
+        <img src="picture/Asahi_Super_Dry_Hall_03.png" alt="Asahi Hall with Skytree" />
+      </div>
+    </div>
+
+    <!-- Gallery -->
+    <div class="d-building__gallery d-building__gallery--solo js-img-reveal">
+      <div class="d-building__gallery-item">
+        <img src="picture/Asahi_Super_Dry_Hall_04.png" alt="Asahi Super Dry Hall night view" />
+      </div>
+    </div>
+
+    <!-- Google Map -->
+    <div class="d-building__gmap">
+      <span class="d-building__gmap-label">Location · 도쿄도 스미다구 아즈마바시 1-23-1</span>
+      <iframe src="https://maps.google.com/maps?q=Asahi+Super+Dry+Hall+Tokyo&hl=ko&z=17&output=embed" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </article>
+
+  <!-- ═══════════════════════════════════════════════════════
+       BUILDING 03 — Asakusa Culture & Tourist Information Center
+  ════════════════════════════════════════════════════════════ -->
+  <article class="d-building d-building--segmented" id="building-03">
+    <div class="d-building__header">
+      <div class="d-building__num-wrap">
+        <span class="d-building__num">03</span>
+        <span class="d-building__subtitle" data-i18n="as-b03-subtitle">수직으로 쌓아올린 전통가옥</span>
+      </div>
+      <div class="d-building__meta">
+        <span class="d-building__tag">Cultural · 2012</span>
+        <span class="d-building__architect">Kengo Kuma</span>
+      </div>
+    </div>
+
+    <h2 class="d-building__title">Asakusa Culture Center</h2>
+    <p class="d-building__title-jp" data-i18n="as-b03-title-jp">아사쿠사 문화 관광 센터</p>
+
+    <!-- Portrait -->
+    <div class="d-building__portrait js-img-reveal">
+      <div class="d-building__portrait-photo">
+        <img src="picture/architect/kuma_kengo.jpg" alt="Kengo Kuma" />
+      </div>
+      <div class="d-building__portrait-info">
+        <p class="d-building__portrait-name">Kengo Kuma<span class="d-building__portrait-name-kr" data-i18n="as-b03-name-kr">쿠마 켄고</span></p>
+        <p class="d-building__portrait-sub">隈研吾 · 1954–<br>Pritzker Architecture Prize Nominee<br>Kengo Kuma &amp; Associates</p>
+      </div>
+    </div>
+
+    <!-- Segment 01 -->
+    <div class="d-building__seg js-img-reveal">
+      <div class="d-building__seg-text">
+        <p data-i18n="as-b03-seg1">센소지의 입구 카미나리몬 바로 맞은편에 위치한 이 8층짜리 건물은 아사쿠사 인근의 관광·문화 정보를 제공하는 시설입니다. 외관을 보면 형태는 뒤죽박죽인데 묘하게 반복적인 패턴을 갖고 있죠. 쿠마 켄고의 건축물은 일본 전역에 무수히 흩어져 있는데다, 이처럼 외관의 나무로 만들어진 어떠한 패턴을 자주 선보이기 때문에 쉽게 알아차릴 수 있습니다.</p>
+      </div>
+      <div class="d-building__seg-img">
+        <img src="picture/Asakusa_Culture_Information_Center_01.png" alt="Asakusa Culture Center exterior" />
+      </div>
+    </div>
+
+    <!-- Segment 02 (alt) -->
+    <div class="d-building__seg d-building__seg--alt js-img-reveal">
+      <div class="d-building__seg-img">
+        <img src="picture/Asakusa_Culture_Information_Center_02.png" alt="Asakusa Culture Center stacked floors" />
+      </div>
+      <div class="d-building__seg-text">
+        <p data-i18n="as-b03-seg2">이 형태는 건물의 컨셉에서 비롯된 것입니다. 센소지 인근은 예로부터 '히라야'라는 전통 단층 주택이 수평적으로 군집해 마을을 형성하고 있었는데, 쿠마 켄고는 이 히라야를 수직으로 겹겹이 쌓아올린 형태를 디자인했습니다. 자세히 보면 지붕을 형상화한 면들이 사이사이 끼어 있는 것이 보입니다. 현대 도시에서 필연적인 수직 팽창과 과거 아사쿠사의 단층집 군락 이미지를 그만의 방식으로 독특하게 연결 지은 것입니다.</p>
+      </div>
+    </div>
+
+    <!-- Segment 03 -->
+    <div class="d-building__seg js-img-reveal">
+      <div class="d-building__seg-text">
+        <p data-i18n="as-b03-seg3">구조 자체는 목조 건축이 아닌 현대식 철골 구조이지만, 외부와 내부의 목재를 적극적으로 사용해서 괴리감을 최대한 줄이고 있습니다. 이처럼 그는 순수한 전통 목조 건물 이외에도 철근 콘크리트로 대변되는 현대 건축에 목조를 끼얹는 상당히 독특한 영역을 구축하고 있습니다. 이 두 가지의 연결로 하여금 자연을 우리의 삶에서 정말 보편적인 것으로 받아들이게 하는 것이 그의 궁극적인 목적입니다.</p>
+      </div>
+      <div class="d-building__seg-img">
+        <img src="picture/Asakusa_Culture_Information_Center_03.png" alt="Asakusa Culture Center wood detail" />
+      </div>
+    </div>
+
+    <!-- Segment 04 (alt) -->
+    <div class="d-building__seg d-building__seg--alt js-img-reveal">
+      <div class="d-building__seg-img">
+        <img src="picture/Asakusa_Culture_Information_Center_04.png" alt="Asakusa Culture Center observation" />
+      </div>
+      <div class="d-building__seg-text">
+        <p data-i18n="as-b03-seg4">2층에는 배터리를 충전하며 잠시 쉬어갈 수 있는 공간이 있으며, 8층은 센소지를 포함한 아사쿠사 일대와 스카이트리를 한눈에 담을 수 있는 무료 전망대가 있습니다. 카미나리몬과 나카미세 상점가를 위에서 내려다보는 뷰는 특히 인상적이니, 한 번쯤 꼭 올라가 보시길 추천합니다.</p>
+      </div>
+    </div>
+
+    <!-- Gallery -->
+    <div class="d-building__gallery d-building__gallery--3 js-img-reveal">
+      <div class="d-building__gallery-item"><img src="picture/Asakusa_Culture_Information_Center_05.png" alt="Culture Center interior" /></div>
+      <div class="d-building__gallery-item"><img src="picture/Asakusa_Culture_Information_Center_06.png" alt="Culture Center detail" /></div>
+      <div class="d-building__gallery-item"><img src="picture/Asakusa_Culture_Information_Center_07.png" alt="Culture Center view" /></div>
+    </div>
+
+    <!-- Google Map -->
+    <div class="d-building__gmap">
+      <span class="d-building__gmap-label">Location · 도쿄도 다이토구 가미나리몬 2-18-9</span>
+      <iframe src="https://maps.google.com/maps?q=Asakusa+Culture+Tourist+Information+Center+Tokyo&hl=ko&z=17&output=embed" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </article>
+
+  <!-- ═══════════════════════════════════════════════════════
+       BUILDING 04 — Asakusa Senso-Ji
+  ════════════════════════════════════════════════════════════ -->
+  <article class="d-building d-building--segmented" id="building-04">
+    <div class="d-building__header">
+      <div class="d-building__num-wrap">
+        <span class="d-building__num">04</span>
+        <span class="d-building__subtitle" data-i18n="as-b04-subtitle">센소지에 숨겨진 비밀</span>
+      </div>
+      <div class="d-building__meta">
+        <span class="d-building__tag">Temple · 1958 (Restored)</span>
+        <span class="d-building__architect">RC Reconstruction</span>
+      </div>
+    </div>
+
+    <h2 class="d-building__title">Asakusa Senso-Ji</h2>
+    <p class="d-building__title-jp" data-i18n="as-b04-title-jp">아사쿠사 센소지</p>
+
+    <!-- Segment 01 -->
+    <div class="d-building__seg js-img-reveal">
+      <div class="d-building__seg-text">
+        <p data-i18n="as-b04-seg1">서기 700년대에 지어져 무려 1400년의 역사를 갖고 있는 센소지는, 이 동네의 전반적인 바이브 형성에 지배적인 영향을 끼치고 있습니다. 본당까지 가는 길은 시부야 못지않은 인파를 자랑하는 곳으로, 아사쿠사의 상징 그 자체라 할 수 있습니다.</p>
+      </div>
+      <div class="d-building__seg-img">
+        <img src="picture/Asakusa_Senso-Ji_01.png" alt="Senso-Ji Kaminarimon gate" />
+      </div>
+    </div>
+
+    <!-- Segment 02 (alt) -->
+    <div class="d-building__seg d-building__seg--alt js-img-reveal">
+      <div class="d-building__seg-img">
+        <img src="picture/Asakusa_Senso-Ji_02.png" alt="Senso-Ji main hall" />
+      </div>
+      <div class="d-building__seg-text">
+        <p data-i18n="as-b04-seg2">현대 건축과 맞지 않는 장소임에도 패스하지 않는 이유가 있습니다. 오늘날 여기 있는 센소지는 1950년대에서 60년대 사이에 나무가 아니라 철근 콘크리트로 복원된 곳이기 때문입니다. 심지어 지붕을 이루는 기와는 알루미늄, 군데군데는 티타늄으로 제작되었다고 하네요. 나이만 놓고 보면 지금 서 있는 센소지보다 2, 30년은 더 오래된 이 구역의 진정한 큰 형님은, 바로 앞서 소개한 아사쿠사역 4번 출구입니다.</p>
+      </div>
+    </div>
+
+    <!-- Segment 03 -->
+    <div class="d-building__seg js-img-reveal">
+      <div class="d-building__seg-text">
+        <p data-i18n="as-b04-seg3">센소지의 존재와 영향력 자체는 1400년의 역사가 증명하고 있습니다만, 한 발 떨어져 건축물 자체만 놓고 보면 테세우스의 배냐 아니냐를 넘어 거의 전신 사이보그라고 봐도 무방한 수준이죠. 이는 20세기 중후반 동아시아에서 옛날 건축물을 복원할 당시 심심찮게 쓰이던 방법으로, 석조 건축이 메인이었던 서양과는 다르게 동양의 전통 목조 건물을 그 당시의 방식으로 그대로 복원했다가는 장기적으로 노후화에 취약해지기 때문입니다.</p>
+      </div>
+      <div class="d-building__seg-img">
+        <img src="picture/Asakusa_Senso-Ji_03.png" alt="Senso-Ji pagoda" />
+      </div>
+    </div>
+
+    <!-- Segment 04 (alt) -->
+    <div class="d-building__seg d-building__seg--alt js-img-reveal">
+      <div class="d-building__seg-img">
+        <img src="picture/Asakusa_Senso-Ji_04.png" alt="Senso-Ji detail" />
+      </div>
+      <div class="d-building__seg-text">
+        <p data-i18n="as-b04-seg4">기계화가 되었다 할지라도, 과거의 역할을 현대에 이르러서도 완벽히 수행하고 있으니, 지금의 아사쿠사가 만들어질 수 있었다고 생각됩니다. 사실 센소지가 완벽히 복원되었다면, 지금만큼 많은 사람들이 찾지 못했을 수도 있습니다. 당시 서양에서 들어온 소재와 공법을 이용해 재건하기로 한 그 결정이, 역설적으로 센소지를 오늘날까지 지켜온 것일지도 모릅니다.</p>
+      </div>
+    </div>
+
+    <!-- Gallery -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+      <div class="d-building__gallery-item"><img src="picture/Asakusa_Senso-Ji_05.png" alt="Senso-Ji crowd" /></div>
+      <div class="d-building__gallery-item"><img src="picture/Asakusa_Senso-Ji_06.png" alt="Senso-Ji night" /></div>
+    </div>
+
+    <!-- Google Map -->
+    <div class="d-building__gmap">
+      <span class="d-building__gmap-label">Location · 도쿄도 다이토구 아사쿠사 2-3-1</span>
+      <iframe src="https://maps.google.com/maps?q=Senso-Ji+Temple+Asakusa+Tokyo&hl=ko&z=17&output=embed" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </article>
+
+  <!-- ═══════════════════════════════════════════════════════
+       BUILDING 05 — Fuglen Asakusa / Sauna Reset Pint
+  ════════════════════════════════════════════════════════════ -->
+  <article class="d-building d-building--segmented" id="building-05">
+    <div class="d-building__header">
+      <div class="d-building__num-wrap">
+        <span class="d-building__num">05</span>
+        <span class="d-building__subtitle" data-i18n="as-b05-subtitle">마을을 형상화한 건축물</span>
+      </div>
+      <div class="d-building__meta">
+        <span class="d-building__tag">Café / Sauna · 2019</span>
+        <span class="d-building__architect">Akihisa Hirata</span>
+      </div>
+    </div>
+
+    <h2 class="d-building__title">Fuglen Asakusa</h2>
+    <p class="d-building__title-jp" data-i18n="as-b05-title-jp">후글렌 아사쿠사 / 사우나 리셋 핀트</p>
+
+    <!-- Portrait -->
+    <div class="d-building__portrait js-img-reveal">
+      <div class="d-building__portrait-photo d-building__portrait-photo--contain">
+        <img src="picture/architect/Akihisa_Hirata.png" alt="Akihisa Hirata" />
+      </div>
+      <div class="d-building__portrait-info">
+        <p class="d-building__portrait-name">Akihisa Hirata<span class="d-building__portrait-name-kr" data-i18n="as-b05-name-kr">히라타 아키히사</span></p>
+        <p class="d-building__portrait-sub">平田晃久 · 1971–<br>Japanese Architect<br>Akihisa Hirata Architecture Office</p>
+      </div>
+    </div>
+
+    <!-- Segment 01 -->
+    <div class="d-building__seg js-img-reveal">
+      <div class="d-building__seg-text">
+        <p data-i18n="as-b05-seg1">센소지 본당 왼편의 상점가 '니시산도'를 통해 빠져나가면, 역 근처에 살짝 더 현대적인 느낌의 거리가 나타나며, 바로 앞에 처음에 지나온 아사쿠사 문화 관광센터와 비슷한 듯 다른 컨셉의 건물이 모습을 드러냅니다. 설계를 맡은 건축가 히라타 아키히사에 따르면, 이곳 역시 아사쿠사 주변 상점가의 밀도를 수직적으로 표현하려는 컨셉이었다고 합니다.</p>
+      </div>
+      <div class="d-building__seg-img">
+        <img src="picture/Fuglen_Asakusa_Sauna_Reset_Pint_01.png" alt="Fuglen Asakusa exterior" />
+      </div>
+    </div>
+
+    <!-- Segment 02 (alt) -->
+    <div class="d-building__seg d-building__seg--alt js-img-reveal">
+      <div class="d-building__seg-img">
+        <img src="picture/Fuglen_Asakusa_Sauna_Reset_Pint_02.png" alt="Fuglen staircase" />
+      </div>
+      <div class="d-building__seg-text">
+        <p data-i18n="as-b05-seg2">뭔가 센과 치히로에 나오는 목욕탕 건물 같은 느낌이랄까요? 이는 바깥을 지그재그로 두르고 있는 계단 때문일 텐데요. 일본의 건축 기준법상 설치해야 하는 외부의 피난 계단을 수직으로 반복적으로 쌓아 올리기보다, 좀 더 디자인적으로 재미있게 풀어낸 것입니다. 진짜 센과 치히로마냥 건물 전체에 캡슐 호텔을 비롯한 사우나가 들어가 있기도 합니다.</p>
+      </div>
+    </div>
+
+    <!-- Segment 03 -->
+    <div class="d-building__seg js-img-reveal">
+      <div class="d-building__seg-text">
+        <p data-i18n="as-b05-seg3">특히 1층, 2층에 자리 잡은 노르웨이발 카페 "Fuglen"이 커피가 아주 구수한 것으로 유명합니다. 단순히 커피뿐 아니라 인테리어에 사용된 가구까지 주로 스칸디나비아 브랜드 혹은 빈티지 피스들로 가득 차 있는데다, 안에 있는 가구와 소품들은 전부 실제로 구매가 가능한 상품들이기 때문에 커피 한 잔 하면서 느긋하게 구경하기 좋은 장소입니다.</p>
+      </div>
+      <div class="d-building__seg-img">
+        <img src="picture/Fuglen_Asakusa_Sauna_Reset_Pint_03.png" alt="Fuglen cafe interior" />
+      </div>
+    </div>
+
+    <!-- Gallery -->
+    <div class="d-building__gallery js-img-reveal">
+      <div class="d-building__gallery-item"><img src="picture/Fuglen_Asakusa_Sauna_Reset_Pint_04.png" alt="Fuglen detail" /></div>
+      <div class="d-building__gallery-item"><img src="picture/Fuglen_Asakusa_Sauna_Reset_Pint_05.png" alt="Fuglen furniture" /></div>
+      <div class="d-building__gallery-item"><img src="picture/Fuglen_Asakusa_Sauna_Reset_Pint_06.png" alt="Fuglen sauna" /></div>
+      <div class="d-building__gallery-item"><img src="picture/Fuglen_Asakusa_Sauna_Reset_Pint_07.png" alt="Fuglen coffee" /></div>
+    </div>
+
+    <!-- Google Map -->
+    <div class="d-building__gmap">
+      <span class="d-building__gmap-label">Location · 도쿄도 다이토구 아사쿠사 2-6-15</span>
+      <iframe src="https://maps.google.com/maps?q=Fuglen+Asakusa+Tokyo&hl=ko&z=17&output=embed" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </article>
+
+  <!-- ═══════════════════════════════════════════════════════
+       BUILDING 06 — Kura Sushi Asakusa ROX Flagship
+  ════════════════════════════════════════════════════════════ -->
+  <article class="d-building d-building--segmented" id="building-06">
+    <div class="d-building__header">
+      <div class="d-building__num-wrap">
+        <span class="d-building__num">06</span>
+        <span class="d-building__subtitle" data-i18n="as-b06-subtitle">아트디렉터가 설계하는 공간</span>
+      </div>
+      <div class="d-building__meta">
+        <span class="d-building__tag">Restaurant · 2022</span>
+        <span class="d-building__architect">Kashiwa Sato</span>
+      </div>
+    </div>
+
+    <h2 class="d-building__title">Kura Sushi Asakusa</h2>
+    <p class="d-building__title-jp" data-i18n="as-b06-title-jp">쿠라스시 아사쿠사 록스 플래그십</p>
+
+    <!-- Portrait -->
+    <div class="d-building__portrait js-img-reveal">
+      <div class="d-building__portrait-photo d-building__portrait-photo--contain">
+        <img src="picture/architect/Sato_Kashiwa_.png" alt="Kashiwa Sato" />
+      </div>
+      <div class="d-building__portrait-info">
+        <p class="d-building__portrait-name">Kashiwa Sato<span class="d-building__portrait-name-kr" data-i18n="as-b06-name-kr">사토 카시와</span></p>
+        <p class="d-building__portrait-sub">佐藤可士和 · 1965–<br>Japanese Art Director &amp; Creative Director<br>SAMURAI (Creative Studio)</p>
+      </div>
+    </div>
+
+    <!-- Segment 01 -->
+    <div class="d-building__seg js-img-reveal">
+      <div class="d-building__seg-text">
+        <p data-i18n="as-b06-seg1">카페 Fuglen에서 한 블록 더 안으로 넘어가면 '아사쿠사 록스'라는 이름의 쇼핑몰이 있습니다. 이곳의 4층이 이번 목적지인데요, 바로 회전 초밥 체인인 쿠라스시의 아사쿠사 플래그십 매장입니다. 일본의 유명 그래픽 디자이너이자 크리에이티브 디렉터, 사토 카시와가 하나부터 열까지 디자인한 곳으로, 사실상 일본에서 볼 수 있는 모든 브랜드의 로고가 그의 손에서 태어났다고 해도 과언이 아닙니다.</p>
+      </div>
+      <div class="d-building__seg-img">
+        <img src="picture/Kura_Sushi_Asakusa_ROX_Flagship_store_01.png" alt="Kura Sushi Asakusa entrance" />
+      </div>
+    </div>
+
+    <!-- Segment 02 (alt) -->
+    <div class="d-building__seg d-building__seg--alt js-img-reveal">
+      <div class="d-building__seg-img">
+        <img src="picture/Kura_Sushi_Asakusa_ROX_Flagship_store_02.png" alt="Kura Sushi interior" />
+      </div>
+      <div class="d-building__seg-text">
+        <p data-i18n="as-b06-seg2">이곳은 그가 글로벌 리브랜딩을 맡은 쿠라스시의 첫 번째 매장으로, 전반적인 인테리어와 함께 매장 전략, 브랜드 로고, 식기, 직원 유니폼의 신상 스시까지 고객 경험과 관련된 것 전부를 맡았다고 합니다. 아사쿠사에 위치한 가게답게 에도 시대 속 어시장 같은 풍경을 바탕으로 컨셉을 구상했다고 하며, 덕분에 이곳의 인테리어 또한 나무를 주로 사용해서 디자인되었습니다.</p>
+      </div>
+    </div>
+
+    <!-- Segment 03 -->
+    <div class="d-building__seg js-img-reveal">
+      <div class="d-building__seg-text">
+        <p data-i18n="as-b06-seg3">현지인들을 포함하여 관광객들이 정말 어마어마하게 많이 찾는 동네이기 때문에, 여행객들의 흥미를 유발할 수 있는 엔터테인먼트적인 요소를 군데군데 결합시키려는 리브랜딩을 위한 첫 플래그십 매장으로, 다른 지역의 주요 매장들 역시 추후 이곳의 디자인 요소들을 따를 예정이라고 합니다. 단순한 패밀리 레스토랑을 넘어 아사쿠사의 정체성을 담은 문화 공간으로 자리매김하고 있습니다.</p>
+      </div>
+      <div class="d-building__seg-img">
+        <img src="picture/Kura_Sushi_Asakusa_ROX_Flagship_store_03.png" alt="Kura Sushi Edo concept" />
+      </div>
+    </div>
+
+    <!-- Gallery -->
+    <div class="d-building__gallery js-img-reveal">
+      <div class="d-building__gallery-item"><img src="picture/Kura_Sushi_Asakusa_ROX_Flagship_store_04.png" alt="Kura Sushi detail 1" /></div>
+      <div class="d-building__gallery-item"><img src="picture/Kura_Sushi_Asakusa_ROX_Flagship_store_05.png" alt="Kura Sushi detail 2" /></div>
+      <div class="d-building__gallery-item"><img src="picture/Kura_Sushi_Asakusa_ROX_Flagship_store_06.png" alt="Kura Sushi detail 3" /></div>
+      <div class="d-building__gallery-item"><img src="picture/Kura_Sushi_Asakusa_ROX_Flagship_store_07.png" alt="Kura Sushi detail 4" /></div>
+    </div>
+
+    <!-- Extra gallery -->
+    <div class="d-building__gallery d-building__gallery--3 js-img-reveal">
+      <div class="d-building__gallery-item"><img src="picture/Kura_Sushi_Asakusa_ROX_Flagship_store_08.png" alt="Kura Sushi view" /></div>
+      <div class="d-building__gallery-item"><img src="picture/Kura_Sushi_Asakusa_ROX_Flagship_store_09.png" alt="Kura Sushi signage" /></div>
+      <div class="d-building__gallery-item"><img src="picture/Kura_Sushi_Asakusa_ROX_Flagship_store_10.png" alt="Kura Sushi atmosphere" /></div>
+    </div>
+
+    <!-- Google Map -->
+    <div class="d-building__gmap">
+      <span class="d-building__gmap-label">Location · 도쿄도 다이토구 아사쿠사 1-24-2 아사쿠사 록스 4층</span>
+      <iframe src="https://maps.google.com/maps?q=Kura+Sushi+Asakusa+ROX+Tokyo&hl=ko&z=17&output=embed" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </article>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__top">
+      <span class="footer__logo">Marginalia</span>
+      <p class="footer__tagline">A record of what stands<br />and what remains.</p>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 Lee Seunghwan · 풀어봤어x</span>
+      <span>Tokyo, Japan</span>
+      <span>Web Design I — Project</span>
+    </div>
+  </footer>
+
+  <button class="btn-top" id="btnTop" aria-label="Back to top">↑</button>
+
+  <script type="importmap">
+    { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.167.0/build/three.module.js" } }
+  </script>
+  <script type="module" src="asakusa.js"></script>
+  <script>
+    (function () {
+      var btn = document.getElementById('btnTop');
+      var hideTimer = null;
+      function onScroll() {
+        if (window.scrollY > 400) btn.classList.add('visible');
+        clearTimeout(hideTimer);
+        hideTimer = setTimeout(function () { btn.classList.remove('visible'); }, 1500);
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      btn.addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    })();
+  </script>
+  <script src="district-ui.js"></script>
+  <script src="i18n.js"></script>
+  <script src="nav.js"></script>
+  <script src="transition.js"></script>
+</body>
+</html>

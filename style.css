@@ -577,6 +577,16 @@ p, .hero__sub, .d-hero__title-jp, .d-intro__body, .d-building__seg-text {
   transition-delay: 0.12s;
 }
 
+/* 서브 항목 2개 구역 (台東区 등) — 상하 대칭 배치 */
+.district-label--minato.district-label--sub2.is-hovered .district-label__sub:nth-child(1) {
+  opacity: 1; transform: translateY(-8px);
+  transition-delay: 0s;
+}
+.district-label--minato.district-label--sub2.is-hovered .district-label__sub:nth-child(2) {
+  opacity: 1; transform: translateY(8px);
+  transition-delay: 0.04s;
+}
+
 /* Map Tooltip */
 .map-tooltip {
   position: absolute;

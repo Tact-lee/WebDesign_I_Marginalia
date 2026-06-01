@@ -39,7 +39,12 @@ const HIGHLIGHT_WARDS = {
       { nameEn: 'Roppongi',   href: 'roppongi.html' },
     ],
   },
-  '台東区': { id: 'ueno',        nameEn: 'Ueno',                nameJp: '上野',        count: '3 works',  offsetX:   0, offsetY:   0, href: 'ueno.html' },
+  '台東区': { id: 'ueno',        nameEn: 'Taito',               nameJp: '台東区',      count: '9 works',  offsetX:   0, offsetY:   0, href: 'ueno.html',
+    subDistricts: [
+      { nameEn: 'Asakusa', href: 'asakusa.html' },
+      { nameEn: 'Ueno',    href: 'ueno.html'    },
+    ],
+  },
   '中央区': { id: 'ginza',       nameEn: 'Ginza',               nameJp: '銀座',        count: '11 works', offsetX:   0, offsetY:   0, href: 'ginza.html' },
   '豊島区': { id: 'ikebukuro',   nameEn: 'Ikebukuro',           nameJp: '池袋',        count: '3 works',  offsetX:   0, offsetY:   0, href: 'ikebukuro.html' },
 };
@@ -236,6 +241,7 @@ fetch('tokyo_wards.geojson')
       el.innerHTML = `<span class="district-label__en">${cfg.nameEn}</span><span class="district-label__jp">${cfg.nameJp}</span>`;
       if (cfg.subDistricts) {
         el.classList.add('district-label--minato');
+        if (cfg.subDistricts.length === 2) el.classList.add('district-label--sub2');
         const subsDiv = document.createElement('div');
         subsDiv.className = 'district-label__subs';
         cfg.subDistricts.forEach(sub => {
@@ -574,6 +580,7 @@ const LEGEND_TO_WARD = {
   aoyama:     '港区',
   roppongi:   '港区',
   ueno:       '台東区',
+  asakusa:    '台東区',
   ginza:      '中央区',
   ikebukuro:  '豊島区',
 };

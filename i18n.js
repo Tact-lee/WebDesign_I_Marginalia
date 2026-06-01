@@ -453,6 +453,57 @@
       /* 푸터 태그라인 */
       'footer-tagline':
         '지금도 서 있는, 그리고<br>남아있는 것들의 기록.',
+
+      /* ── Asakusa (asakusa.html) ── */
+      'as-hero-area':     '다이토구',
+      'as-hero-count':    '— 6개 건축물',
+      'as-hero-title-jp': '아사쿠사',
+      'as-hero-intro':    '에도의 기억과 현대가 한 블록 간격으로 뒤섞이는 곳. 번화가의 조상, 도쿄에서 가장 오래된 절을 품은 동네.',
+      'as-intro-p1': '일본의 수도 도쿄에는 도내에서 가장 오래된 절, 센소지를 품은 아사쿠사라는 동네가 있습니다. 에도시대부터 도쿄 최고의 번화가로 급부상하고, 지금은 그 지위를 시부야, 긴자 등에게 물려준, 어떻게 보면 화석 같은 장소죠. 마치 번화가의 조상 같은 느낌이기 때문에 아사쿠사는 도쿄의 다른 명소들과 확연히 구분되는 분위기를 보여줍니다.',
+      'as-intro-p2': '시부야와 긴자의 묵직한 자본의 냄새로 눈을 사로잡는 건축물들이 늘어서 있다면, 아사쿠사의 건축물은 과거와 현대가 한 블록 간격으로 끊임없이 공존하다 못해 뒤섞여서 이곳의 과거와 현재, 그리고 미래까지도 가늠할 수 있습니다. 이번에는 그런 아사쿠사에 대한 이야기를 풀어볼까 합니다.',
+
+      'as-b01-subtitle': '아사쿠사의 근본 출입구',
+      'as-b01-title-jp': '도쿄 메트로 아사쿠사역 4번 출구',
+      'as-b01-seg1': '지하철 긴자선 아사쿠사역 승강장에는 기둥과 천장이 주홍색으로 칠해져 있습니다. 이 동네의 정체성을 반영한 듯 보이죠. 아사쿠사에 오시는 분들은 대부분 센소지의 입구와 가장 가까운 2, 3번 출구를 이용하시겠지만, 저는 4번 출구를 먼저 안내하고자 합니다.',
+      'as-b01-seg2': '마치 센소지를 조막만하게 축소한 듯 키치한 느낌마저 나는 이곳은 사실 아사쿠사에서 가장 오래된 100년 전의 건조물을 그대로 갖고 있는 출입구입니다. 1930년에 지어진 원형이 그대로 보존되어 있으며, 비교적 현대화된 다른 출구와 달리 근처에 실제로 오래된 건물들이 많이 자리하고 있는 구역이기도 합니다.',
+      'as-b01-seg3': '게다가 그 옛날 건물들과 대조되는 강 너머의 미래적인 스카이라인을 한눈에 담을 수 있는 장소이기도 합니다. 도쿄에서 가장 높은 건축물 스카이트리와 나란히 서 있는 이 오래된 출구는, 아사쿠사가 품고 있는 과거와 현대의 공존을 그 자체로 보여주는 상징적인 장소입니다.',
+      'as-b01-seg4': '이번 동선의 시작이 된 센소지를 본떠 만들었다고 하는 아사쿠사역 4번 출구, 하지만 나중에 센소지 섹션에서 밝히겠지만, 지금 서 있는 센소지보다 2, 30년은 더 오래된 이 구역의 진정한 큰 형님이라 할 수 있겠습니다.',
+
+      'as-b02-subtitle': '필립 스탁의 황금 똥',
+      'as-b02-title-jp': '아사히 슈퍼드라이 홀',
+      'as-b02-name-kr':  '필립 스탁',
+      'as-b02-seg1': '도쿄에서 가장 높은 건축물 스카이트리 앞으로 묘하게 생긴 건물들이 있습니다. 이곳은 아사히 그룹의 본사로, 맥주로 유명한 회사답게 본사 건물마저 맥주 거품이 올라간 맥주잔의 형상을 띠고 있는 것이 특징입니다.',
+      'as-b02-seg2': '특히 옆에 있는 아사히 슈퍼드라이 홀은 다방면으로 활약한 디자이너 필립 스탁의 작품으로, 당시 신맥주였던 아사히 슈퍼드라이 출시를 기념하기 위해 지어졌습니다. 성화에 휘날리는 불꽃에서 영감을 얻었다고 하는데, 이 색깔과 형태 때문에 현지에서도 "황금 똥"이라는 불명예스러운 별명을 얻기도 했죠.',
+      'as-b02-seg3': '필립 스탁은 가구, 인테리어, 제품 디자인까지 경계를 가리지 않는 작업 영역으로 유명합니다. 이 건물은 단순한 기업 사옥을 넘어, 당대 산업 디자인의 아이콘으로 자리 잡았습니다. 아사쿠사의 전통적인 가옥들 사이에서 더욱 이질적으로 빛나는 이 황금빛 오브제는, 의도치 않게 이 동네의 혼종적 정체성을 상징하는 존재가 되었습니다.',
+
+      'as-b03-subtitle': '수직으로 쌓아올린 전통가옥',
+      'as-b03-title-jp': '아사쿠사 문화 관광 센터',
+      'as-b03-name-kr':  '쿠마 켄고',
+      'as-b03-seg1': '센소지의 입구 카미나리몬 바로 맞은편에 위치한 이 8층짜리 건물은 아사쿠사 인근의 관광·문화 정보를 제공하는 시설입니다. 외관을 보면 형태는 뒤죽박죽인데 묘하게 반복적인 패턴을 갖고 있죠. 쿠마 켄고의 건축물은 일본 전역에 무수히 흩어져 있는데다, 이처럼 외관의 나무로 만들어진 어떠한 패턴을 자주 선보이기 때문에 쉽게 알아차릴 수 있습니다.',
+      'as-b03-seg2': '이 형태는 건물의 컨셉에서 비롯된 것입니다. 센소지 인근은 예로부터 \'히라야\'라는 전통 단층 주택이 수평적으로 군집해 마을을 형성하고 있었는데, 쿠마 켄고는 이 히라야를 수직으로 겹겹이 쌓아올린 형태를 디자인했습니다. 자세히 보면 지붕을 형상화한 면들이 사이사이 끼어 있는 것이 보입니다.',
+      'as-b03-seg3': '구조 자체는 목조 건축이 아닌 현대식 철골 구조이지만, 외부와 내부의 목재를 적극적으로 사용해서 괴리감을 최대한 줄이고 있습니다. 이처럼 그는 순수한 전통 목조 건물 이외에도 철근 콘크리트로 대변되는 현대 건축에 목조를 끼얹는 상당히 독특한 영역을 구축하고 있습니다.',
+      'as-b03-seg4': '2층에는 배터리를 충전하며 잠시 쉬어갈 수 있는 공간이 있으며, 8층은 센소지를 포함한 아사쿠사 일대와 스카이트리를 한눈에 담을 수 있는 무료 전망대가 있습니다. 카미나리몬과 나카미세 상점가를 위에서 내려다보는 뷰는 특히 인상적이니, 한 번쯤 꼭 올라가 보시길 추천합니다.',
+
+      'as-b04-subtitle': '센소지에 숨겨진 비밀',
+      'as-b04-title-jp': '아사쿠사 센소지',
+      'as-b04-seg1': '서기 700년대에 지어져 무려 1400년의 역사를 갖고 있는 센소지는, 이 동네의 전반적인 바이브 형성에 지배적인 영향을 끼치고 있습니다. 본당까지 가는 길은 시부야 못지않은 인파를 자랑하는 곳으로, 아사쿠사의 상징 그 자체라 할 수 있습니다.',
+      'as-b04-seg2': '현대 건축과 맞지 않는 장소임에도 패스하지 않는 이유가 있습니다. 오늘날 여기 있는 센소지는 1950년대에서 60년대 사이에 나무가 아니라 철근 콘크리트로 복원된 곳이기 때문입니다. 심지어 지붕을 이루는 기와는 알루미늄, 군데군데는 티타늄으로 제작되었다고 하네요.',
+      'as-b04-seg3': '센소지의 존재와 영향력 자체는 1400년의 역사가 증명하고 있습니다만, 한 발 떨어져 건축물 자체만 놓고 보면 테세우스의 배냐 아니냐를 넘어 거의 전신 사이보그라고 봐도 무방한 수준이죠. 이는 20세기 중후반 동아시아에서 옛날 건축물을 복원할 당시 심심찮게 쓰이던 방법으로, 전통 목조 건물을 그 당시의 방식으로 그대로 복원했다가는 노후화에 취약해지기 때문입니다.',
+      'as-b04-seg4': '기계화가 되었다 할지라도, 과거의 역할을 현대에 이르러서도 완벽히 수행하고 있으니, 지금의 아사쿠사가 만들어질 수 있었다고 생각됩니다. 당시 서양에서 들어온 소재와 공법을 이용해 재건하기로 한 그 결정이, 역설적으로 센소지를 오늘날까지 지켜온 것일지도 모릅니다.',
+
+      'as-b05-subtitle': '마을을 형상화한 건축물',
+      'as-b05-title-jp': '후글렌 아사쿠사 / 사우나 리셋 핀트',
+      'as-b05-name-kr':  '히라타 아키히사',
+      'as-b05-seg1': '센소지 본당 왼편의 상점가 \'니시산도\'를 통해 빠져나가면, 역 근처에 살짝 더 현대적인 느낌의 거리가 나타나며, 바로 앞에 아사쿠사 문화 관광센터와 비슷한 듯 다른 컨셉의 건물이 모습을 드러냅니다. 건축가 히라타 아키히사에 따르면, 이곳 역시 아사쿠사 주변 상점가의 밀도를 수직적으로 표현하려는 컨셉이었다고 합니다.',
+      'as-b05-seg2': '뭔가 센과 치히로에 나오는 목욕탕 건물 같은 느낌이랄까요? 이는 바깥을 지그재그로 두르고 있는 계단 때문일 텐데요. 일본의 건축 기준법상 설치해야 하는 외부의 피난 계단을 수직으로 반복적으로 쌓아 올리기보다, 좀 더 디자인적으로 재미있게 풀어낸 것입니다. 진짜 센과 치히로마냥 건물 전체에 캡슐 호텔을 비롯한 사우나가 들어가 있기도 합니다.',
+      'as-b05-seg3': '특히 1층, 2층에 자리 잡은 노르웨이발 카페 "Fuglen"이 커피가 아주 구수한 것으로 유명합니다. 단순히 커피뿐 아니라 인테리어에 사용된 가구까지 주로 스칸디나비아 브랜드 혹은 빈티지 피스들로 가득 차 있는데다, 안에 있는 가구와 소품들은 전부 실제로 구매가 가능한 상품들이기 때문에 커피 한 잔 하면서 느긋하게 구경하기 좋은 장소입니다.',
+
+      'as-b06-subtitle': '아트디렉터가 설계하는 공간',
+      'as-b06-title-jp': '쿠라스시 아사쿠사 록스 플래그십',
+      'as-b06-name-kr':  '사토 카시와',
+      'as-b06-seg1': '카페 Fuglen에서 한 블록 더 안으로 넘어가면 \'아사쿠사 록스\'라는 이름의 쇼핑몰이 있습니다. 이곳의 4층이 이번 목적지인데요, 바로 회전 초밥 체인인 쿠라스시의 아사쿠사 플래그십 매장입니다. 일본의 유명 그래픽 디자이너이자 크리에이티브 디렉터, 사토 카시와가 하나부터 열까지 디자인한 곳입니다.',
+      'as-b06-seg2': '이곳은 그가 글로벌 리브랜딩을 맡은 쿠라스시의 첫 번째 매장으로, 전반적인 인테리어와 함께 매장 전략, 브랜드 로고, 식기, 직원 유니폼의 신상 스시까지 고객 경험과 관련된 것 전부를 맡았다고 합니다. 아사쿠사에 위치한 가게답게 에도 시대 속 어시장 같은 풍경을 바탕으로 컨셉을 구상했다고 합니다.',
+      'as-b06-seg3': '현지인들을 포함하여 관광객들이 정말 어마어마하게 많이 찾는 동네이기 때문에, 여행객들의 흥미를 유발할 수 있는 엔터테인먼트적인 요소를 군데군데 결합시키려는 리브랜딩을 위한 첫 플래그십 매장입니다. 다른 지역의 주요 매장들 역시 추후 이곳의 디자인 요소들을 따를 예정이라고 합니다.',
     },
 
     ja: {
@@ -844,6 +895,57 @@
       'ue-b03-seg6': '法隆寺宝物館の所蔵品の規模は東京国立博物館の他の展示館に比べると小さい方です。でも三国時代に日本へ伝来した仏像たちと向き合っていると、その精巧なディテールの一つひとつがこの空間を易々と圧倒するようです。これらを保管するための建築物なら、このくらいのディテールと完成度は当然備えていなければならなかったはずだと思えるほど、完璧な空間の中に完璧な作品が広がるので、展示場もぜひ一緒に見て回ることをおすすめします。',
       'ue-b03-subtitle': '日本ミニマリズムの極致',
       'ue-b03-title-jp': '法隆寺宝物館',
+
+      /* ── 浅草 (as-) ──────────────────────────────── */
+      'as-hero-area':     '台東区',
+      'as-hero-count':    '— 6つの建築',
+      'as-hero-title-jp': '浅草',
+      'as-hero-intro':    '江戸の記憶と現代が一ブロック間隔で混ざり合う場所。繁華街の祖先、東京最古の寺院を抱く街。',
+      'as-intro-p1': '日本の首都東京には、都内最古の寺院・浅草寺を抱く浅草という街があります。江戸時代から東京随一の繁華街として急成長し、今ではその地位を渋谷や銀座などに譲った、ある意味では化石のような場所です。繁華街の祖先のような雰囲気から、浅草は東京の他の名所とは明らかに異なる空気感を放っています。',
+      'as-intro-p2': '渋谷や銀座の重厚な資本の香りで目を引く建築物が並ぶ一方、浅草の建物は過去と現代が一ブロック間隔で絶えず共存し、混ざり合って、この街の過去・現在・未来を垣間見ることができます。今回はそんな浅草の建築を巡ってみましょう。',
+
+      'as-b01-subtitle': '浅草の本来の入口',
+      'as-b01-title-jp': '東京メトロ浅草駅4番出口',
+      'as-b01-seg1': '銀座線浅草駅のホームには、柱と天井が朱色に塗られています。この街のアイデンティティを反映しているようです。浅草を訪れる方の多くは、浅草寺の入口に最も近い2・3番出口をご利用かと思いますが、今回は4番出口からご案内します。',
+      'as-b01-seg2': 'まるで浅草寺をミニチュアにしたかのようなキッチュな雰囲気のこの出口は、実は浅草で最も古い100年前の建造物をそのまま保持している出口です。1930年に建てられた原形がそのまま保存されており、比較的近代化された他の出口と異なり、周辺には実際に古い建物が多く立ち並ぶエリアでもあります。',
+      'as-b01-seg3': 'さらに、その古い建物たちと対照的な川向こうの未来的なスカイラインを一望できる場所でもあります。東京で最も高い建築物・スカイツリーと並び立つこの古い出口は、浅草が持つ過去と現代の共存をそのまま体現した象徴的な場所です。',
+      'as-b01-seg4': '今回の散策の起点となった浅草寺を模したと言われる浅草駅4番出口。しかし後の浅草寺のセクションで明かしますが、現在建っている浅草寺より20〜30年古い、このエリアの真の古株といえる存在です。',
+
+      'as-b02-subtitle': 'フィリップ・スタルクの黄金の●●',
+      'as-b02-title-jp': 'アサヒスーパードライホール',
+      'as-b02-name-kr': 'フィリップ・スタルク',
+      'as-b02-seg1': '東京で最も高い建築物・スカイツリーの前に不思議な形の建物があります。ここはアサヒグループの本社で、ビールで有名な会社らしく、本社ビルまでビールの泡が立ったジョッキを模した形が特徴です。',
+      'as-b02-seg2': '隣にあるアサヒスーパードライホールは、多方面で活躍するデザイナー、フィリップ・スタルクの作品です。当時の新商品だったアサヒスーパードライの発売を記念して建てられたもので、聖火に揺れる炎からインスピレーションを得たとされます。その色と形から、地元でも「黄金のう●こ」という不名誉なニックネームが付けられたこともあります。',
+      'as-b02-seg3': 'フィリップ・スタルクは家具、インテリア、プロダクトデザインと境界を問わず幅広く活躍することで知られています。この建物は単なる企業オフィスを超え、当代のインダストリアルデザインのアイコンとして定着しました。浅草の伝統的な家並みの中で異彩を放つこの黄金のオブジェは、皮肉にもこの街の混種的なアイデンティティを象徴する存在となっています。',
+
+      'as-b03-subtitle': '垂直に積み重ねた伝統家屋',
+      'as-b03-title-jp': '浅草文化観光センター',
+      'as-b03-name-kr': '隈研吾',
+      'as-b03-seg1': '浅草寺の入口・雷門の真向かいに位置するこの8階建ての建物は、浅草周辺の観光・文化情報を提供する施設です。外観を見ると、形はバラバラなのに不思議と繰り返しのパターンを持っています。隈研吾の建築は日本全国に無数に点在しており、このように外観に木で作られたパターンを頻繁に取り入れるため、一目で分かります。',
+      'as-b03-seg2': 'この形は建物のコンセプトに由来します。浅草寺周辺はかつて「平屋」と呼ばれる伝統的な平屋住宅が水平に集まって集落を形成していましたが、隈研吾はこの平屋を垂直に幾重にも積み重ねた形をデザインしました。よく見ると屋根を形象化した面が随所に挟み込まれているのが分かります。',
+      'as-b03-seg3': '構造自体は木造ではなく現代的な鉄骨構造ですが、外部・内部ともに木材を積極的に使用することで違和感を最大限に抑えています。このように純粋な伝統木造建築以外にも、鉄筋コンクリートに代表される現代建築に木造を取り入れるという独自の領域を確立しています。',
+      'as-b03-seg4': '2階にはバッテリーを充電しながら休憩できるスペースがあり、8階は浅草寺を含む浅草一帯とスカイツリーを一望できる無料展望台があります。雷門と仲見世商店街を上から見下ろすビューは特に印象的ですので、ぜひ一度上がってみることをおすすめします。',
+
+      'as-b04-subtitle': '浅草寺に隠された秘密',
+      'as-b04-title-jp': '浅草寺',
+      'as-b04-seg1': '西暦700年代に建てられ、1400年の歴史を持つ浅草寺は、この街の雰囲気形成に支配的な影響を与えています。本堂に至る道は渋谷にも負けない人出を誇り、浅草の象徴そのものといえます。',
+      'as-b04-seg2': '現代建築にそぐわない場所でも素通りしない理由があります。今日ここにある浅草寺は、1950年代から60年代にかけて木ではなく鉄筋コンクリートで復元されたからです。さらに屋根を構成する瓦はアルミニウム、一部にはチタンが使われているとのことです。',
+      'as-b04-seg3': '浅草寺の存在と影響力は1400年の歴史が証明していますが、一歩引いて建築物そのものだけを見ると、テセウスの船どころか全身サイボーグといっても過言ではない状態です。これは20世紀中後半の東アジアで古い建物を復元する際によく用いられた方法で、伝統木造建築をそのままの方法で復元すると老朽化に弱くなるためです。',
+      'as-b04-seg4': '機械化されたとはいえ、過去の役割を現代においても完璧に果たし続けているからこそ、今の浅草が生まれたのだと思います。当時の西洋の素材と工法で再建したあの決断が、逆説的に浅草寺を今日まで守ってきたのかもしれません。',
+
+      'as-b05-subtitle': '街を形象化した建築物',
+      'as-b05-title-jp': 'フグレン浅草 / サウナリセットピント',
+      'as-b05-name-kr': '平田晃久',
+      'as-b05-seg1': '浅草寺本堂左側の商店街「西参道」を抜けると、駅近くに少し現代的な雰囲気の通りが現れ、目の前に最初に通った浅草文化観光センターと似て非なるコンセプトの建物が姿を現します。設計を担当した建築家・平田晃久によると、ここも浅草周辺の商店街の密度を垂直的に表現しようとしたコンセプトだったとのことです。',
+      'as-b05-seg2': '千と千尋の神隠しに出てくる銭湯の建物のような雰囲気です。外側をジグザグに囲む階段のせいでしょう。日本の建築基準法上設置が必要な屋外避難階段を垂直に積み重ねるのではなく、よりデザイン的に面白く解釈したものです。本当に千と千尋のように、建物全体にカプセルホテルやサウナが入っています。',
+      'as-b05-seg3': '特に1〜2階に入るノルウェー発のカフェ「Fuglen」がコーヒーの香りで有名です。コーヒーだけでなくインテリアに使われた家具もスカンジナビアブランドやヴィンテージ品で揃っており、店内の家具や小物はすべて実際に購入できる商品のため、コーヒー片手にゆっくり眺めるのに最適な場所です。',
+
+      'as-b06-subtitle': 'アートディレクターが設計する空間',
+      'as-b06-title-jp': 'くら寿司浅草ROXフラッグシップ',
+      'as-b06-name-kr': '佐藤可士和',
+      'as-b06-seg1': 'カフェFuglenからさらに一ブロック奥に入ると「浅草ROX」というショッピングモールがあります。ここの4階が今回の目的地で、回転寿司チェーン・くら寿司の浅草フラッグシップ店です。日本の著名なグラフィックデザイナー兼クリエイティブディレクター、佐藤可士和が一から十まですべてデザインした場所です。',
+      'as-b06-seg2': 'ここは彼がグローバルリブランディングを担当したくら寿司の第一号店で、全体的なインテリアとともに店舗戦略、ブランドロゴ、食器、スタッフユニフォーム、新商品の寿司まで、顧客体験に関わるすべてを任されたとのことです。浅草に位置するお店らしく、江戸時代の魚市場のような風景をコンセプトにしたといい、内装も木材が中心に使われています。',
+      'as-b06-seg3': '地元の人を含め観光客が非常に多く訪れる街であることから、旅行者の興味を引くエンターテインメント要素を随所に取り入れたリブランディングのための第一号フラッグシップ店として、他地域の主要店舗も追って同様のデザイン要素を取り入れる予定とのことです。',
     },
 
     en: {
@@ -1235,6 +1337,57 @@
       'ue-b03-seg6': 'The collection is smaller than those in the other Tokyo National Museum halls. That assessment quickly becomes irrelevant once you\'re standing in front of the Buddhist statues that made the journey from the Three Kingdoms period to Japan. Their precision — what was made at that scale, that long ago — does something to the room that a larger collection might actually dilute. A building of this exactness was the right container for objects of this quality. The exhibition itself is worth the full visit alongside the architecture.',
       'ue-b03-subtitle': 'The pinnacle of Japanese minimalism',
       'ue-b03-title-jp': 'Gallery of Horyuji Treasures',
+
+      /* ── Asakusa (as-) ──────────────────────────── */
+      'as-hero-area':     'Taitō Ward',
+      'as-hero-count':    '— 6 buildings',
+      'as-hero-title-jp': 'Asakusa',
+      'as-hero-intro':    'Where Edo\'s memory tangles with the present, one block at a time. The ancestor of Tokyo\'s entertainment districts, still home to the city\'s oldest temple.',
+      'as-intro-p1': 'Asakusa is where you go to understand what Tokyo looked like before it became Tokyo. The neighborhood centered on Senso-Ji temple has been a destination since the Edo period — which is a long time — and it shows. It\'s now one of the city\'s main tourist pulls, which isn\'t quite the same thing as what it used to be, but the bones are still visible.',
+      'as-intro-p2': 'What makes Asakusa interesting architecturally isn\'t the temple itself, though the temple is part of the story. It\'s the way the neighborhood has handled the problem of being simultaneously a living place and a historical artifact — and the buildings that have tried to solve that problem in different ways.',
+
+      'as-b01-subtitle': 'The original entrance to Asakusa',
+      'as-b01-title-jp': 'Tokyo Metro Asakusa Station Exit 4',
+      'as-b01-seg1': 'The Ginza Line platform at Asakusa Station has its columns and ceiling painted vermillion — a color calibrated to announce, before you\'ve even surfaced, exactly which neighborhood you\'re in. Most visitors use Exits 2 or 3, which deposit you closest to Senso-Ji. Exit 4 is worth knowing about anyway.',
+      'as-b01-seg2': 'The exit looks like a small-scale kitsch replica of Senso-Ji. It\'s actually the oldest surviving structure in Asakusa — the original 1930 construction, intact, while the exits people photograph most are the modern ones. The surrounding streets have a higher concentration of genuinely old buildings than the rest of the neighborhood.',
+      'as-b01-seg3': 'It also has one of the better vantage points in the area: the old exit in the foreground, the very new Tokyo Skytree across the river, no middle ground. The contrast is not subtle, which is exactly right for Asakusa.',
+      'as-b01-seg4': 'This exit was modeled on Senso-Ji\'s aesthetic. As will become clear later: the current Senso-Ji building dates from the late 1950s. Exit 4, built in 1930, is actually two to three decades older than the temple it was designed to evoke.',
+
+      'as-b02-subtitle': 'Philippe Starck\'s golden object',
+      'as-b02-title-jp': 'Asahi Super Dry Hall',
+      'as-b02-name-kr':  'Philippe Starck',
+      'as-b02-seg1': 'In front of the Skytree: two buildings that read as slightly wrong from most angles. The main Asahi Group headquarters is designed to look like a beer glass with foam. This is not ambiguous — the company makes beer and wanted a building that looked like beer. The building next to it is the Asahi Super Dry Hall.',
+      'as-b02-seg2': 'The Super Dry Hall was designed by Philippe Starck to celebrate the launch of Asahi\'s Super Dry brand. Starck has said the form was inspired by a flame on an Olympic torch. The local reading — shared widely enough to count as consensus — is that it looks like something else. The nickname "golden poop" has followed the building since it opened.',
+      'as-b02-seg3': 'Philippe Starck works across furniture, interiors, products, and buildings with equal disregard for disciplinary boundaries. The building has become an icon of 1980s industrial design regardless of what you think of the form. Against the temple rooflines and low-rise wooden buildings of Asakusa, it reads as aggressively strange — which was presumably the point.',
+
+      'as-b03-subtitle': 'Traditional houses stacked vertically',
+      'as-b03-title-jp': 'Asakusa Culture & Tourist Information Center',
+      'as-b03-name-kr':  'Kengo Kuma',
+      'as-b03-seg1': 'Directly opposite the Kaminarimon gate: an eight-story building that looks like several different buildings stacked on top of each other, each slightly offset, each with a small projecting roof. Kengo Kuma\'s buildings appear in enough Japanese neighborhoods that recognizing the style becomes automatic — wood louvers, natural materials, something that quotes traditional construction without replicating it.',
+      'as-b03-seg2': 'The concept here: Asakusa was historically a neighborhood of hirayas — single-story traditional houses arranged horizontally. Kuma\'s response was to take that horizontal village and compress it vertically, stacking the houses on top of each other so the rooflines become floor-separators. Look at the facade and you can see the logic: the stepped projecting eaves are the old rooflines, now running at each floor.',
+      'as-b03-seg3': 'The structure is steel frame, not timber — Kuma\'s characteristic move is to apply timber as cladding and finish on contemporary structural systems. The intent is to make natural materials feel ordinary rather than exceptional, which is an easier argument to make when the building uses them at every surface.',
+      'as-b03-seg4': 'The second floor has seating and phone charging points — the building is genuinely useful, not just architectural. The eighth floor is a free observation deck with an unobstructed view of Senso-Ji, the Nakamise shopping arcade, and the Skytree. The view is better than most paid observation decks in Tokyo.',
+
+      'as-b04-subtitle': 'The secret inside Senso-Ji',
+      'as-b04-title-jp': 'Asakusa Senso-Ji',
+      'as-b04-seg1': 'Senso-Ji was founded in the 7th century. It is the oldest temple in Tokyo and has been a dominant organizing force in Asakusa for around 1,400 years. The Nakamise approach to the main hall rivals Shibuya Crossing for foot traffic density on a busy day.',
+      'as-b04-seg2': 'The reason Senso-Ji belongs in a guide to contemporary architecture: the building currently standing was reconstructed in the 1950s and 60s in reinforced concrete. The roof tiles are aluminum; some sections use titanium. The exterior appearance follows the original closely; the materials are entirely different.',
+      'as-b04-seg3': 'The 1930 Asakusa Station Exit 4 — modeled on Senso-Ji\'s style — is actually older than the current Senso-Ji building by about twenty to thirty years. This is either a technicality or a philosophical puzzle depending on your position. The historical record of what happened here for 1,400 years is continuous; the current building is a 1950s reconstruction.',
+      'as-b04-seg4': 'The reconstruction method — reinforced concrete in place of traditional timber — was standard practice for significant temples and shrines in East Asia during the mid-20th century. Traditional timber structures are vulnerable to fire, earthquakes, and general aging. The tradeoff: structural longevity at the cost of material authenticity. Whether this makes Senso-Ji a different thing from what it was is not a question with a clean answer.',
+
+      'as-b05-subtitle': 'A building shaped like a neighborhood',
+      'as-b05-title-jp': 'Fuglen Asakusa / Sauna Reset Pint',
+      'as-b05-name-kr':  'Akihisa Hirata',
+      'as-b05-seg1': 'Exit the temple precinct through the Nishisando shopping arcade and walk toward the station. A block or so in, there\'s a building that looks like several smaller buildings fused together and stacked at odd angles. Architect Akihisa Hirata has said the concept was to represent the density and layering of Asakusa\'s commercial streets — compressed vertically.',
+      'as-b05-seg2': 'The exterior fire escapes run in a continuous zigzag around the building\'s perimeter. Fire escape stairs in Japan must by code be placed on the exterior; the standard solution is to run them in a straight line and ignore them aesthetically. Here they\'ve been integrated as the primary organizing element of the facade, which produces something that reads as either chaotic or coherent depending on your tolerance for stacked complexity.',
+      'as-b05-seg3': 'The first and second floors are Fuglen — the Oslo-based coffee bar known for Nordic roast profiles and a Scandinavian-vintage interior. The furniture is for sale; so are the ceramics and objects. The sauna and capsule hotel occupy the upper floors. The building is, straightforwardly, a good place to spend a few hours.',
+
+      'as-b06-subtitle': 'A space designed by an art director',
+      'as-b06-title-jp': 'Kura Sushi Asakusa ROX Flagship',
+      'as-b06-name-kr':  'Kashiwa Sato',
+      'as-b06-seg1': 'One block past Fuglen: the Asakusa ROX shopping complex. Fourth floor. Kura Sushi\'s Asakusa flagship, designed in its entirety by Kashiwa Sato — the creative director responsible for a substantial portion of Japan\'s recognizable brand identities, including Uniqlo, 7-Eleven, and Rakuten among many others.',
+      'as-b06-seg2': 'This was the first store from Sato\'s complete rebrand of Kura Sushi — covering the logo, interior, tableware, staff uniforms, and new menu items. The concept references Edo-period fish markets: rough timber, visual noise, an atmosphere of productive activity rather than quiet dining. Asakusa was the right location for the concept to land.',
+      'as-b06-seg3': 'The store functions as a template: subsequent Kura Sushi locations will adopt elements from it. The brief was to make a conveyor-belt sushi chain feel like a destination rather than a convenience — in a neighborhood where the competition for tourist attention is high, which is either an easy brief or a very difficult one depending on how you read it.',
     },
 
   };
