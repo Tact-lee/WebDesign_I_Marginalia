@@ -178,6 +178,33 @@
   color: var(--ink-40);
 }
 
+/* 인트로 이미지 — d-intro 패딩을 뚫고 섹션 폭 전체를 채움 */
+.d-intro__img {
+  margin: 56px -48px 0;
+}
+
+.d-intro:has(.d-intro__img) {
+  padding-bottom: 0;  /* 이미지 하단이 섹션 border에 닿도록 */
+}
+
+.d-intro__img img {
+  width: 100%;
+  height: 480px;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  filter: grayscale(100%);
+}
+
+@media (max-width: 900px) {
+  .d-intro__img {
+    margin: 40px -24px 0;
+  }
+  .d-intro__img img {
+    height: 220px;
+  }
+}
+
 /* ─── BUILDING ARTICLE ──────────────────────────────────────── */
 
 .d-building {
@@ -322,6 +349,10 @@
 /* portrait 밴드가 있으면 margin 흡수 — portrait이 없을 때만 간격 부여 */
 .d-building--segmented > .d-building__portrait {
   margin-top: -40px;
+}
+/* 두 번째 이후 portrait(복수 건축가)은 일반 간격 */
+.d-building--segmented > .d-building__portrait + .d-building__portrait {
+  margin-top: 0;
 }
 
 /* ─── 건축가 포트레이트 밴드 ────────────────────────────────── */

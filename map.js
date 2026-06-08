@@ -47,6 +47,7 @@ const HIGHLIGHT_WARDS = {
   },
   '中央区': { id: 'ginza',       nameEn: 'Ginza',               nameJp: '銀座',        count: '11 works', offsetX:   0, offsetY:   0, href: 'ginza.html' },
   '豊島区': { id: 'ikebukuro',   nameEn: 'Ikebukuro',           nameJp: '池袋',        count: '3 works',  offsetX:   0, offsetY:   0, href: 'ikebukuro.html' },
+  '千代田区': { id: 'akihabara', nameEn: 'Akihabara',           nameJp: '秋葉原',      count: '3 works',  offsetX:   0, offsetY:   0, href: 'akihabara.html' },
 };
 
 // ── DOM ────────────────────────────────────────────────────────────────────
@@ -581,6 +582,7 @@ const LEGEND_TO_WARD = {
   roppongi:   '港区',
   ueno:       '台東区',
   asakusa:    '台東区',
+  akihabara:  '千代田区',
   ginza:      '中央区',
   ikebukuro:  '豊島区',
 };

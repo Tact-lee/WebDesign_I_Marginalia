@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Akihabara — Marginalia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@latest/dist/web/static/pretendard-dynamic-subset.css" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Noto+Sans+JP:wght@100&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="district.css" />
+</head>
+<body>
+  <!-- Page Transition Overlay -->
+  <div class="page-transition" id="pageTransition">
+    <div class="pt-badges">
+      <div class="pt-badge"><span>LOADING</span></div>
+      <div class="pt-badge"><span>PLZ</span></div>
+      <div class="pt-badge"><span>WAIT</span></div>
+    </div>
+    <div class="pt-strips">
+      <div class="pt-strip" style="--i:0"></div>
+      <div class="pt-strip" style="--i:1"></div>
+      <div class="pt-strip" style="--i:2"></div>
+      <div class="pt-strip" style="--i:3"></div>
+      <div class="pt-strip" style="--i:4"></div>
+      <div class="pt-strip" style="--i:5"></div>
+      <div class="pt-strip" style="--i:6"></div>
+      <div class="pt-strip" style="--i:7"></div>
+      <div class="pt-strip" style="--i:8"></div>
+      <div class="pt-strip" style="--i:9"></div>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <a href="index.html" class="nav__logo">Marginalia</a>
+    <div class="nav__right">
+      <ul class="nav__links">
+        <li><a href="index.html#map-section">Location Map</a></li>
+        <li><a href="index.html#gallery-section">Gallery</a></li>
+      </ul>
+      <div class="lang-switcher" aria-label="Language">
+        <button class="lang-trigger" aria-expanded="false">
+          <span class="lang-current">KR</span>
+          <svg class="lang-arrow" width="8" height="5" viewBox="0 0 8 5" fill="none" aria-hidden="true"><path d="M1 1L4 4L7 1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="lang-dropdown">
+          <button class="lang-btn is-active" data-lang="ko">KR</button>
+          <button class="lang-btn" data-lang="ja">JP</button>
+          <button class="lang-btn" data-lang="en">EN</button>
+        </div>
+      </div>
+      <button class="nav__hamburger" id="navHamburger" aria-label="메뉴" aria-expanded="false">
+        <span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu Overlay -->
+  <div class="nav__mobile-menu" id="navMobileMenu" aria-hidden="true">
+    <div class="nav__mobile-inner">
+      <ul class="nav__mobile-links">
+        <li><a href="index.html#map-section">Location Map</a></li>
+        <li><a href="index.html#gallery-section">Gallery</a></li>
+      </ul>
+      <div class="nav__mobile-lang">
+        <button class="lang-btn is-active" data-lang="ko">KR</button>
+        <button class="lang-btn" data-lang="ja">JP</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════════════════
+       HERO
+  ════════════════════════════════════════════════════════════ -->
+  <header class="d-hero">
+    <div class="d-hero__content">
+      <div class="d-hero__label-row">
+        <span class="label" data-i18n="ak-hero-area">치요다구</span>
+        <span class="label" data-i18n="ak-hero-count">— 3개 건축물</span>
+      </div>
+
+      <h1 class="d-hero__title">
+        Akihabara
+        <em class="d-hero__title-jp" data-i18n="ak-hero-title-jp">아키하바라</em>
+      </h1>
+
+      <p class="d-hero__intro" data-i18n="ak-hero-intro">
+        만화왕국 일본을 상징하는 오타쿠 문화의 본고장. 세계 어디서도 찾아볼 수 없는 그 독특한 문화의 집합지로서 전 세계 팬들이 성지순례를 위해 찾아오는 거리.
+      </p>
+
+      <div class="d-hero__stats">
+        <div class="d-stat">
+          <span class="d-stat__val">3</span>
+          <span class="d-stat__label">Structures</span>
+        </div>
+        <div class="d-stat">
+          <span class="d-stat__val">5</span>
+          <span class="d-stat__label">Architects</span>
+        </div>
+        <div class="d-stat">
+          <span class="d-stat__val">1904–2019</span>
+          <span class="d-stat__label">Span</span>
+        </div>
+      </div>
+
+      <div class="d-hero__scroll">
+        <span class="label">Scroll to explore</span>
+        <div class="d-hero__scroll-line"></div>
+      </div>
+    </div>
+
+    <!-- Right: 2D Canvas Map -->
+    <div class="d-hero__map" id="dMapWrapper">
+      <canvas id="dMapCanvas"></canvas>
+      <div class="d-hero__map-label" id="dMapLabel">
+        <span class="d-hero__map-label-name" id="dMapLabelName"></span>
+        <span class="d-hero__map-label-year" id="dMapLabelYear"></span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════════════════════
+       INTRO
+  ════════════════════════════════════════════════════════════ -->
+  <section class="d-intro">
+    <div class="d-intro__inner">
+      <p class="d-intro__text" data-i18n="ak-intro-p1">도쿄 아니, 세계에서 만화나 애니메이션 하면 가장 먼저 떠오르는 동네 아키하바라. 많고 많은 수식어가 있지만 그래도 이곳을 위한 최고의 별명은 단연 '오타쿠의 성지'일 텐데요.</p>
+      <p class="d-intro__text" data-i18n="ak-intro-p2">새삼스럽지만 이제 와서 생각해 보면 아키하바라는 늘 어딘가 수상한 동네였습니다. 도쿄 도심 한복판에 있으면서도, 긴자처럼 세련되지 않았고 우에노처럼 전통적이지도 않았으며 니혼바시처럼 일본의 중심이었던 적도 없죠. 하지만 바로 그렇기 때문에 이곳은 일본에서 가장 독특한 문화가 자라난 장소가 될 수 있었는데요. 이번 영상에선 그런 아키하바라의 기원을 알 수 있는 조금은 색다른 명소들을 구경해 볼까 합니다.</p>
+      <p class="d-intro__text" data-i18n="ak-intro-p3">아키하바라 일대는 메이지 초기에 화재가 번지는 것을 막기 위해 의도적으로 비워진 땅이었습니다. 그리고 현재 아키하바라역이 있는 위치에는 화재 진압을 기원하기 위해 '아키바 신사'가 있었죠. 이후 근대화가 진행됨에 따라 신사가 다른 곳으로 이전되고 1890년에 아키하바라역이 건설되면서 조금씩 현재의 구조를 갖추게 되었다고 하는데요. 어떤 의미에선 예나 지금이나 굉장히 신성한 곳이었다고 할 수 있겠죠...?</p>
+    </div>
+    <div class="d-intro__img js-img-reveal">
+      <img src="picture/mAAch_Ecute_Kanda_Manseibashi_01.png" alt="mAAch Ecute Kanda Manseibashi" />
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════════════════
+       BUILDING 01 — mAAch Ecute Kanda Manseibashi
+  ════════════════════════════════════════════════════════════ -->
+  <article class="d-building d-building--segmented" id="building-01">
+    <div class="d-building__header">
+      <div class="d-building__num-wrap">
+        <span class="d-building__num">01</span>
+        <span class="d-building__subtitle" data-i18n="ak-b01-subtitle">태생이 마이너한 동네</span>
+      </div>
+      <div class="d-building__meta">
+        <span class="d-building__tag">Heritage · 2013 (Renovation)</span>
+        <span class="d-building__architect">Tatsuno Kingo &amp; JR East &amp; MIKAN</span>
+      </div>
+    </div>
+
+    <h2 class="d-building__title">mAAch Ecute Kanda Manseibashi</h2>
+    <p class="d-building__title-jp" data-i18n="ak-b01-title-jp">마치 에큐트 칸다 만세이바시</p>
+
+    <!-- Portrait 1: Tatsuno Kingo (원설계) -->
+    <div class="d-building__portrait js-img-reveal">
+      <div class="d-building__portrait-photo d-building__portrait-photo--contain">
+        <img src="picture/architect/Tatsuno_Kingo.png" alt="Tatsuno Kingo" />
+      </div>
+      <div class="d-building__portrait-info">
+        <p class="d-building__portrait-name">Tatsuno Kingo
+          <span class="d-building__portrait-name-kr" data-i18n="ak-b01-name-kr1">다쓰노 긴고</span>
+        </p>
+        <p class="d-building__portrait-sub">辰野金吾 · 1854–1919<br>原設計 · 1912</p>
+      </div>
+    </div>
+
+    <!-- Portrait 2: JR East Design (리노베이션 주관) -->
+    <div class="d-building__portrait js-img-reveal">
+      <div class="d-building__portrait-photo d-building__portrait-photo--contain">
+        <img src="picture/architect/JR_East.png" alt="JR East Design" />
+      </div>
+      <div class="d-building__portrait-info">
+        <p class="d-building__portrait-name">JR East Design
+          <span class="d-building__portrait-name-kr" data-i18n="ak-b01-name-kr2">JR 이스트 디자인</span>
+        </p>
+        <p class="d-building__portrait-sub">JR東日本設計<br>リノベーション主管 · 2013</p>
+      </div>
+    </div>
+
+    <!-- Portrait 3: MIKAN (리노베이션 설계) -->
+    <div class="d-building__portrait js-img-reveal">
+      <div class="d-building__portrait-photo d-building__portrait-photo--contain">
+        <img src="picture/architect/MIKAN.png" alt="MIKAN" />
+      </div>
+      <div class="d-building__portrait-info">
+        <p class="d-building__portrait-name">MIKAN
+          <span class="d-building__portrait-name-kr" data-i18n="ak-b01-name-kr3">미캉</span>
+        </p>
+        <p class="d-building__portrait-sub">MIKAN<br>リノベーション設計 · 2013</p>
+      </div>
+    </div>
+
+    <!-- Segment 01 -->
+    <div class="d-building__seg js-img-reveal">
+      <div class="d-building__seg-text">
+        <p data-i18n="ak-b01-seg1">그 역사를 간단히 살펴볼 수 있는 곳이 근처에 있는데요. 아키하바라에서 칸다강을 지나면 바로 보이는 'mAAch Ecute 칸다 만세이바시' 예전 이름으로는 'JR 만세이바시역'이 되겠습니다. 오늘에야 지하철이나 기차는 저 같은 뚜벅이들에게 있어서 없어서는 안 될 이동 수단인데요. 역세권이라는 말이 괜히 만들어진 게 아니잖아요? 하지만 아키하바라역이 지어지던 1890년대만 해도 열차의 대부분은 석탄을 태워 이동하는 증기 기관차였습니다. 매연이 장난 아니었겠죠. 특히 화물 열차는 여객 열차에 비해 더더욱 많은 연기를 내뿜었다고 하는데요. 그렇기 때문에 화물이 정차하는 역은 도심으로부터 조금은 떨어진 곳에 지어지는 것이 일반적이었다고 합니다. 아키하바라 또한 이때까지만 해도 지금과 달리 그저 화물 터미널에 지나지 않았습니다. 이는 당시 도심이던 마루노우치와 우에노로 들어가는 여객 수송을 더욱 쾌적하게 하기 위함이었죠.</p>
+      </div>
+      <div class="d-building__seg-img">
+        <img src="picture/mAAch_Ecute_Kanda_Manseibashi_03.png" alt="mAAch Ecute exterior" />
+      </div>
+    </div>
+
+    <!-- Segment 02 (alt) -->
+    <div class="d-building__seg d-building__seg--alt js-img-reveal">
+      <div class="d-building__seg-img">
+        <img src="picture/mAAch_Ecute_Kanda_Manseibashi_02.png" alt="mAAch Ecute brick arches" />
+      </div>
+      <div class="d-building__seg-text">
+        <p data-i18n="ak-b01-seg2">그리고 이때 이 동네의 여객을 담당하던 곳이 바로 이곳 만세이바시역이었습니다. 지금도 운행되고 있는 JR 중앙 본선의 기점이었으며 기록된 것으로는 도쿄역에 버금가는 위용을 자랑했다고 하는데요. 도쿄역과 마찬가지로 건축가 다쓰노 긴고가 설계를 맡았기 때문이라고 합니다. 그러나 이후 관동대지진으로 역사가 전소됨과 동시에 아키하바라역이 여객 철도 운행을 개시하면서 만세이바시역은 조금씩 쇠퇴하게 되었다고 합니다. 그리고는 한동안 철도 박물관으로 사용되었다고 하며 역사가 있던 자리는 현재는 고층 빌딩으로 완전히 재건축된 모습인데요. 그런 과거의 흔적을 암시하기라도 하듯 재건축된 건물의 1층에 JR이 운영하는 편의점 뉴데이즈가 들어가 있는 것이 재미있기도 합니다.</p>
+      </div>
+    </div>
+
+    <!-- Segment 03 -->
+    <div class="d-building__seg js-img-reveal">
+      <div class="d-building__seg-text">
+        <p data-i18n="ak-b01-seg3">이렇게 역사는 없어졌지만 JR 중앙선 자체는 변함없이 이곳을 지나고 있는 덕분에 고가 철도의 아래쪽은 비교적 온전히 남아 있을 수 있었는데요. 그 기초 부분을 상업 시설로 재생한 것이 지금의 mAAch Ecute가 되겠습니다. 고가 철도의 아래라는 점과 붉은 벽돌이 맞물려 근대적인 투박함을 자랑하는데요. 칸다강 너머 아키하바라역을 등지고 지어졌다는 점에서 과거 아키하바라 화물역의 취급이 어땠는지를 잘 보여주는 듯하죠...?</p>
+      </div>
+      <div class="d-building__seg-img">
+        <img src="picture/mAAch_Ecute_Kanda_Manseibashi_04.png" alt="mAAch Ecute interior" />
+      </div>
+    </div>
+
+    <!-- Segment 04 (alt) -->
+    <div class="d-building__seg d-building__seg--alt js-img-reveal">
+      <div class="d-building__seg-img">
+        <img src="picture/mAAch_Ecute_Kanda_Manseibashi_05.png" alt="mAAch Ecute staircase to platform" />
+      </div>
+      <div class="d-building__seg-text">
+        <p data-i18n="ak-b01-seg4">안으로 들어오면 진짜 허투루 만들지 않은 모습들이 곳곳에서 엿보이는데요. 토목 시설을 그대로 사용하는 것이다 보니 기본적으로 간접 조명을 이용해 공간을 연출하는 부분이 특징이며, 그러면서도 칸다강 방면으로는 벽돌을 뜯어냄으로써, 정확히는 안쪽으로 다시 쌓아 올리면서 자연스럽게 테라스 공간을 만듦과 동시에 실내를 어둡지 않게 그리고 선선하게 유지하고 있는 점이 인상적이었습니다.</p>
+      </div>
+    </div>
+
+    <!-- Segment 05 -->
+    <div class="d-building__seg js-img-reveal">
+      <div class="d-building__seg-text">
+        <p data-i18n="ak-b01-seg5">그 외에도 과거 플랫폼으로 올라가는 두 계단이 완벽히 보존되어 있어서, 올라가면 과거의 선로와 함께 중앙 본선이 지나가는 모습을 굉장히 가까이에서 구경할 수 있는데요. JR은 참 자신들의 핵심 자산인 철도 인프라를 도시 경험의 일부로 보여주는 데 정말 도가 튼 것 같습니다. 철덕들의 나라라서 그런가? 대중들에게 어떻게 가까이 다가가야 하는지를 너무나도 잘 아는 느낌이랄까요? 중앙선 외에도 주변 JR 노선들이 어디로 가는지 여기에서 하나씩 찾아보는 재미가 있으니, 아키하바라 일대의 과거와 현재를 보여주는 여러모로 재미있는 장소라고 생각되네요.</p>
+      </div>
+      <div class="d-building__seg-img">
+        <img src="picture/mAAch_Ecute_Kanda_Manseibashi_17.png" alt="mAAch Ecute terrace view" />
+      </div>
+    </div>
+
+    <!-- Gallery 4 -->
+    <div class="d-building__gallery js-img-reveal">
+      <div class="d-building__gallery-item"><img src="picture/mAAch_Ecute_Kanda_Manseibashi_06.png" alt="mAAch Ecute detail 1" /></div>
+      <div class="d-building__gallery-item"><img src="picture/mAAch_Ecute_Kanda_Manseibashi_07.png" alt="mAAch Ecute detail 2" /></div>
+      <div class="d-building__gallery-item"><img src="picture/mAAch_Ecute_Kanda_Manseibashi_08.png" alt="mAAch Ecute detail 3" /></div>
+      <div class="d-building__gallery-item"><img src="picture/mAAch_Ecute_Kanda_Manseibashi_09.png" alt="mAAch Ecute detail 4" /></div>
+    </div>
+
+    <!-- Gallery 3 -->
+    <div class="d-building__gallery d-building__gallery--3 js-img-reveal">
+      <div class="d-building__gallery-item"><img src="picture/mAAch_Ecute_Kanda_Manseibashi_10.png" alt="mAAch Ecute view 1" /></div>
+      <div class="d-building__gallery-item"><img src="picture/mAAch_Ecute_Kanda_Manseibashi_11.png" alt="mAAch Ecute view 2" /></div>
+      <div class="d-building__gallery-item"><img src="picture/mAAch_Ecute_Kanda_Manseibashi_12.png" alt="mAAch Ecute view 3" /></div>
+    </div>
+
+    <!-- Gallery 4 -->
+    <div class="d-building__gallery js-img-reveal">
+      <div class="d-building__gallery-item"><img src="picture/mAAch_Ecute_Kanda_Manseibashi_13.png" alt="mAAch Ecute space 1" /></div>
+      <div class="d-building__gallery-item"><img src="picture/mAAch_Ecute_Kanda_Manseibashi_14.png" alt="mAAch Ecute space 2" /></div>
+      <div class="d-building__gallery-item"><img src="picture/mAAch_Ecute_Kanda_Manseibashi_15.png" alt="mAAch Ecute space 3" /></div>
+      <div class="d-building__gallery-item"><img src="picture/mAAch_Ecute_Kanda_Manseibashi_16.png" alt="mAAch Ecute space 4" /></div>
+    </div>
+
+    <!-- Gallery 4 -->
+    <div class="d-building__gallery js-img-reveal">
+      <div class="d-building__gallery-item"><img src="picture/mAAch_Ecute_Kanda_Manseibashi_17.png" alt="mAAch Ecute terrace 1" /></div>
+      <div class="d-building__gallery-item"><img src="picture/mAAch_Ecute_Kanda_Manseibashi_18.png" alt="mAAch Ecute terrace 2" /></div>
+      <div class="d-building__gallery-item"><img src="picture/mAAch_Ecute_Kanda_Manseibashi_19.png" alt="mAAch Ecute terrace 3" /></div>
+      <div class="d-building__gallery-item"><img src="picture/mAAch_Ecute_Kanda_Manseibashi_21.png" alt="mAAch Ecute platform" /></div>
+    </div>
+
+    <!-- Google Map -->
+    <div class="d-building__gmap">
+      <span class="d-building__gmap-label">Location · 도쿄도 치요다구 카미아와지초 1-25</span>
+      <iframe src="https://maps.google.com/maps?q=mAAch+ecute+Kanda+Manseibashi+Tokyo&hl=ko&z=17&output=embed" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </article>
+
+  <!-- ═══════════════════════════════════════════════════════
+       BUILDING 02 — 2k540 Aki-Oka Artisan
+  ════════════════════════════════════════════════════════════ -->
+  <article class="d-building d-building--segmented" id="building-02">
+    <div class="d-building__header">
+      <div class="d-building__num-wrap">
+        <span class="d-building__num">02</span>
+        <span class="d-building__subtitle" data-i18n="ak-b02-subtitle">오타쿠의 성지가 될 수 있었던 이유</span>
+      </div>
+      <div class="d-building__meta">
+        <span class="d-building__tag">Commercial · 2010</span>
+        <span class="d-building__architect">JR East Design &amp; Koken Architects</span>
+      </div>
+    </div>
+
+    <h2 class="d-building__title">2k540 Aki-Oka Artisan</h2>
+    <p class="d-building__title-jp" data-i18n="ak-b02-title-jp">2k540 아키-오카 아티잔</p>
+
+    <!-- Portrait 1: JR East Design (기획 주관) -->
+    <div class="d-building__portrait js-img-reveal">
+      <div class="d-building__portrait-photo d-building__portrait-photo--contain">
+        <img src="picture/architect/JR_East.png" alt="JR East Design" />
+      </div>
+      <div class="d-building__portrait-info">
+        <p class="d-building__portrait-name">JR East Design
+          <span class="d-building__portrait-name-kr" data-i18n="ak-b02-name-kr1">JR 이스트 디자인</span>
+        </p>
+        <p class="d-building__portrait-sub">JR東日本設計<br>企画主管 · 2010</p>
+      </div>
+    </div>
+
+    <!-- Portrait 2: Koken Architects (설계 협력) -->
+    <div class="d-building__portrait js-img-reveal">
+      <div class="d-building__portrait-photo d-building__portrait-photo--contain">
+        <img src="picture/architect/koken.png" alt="Koken Architects" />
+      </div>
+      <div class="d-building__portrait-info">
+        <p class="d-building__portrait-name">Koken Architects
+          <span class="d-building__portrait-name-kr" data-i18n="ak-b02-name-kr2">코켄 아키텍츠</span>
+        </p>
+        <p class="d-building__portrait-sub">鍛建設計<br>設計協力 · 2010</p>
+      </div>
+    </div>
+
+    <!-- Segment 01 -->
+    <div class="d-building__seg js-img-reveal">
+      <div class="d-building__seg-text">
+        <p data-i18n="ak-b02-seg1">이제 과거의 거점이었던 만세이바시를 나와 다시 아키하바라 거리로 넘어와 보겠습니다. 과거의 역할이 어쨌든 지금은 어엿한 야마노테선의 핵심 거점 중 하나로 활약하고 있는데요. 그런데 지금의 아키하바라가 만들어진 배경에는 아이러니하게도 당시엔 거점이 아니었다는 점이 크게 작용했다고 합니다. 앞에서도 이야기했듯 에도성의 동쪽에는 긴자와 니혼바시, 그리고 우에노라는 강력한 중심지가 이미 자리잡고 있었죠. 덕분에 그 사이에 끼어 있던 아키하바라에는 전후에도 백화점이나 대형마트가 굳이 들어오지 않았고 자연스럽게 소규모 상점들이 마이너한 성격을 유지할 수 있었다고 합니다.</p>
+      </div>
+      <div class="d-building__seg-img">
+        <img src="picture/2k540_Aki-Oka_Artisan_01.png" alt="2k540 Aki-Oka Artisan exterior" />
+      </div>
+    </div>
+
+    <!-- Segment 02 (alt) -->
+    <div class="d-building__seg d-building__seg--alt js-img-reveal">
+      <div class="d-building__seg-img">
+        <img src="picture/2k540_Aki-Oka_Artisan_02.png" alt="2k540 Akihabara signage" />
+      </div>
+      <div class="d-building__seg-text">
+        <p data-i18n="ak-b02-seg2">아키하바라 거리를 올려다 보면 이런 과거의 흔적들을 보여주는 간판들을 어렵지 않게 발견할 수 있는데요. 작은 전자 기기나 부품을 다루는 가게들, 그러니까 개인의 공방 같은 소규모 점포들이 고가 철도 아래와 주변에 밀집해 있었고 이후 PC나 콘솔이 대중화되면서 게임과 애니메이션 문화가 유입되며 지금의 아키하바라의 이미지가 만들어졌다고 합니다. 여러모로 대기업이 아닌 골목 상권들이 발전시켜 온 동네라는 건데요. 그리고 이런 분위기를 21세기식으로 되살린 공간이 근처에 하나 더 존재합니다.</p>
+      </div>
+    </div>
+
+    <!-- Segment 03 -->
+    <div class="d-building__seg js-img-reveal">
+      <div class="d-building__seg-text">
+        <p data-i18n="ak-b02-seg3">이름 그대로 아키하바라역과 오카치마치역 사이에 자리한 아케이드 형태의 상가 '아키-오카 아티잔'인데요. 여기는 2010년에 개장한 공간이 되겠습니다. 이곳 또한 mAAch Ecute 칸다 만세이바시처럼 JR 철도교 아래에 자리잡고 있긴 하지만 차이가 있다면, 이곳은 건물을 재생한 시설이 아니라 고가 철도 아래에 비워져 있던 공간 자체를 새롭게 개발한 사례라는 점입니다. 그 서사를 보여주기라도 하듯 다리를 받치고 있는 기둥들의 형태가 제각각인데요. 철도망 확장 과정에서 다리가 세 차례에 걸쳐 따로따로 건설되었다는 것을 알려주는 흔적이기도 합니다. 당시엔 먹고 사는 게 더 중요했던 때였으니 구조물의 통일감 같은 건 그리 큰 문제가 아니었겠죠?</p>
+      </div>
+      <div class="d-building__seg-img">
+        <img src="picture/2k540_Aki-Oka_Artisan_03.png" alt="2k540 varied pillars" />
+      </div>
+    </div>
+
+    <!-- Segment 04 (alt) -->
+    <div class="d-building__seg d-building__seg--alt js-img-reveal">
+      <div class="d-building__seg-img">
+        <img src="picture/2k540_Aki-Oka_Artisan_04.png" alt="2k540 artisan workshops" />
+      </div>
+      <div class="d-building__seg-text">
+        <p data-i18n="ak-b02-seg4">현재는 신칸센 선로의 일부가 지하화되면서 이 바닥의 아래로도 열차가 지나가고 있습니다. 그 깊이가 꽤 얕은 편이라 신칸센이 지나는 구간 위에는 건물을 올리지 않고 팝업 스토어 공간이나 자전거 주차장으로 활용하고 있다고 하네요. 그 외에도 지하화 이후 더 이상 필요하지 않게 된 구조체는 기둥을 잘라내서 평상처럼 사용하는 등 자세히 보면 굉장히 많은 고민의 흔적들을 발견할 수 있습니다.</p>
+      </div>
+    </div>
+
+    <!-- Segment 05 -->
+    <div class="d-building__seg js-img-reveal">
+      <div class="d-building__seg-text">
+        <p data-i18n="ak-b02-seg5">그러한 노력 덕분인지 사실 입지만 놓고 보면 다소 애매할 수 있는 공간인데도 불구하고 이곳과 적극적으로 관계를 맺는 이용객들이 굉장히 많이 찾고 있는 모습을 볼 수 있었는데요. 기획 당시에도 고가 철도 아래라는 입지인데다 전통 시장처럼 자연발생적으로 형성된 아케이드가 아니었기 때문에 오히려 더 거리에 열린 관계를 만드는 것이 포인트였다고 합니다. 그래서 앞서 말했듯 아틀리에를 겸한 소매점 위주로 모집을 했고 일부러 작업 공간을 거리 쪽으로 어느 정도 드러내는 것이 입점 조건이었다고 하네요. 그 결과 시모키타자와의 거리 리로드나 가메아리 아트와 같이 최근에 생겨난 공간들에 비하면 시각적인 세계관 연출이나 공간 디자인은 다소 빈약할 수 있지만, 반대로 그런 곳들에는 없는 말 그대로 '사람 냄새 나는 거리 및 상권'이 만들어진 것 같은 느낌이었습니다. 앞으로 도시 안에선 이런 공간이 더 귀해지지 않을까라는 생각을 해보며 다음 장소로 넘어가 보겠습니다.</p>
+      </div>
+      <div class="d-building__seg-img">
+        <img src="picture/2k540_Aki-Oka_Artisan_10.png" alt="2k540 artisan workshops street view" />
+      </div>
+    </div>
+
+    <!-- Gallery 3 -->
+    <div class="d-building__gallery d-building__gallery--3 js-img-reveal">
+      <div class="d-building__gallery-item"><img src="picture/2k540_Aki-Oka_Artisan_05.png" alt="2k540 detail 1" /></div>
+      <div class="d-building__gallery-item"><img src="picture/2k540_Aki-Oka_Artisan_06.png" alt="2k540 detail 2" /></div>
+      <div class="d-building__gallery-item"><img src="picture/2k540_Aki-Oka_Artisan_07.png" alt="2k540 detail 3" /></div>
+    </div>
+
+    <!-- Gallery 2 -->
+    <div class="d-building__gallery d-building__gallery--2 js-img-reveal">
+      <div class="d-building__gallery-item"><img src="picture/2k540_Aki-Oka_Artisan_08.png" alt="2k540 space 1" /></div>
+      <div class="d-building__gallery-item"><img src="picture/2k540_Aki-Oka_Artisan_09.png" alt="2k540 space 2" /></div>
+    </div>
+
+    <!-- Google Map -->
+    <div class="d-building__gmap">
+      <span class="d-building__gmap-label">Location · 도쿄도 다이토구 우에노 6-5-1</span>
+      <iframe src="https://maps.google.com/maps?q=2k540+Aki-Oka+Artisan+Tokyo&hl=ko&z=17&output=embed" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </article>
+
+  <!-- ═══════════════════════════════════════════════════════
+       BUILDING 03 — Restaurant KUFUKU±
+  ════════════════════════════════════════════════════════════ -->
+  <article class="d-building d-building--segmented" id="building-03">
+    <div class="d-building__header">
+      <div class="d-building__num-wrap">
+        <span class="d-building__num">03</span>
+        <span class="d-building__subtitle" data-i18n="ak-b03-subtitle">과거와 현대의 흐름이란...?</span>
+      </div>
+      <div class="d-building__meta">
+        <span class="d-building__tag">Restaurant · 2019 (Renovation)</span>
+        <span class="d-building__architect">Keiji Ashizawa Design</span>
+      </div>
+    </div>
+
+    <h2 class="d-building__title">Restaurant KUFUKU±</h2>
+    <p class="d-building__title-jp" data-i18n="ak-b03-title-jp">레스토랑 쿠후쿠±</p>
+
+    <!-- Portrait -->
+    <div class="d-building__portrait js-img-reveal">
+      <div class="d-building__portrait-photo d-building__portrait-photo--contain">
+        <img src="picture/architect/Keiji_Ashizawa.png" alt="Keiji Ashizawa" />
+      </div>
+      <div class="d-building__portrait-info">
+        <p class="d-building__portrait-name">Keiji Ashizawa<span class="d-building__portrait-name-kr" data-i18n="ak-b03-name-kr">아시자와 케이지</span></p>
+        <p class="d-building__portrait-sub">芦沢啓治 · 1974–<br>Japanese Architect &amp; Interior Designer<br>Keiji Ashizawa Design</p>
+      </div>
+    </div>
+
+    <!-- Segment 01 -->
+    <div class="d-building__seg js-img-reveal">
+      <div class="d-building__seg-text">
+        <p data-i18n="ak-b03-seg1">다음으로는 레스토랑을 하나 소개드릴까 합니다. 마침 지금 서 있는 아키오카 아티잔 주변은 도쿄에서 가장 어수선한 곳이라 할 수 있는 아메요코 거리와 아키하바라 대로변의 중간쯤인데요. 이 근처로는 번잡함을 피해 조용히 숨어 있는 작은 건물들이 많은 편입니다. 그리고 그중에는 아메요코 시장도 전자 상가도 존재하지 않던 아주 오랜 시절부터 줄곧 자리를 지켜온 것들도 있죠.</p>
+      </div>
+      <div class="d-building__seg-img">
+        <img src="picture/Restaurant_KUFUKU_01.png" alt="KUFUKU exterior" />
+      </div>
+    </div>
+
+    <!-- Segment 02 (alt) -->
+    <div class="d-building__seg d-building__seg--alt js-img-reveal">
+      <div class="d-building__seg-img">
+        <img src="picture/Restaurant_KUFUKU_02.png" alt="KUFUKU machiya facade" />
+      </div>
+      <div class="d-building__seg-text">
+        <p data-i18n="ak-b03-seg2">지금 보시는 고민가는 쇼와 초중기인 1940년대에 지어진 것으로 추정되며 당시엔 주택이자 건물 판매점으로 사용되었다고 하는데요. 현재는 2019년 건축가 아시자와 케이지에 의해 리노베이션된 이후 프렌치와 일식의 퓨전 레스토랑인 KUFUKU±로 운영되고 있습니다. 이름 뒤에 붙은 기호는 각각 여러 재료와 코스로 완성되는 프렌치와 절제미를 추구하는 일식의 조합을 의미한다고 하는데요.</p>
+      </div>
+    </div>
+
+    <!-- Segment 03 -->
+    <div class="d-building__seg js-img-reveal">
+      <div class="d-building__seg-text">
+        <p data-i18n="ak-b03-seg3">안으로 들어가 보면 요리에 대한 컨셉만큼이나 건축물에서도 같은 접근이 이어진 것을 볼 수 있습니다. 금속과 콘크리트는 정말로 필요한 곳에만 최소한으로 사용된 채 오래된 목조 구조와 어둑한 복도, 낮은 천장과 좁고 가파른 계단 같은 시간의 흔적들을 적극적으로 남겨 두었죠. 재료뿐 아니라 공간이 이전에 가졌던 쓰임새까지 최대한 살리고자 한 모습이 엿보이는데요. 과거 건어물을 판매하던 시절 손님과 주인의 상호 작용이 일어나던 매대는 그 의미를 되살려 오픈 키친과 카운터석이 되었으며, 2층에 가장 안쪽으로 자리한 창고는 와인 저장고가 되어 다시금 본래의 역할을 수행하는 모습이었습니다.</p>
+      </div>
+      <div class="d-building__seg-img">
+        <img src="picture/Restaurant_KUFUKU_03.png" alt="KUFUKU interior wood structure" />
+      </div>
+    </div>
+
+    <!-- Segment 04 (alt) -->
+    <div class="d-building__seg d-building__seg--alt js-img-reveal">
+      <div class="d-building__seg-img">
+        <img src="picture/Restaurant_KUFUKU_04.png" alt="KUFUKU second floor" />
+      </div>
+      <div class="d-building__seg-text">
+        <p data-i18n="ak-b03-seg4">처음 가보시는 분들은 아무래도 2층을 먼저 경험해 보시는 것을 추천드리는데요. 단순히 흉내낸 것만으로는 느낄 수 없는 진짜 고민가의 바이브를 바탕으로, 레스토랑 오너 부부가 소장해 온 앤틱 가구와 현대의 가구들, 거기에 전통과 현대를 연결하는 아카리 조명이 어우러진 모습이 굉장히 인상적이었던 것 같습니다. 음식은 기본적으로 여섯 가지에서 아홉 가지 사이의 코스 요리로 구성되며 알코올이나 논알코올 페어링 코스도 선택할 수 있는데요. 아쉽게도 제가 술 맛에 조예가 그리 깊지 않은 관계로 페어링을 완벽히 즐기진 못했습니다만, 타베로그나 구글 리뷰를 보시면 소믈리에의 페어링 선정이 아주 훌륭하다는 리뷰가 정말 많기 때문에 기회 되시는 분들은 꼭 함께 경험해 보시면 좋겠습니다.</p>
+      </div>
+    </div>
+
+    <!-- Segment 05 -->
+    <div class="d-building__seg js-img-reveal">
+      <div class="d-building__seg-text">
+        <p data-i18n="ak-b03-seg5">자, 지금까지 어쩌다 보니 홍철 없는 홍철팀, 미소녀 없는 아키하바라의 명소들에 대해 풀어봤습니다. 아키하바라는 다들 아시다시피 흔히 전자상가나 오타쿠 문화의 거리로 기억되곤 하죠. 하지만 오늘처럼 조금만 주변을 둘러보면 이곳은 의외로 남겨진 건축물이나 인프라를 어떻게 다시 활용하는가에 대해 꽤나 집요하게 고민해온 거리이기도 합니다. 과거 신사가 있던 자리에서 화물역이 여객역으로 변모하고, 그 뒤에 전자 부품점 위로 오타쿠 문화가 올라오고, 철도교 아래에는 공방과 상점이 다시 들어선 것처럼, 처음부터 계획된 도시라기보다는 계속해서 색을 덧칠하며 지금의 모습을 이루었죠. 아마도 그 미완성 같은 분위기 자체가 지금의 아키하바라를 계속 아키하바라답게 만드는 건 아닐까라는 생각을 해봅니다.</p>
+      </div>
+      <div class="d-building__seg-img">
+        <img src="picture/Restaurant_KUFUKU_09.png" alt="KUFUKU wine cellar" />
+      </div>
+    </div>
+
+    <!-- Gallery 4 -->
+    <div class="d-building__gallery js-img-reveal">
+      <div class="d-building__gallery-item"><img src="picture/Restaurant_KUFUKU_05.png" alt="KUFUKU detail 1" /></div>
+      <div class="d-building__gallery-item"><img src="picture/Restaurant_KUFUKU_06.png" alt="KUFUKU detail 2" /></div>
+      <div class="d-building__gallery-item"><img src="picture/Restaurant_KUFUKU_07.png" alt="KUFUKU detail 3" /></div>
+      <div class="d-building__gallery-item"><img src="picture/Restaurant_KUFUKU_08.png" alt="KUFUKU dining room" /></div>
+    </div>
+
+    <!-- Google Map -->
+    <div class="d-building__gmap">
+      <span class="d-building__gmap-label">Location · 도쿄도 다이토구 우에노 6-14-4</span>
+      <iframe src="https://maps.google.com/maps?q=Restaurant+KUFUKU+Tokyo&hl=ko&z=17&output=embed" allowfullscreen loading="lazy"></iframe>
+    </div>
+  </article>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__top">
+      <span class="footer__logo">Marginalia</span>
+      <p class="footer__tagline">A record of what stands<br />and what remains.</p>
+    </div>
+    <div class="footer__bottom">
+      <span>© 2026 Lee Seunghwan. All Rights Reserved.</span>
+      <span>Tokyo, Japan</span>
+      <span>Web Design I — Project</span>
+    </div>
+  </footer>
+
+  <button class="btn-top" id="btnTop" aria-label="Back to top">↑</button>
+
+  <script type="importmap">
+    { "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.167.0/build/three.module.js" } }
+  </script>
+  <script type="module" src="akihabara.js"></script>
+  <script>
+    (function () {
+      var btn = document.getElementById('btnTop');
+      var hideTimer = null;
+      function onScroll() {
+        if (window.scrollY > 400) btn.classList.add('visible');
+        clearTimeout(hideTimer);
+        hideTimer = setTimeout(function () { btn.classList.remove('visible'); }, 1500);
+      }
+      window.addEventListener('scroll', onScroll, { passive: true });
+      btn.addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    })();
+  </script>
+  <script src="district-ui.js"></script>
+  <script src="i18n.js"></script>
+  <script src="nav.js"></script>
+  <script src="transition.js"></script>
+</body>
+</html>
