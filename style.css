@@ -838,13 +838,16 @@ p, .hero__sub, .d-hero__title-jp, .d-intro__body, .d-building__seg-text {
 }
 
 .footer__bottom {
-  display: flex;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
   font-family: var(--f-mono);
   font-size: 10px;
   letter-spacing: 0.08em;
   color: var(--ink-40);
 }
+.footer__bottom > *:first-child { text-align: left; }
+.footer__bottom > *:nth-child(2) { text-align: center; }
+.footer__bottom > *:last-child  { text-align: right; }
 
 /* ── Hamburger button ─────────────────────────── */
 .nav__hamburger {
