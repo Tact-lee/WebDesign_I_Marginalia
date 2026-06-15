@@ -1024,6 +1024,18 @@
       'ak-b03-seg3': '中に入ると、料理のコンセプトと同様に建築でも同じアプローチが貫かれているのがわかります。金属とコンクリートは本当に必要な場所だけに最小限に使われ、古い木造構造や薄暗い廊下、低い天井、狭く急な階段といった時の痕跡が積極的に残されています。素材だけでなく、空間がかつて持っていた使い道まで最大限に活かそうとする姿勢が感じられます。かつて乾物を販売していた頃に客と主人のやり取りが生まれていたカウンターは、その意味を蘇らせてオープンキッチンとカウンター席になり、2階の最も奥にあった倉庫はワインセラーとなって再び本来の役割を担うようになりました。',
       'ak-b03-seg4': '初めて訪れる方にはぜひ2階から先に体験されることをお勧めします。ただの模倣では感じられない本物の古民家の空気を基盤に、レストランのオーナー夫妻が収集してきたアンティーク家具と現代の家具、そして伝統と現代をつなぐアカリ照明が調和した空間はとても印象的でした。料理は基本的に6品から9品のコース料理で構成され、アルコールまたはノンアルコールのペアリングコースも選べます。残念ながら私はお酒の味に詳しくないため、ペアリングを完璧に楽しむことはできませんでしたが、食べログやGoogleのレビューを見るとソムリエのペアリング選定がとても素晴らしいというレビューが本当に多いので、機会のある方はぜひ一緒に体験してみてください。',
       'ak-b03-seg5': 'さて、ここまで思いがけず「홍철 없는 홍철팀」——主役抜きのチームというか、萌えキャラなき秋葉原の名所をご紹介してきました。秋葉原はご存知のとおり電気街やオタク文化の街として記憶されることが多いですよね。でも今日のように少し周りを見渡してみると、ここは意外にも残された建築物やインフラをどう再活用するかについて、かなり執念深く考えてきた街でもあります。かつて神社があった場所に貨物駅が立ち、その後ろに電子部品店を土台としてオタク文化が育ち、鉄道橋の下には工房や商店が再び入居したように、最初から計画された都市というよりは、絶えず色を重ねながら今の姿を作ってきた街です。おそらくその未完成のような雰囲気そのものが、今の秋葉原を秋葉原たらしめているのではないかと思います。',
+
+      /* ── About ── */
+      'ab-headline-1': '建築を知ったかぶりで語る',
+      'ab-headline-2': 'あなたのための',
+      'ab-headline-3': '東京建築アーカイブ',
+      'ab-hero-p1': 'Marginalia（マルジナリア）とは、「本の余白に書く文字」を意味する言葉です。「余白（margin）にあるもの」という意味から派生したこの言葉は、本の余白に残されたメモ・注釈・走り書き・挿絵など、分類しきれない反応の痕跡をすべて指します。',
+      'ab-hero-p2': 'かつて人々が本を読みながら余白に書き留めた小さな思考が、今日もっとも人間的で興味深い記録として残るように、私たちは東京という巨大な都市の建築群の隙間に潜む「余白の物語」を集め、大仰な建築理論ではなく、ファサードの向こうに息づく建築家の思考や小さなエピソードに焦点を当てます。',
+      'ab-hero-p3': '目標はシンプルです。建築を専門的に学んでいなくても、誰もが空間を違う目で見て、その中に宿る物語を軽やかに楽しめる——そんな知的遊びのデータベースをつくること。このささやかな記録が、あなたが都市を旅し、思索するプロセスの中で、心地よい「知ったかぶり」であり、深みある余白になることを願っています。',
+      'ab-kw1-body': '<span class="clip-wrap"><span class="clip-inner">建物の外観や構造と同じくらい重要なのは、その建物が建てられた経緯、建築家のナラティブ、空間にまつわる物語です。</span></span><span class="clip-wrap"><span class="clip-inner" data-d="1">その背後に隠された時代の苦悩と建築家の意図を読み解いたとき、はじめて建築物は特別な意味を帯びてきます。</span></span>',
+      'ab-kw2-body': '<span class="clip-wrap"><span class="clip-inner">建築界のノーベル賞と言われるプリツカー賞を、世界で最多輩出している国、日本。</span></span><span class="clip-wrap"><span class="clip-inner" data-d="1">その首都・東京には、日本の建築家だけでなく世界の巨匠たちの作品が一つの都市に共存しています。そして、近い。</span></span>',
+      'ab-kw3-body': '<span class="clip-wrap"><span class="clip-inner">あるものについて背景知識を持って見ることと、知らずに見ることは、まったく別の体験になります。</span></span><span class="clip-wrap"><span class="clip-inner" data-d="1">建築学科の学生でなくても、東京の建築物の前でその空間を十分に「知ったかぶり」できるよう、情報を蓄積する場所をつくろうとしています。</span></span>',
+      'ab-source-text': 'このウェブページのすべてのコンテンツは、YouTubeチャンネル <strong style="color:var(--ink);">풀어봤어x</strong> のコンテンツをもとに制作されました。',
     },
 
     en: {
@@ -1505,6 +1517,18 @@
       'ak-b03-seg3': 'Inside, the architectural logic follows the culinary one. Metal and concrete appear only where they\'re genuinely needed; the rest of the space keeps its old wooden structure, dim hallways, low ceilings, and the steep narrow staircase — all the marks of time that a conventional renovation would normally erase. The original use is honored in the plan as well: the counter where the dried-goods shopkeeper once dealt with customers has become the open kitchen and counter seating, and the inner storeroom on the second floor is now a wine cellar — the space returning to something close to what it originally was.',
       'ak-b03-seg4': 'First-time visitors are advised to start on the second floor. The vibe of a real machiya — something that can only be felt, not replicated — forms the backdrop for the restaurant owners\' collection of antique and contemporary furniture, with Akari lighting connecting the traditional and the modern in a way that is quietly striking. The menu runs to six to nine courses, with optional alcohol or non-alcohol pairing. The writer\'s own pairing literacy is limited enough that a full evaluation isn\'t possible here, but the weight of reviews on Tabelog and Google pointing to the sommelier\'s selections as exceptional is hard to dismiss. If you have the chance, go with the pairing.',
       'ak-b03-seg5': 'So — an unplanned tour through the Akihabara that exists outside the electronics shops and the character merchandise. Everyone knows it as otaku territory, and that\'s fair. But look sideways for a moment and you find a city that has been quietly obsessive, for a very long time, about what to do with what it\'s already got. A shrine gave way to a freight terminal; the freight terminal gave way to passenger trains; above the tracks, electronics culture took hold; beneath them, workshops and shops moved back in. Less a plan than an accumulation of accidents — and maybe the sense of being permanently unfinished is exactly what keeps Akihabara feeling like itself.',
+
+      /* ── About ── */
+      'ab-headline-1': 'A Tokyo Architecture',
+      'ab-headline-2': 'Archive for the',
+      'ab-headline-3': 'Architecturally Pretentious',
+      'ab-hero-p1': 'Marginalia — the word means \'notes written in the margins of a book.\' More broadly, it refers to the annotations, sketches, doodles, and stray marks people leave in those margins: fragments too informal to be arguments, too specific to be forgotten.',
+      'ab-hero-p2': 'The marginal notes people once scrawled while reading have become some of the most humanly interesting records we have. We do something similar here: collect the hidden stories embedded in Tokyo\'s buildings — not the grand theoretical frameworks, but the thinking behind the facade, the architect\'s doubts, the small incidents that shaped the final form.',
+      'ab-hero-p3': 'The goal is straightforward: build an archive where anyone — no architecture background required — can look at a space differently and find the narrative inside it. These small records are meant to be the useful kind of pretension: the sort that makes a city more interesting to move through.',
+      'ab-kw1-body': '<span class="clip-wrap"><span class="clip-inner">As important as a building\'s appearance and structure is the context in which it was built: the architect\'s intention, the cultural moment, the story the space tells.</span></span><span class="clip-wrap"><span class="clip-inner" data-d="1">Reading the period\'s pressures and the architect\'s choices together is what makes a building resonate — not just as form, but as argument.</span></span>',
+      'ab-kw2-body': '<span class="clip-wrap"><span class="clip-inner">Japan has produced more Pritzker Prize laureates than any other country. The Pritzker is architecture\'s Nobel.</span></span><span class="clip-wrap"><span class="clip-inner" data-d="1">Tokyo concentrates their work — alongside that of the world\'s other major figures — within a single city. And it\'s close.</span></span>',
+      'ab-kw3-body': '<span class="clip-wrap"><span class="clip-inner">Knowing the background of something before encountering it and not knowing it are entirely different experiences.</span></span><span class="clip-wrap"><span class="clip-inner" data-d="1">This is a place built to give anyone who stands in front of a Tokyo building enough context to see it differently — no degree required.</span></span>',
+      'ab-source-text': 'All content on this site is based on the YouTube channel <strong style="color:var(--ink);">풀어봤어x</strong>.',
     },
 
   };

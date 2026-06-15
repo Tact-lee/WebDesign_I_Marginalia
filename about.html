@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/pretendard@latest/dist/web/static/pretendard-dynamic-subset.css" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Nanum+Myeongjo:wght@400;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="style.css?v=2" />
   <style>
 
     /* ── hero ─────────────────────────────────────────────── */
@@ -81,7 +81,7 @@
     }
 
     .ab-kw__title {
-      font-family: 'Nanum Myeongjo', serif;
+      font-family: var(--f-serif);
       font-weight: 400;
       font-size: clamp(36px, 4.5vw, 64px);
       line-height: 1.25;
@@ -118,7 +118,11 @@
     .ab-source__icon-link:hover { opacity: 1; }
     .ab-source__icon-link svg { width: 22px; height: 22px; fill: currentColor; }
 
-    /* ── footer contact: about-footer removes class distinction (now global) ── */
+    /* body text clip-inners must stay inline so text flows naturally */
+    .ab-kw__body .clip-inner { display: inline; }
+
+    /* remove duplicate stroke between source section and footer */
+    .footer { border-top: none; }
 
     /* ── responsive ───────────────────────────────────────── */
     @media (max-width: 720px) {
@@ -157,6 +161,17 @@
       <li><a href="index.html#map-section">Location Map</a></li>
       <li><a href="index.html#gallery-section">Gallery</a></li>
     </ul>
+    <div class="lang-switcher" aria-label="Language">
+      <button class="lang-trigger" aria-expanded="false">
+        <span class="lang-current">KR</span>
+        <svg class="lang-arrow" width="8" height="5" viewBox="0 0 8 5" fill="none" aria-hidden="true"><path d="M1 1L4 4L7 1" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="lang-dropdown">
+        <button class="lang-btn is-active" data-lang="ko">KR</button>
+        <button class="lang-btn" data-lang="ja">JP</button>
+        <button class="lang-btn" data-lang="en">EN</button>
+      </div>
+    </div>
   </div>
   <button class="nav__hamburger" id="navHamburger" aria-label="메뉴" aria-expanded="false">
     <span></span><span></span>
@@ -170,6 +185,11 @@
       <li><a href="index.html#map-section">Location Map</a></li>
       <li><a href="index.html#gallery-section">Gallery</a></li>
     </ul>
+    <div class="nav__mobile-lang">
+      <button class="lang-btn is-active" data-lang="ko">KR</button>
+      <button class="lang-btn" data-lang="ja">JP</button>
+      <button class="lang-btn" data-lang="en">EN</button>
+    </div>
   </div>
 </div>
 
@@ -178,26 +198,26 @@
   <section class="ab-hero" id="abHero">
     <h1 class="ab-hero__headline">
       <span class="clip-wrap" style="display:block;">
-        <span class="clip-inner">교양 있는 척하는</span>
+        <span class="clip-inner" data-i18n="ab-headline-1">교양 있는 척하는</span>
       </span>
       <span class="clip-wrap" style="display:block;">
-        <span class="clip-inner" data-d="1">당신을 위한</span>
+        <span class="clip-inner" data-d="1" data-i18n="ab-headline-2">당신을 위한</span>
       </span>
       <span class="clip-wrap" style="display:block;">
-        <span class="clip-inner" data-d="2">도쿄 건축 아카이브</span>
+        <span class="clip-inner" data-d="2" data-i18n="ab-headline-3">도쿄 건축 아카이브</span>
       </span>
     </h1>
 
     <div class="ab-hero__body-wrap">
       <div class="ab-hero__body">
         <p>
-          <span class="clip-wrap"><span class="clip-inner" data-d="1">Marginalia는 '책의 여백에 쓰는 글'이란 의미로, "여백(margin)에 있는 것들"이란 의미에서 파생된 Marginalia는 책의 여백에 남기는 표식, 주석, 메모, 삽화, 분류할 수 없는 반응의 흔적들을 총칭합니다.</span></span>
+          <span class="clip-wrap"><span class="clip-inner" data-d="1" data-i18n="ab-hero-p1">Marginalia는 '책의 여백에 쓰는 글'이란 의미로, "여백(margin)에 있는 것들"이란 의미에서 파생된 Marginalia는 책의 여백에 남기는 표식, 주석, 메모, 삽화, 분류할 수 없는 반응의 흔적들을 총칭합니다.</span></span>
         </p>
         <p>
-          <span class="clip-wrap"><span class="clip-inner" data-d="2">과거 사람들이 책을 읽다 여백에 끄적이던 작은 생각들이 오늘날 가장 인간적이고 흥미로운 기록이 되듯, 우리는 도쿄라는 거대한 도시의 건축물 사이에 숨겨진 '여백의 이야기'를 수집하고 거창한 건축 이론 대신 파사드 너머에 존재하는 건축가의 생각과 소소한 비하인드 스토리에 집중합니다.</span></span>
+          <span class="clip-wrap"><span class="clip-inner" data-d="2" data-i18n="ab-hero-p2">과거 사람들이 책을 읽다 여백에 끄적이던 작은 생각들이 오늘날 가장 인간적이고 흥미로운 기록이 되듯, 우리는 도쿄라는 거대한 도시의 건축물 사이에 숨겨진 '여백의 이야기'를 수집하고 거창한 건축 이론 대신 파사드 너머에 존재하는 건축가의 생각과 소소한 비하인드 스토리에 집중합니다.</span></span>
         </p>
         <p>
-          <span class="clip-wrap"><span class="clip-inner" data-d="3">우리의 목표는 명확합니다. 건축학도가 아니더라도 누구나 공간을 다르게 바라보고, 그 안에 담긴 서사를 가볍게 즐길 수 있는 지적 유희의 데이터베이스를 구축하는 것입니다. 이 작은 기록들이 당신이 도시를 여행하고 사유하는 과정에 기분 좋은 '아는 척'이자, 깊이 있는 여백이 되기를 바랍니다.</span></span>
+          <span class="clip-wrap"><span class="clip-inner" data-d="3" data-i18n="ab-hero-p3">우리의 목표는 명확합니다. 건축학도가 아니더라도 누구나 공간을 다르게 바라보고, 그 안에 담긴 서사를 가볍게 즐길 수 있는 지적 유희의 데이터베이스를 구축하는 것입니다. 이 작은 기록들이 당신이 도시를 여행하고 사유하는 과정에 기분 좋은 '아는 척'이자, 깊이 있는 여백이 되기를 바랍니다.</span></span>
         </p>
       </div>
     </div>
@@ -210,7 +230,7 @@
       <div class="ab-kw__head">
         <span class="clip-wrap" style="display:inline-block;"><h2 class="ab-kw__title clip-inner">History</h2></span>
       </div>
-      <p class="ab-kw__body">
+      <p class="ab-kw__body" data-i18n="ab-kw1-body">
         <span class="clip-wrap"><span class="clip-inner">건물의 외관과 설계구조만큼이나 중요한 것은 그 건축물이 세워진 경위, 건축가의 내러티브, 공간에 대한 이야기입니다.</span></span>
         <span class="clip-wrap"><span class="clip-inner" data-d="1">그 뒤에 숨겨진 시대적 고뇌와 건축가의 의도를 함께 읽을 수 있을 때, 비로소 건축물은 특별한 의미로 다가옵니다.</span></span>
       </p>
@@ -220,7 +240,7 @@
       <div class="ab-kw__head">
         <span class="clip-wrap" style="display:inline-block;"><h2 class="ab-kw__title clip-inner">Tokyo</h2></span>
       </div>
-      <p class="ab-kw__body">
+      <p class="ab-kw__body" data-i18n="ab-kw2-body">
         <span class="clip-wrap"><span class="clip-inner">건축계의 노벨상이라 불리는 프리츠커상을 세계에서 가장 많이 배출한 나라, 일본.</span></span>
         <span class="clip-wrap"><span class="clip-inner" data-d="1">그 수도 도쿄에는 일본 건축가뿐 아니라 전 세계 거장들의 작품이 한 도시 안에 공존합니다. 그리고, 가깝습니다.</span></span>
       </p>
@@ -230,9 +250,9 @@
       <div class="ab-kw__head">
         <span class="clip-wrap" style="display:inline-block;"><h2 class="ab-kw__title clip-inner">Archive</h2></span>
       </div>
-      <p class="ab-kw__body">
+      <p class="ab-kw__body" data-i18n="ab-kw3-body">
         <span class="clip-wrap"><span class="clip-inner">어떤 대상의 배경지식을 알고 보는 것과 모르고 보는 것은 엄청난 차이가 있습니다.</span></span>
-        <span class="clip-wrap"><span class="clip-inner" data-d="1">건축학도가 아니어도 도쿄의 건축물 앞에서 그 공간을 충분히 '아는 척'하고 다르게 볼 수 있도록, 정보를 쌓아두는 장소입니다.</span></span>
+        <span class="clip-wrap"><span class="clip-inner" data-d="1">건축학도가 아니어도 도쿄의 건축물 앞에서 그 공간을 충분히 '아는 척'하고 다르게 볼 수 있도록, 정보를 쌓아두는 장소로 만들고자 합니다.</span></span>
       </p>
     </div>
   </div>
@@ -240,7 +260,7 @@
   <!-- Source -->
   <div class="ab-source">
     <p class="ab-source__label">Source</p>
-    <p class="ab-source__text">이 웹페이지의 모든 콘텐츠는 유튜브 채널 <strong style="color:var(--ink);">풀어봤어x</strong>의 콘텐츠를 기반으로 제작되었습니다.</p>
+    <p class="ab-source__text" data-i18n="ab-source-text">이 웹페이지의 모든 콘텐츠는 유튜브 채널 <strong style="color:var(--ink);">풀어봤어x</strong>의 콘텐츠를 기반으로 제작되었습니다.</p>
     <div class="ab-source__icons">
       <a class="ab-source__icon-link" href="https://youtube.com/@wabixabi?si=08whSUsh5LJ55b_S" target="_blank" rel="noopener" aria-label="YouTube">
         <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
@@ -294,6 +314,7 @@
 })();
 </script>
 <script src="contact.js"></script>
+<script src="i18n.js?v=2"></script>
 <script src="nav.js"></script>
 <script src="transition.js"></script>
 </body>
