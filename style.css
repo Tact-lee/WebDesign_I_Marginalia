@@ -996,8 +996,15 @@ p, .hero__sub, .d-hero__title-jp, .d-intro__body, .d-building__seg-text {
   .section-divider { padding: 20px 24px; }
   .bento-grid { columns: 3; }
   .footer { padding: 40px 24px 32px; }
-  .footer__top { flex-direction: column; gap: 24px; }
+  .footer__top { grid-template-columns: 1fr; gap: 28px; }
+  .footer__logo,
+  .footer__contact-center,
+  .footer__tagline { grid-column: 1; }
+  .footer__contact-center { align-items: flex-start; }
   .footer__tagline { text-align: left; }
+  .footer__bottom { grid-template-columns: 1fr; gap: 4px; }
+  .footer__bottom > *:nth-child(2),
+  .footer__bottom > *:last-child { text-align: left; }
 }
 
 @media (max-width: 600px) {
