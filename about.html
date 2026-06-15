@@ -13,58 +13,37 @@
 
     /* ── hero ─────────────────────────────────────────────── */
     .ab-hero {
-      padding: 120px 64px 0;
+      padding: 120px 64px 80px;
       border-bottom: 1px solid var(--ink-15);
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
     .ab-hero__headline {
       font-family: 'Nanum Myeongjo', serif;
       font-weight: 400;
-      font-size: clamp(44px, 6vw, 88px);
-      line-height: 1.25;
-      letter-spacing: -0.01em;
+      font-size: clamp(52px, 7.5vw, 110px);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
       color: var(--ink);
       margin-bottom: 0;
     }
-
-    .ab-hero__headline em { font-style: italic; color: var(--ink); }
-
-    /* invisible gap-holder where '척' was */
-    #cheok-placeholder {
-      display: inline-block;
-      visibility: visible;
-      transition: opacity .18s ease;
-    }
-
-    /* physics '척' ball */
-    #cheok-ball {
-      position: absolute;
-      top: 0; left: 0;
-      font-family: 'Nanum Myeongjo', serif;
-      font-weight: 400;
-      font-size: clamp(44px, 6vw, 88px);
-      line-height: 1.25;
-      color: var(--ink);
-      cursor: grab;
-      user-select: none;
-      z-index: 500;
-      will-change: left, top;
-      pointer-events: auto;
-    }
-    #cheok-ball.grabbed { cursor: grabbing; }
 
     /* body */
     .ab-hero__body-wrap {
       display: flex;
       justify-content: flex-end;
-      padding: 72px 0 80px;
+      padding-top: 0;
     }
     .ab-hero__body {
-      font-family: var(--f-mono);
-      font-size: 15px;
-      line-height: 2.0;
+      font-family: var(--f-sans);
+      font-size: 14px;
+      line-height: 1.9;
       color: var(--ink-60);
-      max-width: 680px;
+      max-width: 640px;
+      letter-spacing: 0;
     }
     .ab-hero__body p + p { margin-top: 1.4em; }
     .ab-hero__body strong { color: var(--ink); font-weight: 600; }
@@ -75,17 +54,14 @@
     .clip-inner {
       display: block;
       transform: translateY(108%);
-      /* transition handles both reveal and reflow padding */
-      transition: transform .9s cubic-bezier(0.16, 1, 0.3, 1),
-                  padding-left  .08s linear,
-                  padding-right .08s linear;
+      transition: transform .9s cubic-bezier(0.16, 1, 0.3, 1);
     }
     .clip-inner.in { transform: translateY(0); }
 
-    .clip-inner[data-d="1"] { transition-delay: .08s, 0s, 0s; }
-    .clip-inner[data-d="2"] { transition-delay: .18s, 0s, 0s; }
-    .clip-inner[data-d="3"] { transition-delay: .28s, 0s, 0s; }
-    .clip-inner[data-d="4"] { transition-delay: .38s, 0s, 0s; }
+    .clip-inner[data-d="1"] { transition-delay: .08s; }
+    .clip-inner[data-d="2"] { transition-delay: .18s; }
+    .clip-inner[data-d="3"] { transition-delay: .28s; }
+    .clip-inner[data-d="4"] { transition-delay: .38s; }
 
     /* ── keyword sections ─────────────────────────────────── */
     .ab-kw { padding: 0 64px; border-bottom: 1px solid var(--ink-15); }
@@ -95,7 +71,6 @@
       border-top: 1px solid var(--ink-15);
       display: flex;
       flex-direction: column;
-      min-height: 480px;
     }
 
     .ab-kw__head {
@@ -105,18 +80,6 @@
       margin-bottom: 28px;
     }
 
-    .ab-kw__num {
-      font-family: var(--f-mono);
-      font-size: 12px;
-      letter-spacing: 0.04em;
-      color: var(--ink-60);
-      border: 1px solid var(--ink-30);
-      padding: 4px 10px;
-      line-height: 1.4;
-      flex-shrink: 0;
-      transition: padding-left .08s linear, padding-right .08s linear;
-    }
-
     .ab-kw__title {
       font-family: 'Nanum Myeongjo', serif;
       font-weight: 400;
@@ -124,17 +87,15 @@
       line-height: 1.25;
       letter-spacing: -0.02em;
       color: var(--ink);
-      transition: padding-left .08s linear, padding-right .08s linear;
     }
 
     .ab-kw__body {
-      margin-top: 80px;
+      margin-top: 36px;
       font-family: var(--f-mono);
       font-size: 15px;
       line-height: 2.0;
       color: var(--ink-60);
       max-width: 680px;
-      transition: padding-left .08s linear, padding-right .08s linear;
     }
 
     /* ── source ───────────────────────────────────────────── */
@@ -157,49 +118,7 @@
     .ab-source__icon-link:hover { opacity: 1; }
     .ab-source__icon-link svg { width: 22px; height: 22px; fill: currentColor; }
 
-    /* ── footer contact (center) ──────────────────────────── */
-    .footer.about-footer .footer__top {
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      align-items: center;
-    }
-    .footer.about-footer .footer__tagline { grid-column: 3; text-align: right; }
-    .footer.about-footer .footer__logo { align-self: center; }
-
-    .footer__contact-center {
-      grid-column: 2;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .footer__contact-btn {
-      background: none; border: none; cursor: pointer;
-      font-family: 'Nanum Myeongjo', serif; font-weight: 400;
-      font-size: clamp(20px, 2.5vw, 32px); color: var(--ink);
-      padding: 0; display: flex; align-items: center; gap: 10px;
-      transition: opacity .2s; line-height: 1;
-    }
-    .footer__contact-btn:hover { opacity: .6; }
-
-    .footer__contact-btn .fc-plus {
-      font-family: var(--f-mono); font-size: 18px; color: var(--ink-40);
-      display: inline-block;
-      transition: transform .35s cubic-bezier(0.16,1,0.3,1); line-height: 1;
-    }
-    .footer__contact-btn.open .fc-plus { transform: rotate(45deg); }
-
-    .footer__contact-panel {
-      display: none; flex-direction: column;
-      align-items: center; gap: 6px; margin-top: 16px;
-    }
-    .footer__contact-panel.open { display: flex; }
-
-    .footer__contact-link {
-      font-family: var(--f-mono); font-size: 13px; letter-spacing: .04em;
-      color: var(--ink-60); text-decoration: none; transition: color .2s;
-    }
-    .footer__contact-link:hover { color: var(--ink); }
+    /* ── footer contact: about-footer removes class distinction (now global) ── */
 
     /* ── responsive ───────────────────────────────────────── */
     @media (max-width: 720px) {
@@ -259,13 +178,13 @@
   <section class="ab-hero" id="abHero">
     <h1 class="ab-hero__headline">
       <span class="clip-wrap" style="display:block;">
-        <span class="clip-inner">교양 있는 <span id="cheok-placeholder">척</span>하는</span>
+        <span class="clip-inner">교양 있는 척하는</span>
       </span>
       <span class="clip-wrap" style="display:block;">
         <span class="clip-inner" data-d="1">당신을 위한</span>
       </span>
       <span class="clip-wrap" style="display:block;">
-        <span class="clip-inner" data-d="2"><em>도쿄 건축 아카이브</em></span>
+        <span class="clip-inner" data-d="2">도쿄 건축 아카이브</span>
       </span>
     </h1>
 
@@ -289,7 +208,6 @@
     <!-- 01 -->
     <div class="ab-kw__inner">
       <div class="ab-kw__head">
-        <span class="clip-wrap" style="display:inline-block;"><span class="ab-kw__num clip-inner">(01)</span></span>
         <span class="clip-wrap" style="display:inline-block;"><h2 class="ab-kw__title clip-inner">History</h2></span>
       </div>
       <p class="ab-kw__body">
@@ -300,7 +218,6 @@
     <!-- 02 -->
     <div class="ab-kw__inner">
       <div class="ab-kw__head">
-        <span class="clip-wrap" style="display:inline-block;"><span class="ab-kw__num clip-inner">(02)</span></span>
         <span class="clip-wrap" style="display:inline-block;"><h2 class="ab-kw__title clip-inner">Tokyo</h2></span>
       </div>
       <p class="ab-kw__body">
@@ -311,7 +228,6 @@
     <!-- 03 -->
     <div class="ab-kw__inner">
       <div class="ab-kw__head">
-        <span class="clip-wrap" style="display:inline-block;"><span class="ab-kw__num clip-inner">(03)</span></span>
         <span class="clip-wrap" style="display:inline-block;"><h2 class="ab-kw__title clip-inner">Archive</h2></span>
       </div>
       <p class="ab-kw__body">
@@ -336,7 +252,7 @@
   </div>
 </main>
 
-<footer class="footer about-footer">
+<footer class="footer">
   <div class="footer__top">
     <span class="footer__logo">Marginalia</span>
     <div class="footer__contact-center">
@@ -375,245 +291,9 @@
   }, { threshold: 0.01 });
   document.querySelectorAll('.clip-wrap').forEach(function (el) { clipIO.observe(el); });
 
-  /* ══════════════════════════════════════════════════════════
-     2. '척' PHYSICS
-  ══════════════════════════════════════════════════════════ */
-  var placeholder = document.getElementById('cheok-placeholder');
-  var ball = document.createElement('div');
-  ball.id = 'cheok-ball';
-  ball.textContent = '척';
-  /* always invisible until activate() — ball never coexists visibly with placeholder */
-  ball.style.opacity = '0';
-  ball.style.pointerEvents = 'none';
-  document.body.appendChild(ball);
-
-  /* physics state in document (page) coordinates */
-  var px = 0, py = 0, vx = 0, vy = 0;
-  var GRAVITY  = 0.45;
-  var BOUNCE   = 0.68;
-  var FRICTION = 0.993;
-  var active   = false;
-  var dragging = false;
-  var dragOffX = 0, dragOffY = 0;
-  var prevMouseX = 0, prevMouseY = 0;
-  var throwVX = 0, throwVY = 0;
-
-  /* ── pre-position ball silently (still invisible) ─────── */
-  function snapBallToPlaceholder() {
-    var r = placeholder.getBoundingClientRect();
-    px = r.left + window.scrollX;
-    py = r.top  + window.scrollY;
-    ball.style.left = px + 'px';
-    ball.style.top  = py + 'px';
-  }
-  if (document.fonts && document.fonts.ready) {
-    document.fonts.ready.then(snapBallToPlaceholder);
-  } else {
-    window.addEventListener('load', snapBallToPlaceholder);
-  }
-
-  /* ── activate: simultaneous placeholder→ball swap ─────── */
-  function activate() {
-    if (active) return;
-    active = true;
-    /* re-snap position at the moment of activation so it's exact */
-    snapBallToPlaceholder();
-    /* fade out placeholder, fade in ball at the same time */
-    placeholder.style.transition = 'opacity .12s ease';
-    placeholder.style.opacity    = '0';
-    ball.style.transition        = 'opacity .12s ease';
-    ball.style.opacity           = '1';
-    ball.style.pointerEvents     = 'auto';
-    setTimeout(function () {
-      placeholder.style.visibility = 'hidden';
-      placeholder.style.width      = '0';
-      placeholder.style.overflow   = 'hidden';
-      ball.style.transition        = ''; /* remove after swap so physics isn't sluggish */
-    }, 130);
-    vx = (Math.random() - 0.5) * 3;
-    vy = 0.5;
-  }
-  window.addEventListener('scroll', activate, { passive: true });
-
-  /* ── drag ─────────────────────────────────────────────── */
-  ball.addEventListener('mousedown', function (e) {
-    activate();
-    dragging = true;
-    dragOffX  = e.clientX + window.scrollX - px;
-    dragOffY  = e.clientY + window.scrollY - py;
-    prevMouseX = e.clientX;
-    prevMouseY = e.clientY;
-    throwVX = throwVY = 0;
-    ball.classList.add('grabbed');
-    e.preventDefault();
-  });
-
-  document.addEventListener('mousemove', function (e) {
-    if (!dragging) return;
-    throwVX = e.clientX - prevMouseX;
-    throwVY = e.clientY - prevMouseY;
-    prevMouseX = e.clientX;
-    prevMouseY = e.clientY;
-    px = e.clientX + window.scrollX - dragOffX;
-    py = e.clientY + window.scrollY - dragOffY;
-    /* apply position immediately — don't wait for RAF */
-    ball.style.left = px + 'px';
-    ball.style.top  = py + 'px';
-    applyReflow();
-  });
-
-  document.addEventListener('mouseup', function () {
-    if (!dragging) return;
-    dragging = false;
-    ball.classList.remove('grabbed');
-    vx = throwVX * 1.5;
-    vy = throwVY * 1.5;
-  });
-
-  /* touch support */
-  ball.addEventListener('touchstart', function (e) {
-    activate();
-    var t = e.touches[0];
-    dragging = true;
-    dragOffX  = t.clientX + window.scrollX - px;
-    dragOffY  = t.clientY + window.scrollY - py;
-    prevMouseX = t.clientX; prevMouseY = t.clientY;
-    throwVX = throwVY = 0;
-    e.preventDefault();
-  }, { passive: false });
-
-  document.addEventListener('touchmove', function (e) {
-    if (!dragging) return;
-    var t = e.touches[0];
-    throwVX = t.clientX - prevMouseX;
-    throwVY = t.clientY - prevMouseY;
-    prevMouseX = t.clientX; prevMouseY = t.clientY;
-    px = t.clientX + window.scrollX - dragOffX;
-    py = t.clientY + window.scrollY - dragOffY;
-    ball.style.left = px + 'px';
-    ball.style.top  = py + 'px';
-    applyReflow();
-  }, { passive: false });
-
-  document.addEventListener('touchend', function () {
-    if (!dragging) return;
-    dragging = false;
-    vx = throwVX * 1.5;
-    vy = throwVY * 1.5;
-  });
-
-  /* ── RAF loop ─────────────────────────────────────────── */
-  function loop() {
-    if (active && !dragging) {
-      vy += GRAVITY;
-      vx *= FRICTION;
-      vy *= FRICTION;
-      px += vx;
-      py += vy;
-
-      var bW  = ball.offsetWidth  || 72;
-      var bH  = ball.offsetHeight || 90;
-      var docW = Math.max(document.documentElement.scrollWidth,  document.body.scrollWidth);
-      var docH = Math.max(document.documentElement.scrollHeight, document.body.scrollHeight);
-
-      /* left / right walls */
-      if (px < 0)        { px = 0;        vx =  Math.abs(vx) * BOUNCE; }
-      if (px + bW > docW){ px = docW - bW; vx = -Math.abs(vx) * BOUNCE; }
-      /* top */
-      if (py < 0)        { py = 0;        vy =  Math.abs(vy) * BOUNCE; }
-      /* floor */
-      if (py + bH >= docH) {
-        py = docH - bH;
-        vy = -Math.abs(vy) * BOUNCE;
-        vx *= 0.88;               /* floor friction */
-        if (Math.abs(vy) < 1.2) vy = 0;
-      }
-
-      ball.style.left = px + 'px';
-      ball.style.top  = py + 'px';
-      applyReflow();
-    }
-    requestAnimationFrame(loop);
-  }
-  loop();
-
-  /* ══════════════════════════════════════════════════════════
-     3. TEXT REFLOW  (push text away from ball)
-  ══════════════════════════════════════════════════════════ */
-  /* Collect all reflow-able text elements once */
-  var reflowEls = null;
-
-  function getReflowEls() {
-    if (!reflowEls) {
-      reflowEls = Array.from(document.querySelectorAll(
-        '.clip-inner, .ab-kw__title, .ab-kw__body, .ab-kw__num'
-      ));
-    }
-    return reflowEls;
-  }
-
-  function applyReflow() {
-    var bW = ball.offsetWidth  || 72;
-    var bH = ball.offsetHeight || 90;
-    var bL = px, bR = px + bW;
-    var bT = py, bBot = py + bH;
-    var PAD = 12; /* extra breathing room */
-
-    getReflowEls().forEach(function (el) {
-      var r   = el.getBoundingClientRect();
-      var eT  = r.top    + window.scrollY;
-      var eBt = r.bottom + window.scrollY;
-      var eL  = r.left   + window.scrollX;
-      var eR  = r.right  + window.scrollX;
-
-      /* no vertical overlap → reset */
-      if (bBot < eT || bT > eBt) {
-        el.style.paddingLeft  = '';
-        el.style.paddingRight = '';
-        return;
-      }
-
-      /* horizontal overlap */
-      var overlapX = Math.min(bR, eR) - Math.max(bL, eL);
-      if (overlapX <= 0) {
-        el.style.paddingLeft  = '';
-        el.style.paddingRight = '';
-        return;
-      }
-
-      /* determine which side the ball is on */
-      var ballCenterX = (bL + bR) / 2;
-      var elCenterX   = (eL + eR) / 2;
-
-      if (ballCenterX < elCenterX) {
-        /* ball on left → push text right */
-        var push = Math.max(0, bR - eL + PAD);
-        el.style.paddingLeft  = Math.min(push, 320) + 'px';
-        el.style.paddingRight = '';
-      } else {
-        /* ball on right → push text left (indent from right) */
-        var push2 = Math.max(0, eR - bL + PAD);
-        el.style.paddingRight = Math.min(push2, 320) + 'px';
-        el.style.paddingLeft  = '';
-      }
-    });
-  }
-
-  /* ══════════════════════════════════════════════════════════
-     4. CONTACT TOGGLE
-  ══════════════════════════════════════════════════════════ */
-  var btn   = document.getElementById('contactBtn');
-  var panel = document.getElementById('contactPanel');
-  if (btn && panel) {
-    btn.addEventListener('click', function () {
-      var open = btn.classList.toggle('open');
-      btn.setAttribute('aria-expanded', String(open));
-      panel.classList.toggle('open', open);
-    });
-  }
-
 })();
 </script>
+<script src="contact.js"></script>
 <script src="nav.js"></script>
 <script src="transition.js"></script>
 </body>

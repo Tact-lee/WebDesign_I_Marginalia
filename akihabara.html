@@ -38,6 +38,7 @@
     <a href="index.html" class="nav__logo">Marginalia</a>
     <div class="nav__right">
       <ul class="nav__links">
+        <li><a href="about.html">About</a></li>
         <li><a href="index.html#map-section">Location Map</a></li>
         <li><a href="index.html#gallery-section">Gallery</a></li>
       </ul>
@@ -62,6 +63,7 @@
   <div class="nav__mobile-menu" id="navMobileMenu" aria-hidden="true">
     <div class="nav__mobile-inner">
       <ul class="nav__mobile-links">
+        <li><a href="about.html">About</a></li>
         <li><a href="index.html#map-section">Location Map</a></li>
         <li><a href="index.html#gallery-section">Gallery</a></li>
       </ul>
@@ -269,7 +271,6 @@
 
     <!-- Gallery 4 -->
     <div class="d-building__gallery js-img-reveal">
-      <div class="d-building__gallery-item"><img src="picture/mAAch_Ecute_Kanda_Manseibashi_17.png" alt="mAAch Ecute terrace 1" /></div>
       <div class="d-building__gallery-item"><img src="picture/mAAch_Ecute_Kanda_Manseibashi_18.png" alt="mAAch Ecute terrace 2" /></div>
       <div class="d-building__gallery-item"><img src="picture/mAAch_Ecute_Kanda_Manseibashi_19.png" alt="mAAch Ecute terrace 3" /></div>
       <div class="d-building__gallery-item"><img src="picture/mAAch_Ecute_Kanda_Manseibashi_21.png" alt="mAAch Ecute platform" /></div>
@@ -494,6 +495,15 @@
   <footer class="footer">
     <div class="footer__top">
       <span class="footer__logo">Marginalia</span>
+      <div class="footer__contact-center">
+        <button class="footer__contact-btn" id="contactBtn" aria-expanded="false">
+          Contact <span class="fc-plus">+</span>
+        </button>
+        <div class="footer__contact-panel" id="contactPanel">
+          <a class="footer__contact-link" href="mailto:kon0052@naver.com">kon0052@naver.com</a>
+          <a class="footer__contact-link" href="https://www.instagram.com/tact_lee/" target="_blank" rel="noopener">@tact_lee</a>
+        </div>
+      </div>
       <p class="footer__tagline">A record of what stands<br />and what remains.</p>
     </div>
     <div class="footer__bottom">
@@ -528,5 +538,6 @@
   <script src="i18n.js"></script>
   <script src="nav.js"></script>
   <script src="transition.js"></script>
+<script src="contact.js"></script>
 </body>
 </html>
